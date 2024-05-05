@@ -94,9 +94,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabID:
     x: 0
-    y: 2
-  maxHealth: 100
-  initialHealth: 1
+    y: 0
+  maxHealth: 400
+  initialHealth: 400
   canIncrease: 1
   canDecrease: 1
   hoverHealthBarData:
