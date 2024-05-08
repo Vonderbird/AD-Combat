@@ -15,7 +15,7 @@ C:/Projects/AD-Combat/My project
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-9666
+10935
 Successfully changed project path to: C:/Projects/AD-Combat/My project
 C:/Projects/AD-Combat/My project
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/Projects/AD-Combat/My project
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [7768] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 3587984197 [EditorId] 3587984197 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [20852] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 937604900 [EditorId] 937604900 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [7768] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 3587984197 [EditorId] 3587984197 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [20852] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 937604900 [EditorId] 937604900 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 12.18 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 9.29 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.20f1 (61c2feb0970d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Resources/UnitySubsystems
@@ -70,50 +70,50 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56692
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56312
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.014983 seconds.
-- Loaded All Assemblies, in  0.458 seconds
+Registered in 0.015194 seconds.
+- Loaded All Assemblies, in  0.462 seconds
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 370 ms
+Android Extension - Scanning For ADB Devices 333 ms
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.796 seconds
-Domain Reload Profiling: 1252ms
-	BeginReloadAssembly (139ms)
+- Finished resetting the current domain, in  0.752 seconds
+Domain Reload Profiling: 1212ms
+	BeginReloadAssembly (130ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (39ms)
+	RebuildCommonClasses (41ms)
 	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (80ms)
-	LoadAllAssembliesAndSetupDomain (185ms)
-		LoadAssemblies (137ms)
+	initialDomainReloadingComplete (75ms)
+	LoadAllAssembliesAndSetupDomain (200ms)
+		LoadAssemblies (129ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (182ms)
-			TypeCache.Refresh (180ms)
-				TypeCache.ScanAssembly (162ms)
+		AnalyzeDomain (196ms)
+			TypeCache.Refresh (195ms)
+				TypeCache.ScanAssembly (178ms)
 			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (0ms)
-	FinalizeReload (796ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (752ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (726ms)
+		SetupLoadedEditorAssemblies (678ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (525ms)
+			InitializePlatformSupportModulesInManaged (484ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (141ms)
+			ProcessInitializeOnLoadAttributes (134ms)
 			ProcessInitializeOnLoadMethodAttributes (53ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
@@ -122,8 +122,8 @@ Domain Reload Profiling: 1252ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.941 seconds
-Refreshing native plugins compatible for Editor in 4.41 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.825 seconds
+Refreshing native plugins compatible for Editor in 4.03 ms, found 3 plugins.
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
@@ -133,47 +133,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.739 seconds
-Domain Reload Profiling: 1676ms
-	BeginReloadAssembly (224ms)
+- Finished resetting the current domain, in  0.796 seconds
+Domain Reload Profiling: 1618ms
+	BeginReloadAssembly (181ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (7ms)
+		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (34ms)
-	RebuildCommonClasses (47ms)
-	RebuildNativeTypeToScriptingClass (14ms)
-	initialDomainReloadingComplete (61ms)
-	LoadAllAssembliesAndSetupDomain (592ms)
-		LoadAssemblies (431ms)
+		CreateAndSetChildDomain (28ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (529ms)
+		LoadAssemblies (365ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (291ms)
-			TypeCache.Refresh (257ms)
-				TypeCache.ScanAssembly (227ms)
-			ScanForSourceGeneratedMonoScriptInfo (21ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (739ms)
+		AnalyzeDomain (270ms)
+			TypeCache.Refresh (230ms)
+				TypeCache.ScanAssembly (204ms)
+			ScanForSourceGeneratedMonoScriptInfo (27ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (797ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (506ms)
+		SetupLoadedEditorAssemblies (561ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (28ms)
-			SetLoadedEditorAssemblies (3ms)
+			InitializePlatformSupportModulesInManaged (39ms)
+			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (65ms)
-			ProcessInitializeOnLoadAttributes (372ms)
-			ProcessInitializeOnLoadMethodAttributes (30ms)
-			AfterProcessingInitializeOnLoad (8ms)
+			BeforeProcessingInitializeOnLoad (80ms)
+			ProcessInitializeOnLoadAttributes (399ms)
+			ProcessInitializeOnLoadMethodAttributes (28ms)
+			AfterProcessingInitializeOnLoad (10ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 3.67 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (7ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 3.74 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3742 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 32 unused Assets / (57.2 KB). Loaded Objects now: 4211.
-Memory consumption went from 148.2 MB to 148.1 MB.
-Total: 3.497300 ms (FindLiveObjects: 0.379000 ms CreateObjectMapping: 0.402400 ms MarkObjects: 2.603000 ms  DeleteObjects: 0.111600 ms)
+Unloading 32 unused Assets / (57.0 KB). Loaded Objects now: 4213.
+Memory consumption went from 148.6 MB to 148.5 MB.
+Total: 3.925000 ms (FindLiveObjects: 0.331100 ms CreateObjectMapping: 0.336400 ms MarkObjects: 2.793700 ms  DeleteObjects: 0.461300 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -190,84 +190,1856 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 103837.556266 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wheel.fbx
-  artifactKey: Guid(28d301ed5c823c74bac0ba4980632367) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wheel.fbx using Guid(28d301ed5c823c74bac0ba4980632367) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2407e560ace573b82010c00f6e88cd04') in 0.144665 seconds
+  Time since last request: 109948.870509 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Wood_Fence_Broken_01.obj
+  artifactKey: Guid(98b3a66d890d566468b98f56d8859633) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Wood_Fence_Broken_01.obj using Guid(98b3a66d890d566468b98f56d8859633) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f2e82f23e049b4fc1891d39619e2d3a') in 0.178716 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
+Number of asset objects unloaded after import = 16
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/windmill.fbx
-  artifactKey: Guid(4ba5359554d8b0544bc35b50c2c5d5cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/windmill.fbx using Guid(4ba5359554d8b0544bc35b50c2c5d5cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2d343b8e1e307fef5d922e74e983dcc') in 0.029311 seconds
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Flower_Tall_Yellow_01.obj
+  artifactKey: Guid(6ba9281b419992d40837acf218b3561b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Flower_Tall_Yellow_01.obj using Guid(6ba9281b419992d40837acf218b3561b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '000e1fd63b04ae7af3491a84138bdf6f') in 0.163145 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
+Number of asset objects unloaded after import = 31
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_012.obj
+  artifactKey: Guid(5fd4e08870b355b47a6bbb51ae38b644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_012.obj using Guid(5fd4e08870b355b47a6bbb51ae38b644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b09092ea31a8e30a416ac62b95f56b1') in 0.098559 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 25
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_008.obj
+  artifactKey: Guid(b13c18543ddca77479ddb533e850902f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_008.obj using Guid(b13c18543ddca77479ddb533e850902f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89bb8bf18f7a44a8384bd90e63303c71') in 0.043209 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 31
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_006.obj
+  artifactKey: Guid(f48f1a27c7f82ce4d8fcc66f66945006) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_006.obj using Guid(f48f1a27c7f82ce4d8fcc66f66945006) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e19d5958f2fc62ea622567641a7c9941') in 0.047219 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 31
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_040.obj
+  artifactKey: Guid(24698ac43c093ad4ea0697f6dd617382) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_040.obj using Guid(24698ac43c093ad4ea0697f6dd617382) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fadcefe2b73e99dc81b49104155eb3d4') in 0.042209 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 30
 ========================================================================
 Received Import Request.
   Time since last request: 0.000017 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWindowStone.fbx
-  artifactKey: Guid(4cc95f48da3f6b147b05bdff480170d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWindowStone.fbx using Guid(4cc95f48da3f6b147b05bdff480170d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f71259e4e0ef3a2bc085230950a25d6b') in 0.032102 seconds
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_011.obj
+  artifactKey: Guid(98bc3a6f3e4362c4ab9e19565fcb24ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_flat_011.obj using Guid(98bc3a6f3e4362c4ab9e19565fcb24ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '751cbe80b7c99959de26f3e5b42c8802') in 0.045407 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 31
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_041.obj
+  artifactKey: Guid(2f467e5eb776e1a498369e054db7136f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_041.obj using Guid(2f467e5eb776e1a498369e054db7136f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8099c30fb0f518eb32b0b1d5f658a1cb') in 0.083582 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 55
+========================================================================
+Received Import Request.
+  Time since last request: 0.048273 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_100.obj
+  artifactKey: Guid(d3ea0b21424a8e94699ec71aaa3140e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_100.obj using Guid(d3ea0b21424a8e94699ec71aaa3140e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c348192f8265d7ba37427fc979ac7ebd') in 0.021410 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Plant_1_01.obj
+  artifactKey: Guid(0e545b3fe4cf4824385c75ce51461fce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Plant_1_01.obj using Guid(0e545b3fe4cf4824385c75ce51461fce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1967e0414777bfb5c1d6b377b1b8cf4') in 0.023566 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_050.obj
+  artifactKey: Guid(a2108f61d3c2ff94b81b13584ecac64c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_050.obj using Guid(a2108f61d3c2ff94b81b13584ecac64c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c83acb45154d2f5d6e3357a808f22cf') in 0.025683 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_167.obj
+  artifactKey: Guid(21230a74458ba4d43b5c3515ca29b87c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_167.obj using Guid(21230a74458ba4d43b5c3515ca29b87c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f4388335cf6a507a1b4c49fc9a72e87f') in 0.023908 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_061.obj
+  artifactKey: Guid(deff8b43f54c262428f235daf0e87a98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_061.obj using Guid(deff8b43f54c262428f235daf0e87a98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1845a86e0a35fb95e05a233334e34a94') in 0.022855 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time since last request: 2.383994 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Banner_01.obj
+  artifactKey: Guid(ce763d92167e49545a188f708f17f419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Banner_01.obj using Guid(ce763d92167e49545a188f708f17f419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f155c7ba3a0b30186fd01cd879943be4') in 0.014207 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Brown_Waterfall_01.obj
+  artifactKey: Guid(46383d86dd432224a9f42becc51442b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Brown_Waterfall_01.obj using Guid(46383d86dd432224a9f42becc51442b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a3c8bb02726fa7bd5c6f4cdf16b6658') in 0.014543 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Castle_Wall_01.obj
+  artifactKey: Guid(a75b7be928618ca4fb3b42915c54e228) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Castle_Wall_01.obj using Guid(a75b7be928618ca4fb3b42915c54e228) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b39806ce331c21f1904804c10e002b21') in 0.012971 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_099.obj
+  artifactKey: Guid(d49bb73d838af7d4d961e242ee3c8a5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_099.obj using Guid(d49bb73d838af7d4d961e242ee3c8a5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '766ea532d4091a461441a983036b3100') in 0.012382 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_120.obj
+  artifactKey: Guid(8c888acf8ad1e2f429a4bccfca285f11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_120.obj using Guid(8c888acf8ad1e2f429a4bccfca285f11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e7d22869d46e7da78fe5d699f227d57') in 0.016616 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Green_Top_01.obj
+  artifactKey: Guid(c4bc67091e187eb458c76917c0a5e2dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Green_Top_01.obj using Guid(c4bc67091e187eb458c76917c0a5e2dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c31b9c8ead1cf1e3b4782e8a93ba0121') in 0.017084 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Corner_01.obj
+  artifactKey: Guid(ada163ac37f0cae44935678bd3ea4a28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Corner_01.obj using Guid(ada163ac37f0cae44935678bd3ea4a28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '849a10daf441b352b9f983854a265910') in 0.014769 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 10
 ========================================================================
 Received Import Request.
   Time since last request: 0.000022 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodWindowRound.fbx
-  artifactKey: Guid(105ed2b712a7a98448caca6f543f9200) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodWindowRound.fbx using Guid(105ed2b712a7a98448caca6f543f9200) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '239ab2788f17780684b4fd6242b9f8ca') in 0.029076 seconds
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_096.obj
+  artifactKey: Guid(71d33c8d74d1e61408b663026711b546) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_096.obj using Guid(71d33c8d74d1e61408b663026711b546) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96e1a70118e418f7f8d8d39a5556af4d') in 0.022453 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
+Number of asset objects unloaded after import = 11
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDetailHorizontal.fbx
-  artifactKey: Guid(16926bbf17cb1d749bc8fc06b84dc7f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDetailHorizontal.fbx using Guid(16926bbf17cb1d749bc8fc06b84dc7f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69eb0e29331d4bd3a510e62d2027171a') in 0.025344 seconds
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_100.obj
+  artifactKey: Guid(4f3f933b3b4dad44f8ef417ef6703938) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_100.obj using Guid(4f3f933b3b4dad44f8ef417ef6703938) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2eb39501f2e26100e1881fff296ea440') in 0.021387 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
+Number of asset objects unloaded after import = 11
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWindowShutters.fbx
-  artifactKey: Guid(dda128d2328713846a90ad9ffc460e1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWindowShutters.fbx using Guid(dda128d2328713846a90ad9ffc460e1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f2d486c0b4e4a0aa4c87839f6179938') in 0.046413 seconds
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Campfire_01.obj
+  artifactKey: Guid(b32d07886f3bf214c8e0e89990df5547) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Campfire_01.obj using Guid(b32d07886f3bf214c8e0e89990df5547) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25faef7e1f1080186a23e0df2adf8194') in 0.016774 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 24
+Number of asset objects unloaded after import = 11
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrowStairsFence.fbx
-  artifactKey: Guid(72f170305cf78744089cddef44e2fe45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrowStairsFence.fbx using Guid(72f170305cf78744089cddef44e2fe45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e024177f9540bbc980bf588276e3668d') in 0.018328 seconds
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grass_01.obj
+  artifactKey: Guid(7c7e4c3b6c8c16b4e884a2bac50a88cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grass_01.obj using Guid(7c7e4c3b6c8c16b4e884a2bac50a88cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97a8cd3d944602e87981900b8838627b') in 0.027751 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 15
 ========================================================================
 Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Grey_Pole_01.obj
+  artifactKey: Guid(0a3e2d36704af0d45bb64d5d860845a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Grey_Pole_01.obj using Guid(0a3e2d36704af0d45bb64d5d860845a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9a698d0555310c2271735fbc5262dc4') in 0.017105 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_End_Green_Top_01.obj
+  artifactKey: Guid(6a2740f98c0f76742914830db42209b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_End_Green_Top_01.obj using Guid(6a2740f98c0f76742914830db42209b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcadb8dddb51fa7f09f90d42aec47bc8') in 0.015001 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_119.obj
+  artifactKey: Guid(958152b8e73955d4593bd72b8aa0f57c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_119.obj using Guid(958152b8e73955d4593bd72b8aa0f57c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '000d904de243f67ddacdea11e9b41b46') in 0.013949 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_097.obj
+  artifactKey: Guid(c50eebdb8f2722e4b87001c37e66a029) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_097.obj using Guid(c50eebdb8f2722e4b87001c37e66a029) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed919eb43a8fb35dd9c7607a01f4f9a3') in 0.016884 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Grey_Short_Wall_01.obj
+  artifactKey: Guid(d4124cc529c1bff478426507c545051e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Grey_Short_Wall_01.obj using Guid(d4124cc529c1bff478426507c545051e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c468068907ab4fd3e492629e3fdbc869') in 0.014951 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Brown_Waterfall_Top_01.obj
+  artifactKey: Guid(ec4f471f071dbb248b005a2d9670e570) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Brown_Waterfall_Top_01.obj using Guid(ec4f471f071dbb248b005a2d9670e570) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8dafcd5d611776316c77b235026ff3c') in 0.015969 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_078.obj
+  artifactKey: Guid(9ecbf57df6fb0944293a3b91f91f3723) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_078.obj using Guid(9ecbf57df6fb0944293a3b91f91f3723) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8796358b9bae4314b09d7c78fd61987e') in 0.015199 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_115.obj
+  artifactKey: Guid(7ed1525fb77c4214aadfb2631fb0aa62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_115.obj using Guid(7ed1525fb77c4214aadfb2631fb0aa62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e47051cf231b6d0c2a3658d58bc6fcd') in 0.016292 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Top_Corner_01.obj
+  artifactKey: Guid(eed43140b01f139409eeab9780d606c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Top_Corner_01.obj using Guid(eed43140b01f139409eeab9780d606c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2bffcf62ddf1ec3221d27eaa7eb289c') in 0.015494 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Bottom_Corner_Green_Top_01.obj
+  artifactKey: Guid(c31f297167c939a428ee23bfc8e8c7e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Bottom_Corner_Green_Top_01.obj using Guid(c31f297167c939a428ee23bfc8e8c7e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29bf75f6eb37d973f312002b277cdd92') in 0.015549 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Fallen_Trunk_01.obj
+  artifactKey: Guid(a54a3840ebde1fa44ae4f2027cc9429c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Fallen_Trunk_01.obj using Guid(a54a3840ebde1fa44ae4f2027cc9429c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5523296d7f0cccfbc7d1a45e8251e61') in 0.013894 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_142.obj
+  artifactKey: Guid(b6999928a8a21054b942370d8c426ceb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_142.obj using Guid(b6999928a8a21054b942370d8c426ceb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd234661ab47ba831c39ac96db809b743') in 0.014244 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_121.obj
+  artifactKey: Guid(a226edb053707c443abe9027d179c5ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_121.obj using Guid(a226edb053707c443abe9027d179c5ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '787b8a9e485dbce9f400114dcfa5f294') in 0.016161 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_End_01.obj
+  artifactKey: Guid(1a8da77bf7542f845945a1b96f4f7591) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_End_01.obj using Guid(1a8da77bf7542f845945a1b96f4f7591) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '147931b7b93f70297c5d348aef14af6d') in 0.015275 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Bottom_Green_Top_01.obj
+  artifactKey: Guid(2564a04c47897a649b50e9d1fb738d05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Bottom_Green_Top_01.obj using Guid(2564a04c47897a649b50e9d1fb738d05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb3675c65bdbcb668efe47bedd56912f') in 0.015296 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_102.obj
+  artifactKey: Guid(7d4b553096a5dbc4fb507ab1a1b0486a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_102.obj using Guid(7d4b553096a5dbc4fb507ab1a1b0486a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3d1e360a0f32abc42ee3f709a4370ca') in 0.016094 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Top_01.obj
+  artifactKey: Guid(a265fdb40e6210540bc39655b117b4c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Grey_Cliff_Top_01.obj using Guid(a265fdb40e6210540bc39655b117b4c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f76e408a75c15b20773f10a3b9173686') in 0.012704 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.976904 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/altarWood.fbx
+  artifactKey: Guid(363731a6dc8adfe42b03143ca6ac3f46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/altarWood.fbx using Guid(363731a6dc8adfe42b03143ca6ac3f46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f8105d9f89ca6f342ae985ec553df1f') in 0.041681 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/pirate_crew.fbx
+  artifactKey: Guid(e30cc732ec6a2a04ab4da2cd7e818e32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/pirate_crew.fbx using Guid(e30cc732ec6a2a04ab4da2cd7e818e32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f0ba1ad8688cca3189cb076fc1c8751') in 0.063084 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 45
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Art_Assets/Units/Unit_NaloxianBowman/Model_Naloxian Bowman_Comp.fbx
+  artifactKey: Guid(aa47ee277a20f5440b37597dbfee9d0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Units/Unit_NaloxianBowman/Model_Naloxian Bowman_Comp.fbx using Guid(aa47ee277a20f5440b37597dbfee9d0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99734e652e0a1276d6a014bea942e4e0') in 0.066117 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 90
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrowWood.fbx
+  artifactKey: Guid(2ed3f371661213843a70e26c53918a7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrowWood.fbx using Guid(2ed3f371661213843a70e26c53918a7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00e1f63e3595a83edb62406befef1d1e') in 0.020007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/bench.fbx
+  artifactKey: Guid(e7888021eb67238459741a0f5ead00cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/bench.fbx using Guid(e7888021eb67238459741a0f5ead00cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff518ddb6332f21f748666f5afa1674f') in 0.023787 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/bottle.fbx
+  artifactKey: Guid(087f8d1e76753024fbaeeacd02dd0120) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/bottle.fbx using Guid(087f8d1e76753024fbaeeacd02dd0120) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '485851b5ff0be57516566475fb40e617') in 0.015138 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/bannerGreen.fbx
+  artifactKey: Guid(e17247d2de302f0479a7c69079e80f65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/bannerGreen.fbx using Guid(e17247d2de302f0479a7c69079e80f65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2debd73044f8ac9012162cac32fbca0') in 0.010424 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 1.486592 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/bridge_side_stone.fbx
+  artifactKey: Guid(2aae88e26f86b974d877a93a27bee575) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/bridge_side_stone.fbx using Guid(2aae88e26f86b974d877a93a27bee575) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b60de4ac5a99346efb88b34c6eb7c0f') in 0.022758 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/_Custom/Meshes/cabinFloor.fbx
+  artifactKey: Guid(8f01061b5466b0a4f8b5e5db29435eab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/_Custom/Meshes/cabinFloor.fbx using Guid(8f01061b5466b0a4f8b5e5db29435eab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53e6380dc739727eba32fb2ab17f174e') in 0.015747 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.199044 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/ground_pathBend.fbx
+  artifactKey: Guid(c8e5793666f95e04fa498fbc9372e6f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/ground_pathBend.fbx using Guid(c8e5793666f95e04fa498fbc9372e6f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfe9a1ffb7a8d25c20903a62a0884553') in 0.031324 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 16.741083 seconds.
+  path: Assets/Art_Assets/Units/Unit_Berzerker/Textures_BerzerkAxe/Model_BerzerkersAxe_Material _27_Emissive.png
+  artifactKey: Guid(03aa30100e2590441b14f4af1f7041ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Units/Unit_Berzerker/Textures_BerzerkAxe/Model_BerzerkersAxe_Material _27_Emissive.png using Guid(03aa30100e2590441b14f4af1f7041ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03582078860187ccc1b0ad13f5485028') in 0.021658 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 59.685676 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrow.fbx
+  artifactKey: Guid(2cc15f4d95e754e4284cf34f16d0ab9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrow.fbx using Guid(2cc15f4d95e754e4284cf34f16d0ab9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a10c4fd8c82303616a9219b46bfac7a') in 0.036569 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.007222 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallCornerHalf.fbx
+  artifactKey: Guid(f19c82e321237da4c8082e78cd6b7ebc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallCornerHalf.fbx using Guid(f19c82e321237da4c8082e78cd6b7ebc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0d8a2e72721c33ed58e9892ffd4e22a') in 0.020446 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.108867 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/tree_pineGroundB.fbx
+  artifactKey: Guid(fcfe115fece3c044e8743485c6ba4013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/tree_pineGroundB.fbx using Guid(fcfe115fece3c044e8743485c6ba4013) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7bf82bf12226365731d2325e8a4ccd1') in 0.026615 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.259561 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/statue_head.fbx
+  artifactKey: Guid(2a245b7374b231648a2369c9abddf71f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/statue_head.fbx using Guid(2a245b7374b231648a2369c9abddf71f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fca3f680ab7c3d3feab864ffbc374808') in 0.021240 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_largeD.fbx
+  artifactKey: Guid(ea7c247e14773c34087c2298097f9877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_largeD.fbx using Guid(ea7c247e14773c34087c2298097f9877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8638efa3162f02e1e29c437e3a5e961d') in 0.026098 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/shovelDirt.fbx
+  artifactKey: Guid(20d8c35e4e16e4c42b2cf88079309419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/shovelDirt.fbx using Guid(20d8c35e4e16e4c42b2cf88079309419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37f6070d1a9cb65a76005136d24930ba') in 0.032863 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadCurb.fbx
+  artifactKey: Guid(6b42e7b13d5993640a195c326bb01d8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadCurb.fbx using Guid(6b42e7b13d5993640a195c326bb01d8f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22cbdc6b46cb27da90b98ff938e22a5b') in 0.016087 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
   Time since last request: 0.000021 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDetailDiagonal.fbx
-  artifactKey: Guid(9215a30b3b4c6464191cbf5d939d1ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDetailDiagonal.fbx using Guid(9215a30b3b4c6464191cbf5d939d1ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac9f0a34d7daafb209d1e3d9dfbc389c') in 0.020497 seconds
+  path: Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/ship_wreck.fbx
+  artifactKey: Guid(2831ac6a9d2b65c4aa6467d68de60247) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/ship_wreck.fbx using Guid(2831ac6a9d2b65c4aa6467d68de60247) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8f867b76f906fb30f5cd0266101ce52') in 0.022031 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallC.fbx
+  artifactKey: Guid(90870daf68e709144a9953cc31f01764) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallC.fbx using Guid(90870daf68e709144a9953cc31f01764) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b351cf1a2df6f024fa0798ed12e7d22d') in 0.025049 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallFlatA.fbx
+  artifactKey: Guid(dd36b70bc0a842b478257930b19ec1a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallFlatA.fbx using Guid(dd36b70bc0a842b478257930b19ec1a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f5c4fd597d9b19c6a3208e0d619efa5') in 0.020526 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/3DModel_Skyforger_Cannon.fbx
+  artifactKey: Guid(eab446762b3f59e409e8d76ba1361054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/3DModel_Skyforger_Cannon.fbx using Guid(eab446762b3f59e409e8d76ba1361054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cdffd80490b3f8ccf289be9ea0267b3') in 0.033320 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadEdge.fbx
+  artifactKey: Guid(6e73736c59371254c8e80199812a922a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadEdge.fbx using Guid(6e73736c59371254c8e80199812a922a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c41803585d38c315138533ef4d35cf8') in 0.018121 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Window_Round_Sill_01.obj
+  artifactKey: Guid(d3c4d940cdb576346bc2ad4e43b1a237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Window_Round_Sill_01.obj using Guid(d3c4d940cdb576346bc2ad4e43b1a237) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbf476deed92c4c27417f807f25e010a') in 0.015692 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallD.fbx
+  artifactKey: Guid(a14e9229a73f05a428f6a5b282302e2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallD.fbx using Guid(a14e9229a73f05a428f6a5b282302e2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '259503d552bf32cfe0f59c4cd75ba804') in 0.021186 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Tall_Rock_3_01.obj
+  artifactKey: Guid(09e73380792b3df4fa450f430ce64cad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Tall_Rock_3_01.obj using Guid(09e73380792b3df4fa450f430ce64cad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c63ba327d722ba453bb1357b02ceaf5') in 0.012831 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_095.obj
+  artifactKey: Guid(3fb325f885e77d4428684288bc6ba7cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_095.obj using Guid(3fb325f885e77d4428684288bc6ba7cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41c96e217a824a60d8528bd2f16b77df') in 0.013260 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Door_Round_01.obj
+  artifactKey: Guid(83561f2f57857b1448e769054ae5e53b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Door_Round_01.obj using Guid(83561f2f57857b1448e769054ae5e53b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39c5d594c3fa320d9054a14c658ffe04') in 0.014575 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Wall_Double_Cross_01.obj
+  artifactKey: Guid(9ba18eccb52a5d4459915305eec63eff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Wall_Double_Cross_01.obj using Guid(9ba18eccb52a5d4459915305eec63eff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '218a69ba9676408ce0ed315cf4f0fd2b') in 0.014951 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_131.obj
+  artifactKey: Guid(932eaa682e3b6084b83c6297eeceb983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_131.obj using Guid(932eaa682e3b6084b83c6297eeceb983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e36fe3e2b282eec36cd414763ff103f') in 0.013475 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_058.obj
+  artifactKey: Guid(9ae49fc3efeb5184893225b3bcaca5a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_058.obj using Guid(9ae49fc3efeb5184893225b3bcaca5a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8a48223bc048d64323c6b185c4d1554') in 0.014028 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_059.obj
+  artifactKey: Guid(ea8053b2a564ec745b90ae6755c3c802) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_059.obj using Guid(ea8053b2a564ec745b90ae6755c3c802) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b8fa38bd1094e5d16eec7593f7bde49') in 0.012669 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/rocksTall.fbx
+  artifactKey: Guid(50bef6295bf2b1149a059d98e8909f11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/rocksTall.fbx using Guid(50bef6295bf2b1149a059d98e8909f11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd57279e7b29282944dba0a2f995d6b6f') in 0.013058 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_094.obj
+  artifactKey: Guid(fb5409f8b8c348c4b8a8c012558e9df8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_094.obj using Guid(fb5409f8b8c348c4b8a8c012558e9df8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3d5e7470c70e560734590885923829a') in 0.015386 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_052.obj
+  artifactKey: Guid(0128b2f64013b064b9bb28ac9260febf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_052.obj using Guid(0128b2f64013b064b9bb28ac9260febf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7b0dad31db032a7d444a060d099524c') in 0.013483 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_087.obj
+  artifactKey: Guid(2e7543b84d59621439d65573d24aecad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_087.obj using Guid(2e7543b84d59621439d65573d24aecad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78ce743c6ae3e505bc1d9a65cba30ab4') in 0.012898 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_045.obj
+  artifactKey: Guid(b9f4d7439f15e6440917a98e5f1b0264) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_045.obj using Guid(b9f4d7439f15e6440917a98e5f1b0264) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '454da686621ab6c2d015bd32e1b0b450') in 0.013574 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_076.obj
+  artifactKey: Guid(ab14c898eaf012f4b95344ca5446db48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_076.obj using Guid(ab14c898eaf012f4b95344ca5446db48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ef635ac826dbe86bca1a758f7dbaff9') in 0.013305 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_175.obj
+  artifactKey: Guid(2508f6de3b7e7fa4198be0fa495e39f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_175.obj using Guid(2508f6de3b7e7fa4198be0fa495e39f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '240bc1a6f812653449b7b7cd3f153049') in 0.013043 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_022.obj
+  artifactKey: Guid(7c91e3d552785a840b39742e40b613b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_022.obj using Guid(7c91e3d552785a840b39742e40b613b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '909ff24d1523e2c4cc3e423de2c3bbbe') in 0.013488 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Iron_Door_01.obj
+  artifactKey: Guid(0a1a279edc36fb3459c95bb5a2a91e76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Iron_Door_01.obj using Guid(0a1a279edc36fb3459c95bb5a2a91e76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0e5038c310cf829c6be117bb1d4bfab') in 0.015183 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/lily_large.fbx
+  artifactKey: Guid(5f54c38fc56cfa4458f6862cc96dde3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/lily_large.fbx using Guid(5f54c38fc56cfa4458f6862cc96dde3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ec0c4f18626801249a56bdbfb5b81ce') in 0.022161 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_097.obj
+  artifactKey: Guid(20a1471c3f95dcc4db255c492009bd34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_097.obj using Guid(20a1471c3f95dcc4db255c492009bd34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11d99577b48aa17ca98a97a0b374c35b') in 0.014053 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_029.obj
+  artifactKey: Guid(928e9a9725d038943a9044e60f8229f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_029.obj using Guid(928e9a9725d038943a9044e60f8229f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21941c97fdd34820a36be5327d6be322') in 0.015021 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallB.fbx
+  artifactKey: Guid(1b879cb79709a2840b05240e059746bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallB.fbx using Guid(1b879cb79709a2840b05240e059746bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c81090de7bb983b9908cecd3cb5bfaa9') in 0.017196 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_071.obj
+  artifactKey: Guid(76e4e50ab0788a64f95b653fd9ff10b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_071.obj using Guid(76e4e50ab0788a64f95b653fd9ff10b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07e9de6ecec8d67d4b2ff9f2b85ef405') in 0.012203 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_largeE.fbx
+  artifactKey: Guid(50e55de201ec33548968942386f4c27d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_largeE.fbx using Guid(50e55de201ec33548968942386f4c27d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8de467e1f1454f1d585b853217ecb9a') in 0.014593 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/gravestoneFlat.fbx
+  artifactKey: Guid(f06605be887968a4ea286e37c84e6223) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/gravestoneFlat.fbx using Guid(f06605be887968a4ea286e37c84e6223) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a30e5f9275abf5f353731cb024c46dd') in 0.011587 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/rockWide.fbx
+  artifactKey: Guid(eef8c54edcdc43247add1cd7fb75830c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/rockWide.fbx using Guid(eef8c54edcdc43247add1cd7fb75830c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26fb70925945b9cd310627cb3ad73432') in 0.011147 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/ground_pathRocks.fbx
+  artifactKey: Guid(c329c6865c47b034cb57777a7151e658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/ground_pathRocks.fbx using Guid(c329c6865c47b034cb57777a7151e658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87b0229ac8bc22b9202a31e6c590bcd3') in 0.024930 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_054.obj
+  artifactKey: Guid(75cf817dbb2ca4c4f8f6d424c8a32d84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_054.obj using Guid(75cf817dbb2ca4c4f8f6d424c8a32d84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8f8dd73463dc15719b4a90228dad837') in 0.014045 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/Art_Assets/Buildings/CoX/Model_Cox_Outpost.fbx
+  artifactKey: Guid(87f229dd2be39fd4aa7cc9558ee5394f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/CoX/Model_Cox_Outpost.fbx using Guid(87f229dd2be39fd4aa7cc9558ee5394f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05f87c254e143dc7ee578afc35239cab') in 0.018514 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_cornStageC.fbx
+  artifactKey: Guid(b2e5ba7a68fae534ebf7c49d235dbdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_cornStageC.fbx using Guid(b2e5ba7a68fae534ebf7c49d235dbdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '539a605eb96c493e9871dbb583549d5c') in 0.013190 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_SchemProjector/974806575240_A_sci_fi_forge_mach.obj
+  artifactKey: Guid(c0b6c01619ea25241806f438b9134b47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_SchemProjector/974806575240_A_sci_fi_forge_mach.obj using Guid(c0b6c01619ea25241806f438b9134b47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68a2874d6a998e4d9a1c619da4319ac3') in 0.020629 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Vines1/6b25196cfe62_A_wild_vine_min.obj
+  artifactKey: Guid(c95dd60b474cd5e4bb621bcedacdb28e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Vines1/6b25196cfe62_A_wild_vine_min.obj using Guid(c95dd60b474cd5e4bb621bcedacdb28e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fafeda66733ba5430b1b48e7b020e080') in 0.026576 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/cactus_short.fbx
+  artifactKey: Guid(bda7968df9568274f8acd6130ee7b68b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/cactus_short.fbx using Guid(bda7968df9568274f8acd6130ee7b68b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0dc9aed4595840b8dfdae87f739d41ad') in 0.012786 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallA.fbx
+  artifactKey: Guid(642cf61e6e834844796946e8fed6fc93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallA.fbx using Guid(642cf61e6e834844796946e8fed6fc93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3724a19b47f33fdf1bc7ab908cd70ca') in 0.022217 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Tall_Rock_2_01.obj
+  artifactKey: Guid(dde6e6527f406d4448dfc28ad623f6b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Tall_Rock_2_01.obj using Guid(dde6e6527f406d4448dfc28ad623f6b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee966c0bd87ba2fcc322c9d8bcf00c0a') in 0.016889 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_smallI.fbx
+  artifactKey: Guid(d03da1c9c6b157a4182b3e51172a9f75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_smallI.fbx using Guid(d03da1c9c6b157a4182b3e51172a9f75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72d5f14203bfb544af2e237ac2b96ec7') in 0.015429 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Wall_Cross_01.obj
+  artifactKey: Guid(341682e72d28ad944bb1a211a9a4d0f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Wall_Cross_01.obj using Guid(341682e72d28ad944bb1a211a9a4d0f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0940c87d24d3117727e8c83b0c0efe8') in 0.013534 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallE.fbx
+  artifactKey: Guid(8215222622544c446ac2e2f430f5e19d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallE.fbx using Guid(8215222622544c446ac2e2f430f5e19d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c17913095e2973645ab32981b5260f9') in 0.023252 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_174.obj
+  artifactKey: Guid(bf752292d51c7864b8dc1d49d1ef7f47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_174.obj using Guid(bf752292d51c7864b8dc1d49d1ef7f47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9893bd1fd9c30707b75a4121e0f0ea8e') in 0.015493 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_018.obj
+  artifactKey: Guid(fabb27bae66b9f2448606fe964ec01c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_018.obj using Guid(fabb27bae66b9f2448606fe964ec01c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33d7e2c927fedbf5b0162b6df3a80751') in 0.012697 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crop_melon.fbx
+  artifactKey: Guid(1156faac9a11b264b857c0fe002dcaf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crop_melon.fbx using Guid(1156faac9a11b264b857c0fe002dcaf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f990deb98c9dbd2079737b54429c8777') in 0.018594 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_017.obj
+  artifactKey: Guid(d28c5ceaa8508d9469dcde8b5250867f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_017.obj using Guid(d28c5ceaa8508d9469dcde8b5250867f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5de11c8e97d506f7aa9ca7963ede514e') in 0.012590 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Tiny_Wall_01.obj
+  artifactKey: Guid(8b39cce50acbaa847b0c4c10ec1df8c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Tiny_Wall_01.obj using Guid(8b39cce50acbaa847b0c4c10ec1df8c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25e867e74d4d83c19fecb1c334e985f2') in 0.013732 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_014.obj
+  artifactKey: Guid(777f0d888c256ab4598cdd044ca4d033) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_014.obj using Guid(777f0d888c256ab4598cdd044ca4d033) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '662ec87c7f094d736dad0fc57cef5fc0') in 0.014467 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_DeadShrub3 1/cd746a1547e9_dry_arid_region_shr.obj
+  artifactKey: Guid(e32e3f0cc91783e45b919ae0e8bafd9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_DeadShrub3 1/cd746a1547e9_dry_arid_region_shr.obj using Guid(e32e3f0cc91783e45b919ae0e8bafd9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0377913042daef166a8110380ea5e61') in 0.021008 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Door_Square_01.obj
+  artifactKey: Guid(54548392cf60d534d87418c79e4e7ed3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Door_Square_01.obj using Guid(54548392cf60d534d87418c79e4e7ed3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '304e4fc469f85a7917f1db0e27def059') in 0.015461 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_PlasmaCoil/0ea916553765_A_futuristic_mining.obj
+  artifactKey: Guid(b000056fb5569c447a65d5ca8ec5e9d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_PlasmaCoil/0ea916553765_A_futuristic_mining.obj using Guid(b000056fb5569c447a65d5ca8ec5e9d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99d7d346e4189864d38aeb91c7218b0e') in 0.019343 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_158.obj
+  artifactKey: Guid(dd9423b483cd58d4f9159e05ef95e6b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_158.obj using Guid(dd9423b483cd58d4f9159e05ef95e6b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab20ae0cc30a290dfacb687be905654a') in 0.014357 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Large_Oak_Green_01.obj
+  artifactKey: Guid(92a84948702fafe4592b429e079f56f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Large_Oak_Green_01.obj using Guid(92a84948702fafe4592b429e079f56f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e6b936b9124491224cc54d454bd0959') in 0.015539 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000041 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_060.obj
+  artifactKey: Guid(463207e824eb91f4dad2d75e0d83ee00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_060.obj using Guid(463207e824eb91f4dad2d75e0d83ee00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75bb7494eaf375d800e5972d209ccd15') in 0.015498 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallFlatB.fbx
+  artifactKey: Guid(8e83d1e5fddf319478ccbd32afed5513) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallFlatB.fbx using Guid(8e83d1e5fddf319478ccbd32afed5513) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7f8ed1d11838fa52c07b765b11c52b3') in 0.021808 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Small_Wall_01.obj
+  artifactKey: Guid(c123ea8ac10a28e43aa37f0d1ce4d0ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Small_Wall_01.obj using Guid(c123ea8ac10a28e43aa37f0d1ce4d0ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ba676dd62619875ef17d8ebe945c616') in 0.016482 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_001.obj
+  artifactKey: Guid(e97c85e09480a86459ba01b5654db311) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_001.obj using Guid(e97c85e09480a86459ba01b5654db311) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99a53da16c87b221a3d8432a0a10bf2b') in 0.013727 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/3DModel_Skyforger_Outpost.fbx
+  artifactKey: Guid(6ccbebf800f7bb048ad2e62b119c3c1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/3DModel_Skyforger_Outpost.fbx using Guid(6ccbebf800f7bb048ad2e62b119c3c1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcee6b2c2408a8e5a483a2b725ec3568') in 0.020894 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtRow.fbx
+  artifactKey: Guid(b971c329cf9559f4c944dd9154dfd52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtRow.fbx using Guid(b971c329cf9559f4c944dd9154dfd52f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e2328e5788d7b490ba5b6b2a25491c6') in 0.019280 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 9
 ========================================================================
 Received Import Request.
   Time since last request: 0.000018 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDetailCross.fbx
-  artifactKey: Guid(9e98a2e76d355934aa3897fb64d49300) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDetailCross.fbx using Guid(9e98a2e76d355934aa3897fb64d49300) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63f73745cabad15499144271dfa6951a') in 0.021374 seconds
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_140.obj
+  artifactKey: Guid(c85d5c45b6d5c424c88e9f5f60c0d5dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_140.obj using Guid(c85d5c45b6d5c424c88e9f5f60c0d5dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'beb8b939a924657554eda8bd15521c43') in 0.016560 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/grass_large.fbx
+  artifactKey: Guid(3ce6fc88adf40c24298054bc29d21d7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/grass_large.fbx using Guid(3ce6fc88adf40c24298054bc29d21d7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f9d23d03e8a86dded7571f520040b94') in 0.015880 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Mountain4 1/db59626fee18_Large_Boulder_Mount.obj
+  artifactKey: Guid(e61b5f08b2f32404d93ec80c3ff75496) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Mountain4 1/db59626fee18_Large_Boulder_Mount.obj using Guid(e61b5f08b2f32404d93ec80c3ff75496) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9895e425d2a223974eaf3e0fce028342') in 0.022025 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_040.obj
+  artifactKey: Guid(f8836c03cffd5134699651967307452b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_040.obj using Guid(f8836c03cffd5134699651967307452b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b07feec8527748ea2cba190f7d58d9e3') in 0.015614 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_078.obj
+  artifactKey: Guid(ce3bfc97c6128244db83d92ebcb5c8de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_078.obj using Guid(ce3bfc97c6128244db83d92ebcb5c8de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '842e9652bee69bc9c6a95518eb53de43') in 0.015021 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Shrub3 1/401d3fadce19_A_wild_shrub_min.obj
+  artifactKey: Guid(08f9b580355ca744a81faa83eec7fc54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Shrub3 1/401d3fadce19_A_wild_shrub_min.obj using Guid(08f9b580355ca744a81faa83eec7fc54) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a95d09795d9715cecb1a80781dafa41') in 0.021975 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallD.fbx
+  artifactKey: Guid(afede38f0cbde524c9d490514b7fa0fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallD.fbx using Guid(afede38f0cbde524c9d490514b7fa0fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3da17f31b0bf0ec4f05bb6088ef928b4') in 0.019889 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 9
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/cannonMobile.fbx
-  artifactKey: Guid(69caf8acb24748848a6b5964245e8a41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/cannonMobile.fbx using Guid(69caf8acb24748848a6b5964245e8a41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8d75811445d90d59e8cd799c3898cd1') in 0.051367 seconds
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_smallD.fbx
+  artifactKey: Guid(8eb69d14806138c4fba5fa298a97b600) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_smallD.fbx using Guid(8eb69d14806138c4fba5fa298a97b600) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73ab0d2a1a55f03ce0db7f44361bceec') in 0.015093 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 34
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/grass.fbx
+  artifactKey: Guid(cb4eb2d4b32cd4d49b30f3e3a55820b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/grass.fbx using Guid(cb4eb2d4b32cd4d49b30f3e3a55820b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79367ca7e29b1b9a03a46421a577a839') in 0.015059 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/ironFenceBorderGate.fbx
+  artifactKey: Guid(d75f5a76d3ade234eb8830b4dee42a4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/ironFenceBorderGate.fbx using Guid(d75f5a76d3ade234eb8830b4dee42a4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '574566ef9fbc03c30d5fb84aa1c0cc99') in 0.020648 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Window_Round_Long_01.obj
+  artifactKey: Guid(5c45b4eba8761c34aab800fe54d950a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Window_Round_Long_01.obj using Guid(5c45b4eba8761c34aab800fe54d950a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4b4603f5b5fef9540d0c4357d42be39') in 0.015078 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000043 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/ground_pathCorner.fbx
+  artifactKey: Guid(c08e94d47f4e13f4eb4fe7862cfc702f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/ground_pathCorner.fbx using Guid(c08e94d47f4e13f4eb4fe7862cfc702f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a12dcb40b11931eaf7194caec28df156') in 0.022495 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Oak_Dark_01.obj
+  artifactKey: Guid(593e1afb32baf324c858d4d60c71a63e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Oak_Dark_01.obj using Guid(593e1afb32baf324c858d4d60c71a63e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '530582e927cb6ce3325ea084edcc0d66') in 0.014383 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_057.obj
+  artifactKey: Guid(e6ef73ca58d2189479e5ca22804233d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_057.obj using Guid(e6ef73ca58d2189479e5ca22804233d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf1a29038ece211d2855c058a4ca928a') in 0.014007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_004.obj
+  artifactKey: Guid(42d191bd4f4c2e842b122602b7c03938) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_004.obj using Guid(42d191bd4f4c2e842b122602b7c03938) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '123af9de0cb49916e2991491604e5582') in 0.014810 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/gate.fbx
+  artifactKey: Guid(a7e15b5c151de8d4e938a592294d93ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/gate.fbx using Guid(a7e15b5c151de8d4e938a592294d93ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce7225ec62e3f7052c299fa99bc31fc7') in 0.012028 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_159.obj
+  artifactKey: Guid(3ca99c00965e4574d907a11c0695b807) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_159.obj using Guid(3ca99c00965e4574d907a11c0695b807) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8f7900e220f76281cf0d2b06b44b76b') in 0.014575 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_bambooStageB.fbx
+  artifactKey: Guid(7fc49a22a3ba45541890083cff424e6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_bambooStageB.fbx using Guid(7fc49a22a3ba45541890083cff424e6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '699440a7bb2686d90503a963f579a1be') in 0.014292 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_023.obj
+  artifactKey: Guid(7b890c2408f392241a25d8720e198c50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_023.obj using Guid(7b890c2408f392241a25d8720e198c50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a22c8cbf59435097ea58657361193751') in 0.014566 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_082.obj
+  artifactKey: Guid(f57407c988e2c094d90997e3322e2d2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_082.obj using Guid(f57407c988e2c094d90997e3322e2d2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9151987adae604b76f91b2825b69ccf') in 0.014505 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_084.obj
+  artifactKey: Guid(a7bd2ed7e1fffa04b80fb8d97f8ffeb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_084.obj using Guid(a7bd2ed7e1fffa04b80fb8d97f8ffeb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba37c6e4ff8eb030e9e98883a18ad87b') in 0.015495 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_027.obj
+  artifactKey: Guid(bf1c40229ecaee34caed2b245ab035b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_027.obj using Guid(bf1c40229ecaee34caed2b245ab035b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bee6d5d68974460ccd3d3af33c48d9cd') in 0.014962 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_151.obj
+  artifactKey: Guid(6f821c245bbd1bb4dbbee8bf10cc656e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_151.obj using Guid(6f821c245bbd1bb4dbbee8bf10cc656e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c46e3bec29c1c323fe353a781174f5d2') in 0.015940 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_025.obj
+  artifactKey: Guid(ceb5dc489a3122b4c8ea890bf1f45015) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_025.obj using Guid(ceb5dc489a3122b4c8ea890bf1f45015) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58a061d755e7509c7dbde04f19b3ca27') in 0.016644 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallE.fbx
+  artifactKey: Guid(750a4253cf209f5418c176c612b1746b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallE.fbx using Guid(750a4253cf209f5418c176c612b1746b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f50a31027d4f723aa3362a57bc646d82') in 0.019113 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_109.obj
+  artifactKey: Guid(ec060f00fa132144f842992e47b698e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_109.obj using Guid(ec060f00fa132144f842992e47b698e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '855fdd13b694b1dc12d989fc647f3ac7') in 0.014943 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadCornerInner.fbx
+  artifactKey: Guid(383d74086a9c9f24ea51fb38594e2102) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadCornerInner.fbx using Guid(383d74086a9c9f24ea51fb38594e2102) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b8dd60eec552cc7f5d981e68f126739') in 0.020064 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_019.obj
+  artifactKey: Guid(73b99f35024d0774aae115c8fafe3d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_019.obj using Guid(73b99f35024d0774aae115c8fafe3d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7446c2d49f54af2b662991a2694ca2b') in 0.013585 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallI.fbx
+  artifactKey: Guid(2ba5b1f3fcc8e3a4e898bbc4ecdc478f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallI.fbx using Guid(2ba5b1f3fcc8e3a4e898bbc4ecdc478f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffc9fa80ddd292bb83ddbf7049d7bfbf') in 0.019098 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallF.fbx
+  artifactKey: Guid(b88d4bd5986d01a469062536aa4f6925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_smallF.fbx using Guid(b88d4bd5986d01a469062536aa4f6925) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e91d155793784f8ad3002fcfe89aa6f8') in 0.017341 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_013.obj
+  artifactKey: Guid(1e9c1b0a5c0e92a40a51df244c8dcf7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_013.obj using Guid(1e9c1b0a5c0e92a40a51df244c8dcf7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '001478e9f87dfb4bf94c765ed78981e1') in 0.015495 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_008.obj
+  artifactKey: Guid(652c9245689d47047968c2020f300db3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_008.obj using Guid(652c9245689d47047968c2020f300db3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '626ea3fa98b314ac5ad9b32375f16d2a') in 0.014531 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_043.obj
+  artifactKey: Guid(5b33f8d6cd088da449c1a85ef8b25c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_043.obj using Guid(5b33f8d6cd088da449c1a85ef8b25c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7c3942d967e8f4244c5e877784b497e') in 0.012825 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_084.obj
+  artifactKey: Guid(a24d295862bcfe74a9f6c2c818769b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_084.obj using Guid(a24d295862bcfe74a9f6c2c818769b4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc40fa80a6f496c164322a19850cd2da') in 0.015672 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_166.obj
+  artifactKey: Guid(7b36c7aadf9f84a4da8dc9ed41aefd07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_166.obj using Guid(7b36c7aadf9f84a4da8dc9ed41aefd07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b67d8a9944addcc00efa0e5038bd2a2a') in 0.019526 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_108.obj
+  artifactKey: Guid(17dbcb11b7464cb4c9ad434b437c3c12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_108.obj using Guid(17dbcb11b7464cb4c9ad434b437c3c12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '803cfb65103e3eca69a5a669bf308dda') in 0.016726 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallI.fbx
+  artifactKey: Guid(51752030c91285c47804e1fcdb3abb12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallI.fbx using Guid(51752030c91285c47804e1fcdb3abb12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04551b3a4973345a7703a60b76bd8767') in 0.023302 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.002276 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_080.obj
+  artifactKey: Guid(03bbf59522dff8246a00c9f1771ae6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_080.obj using Guid(03bbf59522dff8246a00c9f1771ae6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '606b4bf9cc8af3f2a480287eb726ee9d') in 0.014374 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_019.obj
+  artifactKey: Guid(7028cc1249fcee548a99e287c7b22c41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_019.obj using Guid(7028cc1249fcee548a99e287c7b22c41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ee4d1ece9519fa5a324635d7cc75815') in 0.016701 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Trunk_Alt_02.obj
+  artifactKey: Guid(e6e2f107d724720418a9a1ff889bee6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack/Trunk_Alt_02.obj using Guid(e6e2f107d724720418a9a1ff889bee6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbde2747ea624a4d1b18de66356c3264') in 0.029291 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_012.obj
+  artifactKey: Guid(eab2cfd19ce0a7441bd1370114ee0023) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_012.obj using Guid(eab2cfd19ce0a7441bd1370114ee0023) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e45b29e59a66077d0ea948e716c9a5be') in 0.019534 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_055.obj
+  artifactKey: Guid(3bf63437a84abc8458f54ffe234d34e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_055.obj using Guid(3bf63437a84abc8458f54ffe234d34e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68a115b931fc1e664de2c8e9fd5ddac0') in 0.017411 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_wheatStageA.fbx
+  artifactKey: Guid(9b9607d574034eb4fadbc68fd4e3daa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_wheatStageA.fbx using Guid(9b9607d574034eb4fadbc68fd4e3daa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f4fb6a53c0721d16d12455f033455c0') in 0.018023 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000139 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Mountain2 1/057f1f81e153_Large_Boulder_Mount.obj
+  artifactKey: Guid(90089d8eed0d7c9478c55eba4bbc98c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Mountain2 1/057f1f81e153_Large_Boulder_Mount.obj using Guid(90089d8eed0d7c9478c55eba4bbc98c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '388410f9488a53cda002bb4c58ffacbd') in 0.022726 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtSingle.fbx
+  artifactKey: Guid(a039a2db6f3415944b2e1428da51cc25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtSingle.fbx using Guid(a039a2db6f3415944b2e1428da51cc25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c41c5974e0d9560019344bd5087875b7') in 0.020592 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/graveBorder.fbx
+  artifactKey: Guid(795a54bc8da960b4d91e98f21f8ca70b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/graveBorder.fbx using Guid(795a54bc8da960b4d91e98f21f8ca70b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d9736bf45682827bc44bf833aa6a224') in 0.016018 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_085.obj
+  artifactKey: Guid(3a02b67003a097140b609a17bc5ddbf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_085.obj using Guid(3a02b67003a097140b609a17bc5ddbf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b6b68d60fb1cdbea502de81fdb5da4b') in 0.013477 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/king.fbx
+  artifactKey: Guid(2dd7f16c519ef2148b317fe9f6e407e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/king.fbx using Guid(2dd7f16c519ef2148b317fe9f6e407e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecf64f6acdeeedff2011ddb4ccb8ec22') in 0.035237 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 26
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_008.obj
+  artifactKey: Guid(57e494ae700a46e4fb832b48d4ac292f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_008.obj using Guid(57e494ae700a46e4fb832b48d4ac292f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ec96cadd3f6cbf4b6a7d8c5a76263de') in 0.014154 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_162.obj
+  artifactKey: Guid(2dcb55e9abd0bd940aa3529714af2223) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_162.obj using Guid(2dcb55e9abd0bd940aa3529714af2223) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b12e7bf25fc9ecf718f3c7e85ac62b0') in 0.016062 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_006.obj
+  artifactKey: Guid(0393060dbba927a409d90dfe7b7df83e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_006.obj using Guid(0393060dbba927a409d90dfe7b7df83e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '220088680949f4c74373cd95b023cca6') in 0.013772 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_111.obj
+  artifactKey: Guid(523cf27d8b269d5438c7ba586836f756) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_111.obj using Guid(523cf27d8b269d5438c7ba586836f756) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8bd042d974f7cfd6b3850199a92ba4e') in 0.014689 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_021.obj
+  artifactKey: Guid(5ed0abfa58266b74f8b8fb8540f73dda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_021.obj using Guid(5ed0abfa58266b74f8b8fb8540f73dda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '944d2994de0db6719ea5a89b35c00783') in 0.014188 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_031.obj
+  artifactKey: Guid(535a1db945db6784e89cd1e26decd2e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_031.obj using Guid(535a1db945db6784e89cd1e26decd2e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37a17722f0d96543668410cede90e078') in 0.013880 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Stairs_Stone_01.obj
+  artifactKey: Guid(4db22aadaf23f98408eee7f817fcea4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Stairs_Stone_01.obj using Guid(4db22aadaf23f98408eee7f817fcea4e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17688d925970eef5e3cd4f7eba32869e') in 0.014728 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallJ.fbx
+  artifactKey: Guid(44364df6a02e09b449c35d631c35c37b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallJ.fbx using Guid(44364df6a02e09b449c35d631c35c37b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e9d041ecd68cd95365f8af98d7be01f') in 0.025163 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Roof_Inner_Corner_Green_01.obj
+  artifactKey: Guid(7dd59bd73abb4aa458615a31a50869c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Roof_Inner_Corner_Green_01.obj using Guid(7dd59bd73abb4aa458615a31a50869c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e56395c0a39072f6be49ecf892e0061') in 0.014696 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtDoubleRowCorner.fbx
+  artifactKey: Guid(94340dead70b8a64aa41a04e6cc834bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtDoubleRowCorner.fbx using Guid(94340dead70b8a64aa41a04e6cc834bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd86d5de01ff042ca1153eac507a57d06') in 0.018071 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtRowEnd.fbx
+  artifactKey: Guid(00d2efc0a75629e4f841945e708d675b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_dirtRowEnd.fbx using Guid(00d2efc0a75629e4f841945e708d675b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2caff3c7216f2d9e6bb60f6c75a19d0') in 0.017990 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/ironFenceBar.fbx
+  artifactKey: Guid(22c35282cfb983e428775c6a38a2db2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/ironFenceBar.fbx using Guid(22c35282cfb983e428775c6a38a2db2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e623d700f1efebe929f40917e077ae2e') in 0.013875 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000071 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_leafsStageA.fbx
+  artifactKey: Guid(68ddbfa1ba789284cb3b69a957768ee6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/crops_leafsStageA.fbx using Guid(68ddbfa1ba789284cb3b69a957768ee6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0373ac2a8a0f28f423fe7e247781851f') in 0.015579 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallB.fbx
+  artifactKey: Guid(3b18f56d98a506746af06382298f58b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/rock_tallB.fbx using Guid(3b18f56d98a506746af06382298f58b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '154059de803794c6d2ea420913d223d8') in 0.023669 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Mountain4/a811781db292_a_large_ore_vein_mi.obj
+  artifactKey: Guid(6cb436ba33546cf49be54a6e6006b735) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Skyforgers/Homeworld/Skyforger_Homeworld_Mountain4/a811781db292_a_large_ore_vein_mi.obj using Guid(6cb436ba33546cf49be54a6e6006b735) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50f6bbed576e1e1edb4770b419d50972') in 0.019792 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_largeC.fbx
+  artifactKey: Guid(c68f48bfbd6aff740a347c6c6a71286e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature Kit/stone_largeC.fbx using Guid(c68f48bfbd6aff740a347c6c6a71286e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a2ac9be4a341c0b49d7ee51c171cf68') in 0.013985 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 8
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_044.obj
+  artifactKey: Guid(3675f0302959d1645a0e2f0a8a3af116) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_044.obj using Guid(3675f0302959d1645a0e2f0a8a3af116) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '667745713251275fb0d750c92a5ceb1e') in 0.014007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Pole_01.obj
+  artifactKey: Guid(155b8259440c2ae47ba8068a6b5227dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Pole_01.obj using Guid(155b8259440c2ae47ba8068a6b5227dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0e79b80981d014652bc2353400eec2b') in 0.013241 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Window_Narrow_01.obj
+  artifactKey: Guid(a4cd93c4a8dc16b4a806440c8c76da73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Medieval Town (base)/Wood_Window_Narrow_01.obj using Guid(a4cd93c4a8dc16b4a806440c8c76da73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb4deb557d0f0549dbc42e6333b8b340') in 0.014825 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_016.obj
+  artifactKey: Guid(3b01455e885ed614997aa8e24c193b71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Modular Buildings/modularBuildings_016.obj using Guid(3b01455e885ed614997aa8e24c193b71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '781a5c8bc8fdc03efc38e7cdeb9d5f2a') in 0.013775 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_074.obj
+  artifactKey: Guid(2238623c1d34f084684cac8239bc5ac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Nature pack extended/naturePack_074.obj using Guid(2238623c1d34f084684cac8239bc5ac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3720823b04c8ec534a40939a630aa9f6') in 0.013125 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.523 seconds
+Refreshing native plugins compatible for Editor in 3.71 ms, found 3 plugins.
+Native extension for UWP target not found
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.076 seconds
+Domain Reload Profiling: 1596ms
+	BeginReloadAssembly (189ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (233ms)
+		LoadAssemblies (316ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (6ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (13ms)
+	FinalizeReload (1077ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (516ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (42ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (76ms)
+			ProcessInitializeOnLoadAttributes (349ms)
+			ProcessInitializeOnLoadMethodAttributes (34ms)
+			AfterProcessingInitializeOnLoad (10ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Refreshing native plugins compatible for Editor in 4.77 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3720 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 23 unused Assets / (31.1 KB). Loaded Objects now: 4261.
+Memory consumption went from 147.8 MB to 147.8 MB.
+Total: 4.211700 ms (FindLiveObjects: 0.344100 ms CreateObjectMapping: 0.362700 ms MarkObjects: 3.447500 ms  DeleteObjects: 0.056400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 6d391050e5a25f67b0a2c618074f2cd9 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 2483.904996 seconds.
+  path: Assets/RTS Engine/Demo/UnitExtension/Source/archer/archer_level1_icon.psd
+  artifactKey: Guid(18b3e586b942b6548bb07ff2451b8535) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UnitExtension/Source/archer/archer_level1_icon.psd using Guid(18b3e586b942b6548bb07ff2451b8535) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e12b6257e3aa598de3a73f2f4cc2af15') in 0.129674 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RTS Engine/Demo/BuildingExtension/Sources/barracks/barracks_level1_icon.png
+  artifactKey: Guid(dbdad8c973f51e944ae97f59124817d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/BuildingExtension/Sources/barracks/barracks_level1_icon.png using Guid(dbdad8c973f51e944ae97f59124817d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da744d7d486314a1503b7c3814755611') in 0.040647 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/RTS Engine/Demo/UnitExtension/Source/heavy_infantry/heavy_infantry.psd
+  artifactKey: Guid(8155e2639cd449540ac862478791c54e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UnitExtension/Source/heavy_infantry/heavy_infantry.psd using Guid(8155e2639cd449540ac862478791c54e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '219bfc2968f7a6174b7aa5e2bf720ef9') in 0.051279 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000073 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/checkmark.png
+  artifactKey: Guid(d5d10a0074df3e948910b6cbee3a52d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/checkmark.png using Guid(d5d10a0074df3e948910b6cbee3a52d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bbc741b2d1b3d454a77a52e9717c5471') in 0.028405 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/icon.png
+  artifactKey: Guid(bd4765f5e8762b3419a85a75cd624e70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/icon.png using Guid(bd4765f5e8762b3419a85a75cd624e70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a0bb871cc35f2c1bede715290df7ef9') in 0.040121 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/buttonRound_blue.png
+  artifactKey: Guid(a6163a304f6e6924f86336fe61518574) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/buttonRound_blue.png using Guid(a6163a304f6e6924f86336fe61518574) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec8ee4d02b22c87b2ca0e742f3acf203') in 0.014835 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/UnitExtension/Source/orc/orc.psd
+  artifactKey: Guid(646a9231d1e6e65429c62074a8b0f3df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UnitExtension/Source/orc/orc.psd using Guid(646a9231d1e6e65429c62074a8b0f3df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d0392629a5b7095cc95b2b5b48e0273') in 0.014731 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/RTS Engine/Demo/BuildingExtension/Sources/barracks/barracks_level2_icon.png
+  artifactKey: Guid(7f204d5cb77295248b751d9f36d990a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/BuildingExtension/Sources/barracks/barracks_level2_icon.png using Guid(7f204d5cb77295248b751d9f36d990a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0527db3d731195b71279f396bb3d3e8') in 0.014659 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/BuildingExtension/Sources/tower/tower_level2_icon.png
+  artifactKey: Guid(f3e598d65ec9d89408ca6af1876febc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/BuildingExtension/Sources/tower/tower_level2_icon.png using Guid(f3e598d65ec9d89408ca6af1876febc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0254159f795ba9eb8671aaca0a6227a4') in 0.013990 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/arrowSilver_left.png
+  artifactKey: Guid(18a2dfd9bb332b141844d0fcd227f24a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/arrowSilver_left.png using Guid(18a2dfd9bb332b141844d0fcd227f24a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8035ed7173c6cbda6615e3e94ed63d19') in 0.016758 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/ResourceExtension/icons/food_icon.psd
+  artifactKey: Guid(b71e27a89ddfde144bed7caba4804082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/ResourceExtension/icons/food_icon.psd using Guid(b71e27a89ddfde144bed7caba4804082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c54ee3286770b5b43e955f3c0c89036') in 0.015122 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/ResourceExtension/icons/metal_icon.psd
+  artifactKey: Guid(9bba75448251d3843ab6aa17d4d1330a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/ResourceExtension/icons/metal_icon.psd using Guid(9bba75448251d3843ab6aa17d4d1330a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aba845181d7afd2755e2dfd45850eb0d') in 0.014424 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Core/Selection/Textures/SelectionSprite.png
+  artifactKey: Guid(6dd009ec5cab26240a300239f1373105) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Core/Selection/Textures/SelectionSprite.png using Guid(6dd009ec5cab26240a300239f1373105) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9416475c051d023e2cce61abb546a97e') in 0.018284 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/ResourceExtension/icons/wood_icon_logs.psd
+  artifactKey: Guid(9584cda30faa5d943889d2f6fef1b596) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/ResourceExtension/icons/wood_icon_logs.psd using Guid(9584cda30faa5d943889d2f6fef1b596) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '663b5fa75a4cebf66ea5cf73dcbfba83') in 0.014386 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/pause-icon.png
+  artifactKey: Guid(4333a0d6dc4fde34386afda60ff33d7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/pause-icon.png using Guid(4333a0d6dc4fde34386afda60ff33d7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18cd5ffe814fe60c8ebf8a0260465365') in 0.014297 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/panel_blue.png
+  artifactKey: Guid(a74e165fd367dd34a8594147104fef18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/panel_blue.png using Guid(a74e165fd367dd34a8594147104fef18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e0eb8577c89afbf7a7a63c1476a5e04') in 0.014837 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/barRed_horizontalMid.png
+  artifactKey: Guid(408a7fd2e0d595a4faa7e914419f774b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/barRed_horizontalMid.png using Guid(408a7fd2e0d595a4faa7e914419f774b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9ec0b81dfafd24033587d828d9b0ec7') in 0.013103 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/BuildingExtension/Sources/tower/tower_level1_upgrade_icon.png
+  artifactKey: Guid(e5b91d946a6712b44bd2fe0ad636f72a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/BuildingExtension/Sources/tower/tower_level1_upgrade_icon.png using Guid(e5b91d946a6712b44bd2fe0ad636f72a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32ea3f28e8da984aef471b94d7a7d58c') in 0.016530 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/arrowSilver_right.png
+  artifactKey: Guid(60c6d3a03c7020d4987283e2e785567a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/arrowSilver_right.png using Guid(60c6d3a03c7020d4987283e2e785567a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48168b07b1c93e2e6c0bd8b3f07abcef') in 0.016514 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/ResourceExtension/icons/wood_icon.psd
+  artifactKey: Guid(0b0cd6fb1fb6fb54d892c5c0c6da0353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/ResourceExtension/icons/wood_icon.psd using Guid(0b0cd6fb1fb6fb54d892c5c0c6da0353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55f1c4ae7129e492da32ff084d9f047b') in 0.018922 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/panel_blue_super_long.png
+  artifactKey: Guid(bd26e8ecf49f1af4e8f8dcf2af5ded87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/panel_blue_super_long.png using Guid(bd26e8ecf49f1af4e8f8dcf2af5ded87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ed7245d9e1ab4de51188a2d2b6fb617') in 0.014955 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/buttonSquare_blue_pressed.png
+  artifactKey: Guid(1fbaf509a5b948549a42426482b3a054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/buttonSquare_blue_pressed.png using Guid(1fbaf509a5b948549a42426482b3a054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e98b039c94faccf7f710f8c27ae2e357') in 0.015938 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/FactionTab.png
+  artifactKey: Guid(b71b51ac0c3f20945920d0831b392fc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/FactionTab.png using Guid(b71b51ac0c3f20945920d0831b392fc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f5bddf0a073a3ca2edacbbbc5d9ca4f') in 0.016500 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/collect_resources_icon.png
+  artifactKey: Guid(a93ee83b7e55b1743ab00a6b3c415d03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/collect_resources_icon.png using Guid(a93ee83b7e55b1743ab00a6b3c415d03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48fbb5170a53cdf605b7ba6c24b45ece') in 0.012079 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/RTS Engine/Demo/BuildingExtension/Sources/town_center/town_center_icon.png
+  artifactKey: Guid(42e13815d03e4814fab2ee1beb04d1c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/BuildingExtension/Sources/town_center/town_center_icon.png using Guid(42e13815d03e4814fab2ee1beb04d1c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6910e6f4050801b25d220c8c512e5502') in 0.013722 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/cross.png
+  artifactKey: Guid(7b7d4829267c47d49a23fe76b436aa30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/cross.png using Guid(7b7d4829267c47d49a23fe76b436aa30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d0fc1e51057c5a9726eefe46b898d96') in 0.013126 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/cursorHand_grey.png
+  artifactKey: Guid(a7442078edd58834ba01f9299cf1ccfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/cursorHand_grey.png using Guid(a7442078edd58834ba01f9299cf1ccfd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fe10ca05707716f6126c4a728558f0f') in 0.014998 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/pawn_down.png
+  artifactKey: Guid(b643762fefb4f334e9641f7ef347f28c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/pawn_down.png using Guid(b643762fefb4f334e9641f7ef347f28c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd64cb1320cdb1e31c9e1296f639d0e9') in 0.011783 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000011 seconds.
+  path: Assets/RTS Engine/Demo/BuildingExtension/Sources/house/house_icon.png
+  artifactKey: Guid(dc39b5d4bccae7a4784e9c305a6f7cb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/BuildingExtension/Sources/house/house_icon.png using Guid(dc39b5d4bccae7a4784e9c305a6f7cb5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5141536dee17265a89781371fbedf599') in 0.013694 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/RTS Engine/Demo/Minimap/minimap_icon_effect/empty_circle.png
+  artifactKey: Guid(3101e6f7b9c093749b7f90f4c9aabbf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Minimap/minimap_icon_effect/empty_circle.png using Guid(3101e6f7b9c093749b7f90f4c9aabbf6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa3aa64be8a257f704df961ef96e7052') in 0.013904 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/set_rallypoint_icon.png
+  artifactKey: Guid(57a76cfe418b20d429dcaa00327df649) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/set_rallypoint_icon.png using Guid(57a76cfe418b20d429dcaa00327df649) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '797ec996667ef6b78d3ea739d122187b') in 0.022374 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/RTS Engine/Demo/UnitExtension/Source/healer/healer_icon.psd
+  artifactKey: Guid(3bf9bc81e50045241944ad84906fbf8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UnitExtension/Source/healer/healer_icon.psd using Guid(3bf9bc81e50045241944ad84906fbf8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea8ebf62ae4b4f14e637e94b9393b61d') in 0.016592 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/construct_building_icon.png
+  artifactKey: Guid(73c1e5cdb3699004b9ea3efb001984d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/construct_building_icon.png using Guid(73c1e5cdb3699004b9ea3efb001984d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1c1eaeb2309a0699c6d9021f559000f') in 0.016987 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000012 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/minimap_icon.png
+  artifactKey: Guid(0e47bd613c0e767478186af287511c39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/minimap_icon.png using Guid(0e47bd613c0e767478186af287511c39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '823053649fd7dca17e9f0901b08801eb') in 0.015937 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/RTS Engine/Demo/UI/Sprites/panel_blue_long.png
+  artifactKey: Guid(c485f20bfd5df2c49b4e0adddfa97664) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UI/Sprites/panel_blue_long.png using Guid(c485f20bfd5df2c49b4e0adddfa97664) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51b58012f0bab0d928b60a0178bc4444') in 0.019039 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server
