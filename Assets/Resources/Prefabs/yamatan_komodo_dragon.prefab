@@ -60,7 +60,7 @@ MonoBehaviour:
   _name: komodo dragon
   code: yamatan_komodo_dragon
   category: yamatan unit
-  description: This is a komodo dragon test unit.
+  description: This is a komodo dragon unit.
   icon: {fileID: 21300000, guid: 18b3e586b942b6548bb07ff2451b8535, type: 3}
   radius: 0.7
   model: {fileID: 1156583691439673623, guid: 1d0185aba025290478bf3aa890b8bd41, type: 3}
@@ -89,14 +89,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabID:
     x: 0
-    y: 2
+    y: 0
   maxHealth: 100
   initialHealth: 100
   canIncrease: 1
   canDecrease: 1
   hoverHealthBarData:
     enabled: 1
-    offset: {x: 0, y: 4, z: 0}
+    offset: {x: 0, y: 1.5, z: 0}
     size: {x: 1, y: 1, z: 1}
     parent: {fileID: 0}
   hoverHealthBarY: 4
@@ -293,7 +293,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.5
   m_BaseOffset: 0
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
 --- !u!114 &5851601390641472734
 MonoBehaviour:
@@ -590,7 +590,7 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 0
-    y: 1
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -624,21 +624,17 @@ MonoBehaviour:
     type: {fileID: 11400000, guid: 35416a79068077e409e3f8c81274ce05, type: 2}
     properties:
       floatProperties:
-      - name: vertical-spacing
-        value: 2
-      - name: horizontal-spacing
-        value: 1
       - name: spacing
-        value: 0
+        value: 0.25
       intProperties:
       - name: amountPerRow
-        value: 3
+        value: 4
   movementPriority: 0
   isMoving: 0
   isMovementPending: 0
   startPosition: {x: 0, y: 0, z: 0}
   speed:
-    value: 10
+    value: 13
   acceleration:
     value: 999
   mvtAngularSpeed:
@@ -646,9 +642,9 @@ MonoBehaviour:
   canMoveRotate: 1
   minMoveAngle: 40
   canIdleRotate: 1
-  smoothIdleRotation: 0
+  smoothIdleRotation: 1
   idleAngularSpeed:
-    value: 2
+    value: 250
   mvtAudio:
     fetchType: 0
     items: []
