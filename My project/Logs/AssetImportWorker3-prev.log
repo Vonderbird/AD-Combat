@@ -15,7 +15,7 @@ C:/Projects/AD-Combat/My project
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-9666
+10935
 Successfully changed project path to: C:/Projects/AD-Combat/My project
 C:/Projects/AD-Combat/My project
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/Projects/AD-Combat/My project
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [25356] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 1717426360 [EditorId] 1717426360 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [34536] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 548129038 [EditorId] 548129038 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [25356] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 1717426360 [EditorId] 1717426360 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [34536] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 548129038 [EditorId] 548129038 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 9.55 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 11.99 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.20f1 (61c2feb0970d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Resources/UnitySubsystems
@@ -70,51 +70,51 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56148
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56724
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.015802 seconds.
-- Loaded All Assemblies, in  0.493 seconds
+Registered in 0.012161 seconds.
+- Loaded All Assemblies, in  0.397 seconds
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 384 ms
+Android Extension - Scanning For ADB Devices 273 ms
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.819 seconds
-Domain Reload Profiling: 1309ms
-	BeginReloadAssembly (140ms)
+- Finished resetting the current domain, in  0.629 seconds
+Domain Reload Profiling: 1025ms
+	BeginReloadAssembly (132ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (50ms)
-	RebuildNativeTypeToScriptingClass (20ms)
-	initialDomainReloadingComplete (76ms)
-	LoadAllAssembliesAndSetupDomain (204ms)
-		LoadAssemblies (137ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (62ms)
+	LoadAllAssembliesAndSetupDomain (146ms)
+		LoadAssemblies (134ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (200ms)
-			TypeCache.Refresh (198ms)
-				TypeCache.ScanAssembly (181ms)
+		AnalyzeDomain (140ms)
+			TypeCache.Refresh (138ms)
+				TypeCache.ScanAssembly (126ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (819ms)
+	FinalizeReload (629ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (744ms)
+		SetupLoadedEditorAssemblies (573ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (545ms)
+			InitializePlatformSupportModulesInManaged (403ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (134ms)
-			ProcessInitializeOnLoadMethodAttributes (57ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (119ms)
+			ProcessInitializeOnLoadMethodAttributes (44ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -122,8 +122,8 @@ Domain Reload Profiling: 1309ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.959 seconds
-Refreshing native plugins compatible for Editor in 4.22 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.766 seconds
+Refreshing native plugins compatible for Editor in 4.62 ms, found 3 plugins.
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
@@ -133,47 +133,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.729 seconds
-Domain Reload Profiling: 1684ms
-	BeginReloadAssembly (221ms)
+- Finished resetting the current domain, in  0.677 seconds
+Domain Reload Profiling: 1441ms
+	BeginReloadAssembly (155ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (11ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (33ms)
-	RebuildCommonClasses (50ms)
-	RebuildNativeTypeToScriptingClass (14ms)
-	initialDomainReloadingComplete (57ms)
-	LoadAllAssembliesAndSetupDomain (612ms)
-		LoadAssemblies (434ms)
+		CreateAndSetChildDomain (20ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (525ms)
+		LoadAssemblies (310ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (304ms)
-			TypeCache.Refresh (271ms)
-				TypeCache.ScanAssembly (243ms)
-			ScanForSourceGeneratedMonoScriptInfo (20ms)
+		AnalyzeDomain (307ms)
+			TypeCache.Refresh (272ms)
+				TypeCache.ScanAssembly (251ms)
+			ScanForSourceGeneratedMonoScriptInfo (23ms)
 			ResolveRequiredComponents (10ms)
-	FinalizeReload (729ms)
+	FinalizeReload (677ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (496ms)
+		SetupLoadedEditorAssemblies (438ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (28ms)
+			InitializePlatformSupportModulesInManaged (27ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (68ms)
-			ProcessInitializeOnLoadAttributes (359ms)
-			ProcessInitializeOnLoadMethodAttributes (29ms)
-			AfterProcessingInitializeOnLoad (8ms)
+			BeforeProcessingInitializeOnLoad (55ms)
+			ProcessInitializeOnLoadAttributes (317ms)
+			ProcessInitializeOnLoadMethodAttributes (26ms)
+			AfterProcessingInitializeOnLoad (10ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 3.56 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.85 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3742 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 32 unused Assets / (57.3 KB). Loaded Objects now: 4211.
-Memory consumption went from 148.0 MB to 148.0 MB.
-Total: 5.691000 ms (FindLiveObjects: 0.399200 ms CreateObjectMapping: 0.360700 ms MarkObjects: 4.757200 ms  DeleteObjects: 0.172800 ms)
+Unloading 32 unused Assets / (57.1 KB). Loaded Objects now: 4213.
+Memory consumption went from 148.6 MB to 148.5 MB.
+Total: 3.040200 ms (FindLiveObjects: 0.312800 ms CreateObjectMapping: 0.336800 ms MarkObjects: 2.308900 ms  DeleteObjects: 0.080200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -190,76 +190,44 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 103837.568733 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallArchTop.fbx
-  artifactKey: Guid(d6a2c72d416804d4a80b0f35f36c5cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallArchTop.fbx using Guid(d6a2c72d416804d4a80b0f35f36c5cab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1e21adf5a3300c755e77eefdcd5c374') in 0.154147 seconds
+  Time since last request: 109953.595734 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/digger.fbx
+  artifactKey: Guid(ccf17cf1e85ce834b8c94b77644e74fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/digger.fbx using Guid(ccf17cf1e85ce834b8c94b77644e74fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56dd184aace1bdc70f2fd782dc36d182') in 0.171617 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 10
+Number of asset objects unloaded after import = 34
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/cartHigh.fbx
-  artifactKey: Guid(df0d0e37c21c5aa4fb1ac3f1cf742f84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/cartHigh.fbx using Guid(df0d0e37c21c5aa4fb1ac3f1cf742f84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49cb82649a6b0afd782efb80ad696136') in 0.072917 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 26
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrowStairs.fbx
-  artifactKey: Guid(da467052da72db349978323ebd1a04df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallNarrowStairs.fbx using Guid(da467052da72db349978323ebd1a04df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9a7fe3d342a7f8d2464d31f1b79fe7d') in 0.018242 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallCornerHalfTower.fbx
-  artifactKey: Guid(9d3f83ed39020ee4ca9a29e3f080ffd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallCornerHalfTower.fbx using Guid(9d3f83ed39020ee4ca9a29e3f080ffd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b18883143cfe499d24356c6b284170d8') in 0.017170 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDoorwaySquareWideCurved.fbx
-  artifactKey: Guid(bdaf26c3181c74c4195dcee71dc5231d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodDoorwaySquareWideCurved.fbx using Guid(bdaf26c3181c74c4195dcee71dc5231d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9d69d4a925786c559dd0ed2cb29c2ff') in 0.023763 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 10
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallStud.fbx
-  artifactKey: Guid(89dd53b094b6abf4eba2c360e8e6fb97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/wallStud.fbx using Guid(89dd53b094b6abf4eba2c360e8e6fb97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3f1fd5e3c45214c3b5b16d642659ee3') in 0.011031 seconds
+  Time since last request: 0.000044 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/boat_small.fbx
+  artifactKey: Guid(e7ac658cbcc8b86428c0aef58879f4cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Pirate Kit/Models/FBX format/boat_small.fbx using Guid(e7ac658cbcc8b86428c0aef58879f4cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3111aeb7496f14ff5b46770a81efd5a') in 0.016670 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 8
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/watermill.fbx
-  artifactKey: Guid(677c17de3022a044eb75be083873afb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/watermill.fbx using Guid(677c17de3022a044eb75be083873afb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd01fdb9847202742d2b328f51e9de0f1') in 0.071482 seconds
+  Time since last request: 0.000023 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/brickWall.fbx
+  artifactKey: Guid(f94a2ef25189b9b42b844c886d57ac41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Graveyard Pack/brickWall.fbx using Guid(f94a2ef25189b9b42b844c886d57ac41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46918e68065405fd9bc9afc8493224bd') in 0.044773 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 41
+Number of asset objects unloaded after import = 9
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodWindowStone.fbx
-  artifactKey: Guid(fd5ae6d276a7fc14181def7824e8e99e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodWindowStone.fbx using Guid(fd5ae6d276a7fc14181def7824e8e99e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd06309f94bb56afed4503a46068044c') in 0.020801 seconds
+  Time since last request: 1.499823 seconds.
+  path: Assets/Art_Assets/Buildings/Yamatan/3DModel_Yamatan_Outpost.fbx
+  artifactKey: Guid(51018c0f39550bc4fb85066d03c0c599) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art_Assets/Buildings/Yamatan/3DModel_Yamatan_Outpost.fbx using Guid(51018c0f39550bc4fb85066d03c0c599) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c28f991bc90b15fa66d6275ed909f04') in 0.065782 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 10
+Number of asset objects unloaded after import = 45
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodArchTopDetail.fbx
-  artifactKey: Guid(f37fe95c32b36cc409ed13c066f20430) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/wallWoodArchTopDetail.fbx using Guid(f37fe95c32b36cc409ed13c066f20430) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a286893416128c03fea8d5581f28b416') in 0.020734 seconds
+  Time since last request: 0.169031 seconds.
+  path: Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadBend.fbx
+  artifactKey: Guid(eb0b65a0c00492b4f92cdf888ee312d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/Kenney Assets/Fantasy Town Pack/roadBend.fbx using Guid(eb0b65a0c00492b4f92cdf888ee312d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd74035d0e583d5538711936bfee5140') in 0.025153 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 10
+Number of asset objects unloaded after import = 9
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server
