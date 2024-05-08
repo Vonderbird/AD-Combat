@@ -730,8 +730,7 @@ MonoBehaviour:
         _max: 2
   showTargetGizmo: 1
   gotoTransform: {fileID: 5184702521924053560}
-  forcedTerrainAreas:
-  - {fileID: 11400000, guid: a0b61695a2c52c345a7e877c4d5948e2, type: 2}
+  forcedTerrainAreas: []
   forbiddenTerrainAreas: []
   maxDistanceEnabled: 0
   maxDistance: 50
