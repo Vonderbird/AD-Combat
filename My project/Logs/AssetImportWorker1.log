@@ -15,7 +15,7 @@ C:/Projects/AD-Combat/My project
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-13075
+14135
 Successfully changed project path to: C:/Projects/AD-Combat/My project
 C:/Projects/AD-Combat/My project
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/Projects/AD-Combat/My project
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [17968] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 268262490 [EditorId] 268262490 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [51516] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 2575741963 [EditorId] 2575741963 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [17968] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 268262490 [EditorId] 268262490 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [51516] Host "[IP] 192.168.2.12 [Port] 0 [Flags] 2 [Guid] 2575741963 [EditorId] 2575741963 [Version] 1048832 [Id] WindowsEditor(7,VONBiRD) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
-Refreshing native plugins compatible for Editor in 10.92 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 9.81 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.20f1 (61c2feb0970d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Resources/UnitySubsystems
@@ -65,56 +65,56 @@ Direct3D:
     Renderer: NVIDIA GeForce RTX 3070 Laptop GPU (ID=0x24dd)
     Vendor:   NVIDIA
     VRAM:     8020 MB
-    Driver:   31.0.15.5222
+    Driver:   31.0.15.5244
 Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56676
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56300
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.018259 seconds.
-- Loaded All Assemblies, in  0.554 seconds
+Registered in 0.014365 seconds.
+- Loaded All Assemblies, in  0.423 seconds
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 307 ms
+Android Extension - Scanning For ADB Devices 332 ms
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.758 seconds
-Domain Reload Profiling: 1310ms
-	BeginReloadAssembly (190ms)
+- Finished resetting the current domain, in  0.723 seconds
+Domain Reload Profiling: 1144ms
+	BeginReloadAssembly (121ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
 	RebuildCommonClasses (45ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (84ms)
-	LoadAllAssembliesAndSetupDomain (220ms)
-		LoadAssemblies (189ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (71ms)
+	LoadAllAssembliesAndSetupDomain (173ms)
+		LoadAssemblies (119ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (215ms)
-			TypeCache.Refresh (214ms)
-				TypeCache.ScanAssembly (195ms)
-			ScanForSourceGeneratedMonoScriptInfo (1ms)
+		AnalyzeDomain (170ms)
+			TypeCache.Refresh (169ms)
+				TypeCache.ScanAssembly (153ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (759ms)
+	FinalizeReload (723ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (690ms)
+		SetupLoadedEditorAssemblies (661ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (458ms)
+			InitializePlatformSupportModulesInManaged (478ms)
 			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (171ms)
-			ProcessInitializeOnLoadMethodAttributes (55ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (126ms)
+			ProcessInitializeOnLoadMethodAttributes (50ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -122,8 +122,8 @@ Domain Reload Profiling: 1310ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.870 seconds
-Refreshing native plugins compatible for Editor in 3.58 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.800 seconds
+Refreshing native plugins compatible for Editor in 3.69 ms, found 3 plugins.
 Native extension for UWP target not found
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
@@ -133,47 +133,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.705 seconds
-Domain Reload Profiling: 1571ms
-	BeginReloadAssembly (177ms)
+- Finished resetting the current domain, in  0.711 seconds
+Domain Reload Profiling: 1507ms
+	BeginReloadAssembly (185ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (6ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (23ms)
-	RebuildCommonClasses (36ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (46ms)
-	LoadAllAssembliesAndSetupDomain (595ms)
-		LoadAssemblies (396ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (50ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (497ms)
+		LoadAssemblies (374ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (309ms)
-			TypeCache.Refresh (271ms)
-				TypeCache.ScanAssembly (245ms)
-			ScanForSourceGeneratedMonoScriptInfo (27ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (705ms)
+		AnalyzeDomain (236ms)
+			TypeCache.Refresh (209ms)
+				TypeCache.ScanAssembly (189ms)
+			ScanForSourceGeneratedMonoScriptInfo (17ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (711ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (487ms)
+		SetupLoadedEditorAssemblies (512ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (34ms)
 			SetLoadedEditorAssemblies (3ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (63ms)
-			ProcessInitializeOnLoadAttributes (352ms)
+			BeforeProcessingInitializeOnLoad (64ms)
+			ProcessInitializeOnLoadAttributes (377ms)
 			ProcessInitializeOnLoadMethodAttributes (26ms)
 			AfterProcessingInitializeOnLoad (9ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 5.14 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 6.18 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3742 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 32 unused Assets / (57.1 KB). Loaded Objects now: 4213.
-Memory consumption went from 148.6 MB to 148.6 MB.
-Total: 4.979700 ms (FindLiveObjects: 0.372100 ms CreateObjectMapping: 0.337300 ms MarkObjects: 4.067900 ms  DeleteObjects: 0.201000 ms)
+Memory consumption went from 148.6 MB to 148.5 MB.
+Total: 3.445000 ms (FindLiveObjects: 0.283100 ms CreateObjectMapping: 0.286000 ms MarkObjects: 2.749900 ms  DeleteObjects: 0.125100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -190,44 +190,28 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 157793.917712 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/knightRed.mat
-  artifactKey: Guid(b0c317569f1dd1c4aa3f0a1a3a64c08c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/knightRed.mat using Guid(b0c317569f1dd1c4aa3f0a1a3a64c08c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32aebbcc2323a9a9b187261bbcc6e0e0') in 0.091712 seconds
+  Time since last request: 702470.479883 seconds.
+  path: Assets/RTS Engine/Demo/UnitExtension/Resources/Prefabs/archer_level1_arrow.prefab
+  artifactKey: Guid(e81d3159c18faad42b5b470122723e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UnitExtension/Resources/Prefabs/archer_level1_arrow.prefab using Guid(e81d3159c18faad42b5b470122723e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71f7ef2356eab68063094fdcd67ea3e7') in 0.117461 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 16
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/dark.mat
-  artifactKey: Guid(94dd691582cccf14f93ce4cc3a1b3d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/dark.mat using Guid(94dd691582cccf14f93ce4cc3a1b3d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18840d9f1d5c7ed8c6cdb5a7ce88d2c3') in 0.007449 seconds
+  Time since last request: 0.000020 seconds.
+  path: Assets/RTS Engine/Demo/BuildingExtension/Resources/Prefabs/barracks_level1.prefab
+  artifactKey: Guid(60bc8234d51b0664ca320a55465554cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/BuildingExtension/Resources/Prefabs/barracks_level1.prefab using Guid(60bc8234d51b0664ca320a55465554cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cf883be496dd8ec2368a86922b0f18b') in 0.524966 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
+Number of asset objects unloaded after import = 6343
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/roof.mat
-  artifactKey: Guid(b20f6b64f5070eb4f979efefeff1af34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/roof.mat using Guid(b20f6b64f5070eb4f979efefeff1af34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b6dfd0a875d41151fa357e12bde3613') in 0.013109 seconds
+  Time since last request: 0.000040 seconds.
+  path: Assets/RTS Engine/Demo/UnitExtension/Resources/Prefabs/archer_level2_arrow.prefab
+  artifactKey: Guid(cf1a0e95e0bf7df4eb445d35ea1eaf3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/RTS Engine/Demo/UnitExtension/Resources/Prefabs/archer_level2_arrow.prefab using Guid(cf1a0e95e0bf7df4eb445d35ea1eaf3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46530f36b0f17c58c0c725dd31b0b525') in 1.571786 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/cotton.mat
-  artifactKey: Guid(987041c2b08857146829bf8b6762868c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/cotton.mat using Guid(987041c2b08857146829bf8b6762868c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98543f6b6f2dfa8f7b41c930286d8e01') in 0.006328 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/orc.mat
-  artifactKey: Guid(d72b823faad878f4aa959c1d3c82d6b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/RTS Engine/Demo/Kenney Assets/Castle Kit/Models/Materials/orc.mat using Guid(d72b823faad878f4aa959c1d3c82d6b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02fc0315562997b57fc37a82120096aa') in 0.013556 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
+Number of asset objects unloaded after import = 34
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server
