@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2460062911498552091}
   - component: {fileID: 8609582179396447941}
   - component: {fileID: 6222548732970457617}
+  - component: {fileID: -3955962717720626216}
   m_Layer: 0
   m_Name: adam_unit
   m_TagString: Untagged
@@ -438,6 +439,20 @@ MonoBehaviour:
     colorPropertyName: _Color
     transparency: 0
     darkness: 0
+--- !u!114 &-3955962717720626216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4715187863353310473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55aa16af308d42c449a5b4bbc4b7c40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 4715187863353310473}
+  referenceObject: {fileID: 2020459488461815720, guid: 0c73e55b4d003b644801c867770b2842, type: 3}
 --- !u!1 &5756833772641425731
 GameObject:
   m_ObjectHideFlags: 0
