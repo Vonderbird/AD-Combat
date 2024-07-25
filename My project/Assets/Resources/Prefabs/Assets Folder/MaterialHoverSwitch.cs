@@ -8,7 +8,6 @@ public class MaterialHoverSwitch : MonoBehaviour
 {
     public Material defaultMaterial; // Default material for hexagon
     public Material hoverMaterial;   // Hover material for hexagon
-    public float spawnHeightOffset = 0.5f; // Height offset to ensure no clipping
     private Renderer renderer;
     private bool isOccupied = false;
 
@@ -22,13 +21,13 @@ public class MaterialHoverSwitch : MonoBehaviour
     {
         if (SpawnButtonHoverController.selectedUnitPrefab != null && !isOccupied)
         {
-            renderer.material = hoverMaterial;
+            renderer.material = hoverMaterial; // Change to hover material when the mouse enters
         }
     }
 
     void OnMouseExit()
     {
-        renderer.material = defaultMaterial;
+        renderer.material = defaultMaterial; // Restore the default material when the mouse exits
     }
 
     void OnMouseDown()
@@ -36,16 +35,15 @@ public class MaterialHoverSwitch : MonoBehaviour
         if (SpawnButtonHoverController.selectedUnitPrefab != null && !isOccupied)
         {
             // Calculate the exact center position on top of the hexagon
-            Vector3 spawnPosition = transform.position + new Vector3(0, spawnHeightOffset + renderer.bounds.extents.y, 0);
+            Vector3 spawnPosition = transform.position + new Vector3(0, 0.6f, 0); // Minor vertical adjustment for visual clarity
             GameObject spawnedUnit = Instantiate(SpawnButtonHoverController.selectedUnitPrefab, spawnPosition, Quaternion.identity);
 
-            // Set the size of the spawned unit to be 0.7 times the size of the hexagon
-            float scaleFactor = 0.5f; // Desired scale factor relative to the hexagon
-            spawnedUnit.transform.localScale = transform.localScale * scaleFactor;
+            // Scale the spawned unit to be 0.7 times the size of the hexagon
+            spawnedUnit.transform.localScale = transform.localScale * 0.7f;
 
             isOccupied = true;
             renderer.material = defaultMaterial;
-            SpawnButtonHoverController.selectedUnitPrefab = null;
+            SpawnButtonHoverController.ResetAllButtons(); // Reset button colors after spawning
         }
     }
 }
