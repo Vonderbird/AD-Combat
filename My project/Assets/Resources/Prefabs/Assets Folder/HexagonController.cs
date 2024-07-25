@@ -4,34 +4,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class HexagonController : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
+public class HexagonController : MonoBehaviour
 {
-    private Color originalColor;
-    private Renderer renderer;
-    public GameObject unitPrefab;  // Assign this via the inspector
-    public SpawnButtonController spawnButtonController;  // Assign this via the inspector
+    public Color hoverColor = Color.yellow;  // Color when hovered
+    private Color originalColor;             // To store the original color
+    private Renderer renderer;               // Renderer of the cube
 
-    void Awake()
+    void Start()
     {
-        renderer = GetComponent<Renderer>();
-        originalColor = renderer.material.color;
+        renderer = GetComponent<Renderer>();         // Get the Renderer component
+        originalColor = renderer.material.color;     // Store the original color
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    void OnMouseEnter()
     {
-        if (spawnButtonController.IsSpawning())
-        {
-            renderer.material.color = Color.yellow;  // Highlight color
-        }
+        renderer.material.color = hoverColor;  // Change to hover color when the mouse enters
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    void OnMouseExit()
     {
-        if (spawnButtonController.IsSpawning())
-        {
-            Instantiate(unitPrefab, transform.position, Quaternion.identity);  // Spawn the unit
-            spawnButtonController.ResetSpawning();  // Reset the spawning state
-            renderer.material.color = originalColor;  // Reset hexagon color
-        }
+        renderer.material.color = originalColor;  // Restore the original color when the mouse exits
     }
 }

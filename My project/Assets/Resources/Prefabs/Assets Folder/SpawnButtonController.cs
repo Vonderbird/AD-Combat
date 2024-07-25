@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SpawnButtonController : MonoBehaviour
 {
     public Color clickedColor = Color.green;
-    private Button button;
-    private bool isSpawning = false;
+    public Button button;
+    public bool isSpawning = false;
 
     void Awake()
     {
