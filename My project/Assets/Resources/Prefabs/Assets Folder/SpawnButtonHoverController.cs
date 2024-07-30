@@ -10,6 +10,7 @@ public class SpawnButtonHoverController : MonoBehaviour
     public GameObject unitPrefab;                 // This button's specific unit prefab
     private static Button activeButton = null;    // Static reference to the currently active button
     private Button button;
+    public int hexagonsToHover = 1;               // Number of hexagons to hover for this button
 
     void Start()
     {
@@ -28,12 +29,14 @@ public class SpawnButtonHoverController : MonoBehaviour
             }
             button.image.color = Color.green;  // This button goes green
             activeButton = button;  // Update the active button reference
+            MaterialHoverSwitch.SetNumberOfHexagonsToHover(hexagonsToHover);
         }
         else  // Toggle off if the same button is clicked again
         {
             selectedUnitPrefab = null;
             button.image.color = Color.white;  // Reset this button color
             activeButton = null;
+            MaterialHoverSwitch.SetNumberOfHexagonsToHover(1); // Reset to single hover
         }
     }
 
@@ -45,5 +48,6 @@ public class SpawnButtonHoverController : MonoBehaviour
             activeButton = null;
         }
         selectedUnitPrefab = null;  // Clear any selected prefab
+        MaterialHoverSwitch.SetNumberOfHexagonsToHover(1); // Reset to single hover
     }
 }
