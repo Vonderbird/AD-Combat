@@ -12,10 +12,12 @@ public class MaterialHoverSwitch : MonoBehaviour
     private bool isOccupied = false;
     private static int numberOfHexagonsToHover = 1; // Default to 1 hexagon hover
     private static List<MaterialHoverSwitch> allHexagons = new List<MaterialHoverSwitch>();
+    private UnitManager unitManager; // Reference to UnitManager
 
     void Awake()
     {
         allHexagons.Add(this);
+        unitManager = FindObjectOfType<UnitManager>(); // Find the UnitManager in the scene
     }
 
     void OnDestroy()
@@ -57,6 +59,9 @@ public class MaterialHoverSwitch : MonoBehaviour
             isOccupied = true;
             renderer.material = defaultMaterial;
             SpawnButtonHoverController.ResetAllButtons(); // Reset button colors after spawning
+
+            // Add the new unit to the UnitManager's list
+            unitManager.AddUnit(spawnedUnit, transform.position); // Pass the spawn position for relative positioning
         }
     }
 
@@ -143,13 +148,11 @@ public class MaterialHoverSwitch : MonoBehaviour
         Vector3 b = firstHex.transform.position;
         Vector3 c = secondHex.transform.position;
 
-        // Check if distances form a valid triangle
-        float ab = Vector3.Distance(a, b);
-        float bc = Vector3.Distance(b, c);
-        float ca = Vector3.Distance(c, a);
+        // Ensure it forms the desired triangle shape (2 next to each other, 1 above)
+        bool isNextToEachOther = Mathf.Abs(a.x - b.x) < renderer.bounds.size.x * 1.5f && Mathf.Abs(a.z - b.z) < renderer.bounds.size.z * 0.5f;
+        bool isAbove = Mathf.Abs(a.x - c.x) < renderer.bounds.size.x * 0.5f && c.z > a.z && c.z > b.z;
 
-        // Ensure it forms the desired triangle shape (2 next to each other, 1 below)
-        return ab < renderer.bounds.size.x * 1.5f && bc < renderer.bounds.size.x * 1.5f && Mathf.Abs(a.y - c.y) < renderer.bounds.size.y * 1.5f && Mathf.Abs(b.y - c.y) < renderer.bounds.size.y * 1.5f;
+        return isNextToEachOther && isAbove;
     }
 
     public static void SetNumberOfHexagonsToHover(int number)
