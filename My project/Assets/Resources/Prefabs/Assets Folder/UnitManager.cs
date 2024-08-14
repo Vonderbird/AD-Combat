@@ -62,6 +62,7 @@ public class UnitManager : MonoBehaviour
                     Vector3 relativePosition = relativePositions[i] - averageHomePosition;
                     Vector3 newPosition = basePosition + relativePosition;
                     unit.transform.position = newPosition;
+                    unit.transform.rotation = Quaternion.Euler(0, 180, 0); // Rotate the unit 180 degrees on the Y-axis
                     Debug.Log($"Unit {unit.name} moved to {newPosition}");
                 }
             }
