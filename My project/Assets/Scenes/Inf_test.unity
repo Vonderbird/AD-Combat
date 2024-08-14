@@ -8051,7 +8051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: cd88e40a1aafdb749b11502017c6565b, type: 3}
-  unitScale: {x: 1.5, y: 1.5, z: 1.5}
+  unitScale: {x: 1, y: 1, z: 1}
   hexagonsToHover: 3
 --- !u!114 &410466137
 MonoBehaviour:
@@ -9658,7 +9658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: 32791e1bd7d94434fbb8e2d4df5f4cee, type: 3}
-  unitScale: {x: 0.3, y: 0.3, z: 0.3}
+  unitScale: {x: 0.2, y: 0.2, z: 0.2}
   hexagonsToHover: 2
 --- !u!114 &489410355
 MonoBehaviour:
@@ -36050,7 +36050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
-  unitScale: {x: 0.5, y: 0.5, z: 0.5}
+  unitScale: {x: 0.6, y: 0.6, z: 0.6}
   hexagonsToHover: 1
 --- !u!114 &1832597556
 MonoBehaviour:
