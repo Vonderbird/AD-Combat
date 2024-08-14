@@ -1140,6 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitScale: {x: 1, y: 1, z: 1}
   hexagonsToHover: 1
 --- !u!114 &43102508
 MonoBehaviour:
@@ -8049,7 +8050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018cd36247b9e014098147ea02803dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitPrefab: {fileID: 9090327454865371489, guid: cd88e40a1aafdb749b11502017c6565b, type: 3}
+  unitScale: {x: 1.5, y: 1.5, z: 1.5}
   hexagonsToHover: 3
 --- !u!114 &410466137
 MonoBehaviour:
@@ -9242,6 +9244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitScale: {x: 1, y: 1, z: 1}
   hexagonsToHover: 1
 --- !u!114 &477450428
 MonoBehaviour:
@@ -9654,7 +9657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018cd36247b9e014098147ea02803dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitPrefab: {fileID: 9090327454865371489, guid: 32791e1bd7d94434fbb8e2d4df5f4cee, type: 3}
+  unitScale: {x: 0.3, y: 0.3, z: 0.3}
   hexagonsToHover: 2
 --- !u!114 &489410355
 MonoBehaviour:
@@ -14559,6 +14563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitScale: {x: 1, y: 1, z: 1}
   hexagonsToHover: 1
 --- !u!114 &676823213
 MonoBehaviour:
@@ -23232,6 +23237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitScale: {x: 1, y: 1, z: 1}
   hexagonsToHover: 1
 --- !u!114 &1175056958
 MonoBehaviour:
@@ -28311,6 +28317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitScale: {x: 1, y: 1, z: 1}
   hexagonsToHover: 1
 --- !u!114 &1407822117
 MonoBehaviour:
@@ -36043,6 +36050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
+  unitScale: {x: 0.5, y: 0.5, z: 0.5}
   hexagonsToHover: 1
 --- !u!114 &1832597556
 MonoBehaviour:
