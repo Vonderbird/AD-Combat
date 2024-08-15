@@ -4,9 +4,192 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+public class MaterialHoverSwitch : MonoBehaviour
+{
+    public Material defaultMaterial; // Default material for hexagon
+    public Material hoverMaterial;   // Hover material for hexagon
+    private Renderer renderer;
+    private bool isOccupied = false;
+    private static int numberOfHexagonsToHover = 1; // Default to 1 hexagon hover
+    private static List<MaterialHoverSwitch> allHexagons = new List<MaterialHoverSwitch>();
+    private UnitManager unitManager; // Reference to UnitManager
+    private GameObject spawnedUnit; // Store the spawned unit for deletion
+
+    public static bool deleteMode = false; // Static flag to toggle delete mode
+
+    void Awake()
+    {
+        allHexagons.Add(this);
+        unitManager = FindObjectOfType<UnitManager>(); // Find the UnitManager in the scene
+    }
+
+    void OnDestroy()
+    {
+        allHexagons.Remove(this);
+    }
+
+    void Start()
+    {
+        renderer = GetComponent<Renderer>();
+        renderer.material = defaultMaterial; // Set the default material on start
+    }
+
+    void OnMouseEnter()
+    {
+        if (SpawnButtonHoverController.selectedUnitPrefab != null && !isOccupied && !deleteMode)
+        {
+            renderer.material = hoverMaterial; // Change to hover material when the mouse enters
+            HighlightAdjacentHexagons(true);
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if (!deleteMode)
+        {
+            renderer.material = defaultMaterial; // Restore the default material when the mouse exits
+            HighlightAdjacentHexagons(false);
+        }
+    }
+
+    void OnMouseDown()
+    {
+        if (deleteMode && isOccupied && spawnedUnit != null)
+        {
+            // Delete the unit if delete mode is active
+            Destroy(spawnedUnit);
+            isOccupied = false;
+            renderer.material = defaultMaterial; // Reset material after deletion
+            deleteMode = false; // Exit delete mode after one deletion
+        }
+        else if (!deleteMode && SpawnButtonHoverController.selectedUnitPrefab != null && !isOccupied)
+        {
+            List<MaterialHoverSwitch> selectedHexagons = GetAdjacentHexagons();
+            selectedHexagons.Add(this); // Include the current hexagon
+
+            Vector3 spawnPosition = CalculateAveragePosition(selectedHexagons);
+            spawnedUnit = Instantiate(SpawnButtonHoverController.selectedUnitPrefab, spawnPosition, Quaternion.identity);
+
+            // Apply the scale defined in the SpawnButtonHoverController
+            spawnedUnit.transform.localScale = SpawnButtonHoverController.GetActiveButtonUnitScale();
+
+            // Mark all selected hexagons as occupied and disable further interactions
+            foreach (MaterialHoverSwitch hex in selectedHexagons)
+            {
+                hex.isOccupied = true;
+                hex.renderer.material = defaultMaterial; // Reset material after spawning
+            }
+
+            SpawnButtonHoverController.ResetAllButtons(); // Reset button colors after spawning
+
+            // Add the new unit to the UnitManager's list
+            unitManager.AddUnit(spawnedUnit, spawnPosition); // Pass the spawn position for relative positioning
+        }
+    }
+
+    Vector3 CalculateAveragePosition(List<MaterialHoverSwitch> hexagons)
+    {
+        Vector3 averagePosition = Vector3.zero;
+        foreach (MaterialHoverSwitch hex in hexagons)
+        {
+            averagePosition += hex.transform.position;
+        }
+        averagePosition /= hexagons.Count;
+        return averagePosition;
+    }
+
+    void HighlightAdjacentHexagons(bool highlight)
+    {
+        if (numberOfHexagonsToHover == 1)
+        {
+            // Only highlight this hexagon
+            renderer.material = highlight ? hoverMaterial : defaultMaterial;
+            return;
+        }
+
+        List<MaterialHoverSwitch> adjacentHexagons = GetAdjacentHexagons();
+        foreach (var hex in adjacentHexagons)
+        {
+            if (!hex.isOccupied)
+            {
+                hex.renderer.material = highlight ? hoverMaterial : defaultMaterial;
+                Debug.Log((highlight ? "Highlighting " : "Un-highlighting ") + hex.gameObject.name);
+            }
+        }
+    }
+
+    List<MaterialHoverSwitch> GetAdjacentHexagons()
+    {
+        List<MaterialHoverSwitch> adjacentHexagons = new List<MaterialHoverSwitch>();
+
+        if (numberOfHexagonsToHover == 3)
+        {
+            List<MaterialHoverSwitch> potentialAdjacents = new List<MaterialHoverSwitch>();
+
+            foreach (var hex in allHexagons)
+            {
+                if (hex != this && Vector3.Distance(hex.transform.position, transform.position) < renderer.bounds.size.x * 1.5f)
+                {
+                    potentialAdjacents.Add(hex);
+                }
+            }
+
+            // Find a valid front-facing triangle pattern (two adjacent hexagons and one above)
+            for (int i = 0; i < potentialAdjacents.Count; i++)
+            {
+                for (int j = i + 1; j < potentialAdjacents.Count; j++)
+                {
+                    if (IsValidTriangle(this, potentialAdjacents[i], potentialAdjacents[j]))
+                    {
+                        adjacentHexagons.Add(potentialAdjacents[i]);
+                        adjacentHexagons.Add(potentialAdjacents[j]);
+                        return adjacentHexagons;
+                    }
+                }
+            }
+        }
+        else if (numberOfHexagonsToHover == 2)
+        {
+            foreach (var hex in allHexagons)
+            {
+                if (hex != this && Vector3.Distance(hex.transform.position, transform.position) < renderer.bounds.size.x * 1.5f)
+                {
+                    adjacentHexagons.Add(hex);
+                    break;
+                }
+            }
+        }
+
+        return adjacentHexagons;
+    }
+
+    bool IsValidTriangle(MaterialHoverSwitch currentHex, MaterialHoverSwitch firstHex, MaterialHoverSwitch secondHex)
+    {
+        // Check if these hexagons form a front-facing triangle (two adjacent hexagons and one above them)
+        Vector3 a = currentHex.transform.position;
+        Vector3 b = firstHex.transform.position;
+        Vector3 c = secondHex.transform.position;
+
+        // Ensure it forms the desired triangle shape (2 next to each other, 1 above)
+        bool isNextToEachOther = Mathf.Abs(a.x - b.x) < renderer.bounds.size.x * 1.5f && Mathf.Abs(a.z - b.z) < renderer.bounds.size.z * 0.5f;
+        bool isAbove = Mathf.Abs(a.x - c.x) < renderer.bounds.size.x * 0.5f && c.z > a.z && c.z > b.z;
+
+        return isNextToEachOther && isAbove;
+    }
+
+    public static void SetNumberOfHexagonsToHover(int number)
+    {
+        numberOfHexagonsToHover = number;
+        Debug.Log("Number of hexagons to hover set to: " + number); // Debug log to check the value being set
+    }
+}
+
+
+
+
 
 //Scalling and positioning in the centre of the hexagons
-public class MaterialHoverSwitch : MonoBehaviour
+/*public class MaterialHoverSwitch : MonoBehaviour
 {
     public Material defaultMaterial; // Default material for hexagon
     public Material hoverMaterial;   // Hover material for hexagon
