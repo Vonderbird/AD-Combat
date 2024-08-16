@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
+
+//delet button added and it changes color
 public class MaterialHoverSwitch : MonoBehaviour
 {
     public Material defaultMaterial; // Default material for hexagon
@@ -16,11 +19,13 @@ public class MaterialHoverSwitch : MonoBehaviour
     private GameObject spawnedUnit; // Store the spawned unit for deletion
 
     public static bool deleteMode = false; // Static flag to toggle delete mode
+    private DeleteButtonController deleteButtonController;
 
     void Awake()
     {
         allHexagons.Add(this);
         unitManager = FindObjectOfType<UnitManager>(); // Find the UnitManager in the scene
+        deleteButtonController = FindObjectOfType<DeleteButtonController>(); // Find the DeleteButtonController in the scene
     }
 
     void OnDestroy()
@@ -60,7 +65,7 @@ public class MaterialHoverSwitch : MonoBehaviour
             Destroy(spawnedUnit);
             isOccupied = false;
             renderer.material = defaultMaterial; // Reset material after deletion
-            deleteMode = false; // Exit delete mode after one deletion
+            deleteButtonController.ResetDeleteButton(); // Reset delete button after deleting the unit
         }
         else if (!deleteMode && SpawnButtonHoverController.selectedUnitPrefab != null && !isOccupied)
         {
