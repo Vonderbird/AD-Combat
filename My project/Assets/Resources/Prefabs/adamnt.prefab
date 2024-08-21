@@ -279,7 +279,7 @@ MonoBehaviour:
   code: light_infantry_basic_attack
   isActive: 1
   tabID:
-    x: 0
+    x: 2
     y: 0
   priority: 0
   requireIdleEntity: 1
@@ -297,7 +297,7 @@ MonoBehaviour:
       targetBuildings: 1
       targetResources: 1
     center: {fileID: 0}
-  setTargetTaskUI: {fileID: 11400000, guid: 1acf9aaa95010f543a53822d6a4be155, type: 2}
+  setTargetTaskUI: {fileID: 0}
   orderAudio:
     fetchType: 0
     items:
@@ -526,8 +526,8 @@ MonoBehaviour:
   code: movement_component
   isActive: 1
   tabID:
-    x: 1
-    y: 0
+    x: 0
+    y: 1
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -544,7 +544,7 @@ MonoBehaviour:
       targetBuildings: 1
       targetResources: 1
     center: {fileID: 0}
-  setTargetTaskUI: {fileID: 11400000, guid: 061c8973e3c577f4ea6c9b563d77bf00, type: 2}
+  setTargetTaskUI: {fileID: 0}
   orderAudio:
     fetchType: 0
     items:
@@ -656,11 +656,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d271755461aa543a78e10b93c7bac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  code: carriable_unit
+  code: unit_adam
   isActive: 1
   tabID:
-    x: 1
-    y: 0
+    x: 0
+    y: 2
   priority: 1
   requireIdleEntity: 1
   targetFinderData:
@@ -1169,6 +1169,7 @@ GameObject:
   - component: {fileID: 5006539828072104108}
   - component: {fileID: 4321854908067524220}
   - component: {fileID: 4408908569933417830}
+  - component: {fileID: 6127250628261784917}
   m_Layer: 0
   m_Name: adamnt
   m_TagString: Untagged
@@ -1512,6 +1513,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 9090327454865371489}
+--- !u!114 &6127250628261784917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794fca7895cccfb4d816ce7f8f2893f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4021096252883669283, guid: b7eef249a2c922d478417bb07f1c8afe, type: 3}
+  speed: 5
 --- !u!1001 &4310657640882167820
 PrefabInstance:
   m_ObjectHideFlags: 0
