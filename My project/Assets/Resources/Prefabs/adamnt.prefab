@@ -279,7 +279,7 @@ MonoBehaviour:
   code: light_infantry_basic_attack
   isActive: 1
   tabID:
-    x: 2
+    x: 0
     y: 0
   priority: 0
   requireIdleEntity: 1
@@ -526,8 +526,8 @@ MonoBehaviour:
   code: movement_component
   isActive: 1
   tabID:
-    x: 0
-    y: 1
+    x: 1
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -660,7 +660,7 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 0
-    y: 2
+    y: 1
   priority: 1
   requireIdleEntity: 1
   targetFinderData:
@@ -1520,13 +1520,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9090327454865371489}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 794fca7895cccfb4d816ce7f8f2893f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4021096252883669283, guid: b7eef249a2c922d478417bb07f1c8afe, type: 3}
-  speed: 5
+  speed: 2
 --- !u!1001 &4310657640882167820
 PrefabInstance:
   m_ObjectHideFlags: 0
