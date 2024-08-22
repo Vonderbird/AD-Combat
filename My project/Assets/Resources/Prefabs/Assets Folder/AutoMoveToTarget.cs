@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 
+//Automovement
 public class AutoMoveToTarget : MonoBehaviour
 {
     [SerializeField]
