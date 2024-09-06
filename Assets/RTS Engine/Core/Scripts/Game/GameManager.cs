@@ -213,9 +213,15 @@ namespace RTSEngine.Game
 
             // Initialize pre run services.
             foreach (IPreRunGameService service in preRunServices
-                .Values
-                .OrderBy(service => service is IPreRunGamePriorityService ? (service as IPreRunGamePriorityService).ServicePriority : Mathf.Infinity))
+                         .Values
+                         .OrderBy(service =>
+                             service is IPreRunGamePriorityService
+                                 ? (service as IPreRunGamePriorityService).ServicePriority
+                                 : Mathf.Infinity))
+            {
+                Debug.Log(service.gameObject.name);
                 service.Init(this);
+            }
 
             RaiseGameServicesInitialized();
 
