@@ -6,16 +6,16 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TkArty
+  m_Name: Unit_Skyforgers_FrostbornHunter
   m_Controller: {fileID: 9100000, guid: 4f28c54bfb24b3a489502c2758d6e46e, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 55b2840a3c513db48b88350b9279297a, type: 2}
-    m_OverrideClip: {fileID: -7915322714558237474, guid: e085f9367c87e2040926356ee592ace9, type: 3}
+    m_OverrideClip: {fileID: -3054351596321526044, guid: 8460f58b2dc97614db98c5f106e1cb5e, type: 3}
   - m_OriginalClip: {fileID: 7400000, guid: 6de6cf5474149cd45b96c0190eec5a9e, type: 2}
-    m_OverrideClip: {fileID: 4144482492817525762, guid: e085f9367c87e2040926356ee592ace9, type: 3}
+    m_OverrideClip: {fileID: -8515926073257722500, guid: 8460f58b2dc97614db98c5f106e1cb5e, type: 3}
   - m_OriginalClip: {fileID: 7400000, guid: bc459f3943a6900448e16eacce69679f, type: 2}
-    m_OverrideClip: {fileID: -3764465752394169900, guid: e085f9367c87e2040926356ee592ace9, type: 3}
-  - m_OriginalClip: {fileID: 7400000, guid: 61fa50bfb9208714dbea61db57431553, type: 2}
-    m_OverrideClip: {fileID: 8352128782974352171, guid: e085f9367c87e2040926356ee592ace9, type: 3}
+    m_OverrideClip: {fileID: -7235983596689179212, guid: 8460f58b2dc97614db98c5f106e1cb5e, type: 3}
   - m_OriginalClip: {fileID: 7400000, guid: c567a0c876c9f384fae21982e91215c5, type: 2}
-    m_OverrideClip: {fileID: 620644321873780976, guid: e085f9367c87e2040926356ee592ace9, type: 3}
+    m_OverrideClip: {fileID: 4643374622898929765, guid: 8460f58b2dc97614db98c5f106e1cb5e, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 61fa50bfb9208714dbea61db57431553, type: 2}
+    m_OverrideClip: {fileID: -4677513768405893010, guid: 8460f58b2dc97614db98c5f106e1cb5e, type: 3}
