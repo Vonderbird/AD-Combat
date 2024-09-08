@@ -185,7 +185,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     /// <param name="e"></param>
     public void OnAdditionCellClicked(CellEventArgs e)
     {
-        if (e.DecoObject || !activeTaskData.HasValue) return;
+        if (e.IsFilled || !activeTaskData.HasValue) return;
         var unitToSpawn = activeTaskData.UnitCreationTask.TargetObject;
         unitSpawner.AddNewUnit(new UnitParameters
         {
@@ -201,13 +201,14 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
 
     public void OnActivateTask(UnitCreationTask task)
     {
+        Debug.Log($"activeTaskData: {activeTaskData}");
         if (task.IsValid())
             activeTaskData.UnitCreationTask = task;
     }
 
     public void DeactivateTask()
     {
-        activeTaskData = null;
+        activeTaskData.UnitCreationTask = null;
     }
 
 
