@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,12 +7,11 @@ public class FillTimerUI : MonoBehaviour
 {
     [SerializeField] private CellUnitSpawner unitSpawner;
     [SerializeField] private Image fillImage;
+    [SerializeField] private TextMeshProUGUI timer;
     private void Awake()
     {
         if (!unitSpawner)
             unitSpawner = FindAnyObjectByType<CellUnitSpawner>();
-        if (!fillImage)
-            fillImage = GetComponent<Image>();
 
         StartCoroutine(UpdateFiller()); 
     }
@@ -23,6 +22,7 @@ public class FillTimerUI : MonoBehaviour
         while (true)
         {
             fillImage.fillAmount = unitSpawner.UnitsTimer.CurrValue / unitSpawner.UnitsTimer.DefaultValue;
+            timer.text = $"{unitSpawner.UnitsTimer.CurrValue:f0} Seconds";
             yield return null;
         }
     }

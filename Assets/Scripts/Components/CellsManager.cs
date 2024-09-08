@@ -144,6 +144,27 @@ public class CellsManager
         unitCellsGroups.Remove(cellGroup);
     }
 
+    public void OnResetCell(UnitsSpawnEventArgs spawnEventArgs)
+    {
+        foreach (var unitId in spawnEventArgs.UnitIds)
+        {
+            if (!cellGroupIds.TryGetValue(unitId, out var cellGroup)) return;
+            if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
+            {
+                Debug.LogError($"[CellManager] The unitCellsGroups did not sync with cellGroupIds");
+                return;
+            }
+
+            foreach (var cellId in cellIds)
+            {
+                unitCells[cellId].OnCellDeletionClicked();
+                unitSpawner.RemoveUnit(cellId);
+                cellGroupIds.Remove(unitId);
+            }
+            unitCellsGroups.Remove(cellGroup);
+        }
+    }
+
     public void OnDisabled()
     {
         foreach (var (_, unitCell) in unitCells)
@@ -182,12 +203,4 @@ public class CellsManager
     }
 
 
-    public void OnResetCell(UnitsSpawnEventArgs spawnEventArgs)
-    {
-        foreach (var unitId in spawnEventArgs.UnitIds)
-        {
-            unitCells[unitId].ResetCell();
-            //SpawnUnitRemoved?.Invoke();
-        }
-    }
 }
