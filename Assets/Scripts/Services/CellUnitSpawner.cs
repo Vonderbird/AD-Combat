@@ -23,7 +23,9 @@ public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
 
     protected IUnitManager unitMgr { private set; get; }
 
-    private TimeModifiedTimer unitsTimers;
+    public TimeModifiedTimer UnitsTimer => unitsTimer;
+
+    private TimeModifiedTimer unitsTimer;
     private Dictionary<int, UnitParameters> unitsSpawn = new();
 
     private UnitsSpawnEventArgs spawnEventArgs = new();
@@ -33,12 +35,12 @@ public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
     {
         //unitPrefab = unitPrefabObj.GetComponent<IUnit>();
         unitMgr = gameMgr.GetService<IUnitManager>();
-        unitsTimers = new TimeModifiedTimer(spawnPeriod);
+        unitsTimer = new TimeModifiedTimer(spawnPeriod);
     }
 
     private void Update()
     {
-        if (!unitsTimers.ModifiedDecrease()) return;
+        if (!UnitsTimer.ModifiedDecrease()) return;
         spawnEventArgs.UnitIds.Clear();
         foreach (var(id, unitParameters) in unitsSpawn)
         {
@@ -79,7 +81,7 @@ public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
             spawnEventArgs.UnitIds.Add(id);
         }
         unitsSpawn.Clear();
-        unitsTimers.Reload(spawnPeriod);
+        UnitsTimer.Reload(spawnPeriod);
         OnUnitsSpawned?.Invoke(spawnEventArgs);
     }
 
