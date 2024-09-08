@@ -48,7 +48,7 @@ MonoBehaviour:
   code: movement_component_1
   isActive: 1
   tabID:
-    x: 0
+    x: 1
     y: 0
   priority: 0
   requireIdleEntity: 1
@@ -96,9 +96,9 @@ MonoBehaviour:
   isMovementPending: 0
   startPosition: {x: 0, y: 0, z: 0}
   speed:
-    value: 13
+    value: 2
   acceleration:
-    value: 999
+    value: 99
   mvtAngularSpeed:
     value: 999
   canMoveRotate: 1
@@ -263,10 +263,10 @@ MonoBehaviour:
   tabID:
     x: 0
     y: 0
-  _name: Skyforgers
-  code: Skyforgers_1
+  _name: Frostborn
+  code: Skyforgers_Frostborn
   category: military_foot_unit,walking_unit,rtse_demo_entity,rtse_demo_entity
-  description: new_unit_description
+  description: Skyforger Frostborn
   icon: {fileID: 21300000, guid: f1b29190b0ae2bf4693f783debe79c85, type: 3}
   radius: 0.7
   model: {fileID: 8423986542023317977}
@@ -375,11 +375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb986734d7c0b9c4b9288720ed50ab74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 4593225741834706152}
   animatorOverrideController:
     fetchType: 0
     items:
-    - {fileID: 22100000, guid: 21ab23bd14dc28e428e2828e62120377, type: 2}
+    - {fileID: 22100000, guid: babbb5bf2e19fc949b588d9ca1df37c1, type: 2}
   damageAnimationEnabled: 0
   damageAnimationDuration: 0.2
 --- !u!82 &671046216229602247
@@ -1178,7 +1178,7 @@ Animator:
   m_GameObject: {fileID: 1814579842604408029}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 21ab23bd14dc28e428e2828e62120377, type: 2}
+  m_Controller: {fileID: 22100000, guid: babbb5bf2e19fc949b588d9ca1df37c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
