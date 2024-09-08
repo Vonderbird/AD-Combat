@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using IUnit = RTSEngine.Entities.IUnit;
 
-public class UnitCell : MonoBehaviour
+public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Renderer renderer;
     [SerializeField] private int materialId;
@@ -13,67 +14,31 @@ public class UnitCell : MonoBehaviour
     public int CellId { get; } = _incrementalId++;
 
     private GameObject decoObject = null;
-    private CellClickedEventArgs cellClickedEventArgs;
-    public UnityEvent<CellClickedEventArgs> CellCreateUnitClicked;
-    public UnityEvent<int> CellDeleteUnitClicked;
-
-    private HashSet<GameObject> hitColliders;
-
-    private bool isBuildingSelected;
+    private CellEventArgs cellEventArgs;
+    public UnityEvent<CellEventArgs> CellAdditiveClicked;
+    public UnityEvent<CellEventArgs> CellDeletionClicked;
+    public UnityEvent<CellEventArgs> CellAdditiveEntered;
+    public UnityEvent<CellEventArgs> CellDeletionEntered;
+    public UnityEvent<CellEventArgs> CellExit;
+    
     private Color cellDefaultColor;
 
     private bool hoverIsEnable = false;
-
-    public bool IsBuildingSelected
-    {
-        get => isBuildingSelected;
-        set
-        {
-            if (isBuildingSelected==value) return;
-            isBuildingSelected = value;
-            if(value)
-                AddListeners();
-            else
-                RemoveListeners();
-        }
-    }
-
+    public bool IsBuildingSelected { get; set; }
     public DeleteButton DeleteButton { get; set; }
+
+    public bool IsFilled => isFilled;
+
+    private bool isFilled = false;
+
 
     void Awake()
     {
-        hitColliders = GetComponentsInChildren<Collider>().Select((c)=> c.gameObject).ToHashSet();
-        //Debug.Log($"Mouse Enter: {CellId}");
-        cellClickedEventArgs = new CellClickedEventArgs(CellId);
+        cellEventArgs = new CellEventArgs(CellId);
         if (!renderer)
             renderer = GetComponentInChildren<Renderer>();
         cellDefaultColor = renderer.materials[materialId].color;
 
-    }
-
-    void OnEnable()
-    {
-        AddListeners();
-    }
-
-    void OnDisable()
-    {
-        RemoveListeners();
-    }
-
-    private void AddListeners()
-    {
-        //CellPointerEvents.Instance.PointerEntered.AddListenerOnce(OnPointerEnter);
-        //CellPointerEvents.Instance.PointerExited.AddListenerOnce(OnPointerExit);
-        //CellPointerEvents.Instance.PointerClicked.AddListenerOnce(OnPointerClick);
-    }
-
-    private void RemoveListeners()
-    {
-        //if (!CellPointerEvents.Instance) return;
-        //CellPointerEvents.Instance.PointerEntered.RemoveListener(OnPointerEnter);
-        //CellPointerEvents.Instance.PointerExited.RemoveListener(OnPointerExit);
-        //CellPointerEvents.Instance.PointerClicked.RemoveListener(OnPointerClick);
     }
 
     public void CreateDecoObject(IUnit unitPrefab)
@@ -85,87 +50,116 @@ public class UnitCell : MonoBehaviour
         }
 
         decoObject = Instantiate(unitPrefab.Model, transform);
+        isFilled = true;
     }
     public void ResetCell()
     {
         if (!decoObject) return;
         Destroy(decoObject);
-        if(hoverIsEnable)
+        isFilled = false;
+        if (hoverIsEnable)
             renderer.materials[materialId].color = Color.green;
     }
 
-    public void OnPointerEnter(PointerEventArgs eventData)
+    public void OnCellAdditiveEntered()
     {
-        //Debug.Log($"{IsBuildingSelected}, {hitColliders.Contains(eventData.HitObject)}");
-        if (!IsBuildingSelected || !hitColliders.Contains(eventData.HitObject)) return;
+        renderer.materials[materialId].color = decoObject == null ? Color.green : Color.gray;
+    }
+
+    public void OnCellDeletionEntered()
+    {
+        renderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
+    }
+
+    public void OnCellExit()
+    {
+        renderer.materials[materialId].color = cellDefaultColor;
+    }
+
+    public void OnCellAdditiveClicked(IUnit unitToSpawn)
+    {
+        CreateDecoObject(unitToSpawn);
+        renderer.materials[materialId].color = Color.red;
+    }
+
+    public void OnCellDeletionClicked()
+    {
+        ResetCell();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (!IsBuildingSelected) return;
+
+        cellEventArgs.HitPoint = GetPointerHitPoint(eventData);
         //Debug.Log($"Mouse Enter: {CellId}");
-        if (decoObject == null)
-            renderer.materials[materialId].color = Color.green;
+        if (DeleteButton && DeleteButton.IsDeleteEnabled)
+            CellDeletionEntered?.Invoke(cellEventArgs);
         else
-            renderer.materials[materialId].color = Color.red;
+            CellAdditiveEntered?.Invoke(cellEventArgs);
         hoverIsEnable = true;
     }
 
-    public void OnPointerExit(PointerEventArgs eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        if (!IsBuildingSelected || !hitColliders.Contains(eventData.HitObject)) return;
-        renderer.materials[materialId].color = cellDefaultColor;
+        if (!IsBuildingSelected) return;
+        cellEventArgs.eventData = eventData;
+        CellExit?.Invoke(cellEventArgs);
         hoverIsEnable = false;
     }
 
-    public void OnPointerClick(PointerEventArgs eventData)
-    {
-        if (!IsBuildingSelected || !hitColliders.Contains(eventData.HitObject)) return;
-
-        cellClickedEventArgs.DecoObject = decoObject;
-        CellCreateUnitClicked?.Invoke(cellClickedEventArgs);
-    }
-
-    void OnMouseEnter()
+    public void OnPointerClick(PointerEventData eventData)
     {
         if (!IsBuildingSelected) return;
-        //Debug.Log($"Mouse Enter: {CellId}");
+
+        cellEventArgs.eventData = eventData;
         if (DeleteButton && DeleteButton.IsDeleteEnabled)
         {
-            renderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
+            CellDeletionClicked?.Invoke(cellEventArgs);
         }
         else
         {
-            renderer.materials[materialId].color = decoObject == null ? Color.green : Color.gray;
+            cellEventArgs.HitPoint = GetPointerHitPoint(eventData);
+            cellEventArgs.DecoObject = decoObject;
+            CellAdditiveClicked?.Invoke(cellEventArgs);
         }
-        hoverIsEnable = true;
     }
 
-    void OnMouseExit()
+    private Vector3 GetPointerHitPoint(PointerEventData eventData)
     {
-        if (!IsBuildingSelected) return;
-        renderer.materials[materialId].color = cellDefaultColor;
-        hoverIsEnable = false;
-    }
-
-    void OnMouseDown()
-    {
-        if (!IsBuildingSelected) return;
-
-        if (DeleteButton && DeleteButton.IsDeleteEnabled)
+        Camera eventCamera = eventData.enterEventCamera;
+        if (eventCamera == null)
         {
-            CellDeleteUnitClicked?.Invoke(CellId);
+            Debug.LogWarning("No event camera found.");
+            return Vector3.zero;
         }
-        else
+
+        // Perform a raycast from the event camera to the pointer position
+        Ray ray = eventCamera.ScreenPointToRay(eventData.position);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
         {
-            renderer.materials[materialId].color = Color.red;
-            cellClickedEventArgs.DecoObject = decoObject;
-            CellCreateUnitClicked?.Invoke(cellClickedEventArgs);
+            // Check if the raycast hit this object
+            if (hit.collider.gameObject == gameObject)
+            {
+                return hit.point; // Return the hit point on the object
+            }
         }
+
+        return Vector3.zero; // No hit, return zero vector
     }
 }
 
-public class CellClickedEventArgs
+public class CellEventArgs
 {
-    public CellClickedEventArgs(int cellId)
+    public CellEventArgs(int cellId, PointerEventData eventData = null)
     {
         CellId = cellId;
+        this.eventData = eventData;
     }
     public int CellId { get; }
+    public Vector3 HitPoint { get; set; }
+    public PointerEventData eventData { get; set; }
     public GameObject DecoObject { get; set; }
 }
