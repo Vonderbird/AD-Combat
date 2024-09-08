@@ -2,6 +2,7 @@ using RTSEngine;
 using RTSEngine.EntityComponent;
 using RTSEngine.UI;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using RTSEngine.Entities;
 using RTSEngine.Event;
 using RTSEngine.Selection;
@@ -28,7 +29,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     private List<UnitCreationTask> creationTasks = new List<UnitCreationTask>();
     private List<UnitCreationTask> allCreationTasks;
 
-    private UnitCreationTask activeTaskData;
+    [CanBeNull] private UnitCreationTask activeTaskData;
 
     [SerializeField]
     private Transform spawnTransform = null;
@@ -47,6 +48,8 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     //public UnityEvent<IUnit> SpawnUnitRemoved = new();
 
     public override IReadOnlyList<IEntityComponentTaskInput> Tasks { get; }
+
+    private SpawnUnitsList spawnUnitsList;
 
     protected IUnitManager unitMgr { private set; get; }
 
@@ -71,11 +74,15 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
         unitSpawner.OnUnitsSpawned.AddListener(OnResetCell);
         Entity.Selection.Selected += OnEntitySelected;
         Entity.Selection.Deselected += OnEntityDeselected;
-        activeTaskData = creationTasks[0];
         Entity.Selection.OnSelected(
             new EntitySelectionEventArgs(SelectionType.single, SelectedType.newlySelected, true));
 
-
+        spawnUnitsList = FindAnyObjectByType<SpawnUnitsList>();
+        if (!spawnUnitsList)
+        {
+            Debug.LogError($"[CellFillerComponent] Cannot find SpawnUnitsList in the scene");
+            return;
+        }
         // Initialize creation tasks
         allCreationTasks = new List<UnitCreationTask>();
         int taskID = 0;
@@ -83,6 +90,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
         {
             creationTasks[taskID].Init(this, taskID, gameMgr);
             creationTasks[taskID].Enable();
+            spawnUnitsList.AddSpawnUnitUITask(creationTasks[taskID], OnActivateTask);
         }
         allCreationTasks.AddRange(creationTasks);
 
@@ -90,30 +98,23 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
         //unitCreationTask.Init(this, 0, gameMgr);
         //unitCreationTask.Enable();
     }
-
-
-    private int activeTaskId = 0;
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.K))
-        {
-            activeTaskId = (activeTaskId + 1) % creationTasks.Count;
-            OnTaskUIClick(activeTaskId);
-        }
-    }
     
     #endregion
 
     private void OnEntitySelected(IEntity sender, EntitySelectionEventArgs args)
     {
         foreach (var (_, unitCell) in unitCells)
+        {
             unitCell.IsBuildingSelected = true;
+        }
     }
 
     private void OnEntityDeselected(IEntity sender, EntityDeselectionEventArgs args)
     {
         foreach (var (_, unitCell) in unitCells)
+        {
             unitCell.IsBuildingSelected = false;
+        }
     }
 
     //protected override bool OnTaskUICacheUpdate(List<EntityComponentTaskUIAttributes> taskUIAttributesCache, List<string> disabledTaskCodesCache)
@@ -185,14 +186,21 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     }
     #endregion
 
-    public void OnTaskUIClick(int taskId) // ???????????????
+    public void OnActivateTask(int taskId) // ???????????????
     {
         if (creationTasks[taskId].IsValid())
-        {
-            // activeUnit = ...
-            activeTaskData = creationTasks[taskId];
-            Debug.Log($"activeTaskData is {activeTaskData.TargetObject.Name}");
-        }
+            OnActivateTask(creationTasks[taskId]);
+    }
+
+    public void OnActivateTask(UnitCreationTask task)
+    {
+        if (task.IsValid())
+            activeTaskData = task;
+    }
+
+    public void DeactivateTask()
+    {
+        activeTaskData = null;
     }
 
     //public override bool OnTaskUIClick(EntityComponentTaskUIAttributes taskAttributes) // ???????????????
@@ -216,14 +224,18 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     //{
     //    activeUnit = unitPrefab;
     //}
-    
+    private DeleteButton deleteButton;
     void OnEnable()
     {
         PrepareCells();
+        deleteButton = FindAnyObjectByType<DeleteButton>();
+        if(deleteButton != null)
+            deleteButton.Clicked.AddListener(DeactivateTask);
         foreach (var (_, unitCell) in unitCells)
         {
-            unitCell.CellClicked.AddListener(OnCellClicked);
-            unitCell.CellRightClicked.AddListener(OnCellRightClicked);
+            unitCell.CellCreateUnitClicked.AddListener(OnCellClicked);
+            unitCell.CellDeleteUnitClicked.AddListener(OnCellRightClicked);
+            unitCell.DeleteButton = deleteButton;
         }
         if(unitSpawner)
             unitSpawner.OnUnitsSpawned.AddListener(OnResetCell);
@@ -233,9 +245,12 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     void OnDisable()
     {
         foreach (var (_, unitCell) in unitCells)
-            unitCell.CellClicked.RemoveListener(OnCellClicked);
+            unitCell.CellCreateUnitClicked.RemoveListener(OnCellClicked);
         if (unitSpawner)
             unitSpawner.OnUnitsSpawned.RemoveListener(OnResetCell);
+
+        if (deleteButton)
+            deleteButton.Clicked.RemoveListener(DeactivateTask);
     }
 
     private void PrepareCells()
@@ -250,7 +265,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
 
     private void OnCellClicked(CellClickedEventArgs e)
     {
-        if (e.DecoObject) return;
+        if (e.DecoObject || !activeTaskData.IsValid()) return;
         var unitToSpawn = activeTaskData.TargetObject;
         unitSpawner.AddNewUnit(new UnitParameters
         {
