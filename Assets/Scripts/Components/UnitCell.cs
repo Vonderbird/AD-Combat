@@ -14,8 +14,8 @@ public class UnitCell : MonoBehaviour
 
     private GameObject decoObject = null;
     private CellClickedEventArgs cellClickedEventArgs;
-    public UnityEvent<CellClickedEventArgs> CellClicked;
-    public UnityEvent<int> CellRightClicked;
+    public UnityEvent<CellClickedEventArgs> CellCreateUnitClicked;
+    public UnityEvent<int> CellDeleteUnitClicked;
 
     private HashSet<GameObject> hitColliders;
 
@@ -37,6 +37,8 @@ public class UnitCell : MonoBehaviour
                 RemoveListeners();
         }
     }
+
+    public DeleteButton DeleteButton { get; set; }
 
     void Awake()
     {
@@ -116,17 +118,21 @@ public class UnitCell : MonoBehaviour
         if (!IsBuildingSelected || !hitColliders.Contains(eventData.HitObject)) return;
 
         cellClickedEventArgs.DecoObject = decoObject;
-        CellClicked?.Invoke(cellClickedEventArgs);
+        CellCreateUnitClicked?.Invoke(cellClickedEventArgs);
     }
 
     void OnMouseEnter()
     {
         if (!IsBuildingSelected) return;
         //Debug.Log($"Mouse Enter: {CellId}");
-        if (decoObject == null)
-            renderer.materials[materialId].color = Color.green;
+        if (DeleteButton && DeleteButton.IsDeleteEnabled)
+        {
+            renderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
+        }
         else
-            renderer.materials[materialId].color = Color.red;
+        {
+            renderer.materials[materialId].color = decoObject == null ? Color.green : Color.gray;
+        }
         hoverIsEnable = true;
     }
 
@@ -140,17 +146,16 @@ public class UnitCell : MonoBehaviour
     void OnMouseDown()
     {
         if (!IsBuildingSelected) return;
-        renderer.materials[materialId].color = Color.red;
 
-        cellClickedEventArgs.DecoObject = decoObject;
-        CellClicked?.Invoke(cellClickedEventArgs);
-    }
-    void OnMouseOver()
-    {
-
-        if (Input.GetMouseButtonDown(1))
+        if (DeleteButton && DeleteButton.IsDeleteEnabled)
         {
-            CellRightClicked?.Invoke(CellId);
+            CellDeleteUnitClicked?.Invoke(CellId);
+        }
+        else
+        {
+            renderer.materials[materialId].color = Color.red;
+            cellClickedEventArgs.DecoObject = decoObject;
+            CellCreateUnitClicked?.Invoke(cellClickedEventArgs);
         }
     }
 }
