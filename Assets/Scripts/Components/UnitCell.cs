@@ -1,11 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using IUnit = RTSEngine.Entities.IUnit;
 
-public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerMoveHandler
 {
     [SerializeField] private Renderer renderer;
     [SerializeField] private int materialId;
@@ -37,11 +35,12 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         cellEventArgs = new CellEventArgs(CellId);
         if (!renderer)
             renderer = GetComponentInChildren<Renderer>();
+
         cellDefaultColor = renderer.materials[materialId].color;
 
     }
 
-    public void CreateDecoObject(IUnit unitPrefab)
+    public void CreateDecoObject(IUnit unitPrefab, Vector3 position, float scaleFactor)
     {
         if (decoObject)
         {
@@ -49,13 +48,13 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             return;
         }
 
-        decoObject = Instantiate(unitPrefab.Model, transform);
-        isFilled = true;
+        decoObject = Instantiate(unitPrefab.Model, position, Quaternion.identity, transform);
+        decoObject.transform.localScale = Vector3.one * scaleFactor;
     }
     public void ResetCell()
     {
-        if (!decoObject) return;
-        Destroy(decoObject);
+        if (decoObject)
+            Destroy(decoObject);
         isFilled = false;
         if (hoverIsEnable)
             renderer.materials[materialId].color = Color.green;
@@ -76,11 +75,13 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         renderer.materials[materialId].color = cellDefaultColor;
     }
 
-    public void OnCellAdditiveClicked(IUnit unitToSpawn)
+    public void OnCellAdditiveClicked()
     {
-        CreateDecoObject(unitToSpawn);
+        isFilled = true;
         renderer.materials[materialId].color = Color.red;
     }
+
+
 
     public void OnCellDeletionClicked()
     {
@@ -92,6 +93,7 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!IsBuildingSelected) return;
 
         cellEventArgs.HitPoint = GetPointerHitPoint(eventData);
+        cellEventArgs.IsFilled = IsFilled;
         //Debug.Log($"Mouse Enter: {CellId}");
         if (DeleteButton && DeleteButton.IsDeleteEnabled)
             CellDeletionEntered?.Invoke(cellEventArgs);
@@ -103,6 +105,7 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!IsBuildingSelected) return;
+        cellEventArgs.IsFilled = IsFilled;
         cellEventArgs.eventData = eventData;
         CellExit?.Invoke(cellEventArgs);
         hoverIsEnable = false;
@@ -113,6 +116,7 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!IsBuildingSelected) return;
 
         cellEventArgs.eventData = eventData;
+        cellEventArgs.IsFilled = IsFilled;
         if (DeleteButton && DeleteButton.IsDeleteEnabled)
         {
             CellDeletionClicked?.Invoke(cellEventArgs);
@@ -120,7 +124,7 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         else
         {
             cellEventArgs.HitPoint = GetPointerHitPoint(eventData);
-            cellEventArgs.DecoObject = decoObject;
+            //cellEventArgs.DecoObject = decoObject;
             CellAdditiveClicked?.Invoke(cellEventArgs);
         }
     }
@@ -149,6 +153,20 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         return Vector3.zero; // No hit, return zero vector
     }
+
+    public void OnPointerMove(PointerEventData eventData)
+    {
+        if (!IsBuildingSelected) return;
+
+        cellEventArgs.HitPoint = GetPointerHitPoint(eventData);
+        cellEventArgs.IsFilled = IsFilled;
+        //Debug.Log($"Mouse Enter: {CellId}");
+        if (DeleteButton && DeleteButton.IsDeleteEnabled)
+            CellDeletionEntered?.Invoke(cellEventArgs);
+        else
+            CellAdditiveEntered?.Invoke(cellEventArgs);
+        hoverIsEnable = true;
+    }
 }
 
 public class CellEventArgs
@@ -161,5 +179,6 @@ public class CellEventArgs
     public int CellId { get; }
     public Vector3 HitPoint { get; set; }
     public PointerEventData eventData { get; set; }
-    public GameObject DecoObject { get; set; }
+    //public GameObject DecoObject { get; set; }
+    public bool IsFilled { get; set; }
 }

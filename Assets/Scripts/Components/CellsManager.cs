@@ -50,7 +50,8 @@ public class CellsManager
 
     private void OnCellAdditiveEntered(CellEventArgs arg0)
     {
-        if (!activeTask.HasValue) return;
+        if (arg0.IsFilled || !activeTask.HasValue) return;
+        OnCellExit(arg0);
 
         var taskPopulation = 0;
         foreach (var requiredResource in activeTask.UnitCreationTask.RequiredResources)
@@ -60,13 +61,20 @@ public class CellsManager
                 taskPopulation = requiredResource.value.amount;
             }
         }
-        var nearestCellIds = cellPositions.OrderBy(p => Vector3.Distance(arg0.HitPoint, p.Value)).Take(taskPopulation).Select(p=>p.Key).ToList();
+        var nearestCellIds = cellPositions
+            .Where(p => !unitCells[p.Key].IsFilled)
+            .OrderBy(p => Vector3.Distance(arg0.HitPoint, p.Value))
+            .Take(taskPopulation)
+            .Select(p=>p.Key)
+            .ToList();
+        if (nearestCellIds.Count < taskPopulation) return;
         foreach (var cellId in nearestCellIds)
             unitCells[cellId].OnCellAdditiveEntered();
     }
 
     private void OnCellDeletionEntered(CellEventArgs arg0)
     {
+        OnCellExit(arg0);
         if (!cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup)) return;
         if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
         {
@@ -98,7 +106,7 @@ public class CellsManager
 
     public void OnCellAdditiveClicked(CellEventArgs arg0)
     {
-        if (!activeTask.HasValue) return;
+        if (arg0.IsFilled || !activeTask.HasValue) return;
         if (cellGroupIds.ContainsKey(arg0.CellId))
         {
             Debug.LogError($"[CellManager] cellGroupIds already has the cell Id {arg0.CellId}!");
@@ -113,16 +121,29 @@ public class CellsManager
                 taskPopulation = requiredResource.value.amount;
             }
         }
-        var nearestCellIds = cellPositions.OrderBy(p => Vector3.Distance(arg0.HitPoint, p.Value)).Take(taskPopulation).Select(p => p.Key).ToList();
+
+        var nearestCellIds = cellPositions
+            .Where(p => !unitCells[p.Key].IsFilled)
+            .OrderBy(p => Vector3.Distance(arg0.HitPoint, p.Value))
+            .Take(taskPopulation)
+            .Select(p => p.Key)
+            .ToList();
+        if (nearestCellIds.Count < taskPopulation) return;
 
         AdditiveCellClicked?.Invoke(arg0);
-        unitCellsGroups.Add(arg0.CellId, new List<int>(taskPopulation));
+        int groupId = nearestCellIds.First();
+        unitCellsGroups.Add(groupId, new List<int>(taskPopulation));
+        Vector3 averagePosition = Vector3.zero;
         foreach (var cellId in nearestCellIds)
         {
-            unitCells[cellId].OnCellAdditiveClicked(activeTask.UnitCreationTask.TargetObject);
-            unitCellsGroups[arg0.CellId].Add(cellId);
-            cellGroupIds.Add(cellId, arg0.CellId);
+            averagePosition += cellPositions[cellId];
+            unitCells[cellId].OnCellAdditiveClicked();
+            unitCellsGroups[groupId].Add(cellId);
+            cellGroupIds.Add(cellId, groupId);
         }
+
+        unitCells[groupId].CreateDecoObject(activeTask.UnitCreationTask.TargetObject,
+            averagePosition / taskPopulation, 1 + MathF.Log(taskPopulation)); 
     }
 
     private void OnCellDeletionClicked(CellEventArgs arg0)
@@ -139,29 +160,18 @@ public class CellsManager
         {
             unitCells[cellId].OnCellDeletionClicked();
             unitSpawner.RemoveUnit(cellId);
-            cellGroupIds.Remove(arg0.CellId);
+            cellGroupIds.Remove(cellId);
         }
         unitCellsGroups.Remove(cellGroup);
     }
 
     public void OnResetCell(UnitsSpawnEventArgs spawnEventArgs)
     {
-        foreach (var unitId in spawnEventArgs.UnitIds)
+        cellGroupIds.Clear();
+        unitCellsGroups.Clear();
+        foreach (var (cellId, unitCell) in unitCells)
         {
-            if (!cellGroupIds.TryGetValue(unitId, out var cellGroup)) return;
-            if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
-            {
-                Debug.LogError($"[CellManager] The unitCellsGroups did not sync with cellGroupIds");
-                return;
-            }
-
-            foreach (var cellId in cellIds)
-            {
-                unitCells[cellId].OnCellDeletionClicked();
-                unitSpawner.RemoveUnit(cellId);
-                cellGroupIds.Remove(unitId);
-            }
-            unitCellsGroups.Remove(cellGroup);
+            unitCell.OnCellDeletionClicked();
         }
     }
 
