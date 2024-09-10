@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabID:
     x: 0
-    y: 2
+    y: 0
   maxHealth: 100
   initialHealth: 100
   canIncrease: 1
@@ -857,7 +857,7 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 1
-    y: 0
+    y: 2
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -1052,7 +1052,7 @@ MonoBehaviour:
         intProperties: []
   moveOnAttack: 0
   followDistance: 9
-  attackMoveEnabled: 1
+  attackMoveEnabled: 0
   attackMoveTaskUI: {fileID: 0}
 --- !u!1 &8423986542023317977
 GameObject:
