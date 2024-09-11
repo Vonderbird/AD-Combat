@@ -856,8 +856,8 @@ MonoBehaviour:
   code: light_infantry_basic_attack2
   isActive: 1
   tabID:
-    x: 1
-    y: 2
+    x: 0
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -896,7 +896,7 @@ MonoBehaviour:
   progressOverrideController:
     fetchType: 0
     items:
-    - {fileID: 22100000, guid: eb1404e2c46fe65459b1dd715592fb51, type: 2}
+    - {fileID: 22100000, guid: 21ab23bd14dc28e428e2828e62120377, type: 2}
   progressDuration: 0.4
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
