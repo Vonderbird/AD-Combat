@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abf428716af4f8f438cb34c5c761450b, type: 3}
-  m_Name: unit_spawn_taks_ui 2
+  m_Name: unit_spawn_taks_ui_Frostborn
   m_EditorClassIdentifier: 
   data:
-    code: unit_spawn_Skyforgers
+    code: unit_spawn_Frostborn_Hunter
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: 142a9c9bda54d7f42b13e63adcbe6cd7, type: 3}
+    icon: {fileID: 21300000, guid: 7bc8ae0a2a8bafd47a9149c67e165d7f, type: 3}
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1

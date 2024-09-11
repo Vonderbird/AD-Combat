@@ -36833,8 +36833,12 @@ PrefabInstance:
       objectReference: {fileID: 471814844}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[0].taskUI
+      value: 
+      objectReference: {fileID: 11400000, guid: 9092fba7ac0100642976252ea8874e41, type: 2}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[1].taskUI
       value: 
@@ -36842,7 +36846,7 @@ PrefabInstance:
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[2].taskUI
       value: 
-      objectReference: {fileID: 11400000, guid: f2f0989e376421e498eeafe05de37c8e, type: 2}
+      objectReference: {fileID: 11400000, guid: e838eafe28238cb449df739a44f95a02, type: 2}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[3].taskUI
       value: 
@@ -36865,15 +36869,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f2f0989e376421e498eeafe05de37c8e, type: 2}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[0].taskTitle
-      value: ' Fighter'
+      value: Adamant Legion
       objectReference: {fileID: 0}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[1].taskTitle
-      value: Skyforgers
+      value: Frostborn
       objectReference: {fileID: 0}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[2].taskTitle
-      value: Create Fighter
+      value: Siege Breaker
       objectReference: {fileID: 0}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[3].taskTitle
@@ -36906,7 +36910,7 @@ PrefabInstance:
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[2].prefabObject
       value: 
-      objectReference: {fileID: 2837683883374114850, guid: 195c510dba621e84881a5915d4a45b0e, type: 3}
+      objectReference: {fileID: 2837683883374114850, guid: 0258eb382e592ae4b93b2c170c0e3284, type: 3}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[3].prefabObject
       value: 
@@ -36940,11 +36944,27 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[2].requiredResources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[0].requiredResources.Array.data[0].type
       value: 
       objectReference: {fileID: 11400000, guid: b16294d219bf6db449279be57eae3702, type: 2}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[1].requiredResources.Array.data[0].type
+      value: 
+      objectReference: {fileID: 11400000, guid: b16294d219bf6db449279be57eae3702, type: 2}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[1].requiredResources.Array.data[1].type
+      value: 
+      objectReference: {fileID: 11400000, guid: b16294d219bf6db449279be57eae3702, type: 2}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[1].requiredResources.Array.data[2].type
+      value: 
+      objectReference: {fileID: 11400000, guid: b16294d219bf6db449279be57eae3702, type: 2}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[2].requiredResources.Array.data[0].type
       value: 
       objectReference: {fileID: 11400000, guid: b16294d219bf6db449279be57eae3702, type: 2}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
@@ -36958,6 +36978,18 @@ PrefabInstance:
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[1].requiredResources.Array.data[0].value.amount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[1].requiredResources.Array.data[1].value.amount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[1].requiredResources.Array.data[2].value.amount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[2].requiredResources.Array.data[0].value.amount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 729522573888502291, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: m_StaticEditorFlags
