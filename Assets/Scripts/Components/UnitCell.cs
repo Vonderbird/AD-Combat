@@ -1,12 +1,21 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using static UnityEngine.ParticleSystem;
 using IUnit = RTSEngine.Entities.IUnit;
 
 public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IPointerMoveHandler
 {
     [SerializeField] private Renderer renderer;
     [SerializeField] private int materialId;
+    [SerializeField] private float cellSizeFactor = 0.5f;
+    public ParticleSystemGroup SpawnParticle { get; set; }
+    public ParticleSystemGroup DeleteParticle { get; set; }
+
+    [SerializeField] private Color defaultEmptyColor = Color.white;
+    [SerializeField] private Color defaultFilledColor = Color.gray;
+
 
     private static int _incrementalId;
     public int CellId { get; } = _incrementalId++;
@@ -18,8 +27,7 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public UnityEvent<CellEventArgs> CellAdditiveEntered;
     public UnityEvent<CellEventArgs> CellDeletionEntered;
     public UnityEvent<CellEventArgs> CellExit;
-    
-    private Color cellDefaultColor;
+
 
     private bool hoverIsEnable = false;
     public bool IsBuildingSelected { get; set; }
@@ -36,11 +44,10 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!renderer)
             renderer = GetComponentInChildren<Renderer>();
 
-        cellDefaultColor = renderer.materials[materialId].color;
-
+        renderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor; ;
     }
 
-    public void CreateDecoObject(IUnit unitPrefab, Vector3 position, float scaleFactor)
+    public void CreateDecoObject(IUnit unitPrefab, ParticleSystemGroup spawnParticle, ParticleSystemGroup deleteParticle, Vector3 position, float scaleFactor)
     {
         if (decoObject)
         {
@@ -48,16 +55,42 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             return;
         }
 
-        decoObject = Instantiate(unitPrefab.Model, position, Quaternion.identity, transform);
+        decoObject = Instantiate(unitPrefab.Model, position, Quaternion.Euler(new Vector3(0, 90, 0)), transform);
+        SpawnParticle = spawnParticle;
+        DeleteParticle = deleteParticle;
         decoObject.transform.localScale = Vector3.one * scaleFactor;
     }
     public void ResetCell()
     {
-        if (decoObject)
-            Destroy(decoObject);
+        if (SpawnParticle)
+            SpawnParticle = null;
+
+        if (!isFilled) return;
         isFilled = false;
         if (hoverIsEnable)
             renderer.materials[materialId].color = Color.green;
+
+        if (DeleteParticle)
+        {
+            Debug.Log("Played Delete Particle");
+            var deleteParticle = Instantiate(DeleteParticle, transform.position + Vector3.up * 0.25f, Quaternion.identity, transform);
+            deleteParticle.LifeSpan = 3f;
+            deleteParticle.transform.localScale = Vector3.one * cellSizeFactor * deleteParticle.ScaleFactor;
+            deleteParticle.Play();
+            DeleteParticle = null;
+        }
+
+        StartCoroutine(DeleteDecoWithDelay(decoObject));
+        decoObject = null;
+    }
+
+    private WaitForSeconds deleteDelay = new(1.5f);
+    IEnumerator DeleteDecoWithDelay(GameObject tempObject)
+    {
+        yield return deleteDelay;
+
+        if (tempObject)
+            Destroy(tempObject);
     }
 
     public void OnCellAdditiveEntered()
@@ -72,7 +105,7 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnCellExit()
     {
-        renderer.materials[materialId].color = cellDefaultColor;
+        renderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
     }
 
     public void OnCellAdditiveClicked()
@@ -80,8 +113,6 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         isFilled = true;
         renderer.materials[materialId].color = Color.red;
     }
-
-
 
     public void OnCellDeletionClicked()
     {
@@ -167,6 +198,17 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             CellAdditiveEntered?.Invoke(cellEventArgs);
         hoverIsEnable = true;
     }
+
+    public void OnCellUnitSpawned()
+    {
+        if (isFilled)
+        {
+            var tempParticle = Instantiate(SpawnParticle, transform.position + Vector3.up * 0.25f, Quaternion.identity, transform);
+            tempParticle.transform.localScale = Vector3.one * cellSizeFactor * tempParticle.ScaleFactor;
+            tempParticle.LifeSpan = 3f;
+            tempParticle?.Play();
+        }
+    }
 }
 
 public class CellEventArgs
@@ -181,4 +223,5 @@ public class CellEventArgs
     public PointerEventData eventData { get; set; }
     //public GameObject DecoObject { get; set; }
     public bool IsFilled { get; set; }
+    public float UnitScaleFactor { get; set; }
 }
