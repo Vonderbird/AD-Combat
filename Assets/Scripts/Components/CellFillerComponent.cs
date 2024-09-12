@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using IUnit = RTSEngine.Entities.IUnit;
 using RTSEngine.UnitExtension;
+using UnityEngine.XR;
 
 public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IEntityPostInitializable
 {
@@ -28,9 +29,9 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     private List<UnitCreationTask> allCreationTasks;
     private ActiveTaskContainer activeTaskData = new();
 
-
     [SerializeField]
     private Transform spawnTransform = null;
+    private Transform testTransform;
 
     [SerializeField]
     private Transform gotoTransform = null;
@@ -94,7 +95,8 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
             spawnUnitsList.AddSpawnUnitUITask(creationTasks[taskID], OnActivateTask);
         }
         allCreationTasks.AddRange(creationTasks);
-
+        testTransform = new GameObject("Test Transform").transform;
+        testTransform.SetParent(spawnTransform);
     }
 
 
@@ -187,21 +189,25 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     {
         if (e.IsFilled || !activeTaskData.HasValue) return;
         var unitToSpawn = activeTaskData.UnitCreationTask.TargetObject;
+
+        testTransform.localPosition = cellsManager.UnitCells[e.CellId].transform.localPosition;
+
         unitSpawner.AddNewUnit(new UnitParameters
         {
             CreatorComponent = this,
             UnitTask = activeTaskData.UnitCreationTask,
             GotoTransform = gotoTransform,
-            SpawnTransform = spawnTransform,
+            SpawnPosition = testTransform.position,
             Unit = unitToSpawn,
-            Id = e.CellId
+            Id = e.CellId,
+            UnitScaleFactor = e.UnitScaleFactor
         });
         SpawnUnitAdded?.Invoke(unitToSpawn);
     }
 
     public void OnActivateTask(UnitCreationTask task)
     {
-        Debug.Log($"activeTaskData: {activeTaskData}");
+        //Debug.Log($"activeTaskData: {activeTaskData}");
         if (task.IsValid())
             activeTaskData.UnitCreationTask = task;
     }
