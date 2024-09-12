@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using RTSEngine.Determinism;
@@ -31,58 +32,73 @@ public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
     private UnitsSpawnEventArgs spawnEventArgs = new();
     public UnityEvent<UnitsSpawnEventArgs> OnUnitsSpawned = new();
 
+
+    private WaitForSeconds waitForSeconds = new(0.1f);
+    private WaitUntil waitUntil;
+
     public void Init(IGameManager gameMgr)
     {
         //unitPrefab = unitPrefabObj.GetComponent<IUnit>();
         unitMgr = gameMgr.GetService<IUnitManager>();
+        Debug.Log("unitsTimer");
         unitsTimer = new TimeModifiedTimer(spawnPeriod);
+        waitUntil = new WaitUntil(() => UnitsTimer.ModifiedDecrease());
+        StartCoroutine(SpawnWaves());
     }
 
-    private void Update()
+    private IEnumerator SpawnWaves()
     {
-        if (!UnitsTimer.ModifiedDecrease()) return;
-        spawnEventArgs.UnitIds.Clear();
-        foreach (var(id, unitParameters) in unitsSpawn)
+        while (true)
         {
-            //unitMgr.CreateUnit(unitParameters.Unit, unitParameters.SpawnTransform.position, Quaternion.identity, new InitUnitParameters
-            //{
-            //    factionID = unitParameters.Unit.FactionID,
-            //    free = false,
-            //    useGotoPosition = true,
-            //    gotoPosition = unitParameters.GotoTransform.position,
-            //});
-            Debug.Log($"unitParameters.Unit.FactionID: {unitParameters.Unit.FactionID}");
-            unitMgr.CreateUnit(
-                unitParameters.Unit,
-                unitParameters.SpawnTransform.position,
-                Quaternion.identity,
-                new InitUnitParameters
-                {
-                    factionID = unitParameters.Unit.FactionID,
-                    free = false,
+            yield return waitUntil;
+            foreach (var (id, unitParameters) in unitsSpawn)
+            {
+                if (!unitParameters.UnitTask.SpawnParticleSystem) continue;
+                var particle = Instantiate(unitParameters.UnitTask.SpawnParticleSystem,
+                    unitParameters.SpawnPosition, Quaternion.identity);
+                particle.transform.localScale = Vector3.one * particle.ScaleFactor * unitParameters.UnitScaleFactor*0.5f;
+                particle.Play();
+            }
+            for(var i = 0; i < 5; i++)
+                yield return waitForSeconds;
 
-                    setInitialHealth = false,
+            spawnEventArgs.UnitIds.Clear();
+            foreach (var (id, unitParameters) in unitsSpawn)
+            {
+                unitMgr.CreateUnit(
+                    unitParameters.Unit,
+                    unitParameters.SpawnPosition,
+                    Quaternion.identity,
+                    new InitUnitParameters
+                    {
+                        factionID = unitParameters.Unit.FactionID,
+                        free = false,
 
-                    giveInitResources = true,
+                        setInitialHealth = false,
 
-                    rallypoint = unitParameters.Unit.Rallypoint,
-                    creatorEntityComponent = unitParameters.CreatorComponent,
+                        giveInitResources = true,
 
-                    useGotoPosition = true,
-                    gotoPosition = unitParameters.GotoTransform.position,
+                        rallypoint = unitParameters.Unit.Rallypoint,
+                        creatorEntityComponent = unitParameters.CreatorComponent,
 
-                    isSquad = unitParameters.UnitTask.SquadData.enabled,
-                    squadCount = unitParameters.UnitTask.SquadData.count,
+                        useGotoPosition = true,
+                        gotoPosition = unitParameters.GotoTransform.position,
 
-                    playerCommand = true
-                });
+                        isSquad = unitParameters.UnitTask.SquadData.enabled,
+                        squadCount = unitParameters.UnitTask.SquadData.count,
 
+                        playerCommand = false,
+                    });
 
-            spawnEventArgs.UnitIds.Add(id);
+                spawnEventArgs.UnitIds.Add(id);
+            }
+            //unitsSpawn.Clear();
+            UnitsTimer.Reload(spawnPeriod);
+            OnUnitsSpawned?.Invoke(spawnEventArgs);
+
+            yield return waitForSeconds;
         }
-        unitsSpawn.Clear();
-        UnitsTimer.Reload(spawnPeriod);
-        OnUnitsSpawned?.Invoke(spawnEventArgs);
+        
     }
 
     public void AddNewUnit(UnitParameters unit)
@@ -106,9 +122,9 @@ public struct UnitParameters
     public UnitCreationTask UnitTask { get; set; }
     public IEntityComponent CreatorComponent { get; set; }
 
-    public Transform SpawnTransform { get; set; }
-
+    public Vector3 SpawnPosition { get; set; }
     public Transform GotoTransform { get; set; }
+    public float UnitScaleFactor { get; set; }
 }
 
 public class UnitsSpawnEventArgs : EventArgs

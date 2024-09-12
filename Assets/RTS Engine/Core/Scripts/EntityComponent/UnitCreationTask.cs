@@ -43,9 +43,15 @@ namespace RTSEngine.EntityComponent
         [SerializeField, Tooltip("Total maximum amount of launch times or total amount of created instances through this task, depending on the 'Limit' field."), Min(1)]
         private int maxAmount = 10;
 
+        [SerializeField] private ParticleSystemGroup spawnParticleSystem;
+        [SerializeField] private ParticleSystemGroup deletionParticleSystem;
         // Holds the currently created instances through this unit creation tasks
         private List<IUnit> createdInstances;
         public IEnumerable<IUnit> CreatedInstances => createdInstances;
+
+        public ParticleSystemGroup SpawnParticleSystem => spawnParticleSystem;
+
+        public ParticleSystemGroup DeletionParticleSystem => deletionParticleSystem;
 
         protected override void OnEnabled()
         {
