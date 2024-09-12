@@ -15,9 +15,9 @@ MonoBehaviour:
   code: row
   floatProperties:
   - name: vertical-spacing
-    value: 0.4
+    value: 0.6
   - name: horizontal-spacing
-    value: 0.25
+    value: 0.4
   - name: spacing
     value: 0
   intProperties:
