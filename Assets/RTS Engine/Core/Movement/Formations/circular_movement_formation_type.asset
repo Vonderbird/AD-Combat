@@ -15,5 +15,5 @@ MonoBehaviour:
   code: circular
   floatProperties:
   - name: spacing
-    value: 0
+    value: 0.5
   intProperties: []
