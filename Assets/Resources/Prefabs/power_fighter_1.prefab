@@ -48,8 +48,8 @@ MonoBehaviour:
   code: movement_component_1
   isActive: 1
   tabID:
-    x: 0
-    y: 1
+    x: 1
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -66,7 +66,7 @@ MonoBehaviour:
       targetBuildings: 1
       targetResources: 1
     center: {fileID: 0}
-  setTargetTaskUI: {fileID: 11400000, guid: 061c8973e3c577f4ea6c9b563d77bf00, type: 2}
+  setTargetTaskUI: {fileID: 0}
   orderAudio:
     fetchType: 0
     items: []
@@ -96,9 +96,9 @@ MonoBehaviour:
   isMovementPending: 0
   startPosition: {x: 0, y: 0, z: 0}
   speed:
-    value: 13
+    value: 3.5
   acceleration:
-    value: 999
+    value: 120
   mvtAngularSpeed:
     value: 999
   canMoveRotate: 1
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabID:
     x: 0
-    y: 2
+    y: 0
   maxHealth: 100
   initialHealth: 100
   canIncrease: 1
@@ -1052,7 +1052,7 @@ MonoBehaviour:
         intProperties: []
   moveOnAttack: 0
   followDistance: 9
-  attackMoveEnabled: 1
+  attackMoveEnabled: 0
   attackMoveTaskUI: {fileID: 0}
 --- !u!1 &8423986542023317977
 GameObject:

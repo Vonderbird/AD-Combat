@@ -319,7 +319,7 @@ MonoBehaviour:
   progressOverrideController:
     fetchType: 0
     items:
-    - {fileID: 22100000, guid: eb1404e2c46fe65459b1dd715592fb51, type: 2}
+    - {fileID: 22100000, guid: 21ab23bd14dc28e428e2828e62120377, type: 2}
   progressDuration: 0.4
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
@@ -526,8 +526,8 @@ MonoBehaviour:
   code: movement_component
   isActive: 1
   tabID:
-    x: 0
-    y: 1
+    x: 1
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -544,7 +544,7 @@ MonoBehaviour:
       targetBuildings: 1
       targetResources: 1
     center: {fileID: 0}
-  setTargetTaskUI: {fileID: 11400000, guid: 3d5f54a1376af8e408b8bcd64ba42a5d, type: 2}
+  setTargetTaskUI: {fileID: 0}
   orderAudio:
     fetchType: 0
     items:
