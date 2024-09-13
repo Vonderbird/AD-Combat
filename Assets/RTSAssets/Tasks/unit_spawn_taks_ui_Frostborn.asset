@@ -10,15 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abf428716af4f8f438cb34c5c761450b, type: 3}
-<<<<<<<< HEAD:Assets/RTSAssets/Tasks/unit_spawn_taks_ui 3.asset
-  m_Name: unit_spawn_taks_ui 3
-  m_EditorClassIdentifier: 
-  data:
-    code: unit_spawn_Frostborn
-    enabled: 1
-    displayType: 0
-    icon: {fileID: 21300000, guid: ba8b41121a51ed245a058d6493df3e41, type: 3}
-========
   m_Name: unit_spawn_taks_ui_Frostborn
   m_EditorClassIdentifier: 
   data:
@@ -26,7 +17,6 @@ MonoBehaviour:
     enabled: 1
     displayType: 0
     icon: {fileID: 21300000, guid: 7bc8ae0a2a8bafd47a9149c67e165d7f, type: 3}
->>>>>>>> 7695fa6859ac6490a49c0ee3af6156023fc8768f:Assets/RTSAssets/Tasks/unit_spawn_taks_ui_Frostborn.asset
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1
