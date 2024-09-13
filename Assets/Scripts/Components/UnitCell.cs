@@ -201,13 +201,11 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnCellUnitSpawned()
     {
-        if (isFilled)
-        {
-            var tempParticle = Instantiate(SpawnParticle, transform.position + Vector3.up * 0.25f, Quaternion.identity, transform);
-            tempParticle.transform.localScale = Vector3.one * cellSizeFactor * tempParticle.ScaleFactor;
-            tempParticle.LifeSpan = 3f;
-            tempParticle?.Play();
-        }
+        if (!isFilled) return;
+        var tempParticle = Instantiate(SpawnParticle, transform.position + Vector3.up * 0.25f, Quaternion.identity, transform);
+        tempParticle.transform.localScale = Vector3.one * cellSizeFactor * tempParticle.ScaleFactor;
+        tempParticle.LifeSpan = 3f;
+        tempParticle?.Play();
     }
 }
 
