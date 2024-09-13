@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: unit_spawn_taks_ui_Frostborn
   m_EditorClassIdentifier: 
   data:
-    code: unit_spawn_Frostborn_Hunter
+    code: unit_spawn_Frostborn_Hunter_2
     enabled: 1
     displayType: 0
     icon: {fileID: 21300000, guid: 7bc8ae0a2a8bafd47a9149c67e165d7f, type: 3}
