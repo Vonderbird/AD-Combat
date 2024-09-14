@@ -202,6 +202,7 @@ public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnCellUnitSpawned()
     {
         if (!isFilled) return;
+        if (!SpawnParticle) return;
         var tempParticle = Instantiate(SpawnParticle, transform.position + Vector3.up * 0.25f, Quaternion.identity, transform);
         tempParticle.transform.localScale = Vector3.one * cellSizeFactor * tempParticle.ScaleFactor;
         tempParticle.LifeSpan = 3f;
