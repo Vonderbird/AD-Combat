@@ -49,7 +49,7 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 1
-    y: 2
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -83,9 +83,9 @@ MonoBehaviour:
     properties:
       floatProperties:
       - name: vertical-spacing
-        value: 0.4
+        value: 1
       - name: horizontal-spacing
-        value: 0.25
+        value: 1
       - name: spacing
         value: 0
       intProperties:
@@ -221,7 +221,6 @@ GameObject:
   - component: {fileID: 7150219111774617161}
   - component: {fileID: 189463438910978982}
   - component: {fileID: 862318814814099318}
-  - component: {fileID: 4256098359013602637}
   m_Layer: 0
   m_Name: power_fighter_1
   m_TagString: Untagged
@@ -571,18 +570,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4021096252883669283, guid: b7eef249a2c922d478417bb07f1c8afe, type: 3}
   speed: 2
---- !u!114 &4256098359013602637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2837683883374114850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18f8d46e5cbfd4f4db8b96fddc94698a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,7 +722,7 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 0
-    y: 2
+    y: 0
   priority: 1
   requireIdleEntity: 1
   targetFinderData:
@@ -1215,6 +1202,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3463984471565532395}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: e085f9367c87e2040926356ee592ace9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e085f9367c87e2040926356ee592ace9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: e085f9367c87e2040926356ee592ace9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e085f9367c87e2040926356ee592ace9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
