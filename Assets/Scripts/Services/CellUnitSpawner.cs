@@ -33,7 +33,7 @@ public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
     public UnityEvent<UnitsSpawnEventArgs> OnUnitsSpawned = new();
 
 
-    private WaitForSeconds waitForSeconds = new(0.1f);
+    private readonly WaitForSeconds waitForSeconds = new(0.1f);
     private WaitUntil waitUntil;
 
     public void Init(IGameManager gameMgr)
