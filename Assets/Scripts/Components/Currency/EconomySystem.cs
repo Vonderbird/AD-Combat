@@ -8,8 +8,8 @@ public class EconomySystem : Singleton<EconomySystem>
     [SerializeField] private decimal initialWarScraps = 200;
     [SerializeField] private decimal initialBiofuel = 0;
 
-    [SerializeField] private IDrainer[] drainers;
-    [SerializeField] private 
+    [SerializeField] private ICurrencyDrainer[] drainers; // !?
+    [SerializeField] private ICurrencyProducer[] sources; // !?
 
     private void Awake()
     {
