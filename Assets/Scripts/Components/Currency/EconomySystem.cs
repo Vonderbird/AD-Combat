@@ -1,53 +1,45 @@
 using System;
-using RTSEngine.EntityComponent;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using RTSEngine.Game;
 
-public class EconomySystem : Singleton<EconomySystem>
+public class EconomySystem : MonoBehaviour, IPostRunGameService
 {
-    private BiofuelManager biofuelManager;
-    [SerializeField] private decimal initialWarScraps = 200;
-    [SerializeField] private decimal initialBiofuel = 0;
+    [SerializeField] private FactionEconomy[] FactionsEconomies;
+    public Dictionary<int, FactionEconomy> FactionsEconomiesDictionary { get; private set; }
 
-    [SerializeField] private ICurrencyDrainer[] drainers; // !?
-    [SerializeField] private ICurrencyProducer[] sources; // !?
+    [SerializeField] private CurrencyVisualizer[] GlobalVisualizers;
 
     private void Awake()
     {
-        biofuelManager = new BiofuelManager(initialBiofuel);
+        GlobalVisualizers ??= Array.Empty<CurrencyVisualizer>();
+
+        Debug.Log($"GlobalVisualizers: {GlobalVisualizers}");
+        for (int i = 0; i < FactionsEconomies.Length; i++)
+        {
+            FactionsEconomies[i].Init(i);
+            Debug.Log($"Visualizers {i}: {FactionsEconomies[i].Visualizers}");
+            FactionsEconomies[i].Visualizers.AddRange(GlobalVisualizers);
+        }
+        FactionsEconomiesDictionary = FactionsEconomies.ToDictionary(faction => faction.FactionId, faction => faction);
     }
 
-    public bool Deposit(Biofuel amount)
-    {
-        return biofuelManager.Deposit(amount);
-    }
-
-    public bool Deposit(WarScrap amount)
-    {
-        return false;
-    }
-
-    public bool Withdraw(Biofuel amount)
-    {
-        return biofuelManager.Withdraw(amount);
-    }
-
-    public bool Withdraw(WarScrap amount)
-    {
-        return false;
-    }
 
     private void OnEnable()
     {
-        biofuelManager.ValueChanged.AddListener(OnBiofuelChanged);
+        foreach (var factionEconomy in FactionsEconomies)
+            factionEconomy.OnEnable();
     }
-
+    
     private void OnDisable()
     {
-        biofuelManager.ValueChanged.RemoveListener(OnBiofuelChanged);
+        foreach (var factionEconomy in FactionsEconomies)
+            factionEconomy.OnDisable();
     }
 
-    private void OnBiofuelChanged(CurrencyChangeEventArgs<Biofuel> arg0)
+    public void Init(IGameManager manager)
     {
-        throw new System.NotImplementedException();
     }
 }

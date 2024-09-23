@@ -12,7 +12,7 @@ using IUnit = RTSEngine.Entities.IUnit;
 using RTSEngine.UnitExtension;
 using UnityEngine.XR;
 
-public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IEntityPostInitializable
+public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IEntityPostInitializable, ICurrencyDrainer
 {
     [SerializeField] private Transform cellsParent;
 
@@ -49,6 +49,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     private CellsManager cellsManager;
 
     private DeleteButton deleteButton;
+    protected FactionEconomy factionEconomy { private set; get; }
 
     protected override void OnPendingInit()
     {
@@ -97,6 +98,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
         allCreationTasks.AddRange(creationTasks);
         testTransform = new GameObject("Test Transform").transform;
         testTransform.SetParent(spawnTransform);
+        factionEconomy = gameMgr.GetService<EconomySystem>().FactionsEconomiesDictionary[Entity.FactionID];
     }
 
 
@@ -221,4 +223,15 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     public Vector3 SpawnPosition { get; }
 
 
+    public UnityEvent<Biofuel> BiofuelDrained { get; }
+    public UnityEvent<WarScrap> WarScrapDrained { get; }
+    public bool Drain(Biofuel amount)
+    {
+        return factionEconomy.Withdraw(amount);
+    }
+
+    public bool Drain(WarScrap amount)
+    {
+        return factionEconomy.Withdraw(amount);
+    }
 }
