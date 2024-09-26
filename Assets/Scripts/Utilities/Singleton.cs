@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Singleton<T>
@@ -26,7 +27,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
                     if (FindObjectsOfType(typeof(T)).Length > 1)
                     {
-                        Debug.LogError($"[Singleton] Something went wrong - there should never be more than 1 singleton of type '{typeof(T)}'. Reopening the scene might fix it.");
+                        Debug.LogError($"[{typeof(T).Name}] Something went wrong - there should never be more than 1 singleton of type '{typeof(T)}'. Reopening the scene might fix it.");
                         return _instance;
                     }
 
@@ -40,10 +41,6 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
                             DontDestroyOnLoad(singletonObject);
 
                         Debug.Log($"[Singleton] An instance of '{typeof(T)}' was created "+ (_instance.DestroyOnLoad? "without": "with") + " DontDestroyOnLoad.");
-                    }
-                    else
-                    {
-                        Debug.Log($"[Singleton] Using instance already created: {_instance.gameObject.name}");
                     }
                 }
 

@@ -1,9 +1,18 @@
+using RTSEngine.Determinism;
+using UnityEngine;
+
 public class BiofuelManager : CurrencyManager<Biofuel>
 {
-    public BiofuelManager(int factionId, decimal initialAmount = 0)
+    public BiofuelManager(int factionId)
     {
         this.factionId = factionId;
-        saveAmount = new Biofuel(initialAmount);
+    }
+
+    public override void Init(Biofuel saveAmount)
+    {
+        if (isInitialized) return;
+        this.saveAmount = saveAmount;
+        ValueChanged?.Invoke(new CurrencyChangeEventArgs<Biofuel>(factionId, new Biofuel(0m), saveAmount, CurrencyChangeType.INIT));
     }
 
     public override bool Deposit(Biofuel amount)

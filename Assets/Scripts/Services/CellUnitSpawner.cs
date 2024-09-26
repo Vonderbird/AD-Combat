@@ -40,7 +40,6 @@ public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
     {
         //unitPrefab = unitPrefabObj.GetComponent<IUnit>();
         unitMgr = gameMgr.GetService<IUnitManager>();
-        Debug.Log("unitsTimer");
         unitsTimer = new TimeModifiedTimer(spawnPeriod);
         waitUntil = new WaitUntil(() => UnitsTimer.ModifiedDecrease());
         StartCoroutine(SpawnWaves());

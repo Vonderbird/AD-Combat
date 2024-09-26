@@ -1,14 +1,10 @@
-
-
-using System.Collections;
-using RTSEngine;
-using RTSEngine.Game;
 using TMPro;
 using UnityEngine;
 
-public class CurrencyUIText : CurrencyVisualizer
+public abstract class CurrencyUIText<T> : CurrencyInterface<T> where T:struct,ICurrency
 {
-    [SerializeField] private TextMeshProUGUI textUI;
+    [SerializeField] protected int FloatingPoints = 0;
+    [SerializeField] protected TextMeshProUGUI textUI;
 
     private Coroutine updater;
 
@@ -40,10 +36,4 @@ public class CurrencyUIText : CurrencyVisualizer
     //}
 
 
-    public override void Refresh<T>(CurrencyChangeEventArgs<T> args)
-    {
-        if (!RTSHelper.IsLocalPlayerFaction(args.FactionId)) return;
-        textUI.text = $"{args.NewValue.Value}";
-    }
 }
-
