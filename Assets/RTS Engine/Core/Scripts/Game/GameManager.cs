@@ -219,7 +219,6 @@ namespace RTSEngine.Game
                                  ? (service as IPreRunGamePriorityService).ServicePriority
                                  : Mathf.Infinity))
             {
-                Debug.Log(service.gameObject.name);
                 service.Init(this);
             }
 

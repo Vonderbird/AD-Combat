@@ -10,6 +10,8 @@ public struct Biofuel : ICurrency
         Value = amount;
     }
 
+    //public static implicit operator Biofuel(decimal value) => new(value);
+    public static implicit operator decimal(Biofuel biofuel) => biofuel.Value;
     public static bool operator==(Biofuel x, Biofuel y) => x.Value == y.Value;
     public static bool operator !=(Biofuel x, Biofuel y) => x.Value != y.Value;
     public static bool operator==(Biofuel x, decimal y) => x.Value == y;
@@ -38,5 +40,9 @@ public struct Biofuel : ICurrency
         return new Biofuel(Math.Max(0, x.Value - y.Value));
     }
 
+    public override string ToString()
+    {
+        return $"{Value}";
+    }
     public bool IsEmpty => Value == default;
 }

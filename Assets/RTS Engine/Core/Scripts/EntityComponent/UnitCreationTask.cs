@@ -32,6 +32,8 @@ namespace RTSEngine.EntityComponent
         [Space(), SerializeField, EnforceType(typeof(IUnit)), Tooltip("Unit prefab to be created."), Header("Unit Creation Task Properties"),]
         protected GameObject prefabObject = null;
         public override GameObject Object => prefabObject;
+        [SerializeField] protected float unitWarScrapCost = 0f;
+        public decimal UnitWarScrapCost => (decimal)unitWarScrapCost;
 
         [SerializeField, Tooltip("Unit squad settings")]
         private UnitSquadCreationTaskData squadData = new UnitSquadCreationTaskData { enabled = false, count = 3 };

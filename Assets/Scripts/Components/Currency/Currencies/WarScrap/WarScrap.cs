@@ -10,6 +10,8 @@ public struct WarScrap : ICurrency
         Value = amount;
     }
 
+    //public static implicit operator WarScrap(decimal value) => new(value);
+    public static implicit operator decimal(WarScrap biofuel) => biofuel.Value;
     public static bool operator ==(WarScrap x, WarScrap y) => x.Value == y.Value;
     public static bool operator !=(WarScrap x, WarScrap y) => x.Value != y.Value;
     public static bool operator ==(WarScrap x, decimal y) => x.Value == y;
@@ -36,6 +38,11 @@ public struct WarScrap : ICurrency
     public static WarScrap operator -(WarScrap x, WarScrap y)
     {
         return new WarScrap(Math.Max(0, x.Value - y.Value));
+    }
+
+    public override string ToString()
+    {
+        return $"{Value}";
     }
 
     public bool IsEmpty => Value == default;

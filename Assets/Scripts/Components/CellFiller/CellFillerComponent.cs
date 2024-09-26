@@ -98,7 +98,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
         allCreationTasks.AddRange(creationTasks);
         testTransform = new GameObject("Test Transform").transform;
         testTransform.SetParent(spawnTransform);
-        factionEconomy = gameMgr.GetService<EconomySystem>().FactionsEconomiesDictionary[Entity.FactionID];
+        factionEconomy = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID];
     }
 
 
@@ -114,8 +114,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
             cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
         }
     }
-
-
+    
     void OnDisable()
     {
         if (cellsManager != null)
@@ -190,6 +189,8 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     public void OnAdditionCellClicked(CellEventArgs e)
     {
         if (e.IsFilled || !activeTaskData.HasValue) return;
+        if(!Drain(new WarScrap(activeTaskData.UnitCreationTask.UnitWarScrapCost))) return;
+        Depo
         var unitToSpawn = activeTaskData.UnitCreationTask.TargetObject;
 
         testTransform.localPosition = cellsManager.UnitCells[e.CellId].transform.localPosition;

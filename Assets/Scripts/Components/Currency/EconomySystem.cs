@@ -5,25 +5,33 @@ using UnityEngine;
 using System.Linq;
 using RTSEngine.Game;
 
-public class EconomySystem : MonoBehaviour, IPostRunGameService
+public class EconomySystem : Singleton<EconomySystem>, IPostRunGameService
 {
     [SerializeField] private FactionEconomy[] FactionsEconomies;
     public Dictionary<int, FactionEconomy> FactionsEconomiesDictionary { get; private set; }
 
-    [SerializeField] private CurrencyVisualizer[] GlobalVisualizers;
+    private List<CurrencyInterface> GlobalVisualizers = new();
+
+    private bool isStarted = false;
 
     private void Awake()
     {
-        GlobalVisualizers ??= Array.Empty<CurrencyVisualizer>();
 
-        Debug.Log($"GlobalVisualizers: {GlobalVisualizers}");
         for (int i = 0; i < FactionsEconomies.Length; i++)
         {
             FactionsEconomies[i].Init(i);
-            Debug.Log($"Visualizers {i}: {FactionsEconomies[i].Visualizers}");
-            FactionsEconomies[i].Visualizers.AddRange(GlobalVisualizers);
+            FactionsEconomies[i].AddVisualizers(GlobalVisualizers);
         }
         FactionsEconomiesDictionary = FactionsEconomies.ToDictionary(faction => faction.FactionId, faction => faction);
+        isStarted = true;
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < FactionsEconomies.Length; i++)
+        {
+            FactionsEconomies[i].Start();
+        }
     }
 
 
@@ -32,7 +40,7 @@ public class EconomySystem : MonoBehaviour, IPostRunGameService
         foreach (var factionEconomy in FactionsEconomies)
             factionEconomy.OnEnable();
     }
-    
+
     private void OnDisable()
     {
         foreach (var factionEconomy in FactionsEconomies)
@@ -41,5 +49,29 @@ public class EconomySystem : MonoBehaviour, IPostRunGameService
 
     public void Init(IGameManager manager)
     {
+    }
+
+    public void Add(CurrencyInterface currencyInterface)
+    {
+        if (currencyInterface.FactionId == -1)
+        {
+            GlobalVisualizers.Add(currencyInterface);
+        }
+        else if(currencyInterface.FactionId < FactionsEconomies.Length)
+        {
+            FactionsEconomies[currencyInterface.FactionId].AddVisualizer(currencyInterface);
+        }
+        else
+        {
+            Debug.LogError($"[EconomySystem] FactionId {currencyInterface.FactionId} is not defined!");
+        }
+
+        if (isStarted)
+        {
+            foreach (var t in FactionsEconomies)
+            {
+                t.AddVisualizer(currencyInterface);
+            }
+        }
     }
 }

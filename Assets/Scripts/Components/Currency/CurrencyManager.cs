@@ -5,9 +5,11 @@ public abstract class CurrencyManager<T> where T : struct, ICurrency
     protected int factionId;
     protected T saveAmount;
 
+    protected bool isInitialized = false;
+
     public T SaveAmount => saveAmount;
     protected int FactionId => factionId;
-
+    public abstract void Init(T saveAmount);
     public abstract bool Deposit(T amount);
 
     public abstract bool Withdraw(T amount);
@@ -17,6 +19,7 @@ public abstract class CurrencyManager<T> where T : struct, ICurrency
 
 public enum CurrencyChangeType
 {
+    INIT,
     WITHDRAW,
     DEPOSIT
 }
