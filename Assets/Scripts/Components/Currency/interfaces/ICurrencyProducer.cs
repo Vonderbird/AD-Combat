@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public interface ICurrencyProducer
 {
-    void AddToEconomySystem(); // !?
-    UnityEvent<Biofuel> BioFuelProduced { get; }
-    UnityEvent<WarScrap> WarScrapProduced { get; }
+    bool Produce(Biofuel amount);
+    bool Produce(WarScrap amount);
 }
