@@ -10,9 +10,57 @@ using UnityEngine;
 using UnityEngine.Events;
 using IUnit = RTSEngine.Entities.IUnit;
 using RTSEngine.UnitExtension;
-using UnityEngine.XR;
 
-public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IEntityPostInitializable, ICurrencyDrainer
+
+public class UnitPlacementTransaction : ICurrencyDrainer, ICurrencyProducer
+{
+    private readonly int factionId;
+
+    public UnitPlacementTransaction(int factionID)
+    {
+        factionId = factionID;
+    }
+    public bool Pay(decimal value)
+    {
+        if (!Drain(new WarScrap(value))) return false;
+        if (!Produce(new Biofuel(value)))
+        {
+            if (Produce(new WarScrap(value)))
+            {
+                return false;
+            }
+            else
+            {
+
+            }
+        }
+        return true;
+    }
+
+    public bool Drain(Biofuel amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool Drain(WarScrap amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool Produce(Biofuel amount)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool Produce(WarScrap amount)
+    {
+        throw new System.NotImplementedException();
+    }
+}
+
+public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IEntityPostInitializable
+
+
 {
     [SerializeField] private Transform cellsParent;
 
@@ -114,7 +162,7 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
             cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
         }
     }
-    
+
     void OnDisable()
     {
         if (cellsManager != null)
@@ -189,8 +237,10 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     public void OnAdditionCellClicked(CellEventArgs e)
     {
         if (e.IsFilled || !activeTaskData.HasValue) return;
-        if(!Drain(new WarScrap(activeTaskData.UnitCreationTask.UnitWarScrapCost))) return;
-        Depo
+        if (!Drain(new WarScrap(activeTaskData.UnitCreationTask.UnitWarScrapCost))) return;
+        if (!Produce(new Biofuel(activeTaskData.UnitCreationTask.UnitWarScrapCost)))
+            Debug.LogError($"[CellFillerComponent] BioFuel deposit didn't work!");
+
         var unitToSpawn = activeTaskData.UnitCreationTask.TargetObject;
 
         testTransform.localPosition = cellsManager.UnitCells[e.CellId].transform.localPosition;
@@ -234,5 +284,15 @@ public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator,
     public bool Drain(WarScrap amount)
     {
         return factionEconomy.Withdraw(amount);
+    }
+
+    public bool Produce(Biofuel amount)
+    {
+        return factionEconomy.Deposit(amount);
+    }
+
+    public bool Produce(WarScrap amount)
+    {
+        return factionEconomy.Deposit(amount);
     }
 }
