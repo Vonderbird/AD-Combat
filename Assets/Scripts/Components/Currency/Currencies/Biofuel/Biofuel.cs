@@ -1,6 +1,5 @@
 using System;
 
-
 public struct Biofuel : ICurrency
 {
     public decimal Value { get; private set; }

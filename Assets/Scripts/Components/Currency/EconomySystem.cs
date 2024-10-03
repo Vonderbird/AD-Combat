@@ -26,6 +26,18 @@ public class EconomySystem : Singleton<EconomySystem>, IPostRunGameService
         isStarted = true;
     }
 
+    public FactionEconomy this[int factionId]
+    {
+        get
+        {
+            if (FactionsEconomiesDictionary.TryGetValue(factionId, out var f))
+            {
+                return f;
+            }
+            Debug.LogError($"[EconomySystem] there is no faction with id {factionId} in economy system!");
+            return null;
+        }
+    }
     private void Start()
     {
         for (int i = 0; i < FactionsEconomies.Length; i++)
