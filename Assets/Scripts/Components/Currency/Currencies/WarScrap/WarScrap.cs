@@ -33,15 +33,14 @@ namespace ADC.Currencies
         public static bool operator >=(decimal x, WarScrap y) => x > y.Value;
         public static bool operator <=(decimal x, WarScrap y) => x < y.Value;
 
-        public static WarScrap operator +(WarScrap x, WarScrap y)
-        {
-            return new WarScrap(y.Value + x.Value);
-        }
 
-        public static WarScrap operator -(WarScrap x, WarScrap y)
-        {
-            return new WarScrap(Math.Max(0, x.Value - y.Value));
-        }
+        public static WarScrap operator +(WarScrap x, decimal y) => new(x.Value + y);
+        public static WarScrap operator -(WarScrap x, decimal y) => new(Math.Max(0, x.Value - y));
+        public static WarScrap operator /(WarScrap x, decimal y) => new(x.Value / y);
+        public static WarScrap operator *(WarScrap x, decimal y) => new(x.Value * y);
+        public static WarScrap operator +(WarScrap x, WarScrap y) => new(y.Value + x.Value);
+        public static WarScrap operator -(WarScrap x, WarScrap y) => new(Math.Max(0, x.Value - y.Value));
+
 
         public override string ToString()
         {

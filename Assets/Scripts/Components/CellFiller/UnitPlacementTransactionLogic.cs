@@ -1,5 +1,3 @@
-
-using System;
 using ADC.Currencies;
 using UnityEngine;
 
@@ -45,15 +43,5 @@ namespace ADC.UnitCreation
                 $"Faction {factionId}: Successfully placed unit. Spent {args.WarScrap} WarScrap and gained {args.Biofuel} BioFuel.");
             return true;
         }
-    }
-
-    [Serializable]
-    public struct UnitPlacementCosts : ITransactionArgs
-    {
-        [SerializeField] private float getBioFuel;
-        [SerializeField] private float PayWarScrap;
-
-        public Biofuel Biofuel => new((decimal)getBioFuel);
-        public WarScrap WarScrap => new((decimal)PayWarScrap);
     }
 }

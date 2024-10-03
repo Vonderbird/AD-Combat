@@ -53,9 +53,7 @@ namespace ADC.UnitCreation
         private CellsManager cellsManager;
 
         private DeleteButton deleteButton;
-        protected FactionEconomy factionEconomy { private set; get; }
-        [SerializeField] private int randomInt;
-        [SerializeField] private UnitPlacementCosts unitPlacementCosts;
+        protected IncomeManager incomeManager { private set; get; }
         private UnitPlacementTransactionLogic unitPlacementTransaction;
 
         protected override void OnPendingInit()
@@ -82,6 +80,7 @@ namespace ADC.UnitCreation
                 deleteButton ??= FindAnyObjectByType<DeleteButton>();
                 cellsManager.OnEnabled(deleteButton);
                 cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
+                cellsManager.DeletionCellClicked.AddListener(OnDeletionCellClicked);
             }
 
             this.unitMgr = gameMgr.GetService<IUnitManager>
@@ -110,10 +109,9 @@ namespace ADC.UnitCreation
             allCreationTasks.AddRange(creationTasks);
             testTransform = new GameObject("Test Transform").transform;
             testTransform.SetParent(spawnTransform);
-            factionEconomy = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID];
+            incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
             unitPlacementTransaction = new UnitPlacementTransactionLogic(Entity.FactionID);
         }
-
 
         void OnEnable()
         {
@@ -203,9 +201,10 @@ namespace ADC.UnitCreation
         public void OnAdditionCellClicked(CellEventArgs e)
         {
             if (e.IsFilled || !activeTaskData.HasValue) return;
-            if (!unitPlacementTransaction.Pay(unitPlacementCosts)) return;
-
             var unitToSpawn = activeTaskData.UnitCreationTask.TargetObject;
+            var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
+            if(unitPlacementCosts)
+                if (!unitPlacementTransaction.Pay(unitPlacementCosts)) return;
 
             testTransform.localPosition = cellsManager.UnitCells[e.CellId].transform.localPosition;
 
@@ -220,6 +219,13 @@ namespace ADC.UnitCreation
                 UnitScaleFactor = e.UnitScaleFactor
             });
             SpawnUnitAdded?.Invoke(unitToSpawn);
+            incomeManager.AddSource(unitPlacementCosts.Biofuel * 0.1m, 30.0f); /////////
+        }
+
+        private void OnDeletionCellClicked(CellEventArgs arg0)
+        {
+            //arg0.
+            //throw new System.NotImplementedException();
         }
 
         public void OnActivateTask(UnitCreationTask task)
