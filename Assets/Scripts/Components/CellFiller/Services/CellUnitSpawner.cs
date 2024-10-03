@@ -27,9 +27,9 @@ namespace ADC.UnitCreation
         public TimeModifiedTimer UnitsTimer => unitsTimer;
 
         private TimeModifiedTimer unitsTimer;
-        private Dictionary<int, UnitParameters> unitsSpawn = new();
+        private readonly Dictionary<int, UnitParameters> unitsSpawn = new();
 
-        private UnitsSpawnEventArgs spawnEventArgs = new();
+        private readonly UnitsSpawnEventArgs spawnEventArgs = new();
         public UnityEvent<UnitsSpawnEventArgs> OnUnitsSpawned = new();
 
 

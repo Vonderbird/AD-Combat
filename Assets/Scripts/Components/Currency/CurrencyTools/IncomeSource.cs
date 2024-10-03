@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ADC.Currencies
 {
-    public abstract class IncomeSource 
+    public abstract class IncomeSource :IDisposable
     {
         public Guid IncomeId { get; }
         private readonly float paymentPeriod;
@@ -23,16 +23,18 @@ namespace ADC.Currencies
             wait = new WaitUntil(() => unitsTimer.ModifiedDecrease());
             updater = EconomySystem.Instance.StartCoroutine(EnumeratorUpdate());
         }
-
-        ~IncomeSource()
+        
+        public void Dispose()
         {
             if (updater != null)
                 EconomySystem.Instance.StopCoroutine(updater);
         }
+
         public IEnumerator EnumeratorUpdate()
         {
             while (true)
             {
+                Debug.Log($"paymentPeriod: {paymentPeriod}");
                 yield return wait;
                 Update();
                 unitsTimer.Reload(paymentPeriod);

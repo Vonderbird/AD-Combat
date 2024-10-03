@@ -1,16 +1,14 @@
 using RTSEngine;
-using RTSEngine.EntityComponent;
-using RTSEngine.UI;
-using System.Collections.Generic;
-using ADC.Currencies;
-using RTSEngine.Entities;
-using RTSEngine.Event;
-using RTSEngine.Selection;
-using RTSEngine.Task;
 using UnityEngine;
+using ADC.Currencies;
+using RTSEngine.Event;
 using UnityEngine.Events;
-using IUnit = RTSEngine.Entities.IUnit;
+using RTSEngine.Entities;
+using RTSEngine.Selection;
 using RTSEngine.UnitExtension;
+using RTSEngine.EntityComponent;
+using System.Collections.Generic;
+using IUnit = RTSEngine.Entities.IUnit;
 
 namespace ADC.UnitCreation
 {
@@ -74,13 +72,13 @@ namespace ADC.UnitCreation
             }
 
             unitSpawner = gameMgr.GetService<CellUnitSpawner>();
+            incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
             if (cellsManager == null)
             {
-                cellsManager = new CellsManager(cellsParent, unitSpawner, activeTaskData);
+                cellsManager = new CellsManager(cellsParent, unitSpawner, activeTaskData, Entity.FactionID);
                 deleteButton ??= FindAnyObjectByType<DeleteButton>();
                 cellsManager.OnEnabled(deleteButton);
                 cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
-                cellsManager.DeletionCellClicked.AddListener(OnDeletionCellClicked);
             }
 
             this.unitMgr = gameMgr.GetService<IUnitManager>
@@ -109,7 +107,6 @@ namespace ADC.UnitCreation
             allCreationTasks.AddRange(creationTasks);
             testTransform = new GameObject("Test Transform").transform;
             testTransform.SetParent(spawnTransform);
-            incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
             unitPlacementTransaction = new UnitPlacementTransactionLogic(Entity.FactionID);
         }
 
@@ -202,9 +199,6 @@ namespace ADC.UnitCreation
         {
             if (e.IsFilled || !activeTaskData.HasValue) return;
             var unitToSpawn = activeTaskData.UnitCreationTask.TargetObject;
-            var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
-            if(unitPlacementCosts)
-                if (!unitPlacementTransaction.Pay(unitPlacementCosts)) return;
 
             testTransform.localPosition = cellsManager.UnitCells[e.CellId].transform.localPosition;
 
@@ -219,14 +213,8 @@ namespace ADC.UnitCreation
                 UnitScaleFactor = e.UnitScaleFactor
             });
             SpawnUnitAdded?.Invoke(unitToSpawn);
-            incomeManager.AddSource(unitPlacementCosts.Biofuel * 0.1m, 30.0f); /////////
         }
 
-        private void OnDeletionCellClicked(CellEventArgs arg0)
-        {
-            //arg0.
-            //throw new System.NotImplementedException();
-        }
 
         public void OnActivateTask(UnitCreationTask task)
         {

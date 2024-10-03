@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ADC.Currencies;
 using JetBrains.Annotations;
 using RTSEngine.Entities;
 using RTSEngine.Event;
@@ -15,6 +16,7 @@ namespace ADC.UnitCreation
         private Transform cellsParent;
         private readonly CellUnitSpawner unitSpawner;
         private readonly ActiveTaskContainer activeTask;
+        private readonly IncomeManager incomeManager;
         private readonly Dictionary<int, UnitCell> unitCells = new();
         private readonly Dictionary<int, Vector3> cellPositions = new();
 
@@ -24,13 +26,35 @@ namespace ADC.UnitCreation
         public UnityEvent<CellEventArgs> AdditiveCellClicked = new();
         public UnityEvent<CellEventArgs> DeletionCellClicked = new();
 
+        private readonly UnitPlacementTransactionLogic unitPlacementTransaction;
+        private readonly UnitDeletionTransactionLogic unitDeletionTransaction;
+        private readonly int factionId;
+
+        /// <summary>
+        /// Key(int): Cell groupId,
+        /// Value(Guid): Income source id
+        /// </summary>
+        private Dictionary<int, Guid> unitIncomeSources = new();
+
+        /// <summary>
+        /// Key(int): Cell groupId,
+        /// Value(IUnit): Unit's prefab
+        /// </summary>
+        private Dictionary<int, IUnit> positionedUnitsPrefabs = new();
+
+
         public CellsManager([NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
-            [NotNull] ActiveTaskContainer activeTask)
+            [NotNull] ActiveTaskContainer activeTask, int factionId)
         {
+            this.factionId = factionId;
             this.cellsParent = cellsParent ?? throw new ArgumentNullException(nameof(cellsParent));
             this.unitSpawner = unitSpawner ?? throw new ArgumentNullException(nameof(unitSpawner));
             this.activeTask = activeTask ?? throw new ArgumentNullException(nameof(activeTask));
+            incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[factionId].IncomeManager;
             unitSpawner.OnUnitsSpawned.AddListener(OnCellUnitSpawned);
+            
+            unitPlacementTransaction = new UnitPlacementTransactionLogic(factionId);
+            unitDeletionTransaction = new UnitDeletionTransactionLogic(factionId);
         }
 
         public Dictionary<int, UnitCell> UnitCells => unitCells;
@@ -57,6 +81,7 @@ namespace ADC.UnitCreation
         {
             if (arg0.IsFilled || !activeTask.HasValue) return;
             OnCellExit(arg0);
+
 
             var taskPopulation = 0;
             foreach (var requiredResource in activeTask.UnitCreationTask.RequiredResources)
@@ -135,6 +160,12 @@ namespace ADC.UnitCreation
                 .Select(p => p.Key)
                 .ToList();
             if (nearestCellIds.Count < taskPopulation) return;
+
+            var unitToSpawn = this.activeTask.UnitCreationTask.TargetObject;
+            var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
+            if (unitPlacementCosts)
+                if (!unitPlacementTransaction.Process(unitPlacementCosts)) return;
+
             arg0.UnitScaleFactor = 1 + MathF.Log(taskPopulation);
 
             AdditiveCellClicked?.Invoke(arg0);
@@ -155,6 +186,11 @@ namespace ADC.UnitCreation
                 activeTask.UnitCreationTask.DeletionParticleSystem,
                 averagePosition / taskPopulation,
                 arg0.UnitScaleFactor);
+            var incomeSourceId = incomeManager.AddSource(
+                unitPlacementCosts.WarScrap * unitPlacementCosts.IncomeRatio,
+                unitPlacementCosts.IncomePaymentInterval);
+            unitIncomeSources.Add(groupId, incomeSourceId);
+            positionedUnitsPrefabs.Add(groupId, unitToSpawn);
         }
 
         private void OnCellDeletionClicked(CellEventArgs arg0)
@@ -166,6 +202,15 @@ namespace ADC.UnitCreation
                 return;
             }
 
+
+            var unitToDelete = positionedUnitsPrefabs[cellGroup];
+            var unitPlacementCosts = unitToDelete.GetComponent<UnitPlacementCosts>();
+            if (unitPlacementCosts)
+                if (!unitDeletionTransaction.Process(unitPlacementCosts)) return;
+
+            incomeManager.RemoveSource(unitIncomeSources[cellGroup]);
+            unitIncomeSources.Remove(cellGroup);
+
             DeletionCellClicked?.Invoke(arg0);
             foreach (var cellId in cellIds)
             {
@@ -175,6 +220,7 @@ namespace ADC.UnitCreation
             }
 
             unitCellsGroups.Remove(cellGroup);
+            positionedUnitsPrefabs.Remove(cellGroup);
         }
 
         public void OnCellUnitSpawned(UnitsSpawnEventArgs spawnEventArgs)
@@ -223,7 +269,5 @@ namespace ADC.UnitCreation
                 unitCell.IsBuildingSelected = false;
             }
         }
-
-
     }
 }

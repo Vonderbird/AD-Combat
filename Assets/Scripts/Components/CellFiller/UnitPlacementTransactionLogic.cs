@@ -10,7 +10,7 @@ namespace ADC.UnitCreation
         {
         }
 
-        public override bool Pay(UnitPlacementCosts args)
+        public override bool Process(UnitPlacementCosts args)
         {
             if (!Drain(args.WarScrap))
             {
