@@ -1,6 +1,9 @@
 
-
-public static class CurrencyExtensions
+namespace ADC.Extensions
 {
 
+    public static class CurrencyExtensions
+    {
+
+    }
 }

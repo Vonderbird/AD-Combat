@@ -1,7 +1,9 @@
-using UnityEngine.Events;
-
-public interface ICurrencyDrainer
+namespace ADC.Currencies
 {
-    bool Drain(Biofuel amount);
-    bool Drain(WarScrap amount);
+
+    public interface ICurrencyDrainer
+    {
+        bool Drain(Biofuel amount);
+        bool Drain(WarScrap amount);
+    }
 }

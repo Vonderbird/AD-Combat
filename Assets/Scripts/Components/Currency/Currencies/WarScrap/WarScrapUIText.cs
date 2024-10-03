@@ -1,10 +1,14 @@
 using RTSEngine;
 
-public class WarScrapUIText:CurrencyUIText<WarScrap>
+namespace ADC.Currencies
 {
-    public override void Refresh(CurrencyChangeEventArgs<WarScrap> args)
+
+    public class WarScrapUIText : CurrencyUIText<WarScrap>
     {
-        if (!RTSHelper.IsLocalPlayerFaction(args.FactionId)) return;
-        textUI.text = args.NewValue.Value.ToString($"n{FloatingPoints}");
+        public override void Refresh(CurrencyChangeEventArgs<WarScrap> args)
+        {
+            if (!RTSHelper.IsLocalPlayerFaction(args.FactionId)) return;
+            textUI.text = args.NewValue.Value.ToString($"n{FloatingPoints}");
+        }
     }
 }

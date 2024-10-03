@@ -1,24 +1,27 @@
 using JetBrains.Annotations;
 using RTSEngine.EntityComponent;
 
-public class ActiveTaskContainer
+namespace ADC.UnitCreation
 {
-    private UnitCreationTask activeTaskData;
-    public bool HasValue { get; set; } = false;
-    
-    [CanBeNull]
-    public UnitCreationTask UnitCreationTask
+    public class ActiveTaskContainer
     {
-        get => activeTaskData;
-        set
-        {
-            activeTaskData = value ?? activeTaskData;
-            HasValue = value != null;
-        }
-    }
+        private UnitCreationTask activeTaskData;
+        public bool HasValue { get; set; } = false;
 
-    public static implicit operator bool(ActiveTaskContainer activeTask)
-    {
-        return activeTask.HasValue;
+        [CanBeNull]
+        public UnitCreationTask UnitCreationTask
+        {
+            get => activeTaskData;
+            set
+            {
+                activeTaskData = value ?? activeTaskData;
+                HasValue = value != null;
+            }
+        }
+
+        public static implicit operator bool(ActiveTaskContainer activeTask)
+        {
+            return activeTask.HasValue;
+        }
     }
 }

@@ -1,39 +1,43 @@
 using TMPro;
 using UnityEngine;
 
-public abstract class CurrencyUIText<T> : CurrencyInterface<T> where T:struct,ICurrency
+namespace ADC.Currencies
 {
-    [SerializeField] protected int FloatingPoints = 0;
-    [SerializeField] protected TextMeshProUGUI textUI;
 
-    private Coroutine updater;
-
-    private void OnEnable()
+    public abstract class CurrencyUIText<T> : CurrencyInterface<T> where T : struct, ICurrency
     {
-        if (textUI == null)
-            textUI = GetComponent<TextMeshProUGUI>();
-        if (textUI == null)
+        [SerializeField] protected int FloatingPoints = 0;
+        [SerializeField] protected TextMeshProUGUI textUI;
+
+        private Coroutine updater;
+
+        private void OnEnable()
         {
-            Debug.LogError($"[CurrencyUIText] {transform.parent.name} > {name}: textUI is not assigned!");
-            //return;
+            if (textUI == null)
+                textUI = GetComponent<TextMeshProUGUI>();
+            if (textUI == null)
+            {
+                Debug.LogError($"[CurrencyUIText] {transform.parent.name} > {name}: textUI is not assigned!");
+                //return;
+            }
+            //updater = StartCoroutine(UpdateUI());
         }
-        //updater = StartCoroutine(UpdateUI());
+
+        //private void OnDisable()
+        //{
+        //    if (updater != null)
+        //        StopCoroutine(updater);
+        //}
+
+        //IEnumerator UpdateUI()
+        //{
+        //    while (true)
+        //    {
+        //        textUI.text = $"{0:F1}";
+        //        yield return null;
+        //    }
+        //}
+
+
     }
-
-    //private void OnDisable()
-    //{
-    //    if (updater != null)
-    //        StopCoroutine(updater);
-    //}
-
-    //IEnumerator UpdateUI()
-    //{
-    //    while (true)
-    //    {
-    //        textUI.text = $"{0:F1}";
-    //        yield return null;
-    //    }
-    //}
-
-
 }

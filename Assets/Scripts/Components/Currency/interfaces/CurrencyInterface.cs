@@ -1,23 +1,24 @@
-using RTSEngine;
-using RTSEngine.Game;
 using UnityEngine;
 
-public abstract class CurrencyInterface : MonoBehaviour
+namespace ADC.Currencies
 {
 
-    [SerializeField]
-    [Tooltip("Left it to default -1 if it is belong to local faction")]
-    private int factionId = -1;
-
-    public int FactionId => factionId;
-
-    private void Awake()
+    public abstract class CurrencyInterface : MonoBehaviour
     {
-        EconomySystem.Instance.Add(this);
-    }
-}
 
-public abstract class CurrencyInterface<T>: CurrencyInterface where T: struct, ICurrency
-{
-    public abstract void Refresh(CurrencyChangeEventArgs<T> args);
+        [SerializeField] [Tooltip("Left it to default -1 if it is belong to local faction")]
+        private int factionId = -1;
+
+        public int FactionId => factionId;
+
+        private void Awake()
+        {
+            EconomySystem.Instance.Add(this);
+        }
+    }
+
+    public abstract class CurrencyInterface<T> : CurrencyInterface where T : struct, ICurrency
+    {
+        public abstract void Refresh(CurrencyChangeEventArgs<T> args);
+    }
 }
