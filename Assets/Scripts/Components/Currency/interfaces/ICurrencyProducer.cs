@@ -1,8 +1,9 @@
-using UnityEngine;
-using UnityEngine.Events;
-
-public interface ICurrencyProducer
+namespace ADC.Currencies
 {
-    bool Produce(Biofuel amount);
-    bool Produce(WarScrap amount);
+
+    public interface ICurrencyProducer
+    {
+        bool Produce(Biofuel amount);
+        bool Produce(WarScrap amount);
+    }
 }
