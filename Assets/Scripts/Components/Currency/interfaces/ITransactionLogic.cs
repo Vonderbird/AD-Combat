@@ -15,7 +15,7 @@ namespace ADC.Currencies
             this.factionId = factionId;
         }
 
-        public abstract bool Pay(T args);
+        public abstract bool Process(T args);
 
         public bool Drain(Biofuel amount)
         {

@@ -7,7 +7,7 @@ namespace ADC.Currencies
     {
         public override void Refresh(CurrencyChangeEventArgs<WarScrap> args)
         {
-            if (!RTSHelper.IsLocalPlayerFaction(args.FactionId)) return;
+            if (!args.FactionId.IsLocalPlayerFaction()) return;
             textUI.text = args.NewValue.Value.ToString($"n{FloatingPoints}");
         }
     }

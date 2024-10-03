@@ -586,7 +586,7 @@ MonoBehaviour:
   getBioFuel: 30
   PayWarScrap: 30
   warScrapPaymentRatio: 0.1
-  incomePaymentInterval: 30
+  incomePaymentInterval: 5
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0
