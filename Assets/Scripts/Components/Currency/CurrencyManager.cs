@@ -7,7 +7,7 @@ public abstract class CurrencyManager<T> where T : struct, ICurrency
 
     protected bool isInitialized = false;
 
-    public T SaveAmount => saveAmount;
+    public T SaveAmount => saveAmount;  
     protected int FactionId => factionId;
     public abstract void Init(T saveAmount);
     public abstract bool Deposit(T amount);

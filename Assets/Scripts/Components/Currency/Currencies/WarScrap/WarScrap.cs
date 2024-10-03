@@ -1,6 +1,5 @@
 using System;
 
-
 public struct WarScrap : ICurrency
 {
     public decimal Value { get; private set; }
