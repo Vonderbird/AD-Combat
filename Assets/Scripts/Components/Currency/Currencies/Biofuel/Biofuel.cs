@@ -32,15 +32,12 @@ namespace ADC.Currencies
         public static bool operator >=(decimal x, Biofuel y) => x > y.Value;
         public static bool operator <=(decimal x, Biofuel y) => x < y.Value;
 
-        public static Biofuel operator +(Biofuel x, Biofuel y)
-        {
-            return new Biofuel(y.Value + x.Value);
-        }
-
-        public static Biofuel operator -(Biofuel x, Biofuel y)
-        {
-            return new Biofuel(Math.Max(0, x.Value - y.Value));
-        }
+        public static Biofuel operator +(Biofuel x, decimal y) => new(x.Value + y);
+        public static Biofuel operator -(Biofuel x, decimal y) => new(Math.Max(0, x.Value - y));
+        public static Biofuel operator /(Biofuel x, decimal y) => new(x.Value / y);
+        public static Biofuel operator *(Biofuel x, decimal y) => new(x.Value * y);
+        public static Biofuel operator +(Biofuel x, Biofuel y) => new(y.Value + x.Value);
+        public static Biofuel operator -(Biofuel x, Biofuel y) => new(Math.Max(0, x.Value - y.Value));
 
         public override string ToString()
         {

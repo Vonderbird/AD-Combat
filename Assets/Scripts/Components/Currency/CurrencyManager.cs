@@ -28,6 +28,7 @@ namespace ADC.Currencies
 
     public struct CurrencyChangeEventArgs<T> where T : struct, ICurrency
     {
+
         public CurrencyChangeEventArgs(int factionId, T difference, T newValue, CurrencyChangeType changeType)
         {
             Difference = difference;

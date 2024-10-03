@@ -12,6 +12,7 @@ namespace ADC.Currencies
         public int FactionId { get; private set; }
         private BiofuelManager biofuelManager;
         private WarScrapManager warScrapManager;
+        public IncomeManager IncomeManager { get; private set; }
         [SerializeField] private float initialWarScraps = 200;
         [SerializeField] private float initialBiofuel = 0;
 
@@ -28,6 +29,7 @@ namespace ADC.Currencies
             //visualizers ??= Array.Empty<CurrencyInterface>();
             biofuelManager = new BiofuelManager(factionId);
             warScrapManager = new WarScrapManager(factionId);
+            IncomeManager = new IncomeManager(factionId);
             //AddVisualizers(visualizers);
         }
 

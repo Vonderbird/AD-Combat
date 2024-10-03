@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 7150219111774617161}
   - component: {fileID: 189463438910978982}
   - component: {fileID: 862318814814099318}
+  - component: {fileID: 445136717863983266}
   m_Layer: 0
   m_Name: Skyforgers_FrostbornHunter
   m_TagString: Untagged
@@ -570,6 +571,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 4021096252883669283, guid: b7eef249a2c922d478417bb07f1c8afe, type: 3}
   speed: 2
+--- !u!114 &445136717863983266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837683883374114850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd2ba078d399f04fa4a3039be4f75f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  getBioFuel: 60
+  PayWarScrap: 60
+  warScrapPaymentRatio: 0.1
+  incomePaymentInterval: 30
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0
