@@ -14,10 +14,10 @@ namespace ADC.UnitCreation
         private List<SpawnUnitActivatorButton> unitButtons = new();
         private SpawnUnitActivatorButton activeButton = null;
 
-        public void AddSpawnUnitUITask(UnitCreationTask task, Action<UnitCreationTask> onActivationClick)
+        public void AddSpawnUnitUITask(UnitCreationTask task, Action<UnitCreationTask> onActivationClick, float price)
         {
             var unitButton = Instantiate(activatorButton, transform);
-            unitButton.SetIconAndText(task.Title, task.Data.icon);
+            unitButton.SetIconAndText(task.Title, task.Data.icon, price);
             unitButton.SpawnUnitActivated.AddListener(() => onActivationClick(task));
             unitButtons.Add(unitButton);
             unitButton.SpawnUnitActivated.AddListener(() => OnActivateUnit(unitButton));

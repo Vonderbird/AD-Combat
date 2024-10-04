@@ -10,14 +10,16 @@ namespace ADC.UnitCreation
     {
         [SerializeField] private Image background;
         [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] private TextMeshProUGUI title;
+        [SerializeField] private TextMeshProUGUI price;
 
 
-        public void SetIconAndText(string text, Sprite icon)
+        public void SetIconAndText(string title, Sprite icon, float price)
         {
             SpawnUnitActivated = new UnityEvent();
             this.icon.sprite = icon;
-            this.text.text = text;
+            this.title.text = title;
+            this.price.text = $"{price:F0}";
         }
 
         public UnityEvent SpawnUnitActivated;

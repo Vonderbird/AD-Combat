@@ -32594,6 +32594,7 @@ GameObject:
   - component: {fileID: 1313289727}
   - component: {fileID: 1313289729}
   - component: {fileID: 1313289728}
+  - component: {fileID: 1313289730}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -32640,7 +32641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +42
+  m_text: +0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fcc136eb78851d541a8b45ab09b1e118, type: 2}
   m_sharedMaterial: {fileID: 3746624467661211569, guid: fcc136eb78851d541a8b45ab09b1e118, type: 2}
@@ -32717,6 +32718,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313289726}
   m_CullTransparentMesh: 1
+--- !u!114 &1313289730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313289726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff36ffd5b7d81b40812b1eed0dce63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  incomeText: {fileID: 1313289728}
 --- !u!1 &1313969591
 GameObject:
   m_ObjectHideFlags: 0
@@ -49269,24 +49283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c553a083583f0344b80b03ab60d3663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyOnLoad: 1
-  customLayerMask:
-    m_Bits: 2147483680
-  camera: {fileID: 557989279}
-  isPointerOver: 0
-  PointerEntered:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  PointerExited:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  PointerClicked:
-    m_PersistentCalls:
-      m_Calls: []
-    m_CallsDirty: 1
-  lastHitObject: {fileID: 0}
 --- !u!1 &1950623486
 GameObject:
   m_ObjectHideFlags: 0

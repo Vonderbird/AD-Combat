@@ -54,6 +54,8 @@ namespace ADC.UnitCreation
         protected IncomeManager incomeManager { private set; get; }
         private UnitPlacementTransactionLogic unitPlacementTransaction;
 
+
+
         protected override void OnPendingInit()
         {
             if (!spawnTransform.IsValid() || !gotoTransform.IsValid() ||
@@ -99,9 +101,17 @@ namespace ADC.UnitCreation
             int taskID = 0;
             for (taskID = 0; taskID < creationTasks.Count; taskID++)
             {
+                var targetUnit = creationTasks[taskID].TargetObject;
+                if (targetUnit==null)
+                {
+                    Debug.LogError($"[CellFillerComponent] unit object for the unit creation task {taskID} is not assigned!");
+                    return;
+                }
+
+                var unitPlacementCosts = targetUnit.GetComponent<UnitPlacementCosts>();
                 creationTasks[taskID].Init(this, taskID, gameMgr);
                 creationTasks[taskID].Enable();
-                spawnUnitsList.AddSpawnUnitUITask(creationTasks[taskID], OnActivateTask);
+                spawnUnitsList.AddSpawnUnitUITask(creationTasks[taskID], OnActivateTask, (float)unitPlacementCosts.WarScrap.Value);
             }
 
             allCreationTasks.AddRange(creationTasks);
