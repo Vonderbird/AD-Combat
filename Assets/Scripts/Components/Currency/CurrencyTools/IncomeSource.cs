@@ -8,17 +8,18 @@ namespace ADC.Currencies
     public abstract class IncomeSource :IDisposable
     {
         public Guid IncomeId { get; }
-        private readonly float paymentPeriod;
         private readonly TimeModifiedTimer unitsTimer;
         private readonly Coroutine updater;
         private readonly WaitUntil wait;
         protected readonly int factionId;
+        public abstract decimal PaymentAmount { get; }
+        public float PaymentPeriod { get; }
 
         protected IncomeSource(float paymentPeriod, int factionId)
         {
             IncomeId = Guid.NewGuid();
             this.factionId = factionId;
-            this.paymentPeriod = paymentPeriod;
+            this.PaymentPeriod = paymentPeriod;
             unitsTimer = new TimeModifiedTimer(paymentPeriod);
             wait = new WaitUntil(() => unitsTimer.ModifiedDecrease());
             updater = EconomySystem.Instance.StartCoroutine(EnumeratorUpdate());
@@ -34,10 +35,10 @@ namespace ADC.Currencies
         {
             while (true)
             {
-                Debug.Log($"paymentPeriod: {paymentPeriod}");
+                Debug.Log($"paymentPeriod: {PaymentPeriod}");
                 yield return wait;
                 Update();
-                unitsTimer.Reload(paymentPeriod);
+                unitsTimer.Reload(PaymentPeriod);
             }
         }
 

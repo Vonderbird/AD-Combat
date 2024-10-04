@@ -147,8 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85424fb718bd4cf4989beb9132686176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 7981420860738857973}
   icon: {fileID: 5355871856266729319}
-  text: {fileID: 4946270726164739096}
+  title: {fileID: 4946270726164739096}
+  price: {fileID: 1541639192742284525}
   SpawnUnitActivated:
     m_PersistentCalls:
       m_Calls: []
