@@ -1,36 +1,42 @@
 using UnityEngine.Events;
 using UnityEngine;
 
-public static class UnityEventExtensions
+namespace ADC.Extensions
 {
-    public static void AddListenerOnce(this UnityEvent unityEvent, UnityAction unityAction)
+    public static class UnityEventExtensions
     {
-        for (int index = 0; index < unityEvent.GetPersistentEventCount(); index++)
+        public static void AddListenerOnce(this UnityEvent unityEvent, UnityAction unityAction)
         {
-            Object curEventObj = unityEvent.GetPersistentTarget(index);
-            string curEventName = unityEvent.GetPersistentMethodName(index);
-            Debug.Log("curEventName: " + curEventName + ", unityAction: " + unityAction.Method.Name);
-            if ((Object)unityAction.Target == curEventObj)
+            for (int index = 0; index < unityEvent.GetPersistentEventCount(); index++)
             {
-                Debug.LogError("Event is already added: " + curEventName);
-                return;
+                Object curEventObj = unityEvent.GetPersistentTarget(index);
+                string curEventName = unityEvent.GetPersistentMethodName(index);
+                Debug.Log("curEventName: " + curEventName + ", unityAction: " + unityAction.Method.Name);
+                if ((Object)unityAction.Target == curEventObj)
+                {
+                    Debug.LogError("Event is already added: " + curEventName);
+                    return;
+                }
             }
+
+            unityEvent.AddListener(unityAction);
         }
-        unityEvent.AddListener(unityAction);
-    }
-    public static void AddListenerOnce<T>(this UnityEvent<T> unityEvent, UnityAction<T> unityAction)
-    {
-        for (int index = 0; index < unityEvent.GetPersistentEventCount(); index++)
+
+        public static void AddListenerOnce<T>(this UnityEvent<T> unityEvent, UnityAction<T> unityAction)
         {
-            Object curEventObj = unityEvent.GetPersistentTarget(index);
-            string curEventName = unityEvent.GetPersistentMethodName(index);
-            Debug.Log("curEventName: " + curEventName + ", unityAction: " + unityAction.Method.Name);
-            if ((Object)unityAction.Target == curEventObj)
+            for (int index = 0; index < unityEvent.GetPersistentEventCount(); index++)
             {
-                Debug.LogError("Event is already added: " + curEventName);
-                return;
+                Object curEventObj = unityEvent.GetPersistentTarget(index);
+                string curEventName = unityEvent.GetPersistentMethodName(index);
+                Debug.Log("curEventName: " + curEventName + ", unityAction: " + unityAction.Method.Name);
+                if ((Object)unityAction.Target == curEventObj)
+                {
+                    Debug.LogError("Event is already added: " + curEventName);
+                    return;
+                }
             }
+
+            unityEvent.AddListener(unityAction);
         }
-        unityEvent.AddListener(unityAction);
     }
 }

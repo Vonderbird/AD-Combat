@@ -318,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3818,7 +3818,7 @@ GameObject:
   - component: {fileID: 129412230}
   - component: {fileID: 129412231}
   m_Layer: 5
-  m_Name: stat2
+  m_Name: Biofuels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6747,7 +6747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8307,7 +8307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9816,7 +9816,7 @@ GameObject:
   - component: {fileID: 402865079}
   - component: {fileID: 402865080}
   m_Layer: 5
-  m_Name: stat1
+  m_Name: WarScraps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15676,12 +15676,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610049609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2065172015}
+  m_Father: {fileID: 843666066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &610049611
 MonoBehaviour:
@@ -16544,7 +16544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18454,6 +18454,55 @@ MonoBehaviour:
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!1 &701922452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701922453}
+  - component: {fileID: 701922454}
+  m_Layer: 0
+  m_Name: EconomySystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &701922453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701922452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 843666066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &701922454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701922452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72fc3b4cab2aa488a8b5dc2e48d7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FactionsEconomies:
+  - initialWarScraps: 3512
+    initialBiofuel: 213
+  - initialWarScraps: 200
+    initialBiofuel: 0
 --- !u!4 &702798710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08f9b580355ca744a81faa83eec7fc54, type: 3}
@@ -18816,8 +18865,9 @@ GameObject:
   - component: {fileID: 710512956}
   - component: {fileID: 710512958}
   - component: {fileID: 710512957}
+  - component: {fileID: 710512959}
   m_Layer: 5
-  m_Name: Count
+  m_Name: WarScrapsCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18939,6 +18989,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710512955}
   m_CullTransparentMesh: 1
+--- !u!114 &710512959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710512955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af30aa173ff368c4d887bac9c783a2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factionId: -1
+  FloatingPoints: 0
+  textUI: {fileID: 710512957}
 --- !u!1001 &712465414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21434,6 +21499,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841174062}
   m_CullTransparentMesh: 1
+--- !u!1 &843666065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843666066}
+  m_Layer: 0
+  m_Name: CustomTools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &843666066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843666065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 610049610}
+  - {fileID: 701922453}
+  m_Father: {fileID: 2065172015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &845306202
 GameObject:
   m_ObjectHideFlags: 0
@@ -32496,6 +32594,7 @@ GameObject:
   - component: {fileID: 1313289727}
   - component: {fileID: 1313289729}
   - component: {fileID: 1313289728}
+  - component: {fileID: 1313289730}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -32542,7 +32641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +42
+  m_text: +0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fcc136eb78851d541a8b45ab09b1e118, type: 2}
   m_sharedMaterial: {fileID: 3746624467661211569, guid: fcc136eb78851d541a8b45ab09b1e118, type: 2}
@@ -32619,6 +32718,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313289726}
   m_CullTransparentMesh: 1
+--- !u!114 &1313289730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313289726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff36ffd5b7d81b40812b1eed0dce63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  incomeText: {fileID: 1313289728}
 --- !u!1 &1313969591
 GameObject:
   m_ObjectHideFlags: 0
@@ -33932,7 +34044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34090,8 +34202,9 @@ GameObject:
   - component: {fileID: 1368221846}
   - component: {fileID: 1368221848}
   - component: {fileID: 1368221847}
+  - component: {fileID: 1368221849}
   m_Layer: 5
-  m_Name: Count
+  m_Name: BiofuelsCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34213,6 +34326,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368221845}
   m_CullTransparentMesh: 1
+--- !u!114 &1368221849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368221845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba79e81a0113f141884de8726de8d82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factionId: -1
+  FloatingPoints: 0
+  textUI: {fileID: 1368221847}
 --- !u!1 &1369167843
 GameObject:
   m_ObjectHideFlags: 0
@@ -35738,6 +35866,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 471814844}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: unitPlacementCosts.biofuel
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: unitPlacementCosts.warScrap
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: unitPlacementCosts.getBioFuel
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: unitPlacementCosts.PayWarScrap
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: creationTasks.Array.data[0].spawnParticleSystem
       value: 
       objectReference: {fileID: 6252841197837782396, guid: c65700d66e8844c4955c3b1cde3357bc, type: 3}
@@ -35761,6 +35905,34 @@ PrefabInstance:
       propertyPath: creationTasks.Array.data[2].deletionParticleSystem
       value: 
       objectReference: {fileID: 2310086850313221192, guid: 46d4db0c88b4404894f242504e455686, type: 3}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: SpawnUnitAdded.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[0].requiredResources.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[0].requiredResources.Array.data[2].type
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e090b4e0d3827840ad4d04ab1954373, type: 2}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[0].requiredResources.Array.data[3].type
+      value: 
+      objectReference: {fileID: 11400000, guid: 14edcd6f0fd336542a1675abfe126cfa, type: 2}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: SpawnUnitAdded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[0].requiredResources.Array.data[2].value.amount
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: creationTasks.Array.data[0].requiredResources.Array.data[3].value.amount
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 773281280545449858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: cellSizeFactor
       value: 0.2
@@ -45828,7 +46000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49111,19 +49283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c553a083583f0344b80b03ab60d3663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customLayerMask:
-    serializedVersion: 2
-    m_Bits: 2147483680
-  camera: {fileID: 557989279}
-  PointerEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  PointerExited:
-    m_PersistentCalls:
-      m_Calls: []
-  PointerClicked:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1950623486
 GameObject:
   m_ObjectHideFlags: 0
@@ -51194,7 +51353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51747,7 +51906,7 @@ Transform:
   - {fileID: 1160946311}
   - {fileID: 1811475211}
   - {fileID: 780730637}
-  - {fileID: 610049610}
+  - {fileID: 843666066}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2069198545
@@ -54338,7 +54497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 32.167835
       objectReference: {fileID: 0}
     - target: {fileID: 8153170453098230891, guid: 59a2e235ace345147b993a024d005b41, type: 3}
       propertyPath: m_LocalPosition.x
