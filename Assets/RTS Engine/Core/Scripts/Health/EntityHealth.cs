@@ -124,6 +124,7 @@ namespace RTSEngine.Health
         protected IReadOnlyList<EntityHealthState> States => states;
         [SerializeField, Tooltip("Health state activated when the building is destroyed.")]
         private EntityHealthState destroyState = new EntityHealthState();
+        public EntityHealthState DestroyState => destroyState;
 
         // Game services
         protected IGameManager gameMgr { private set; get; } 
@@ -135,6 +136,8 @@ namespace RTSEngine.Health
         protected IGameAudioManager audioMgr { private set; get; }
         protected IResourceManager resourceMgr { private set; get; }
         protected IPlayerMessageHandler playerMsgHandler { private set; get; }
+
+
         #endregion
 
         #region Raising Events
@@ -403,7 +406,7 @@ namespace RTSEngine.Health
                     if (source?.IsFree == false)
                         resourceMgr.UpdateResource(source.FactionID, destroyAward, add: true);
 
-                    stateHandler.Activate(destroyState);
+                    stateHandler.Activate(DestroyState);
                 }
             }
 
