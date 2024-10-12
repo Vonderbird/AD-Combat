@@ -1,4 +1,5 @@
 using System.Collections;
+using ADC.Currencies;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,25 +9,23 @@ namespace ADC.UnitCreation
 
     public class FillTimerUI : MonoBehaviour
     {
-        [SerializeField] private CellUnitSpawner unitSpawner;
         [SerializeField] private Image fillImage;
         [SerializeField] private TextMeshProUGUI timer;
 
         private void Awake()
         {
-            if (!unitSpawner)
-                unitSpawner = FindAnyObjectByType<CellUnitSpawner>();
-
             StartCoroutine(UpdateFiller());
         }
 
         IEnumerator UpdateFiller()
         {
             yield return new WaitForSeconds(0.1f);
+            var waveTimer = EconomySystem.Instance.WaveTimer;
             while (true)
             {
-                fillImage.fillAmount = unitSpawner.UnitsTimer.CurrValue / unitSpawner.UnitsTimer.DefaultValue;
-                timer.text = $"{unitSpawner.UnitsTimer.CurrValue:f0} Seconds";
+                
+                fillImage.fillAmount = waveTimer.CurrValue / waveTimer.DefaultValue;
+                timer.text = $"{waveTimer.CurrValue:f0} Seconds";
                 yield return null;
             }
         }
