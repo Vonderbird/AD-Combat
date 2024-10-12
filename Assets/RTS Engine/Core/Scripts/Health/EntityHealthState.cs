@@ -28,7 +28,7 @@ namespace RTSEngine.Health
         private GameObject[] hideChildObjects = new GameObject[0];
 
         [SerializeField, Tooltip("Event(s) triggered when the entity enters this health state. Do not assign objects that are the entity model or any of its child objects. Due to the model caching system, the event invoke will not function properly. Insead please use custom scripts that access the entity model and its children objects using RTS Engine model cache aware field types such ModelCacheAwareTransformInput instead of Tranform.")]
-        private UnityEvent triggerEvent = new UnityEvent();
+        public UnityEvent triggerEvent = new UnityEvent();
 
         private IEntityHealth healthComp;
 
