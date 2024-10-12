@@ -20,7 +20,7 @@ namespace ADC.Currencies
         {
             var incomeSource = new BioFuelIncomeSource(amount, paymentDuration, factionId);
             incomeSources.Add(incomeSource.IncomeId, incomeSource);
-            totalIncomeRate += (amount.Value / (decimal)paymentDuration);
+            totalIncomeRate += amount.Value;
             IncomeChanged?.Invoke(totalIncomeRate);
             return incomeSource.IncomeId;
         }
@@ -28,7 +28,7 @@ namespace ADC.Currencies
         {
             var incomeSource = new WarScrapIncomeSource(amount, paymentDuration, factionId);
             incomeSources.Add(incomeSource.IncomeId, incomeSource);
-            totalIncomeRate += (amount.Value / (decimal)paymentDuration);
+            totalIncomeRate += amount.Value;
             IncomeChanged?.Invoke(totalIncomeRate);
             return incomeSource.IncomeId;
         }
@@ -38,7 +38,7 @@ namespace ADC.Currencies
             if (!incomeSources.TryGetValue(incomeId, out var source)) return false;
             source.Dispose();
             incomeSources.Remove(incomeId);
-            totalIncomeRate -= (source.PaymentAmount / (decimal)source.PaymentPeriod);
+            totalIncomeRate -= source.PaymentAmount;
             IncomeChanged?.Invoke(totalIncomeRate);
             return true;
         }
