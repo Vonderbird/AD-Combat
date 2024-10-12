@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ADC.Currencies;
 using RTSEngine.Determinism;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
@@ -13,20 +14,8 @@ namespace ADC.UnitCreation
 {
     public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
     {
-        [SerializeField] private float spawnPeriod = 5.0f;
-
-        //[SerializeField, EnforceType(typeof(IUnit), prefabOnly: true)]
-        //private GameObject unitPrefabObj = null;
-        //private IUnit unitPrefab;
-        //[SerializeField]
-        //private int spawnAmount = 3;
-
-
         protected IUnitManager unitMgr { private set; get; }
 
-        public TimeModifiedTimer UnitsTimer => unitsTimer;
-
-        private TimeModifiedTimer unitsTimer;
         private readonly Dictionary<int, UnitParameters> unitsSpawn = new();
 
         private readonly UnitsSpawnEventArgs spawnEventArgs = new();
@@ -38,69 +27,78 @@ namespace ADC.UnitCreation
 
         public void Init(IGameManager gameMgr)
         {
-            //unitPrefab = unitPrefabObj.GetComponent<IUnit>();
             unitMgr = gameMgr.GetService<IUnitManager>();
-            unitsTimer = new TimeModifiedTimer(spawnPeriod);
-            waitUntil = new WaitUntil(() => UnitsTimer.ModifiedDecrease());
-            StartCoroutine(SpawnWaves());
         }
 
+        private void OnEnable()
+        {
+            StartCoroutine(DelayedEnable());
+        }
+
+        private IEnumerator DelayedEnable()
+        {
+            yield return null;
+            EconomySystem.Instance.StartWave.AddListener(OnStartWave);
+        }
+
+        private void OnDisable()
+        {
+            EconomySystem.Instance.StartWave.RemoveListener(OnStartWave);
+        }
+
+        private void OnStartWave()
+        {
+            StartCoroutine(SpawnWaves());
+        }
         private IEnumerator SpawnWaves()
         {
-            while (true)
+            foreach (var (id, unitParameters) in unitsSpawn)
             {
-                yield return waitUntil;
-                foreach (var (id, unitParameters) in unitsSpawn)
-                {
-                    if (!unitParameters.UnitTask.SpawnParticleSystem) continue;
-                    var particle = Instantiate(unitParameters.UnitTask.SpawnParticleSystem,
-                        unitParameters.SpawnPosition, Quaternion.identity);
-                    particle.transform.localScale =
-                        Vector3.one * particle.ScaleFactor * unitParameters.UnitScaleFactor * 0.5f;
-                    particle.Play();
-                }
-
-                for (var i = 0; i < 5; i++)
-                    yield return waitForSeconds;
-
-                spawnEventArgs.UnitIds.Clear();
-                foreach (var (id, unitParameters) in unitsSpawn)
-                {
-                    unitMgr.CreateUnit(
-                        unitParameters.Unit,
-                        unitParameters.SpawnPosition,
-                        Quaternion.identity,
-                        new InitUnitParameters
-                        {
-                            factionID = unitParameters.Unit.FactionID,
-                            free = false,
-
-                            setInitialHealth = false,
-
-                            giveInitResources = true,
-
-                            rallypoint = unitParameters.Unit.Rallypoint,
-                            creatorEntityComponent = unitParameters.CreatorComponent,
-
-                            useGotoPosition = true,
-                            gotoPosition = unitParameters.GotoTransform.position,
-
-                            isSquad = unitParameters.UnitTask.SquadData.enabled,
-                            squadCount = unitParameters.UnitTask.SquadData.count,
-
-                            playerCommand = false,
-                        });
-
-                    spawnEventArgs.UnitIds.Add(id);
-                }
-
-                //unitsSpawn.Clear();
-                UnitsTimer.Reload(spawnPeriod);
-                OnUnitsSpawned?.Invoke(spawnEventArgs);
-
-                yield return waitForSeconds;
+                if (!unitParameters.UnitTask.SpawnParticleSystem) continue;
+                var particle = Instantiate(unitParameters.UnitTask.SpawnParticleSystem,
+                    unitParameters.SpawnPosition, Quaternion.identity);
+                particle.transform.localScale =
+                    Vector3.one * particle.ScaleFactor * unitParameters.UnitScaleFactor * 0.5f;
+                particle.Play();
             }
 
+            for (var i = 0; i < 5; i++)
+                yield return waitForSeconds;
+
+            spawnEventArgs.UnitIds.Clear();
+            foreach (var (id, unitParameters) in unitsSpawn)
+            {
+                unitMgr.CreateUnit(
+                    unitParameters.Unit,
+                    unitParameters.SpawnPosition,
+                    Quaternion.identity,
+                    new InitUnitParameters
+                    {
+                        factionID = unitParameters.Unit.FactionID,
+                        free = false,
+
+                        setInitialHealth = false,
+
+                        giveInitResources = true,
+
+                        rallypoint = unitParameters.Unit.Rallypoint,
+                        creatorEntityComponent = unitParameters.CreatorComponent,
+
+                        useGotoPosition = true,
+                        gotoPosition = unitParameters.GotoTransform.position,
+
+                        isSquad = unitParameters.UnitTask.SquadData.enabled,
+                        squadCount = unitParameters.UnitTask.SquadData.count,
+
+                        playerCommand = false,
+                    });
+
+                spawnEventArgs.UnitIds.Add(id);
+            }
+
+            OnUnitsSpawned?.Invoke(spawnEventArgs);
+
+            yield return waitForSeconds;
         }
 
         public void AddNewUnit(UnitParameters unit)
