@@ -6,8 +6,8 @@ namespace ADC.Currencies
     {
         private readonly WarScrap paymentAmount;
         public override decimal PaymentAmount => paymentAmount.Value;
-        public WarScrapIncomeSource(WarScrap paymentAmount, float paymentPeriod, int factionId): 
-            base(paymentPeriod, factionId)
+        public WarScrapIncomeSource(WarScrap paymentAmount, int factionId): 
+            base(factionId)
         {
             this.paymentAmount = paymentAmount;
         }

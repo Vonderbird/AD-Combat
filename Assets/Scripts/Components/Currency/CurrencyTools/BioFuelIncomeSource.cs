@@ -6,8 +6,8 @@ namespace ADC.Currencies
     {
         private readonly Biofuel paymentAmount;
         public override decimal PaymentAmount => paymentAmount.Value;
-        public BioFuelIncomeSource(Biofuel paymentAmount, float paymentPeriod, int factionId) :
-            base(paymentPeriod, factionId)
+        public BioFuelIncomeSource(Biofuel paymentAmount, int factionId) :
+            base(factionId)
         {
             this.paymentAmount = paymentAmount;
         }

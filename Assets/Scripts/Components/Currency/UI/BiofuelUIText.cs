@@ -1,4 +1,5 @@
 using RTSEngine;
+using System.Linq;
 
 namespace ADC.Currencies
 {
@@ -7,8 +8,16 @@ namespace ADC.Currencies
     {
         public override void Refresh(CurrencyChangeEventArgs<Biofuel> args)
         {
-            if (!RTSHelper.IsLocalPlayerFaction(args.FactionId)) return;
-            textUI.text = args.NewValue.Value.ToString($"n{FloatingPoints}");
+            if (FactionId == -1)
+            {
+                if (!args.FactionId.IsLocalPlayerFaction()) return;
+                textUI.text = args.NewValue.Value.ToString($"n{FloatingPoints}");
+            }
+            else
+            {
+                if (args.FactionId != FactionId) return;
+                textUI.text = args.NewValue.Value.ToString($"n{FloatingPoints}");
+            }
         }
     }
 }
