@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using RTSEngine.Determinism;
 using UnityEngine;
 
 namespace ADC.Currencies
@@ -8,7 +6,6 @@ namespace ADC.Currencies
     public abstract class IncomeSource :IDisposable
     {
         public Guid IncomeId { get; }
-        private readonly TimeModifiedTimer unitsTimer;
         private readonly Coroutine updater;
         private readonly WaitUntil wait;
         protected readonly int factionId;
@@ -20,26 +17,12 @@ namespace ADC.Currencies
             IncomeId = Guid.NewGuid();
             this.factionId = factionId;
             this.PaymentPeriod = paymentPeriod;
-            unitsTimer = new TimeModifiedTimer(paymentPeriod);
-            wait = new WaitUntil(() => unitsTimer.ModifiedDecrease());
-            updater = EconomySystem.Instance.StartCoroutine(EnumeratorUpdate());
+            EconomySystem.Instance.StartWave.AddListener(Update);
         }
         
         public void Dispose()
         {
-            if (updater != null)
-                EconomySystem.Instance.StopCoroutine(updater);
-        }
-
-        public IEnumerator EnumeratorUpdate()
-        {
-            while (true)
-            {
-                Debug.Log($"paymentPeriod: {PaymentPeriod}");
-                yield return wait;
-                Update();
-                unitsTimer.Reload(PaymentPeriod);
-            }
+            EconomySystem.Instance.StartWave.RemoveListener(Update);
         }
 
         protected abstract void Update();
