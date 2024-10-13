@@ -5,35 +5,50 @@ using UnityEngine;
 
 namespace ADC.Currencies
 {
+    [RequireComponent(typeof(TextMeshProUGUI))]
     public class IncomeUIText : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI incomeText;
-        private FactionEconomy localFaction;
+        private TextMeshProUGUI incomeText;
+        private FactionEconomy targetFaction;
         private bool enabled = false;
+
+
+        [SerializeField]
+        [Tooltip("Left it to default -1 if it is belong to local faction")]
+        private int factionId = -1;
+        [SerializeField] private int floatingPoints = 0;
+        public int FactionId => factionId;
+
+        private void Awake()
+        {
+            incomeText = GetComponent<TextMeshProUGUI>();
+        }
+
         private void Start()
         {
-            localFaction = EconomySystem.Instance.FactionsEconomiesDictionary.Where(kv => kv.Key.IsLocalPlayerFaction())
+            targetFaction = EconomySystem.Instance.FactionsEconomiesDictionary
+                .Where(kv => factionId == -1?kv.Key.IsLocalPlayerFaction(): kv.Key.Equals(factionId))
                 .Select(kv=>kv.Value).FirstOrDefault();
             OnEnable();
         }
 
         void OnEnable()
         {
-            if(localFaction==null || enabled) return;
-            localFaction.IncomeManager.IncomeChanged.AddListener(OnIncomeChanged);
+            if(targetFaction==null || enabled) return;
+            targetFaction.IncomeManager.IncomeChanged.AddListener(OnIncomeChanged);
             enabled = true;
         }
 
         void OnDisable()
         {
             if(!enabled) return;
-            localFaction.IncomeManager.IncomeChanged.RemoveListener(OnIncomeChanged);
+            targetFaction.IncomeManager.IncomeChanged.RemoveListener(OnIncomeChanged);
             enabled = false;
         }
 
         private void OnIncomeChanged(decimal newIncome)
         {
-            incomeText.text = $"{newIncome:F2}";
+            incomeText.text = newIncome.ToString($"n{floatingPoints}");
         }
     }
 }

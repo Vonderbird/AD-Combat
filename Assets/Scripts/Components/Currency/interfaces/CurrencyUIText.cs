@@ -4,17 +4,23 @@ using UnityEngine;
 namespace ADC.Currencies
 {
 
+    [RequireComponent(typeof(TextMeshProUGUI))]
     public abstract class CurrencyUIText<T> : CurrencyInterface<T> where T : struct, ICurrency
     {
         [SerializeField] protected int FloatingPoints = 0;
-        [SerializeField] protected TextMeshProUGUI textUI;
+        protected TextMeshProUGUI textUI;
 
         private Coroutine updater;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            textUI = GetComponent<TextMeshProUGUI>();
+        }
+
+
         private void OnEnable()
         {
-            if (textUI == null)
-                textUI = GetComponent<TextMeshProUGUI>();
             if (textUI == null)
             {
                 Debug.LogError($"[CurrencyUIText] {transform.parent.name} > {name}: textUI is not assigned!");

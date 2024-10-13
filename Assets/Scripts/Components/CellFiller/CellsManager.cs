@@ -187,8 +187,7 @@ namespace ADC.UnitCreation
                 averagePosition / taskPopulation,
                 arg0.UnitScaleFactor);
             var incomeSourceId = incomeManager.AddSource(
-                unitPlacementCosts.WarScrap * unitPlacementCosts.IncomeRatio,
-                unitPlacementCosts.IncomePaymentInterval);
+                unitPlacementCosts.WarScrap * unitPlacementCosts.IncomeRatio);
             unitIncomeSources.Add(groupId, incomeSourceId);
             positionedUnitsPrefabs.Add(groupId, unitToSpawn);
         }
