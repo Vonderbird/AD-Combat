@@ -16,17 +16,17 @@ namespace ADC.Currencies
         {
             this.factionId = factionId;
         }
-        public Guid AddSource(Biofuel amount, float paymentDuration)
+        public Guid AddSource(Biofuel amount)
         {
-            var incomeSource = new BioFuelIncomeSource(amount, paymentDuration, factionId);
+            var incomeSource = new BioFuelIncomeSource(amount, factionId);
             incomeSources.Add(incomeSource.IncomeId, incomeSource);
             totalIncomeRate += amount.Value;
             IncomeChanged?.Invoke(totalIncomeRate);
             return incomeSource.IncomeId;
         }
-        public Guid AddSource(WarScrap amount, float paymentDuration)
+        public Guid AddSource(WarScrap amount)
         {
-            var incomeSource = new WarScrapIncomeSource(amount, paymentDuration, factionId);
+            var incomeSource = new WarScrapIncomeSource(amount, factionId);
             incomeSources.Add(incomeSource.IncomeId, incomeSource);
             totalIncomeRate += amount.Value;
             IncomeChanged?.Invoke(totalIncomeRate);

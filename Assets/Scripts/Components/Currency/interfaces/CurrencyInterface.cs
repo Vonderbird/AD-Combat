@@ -11,7 +11,7 @@ namespace ADC.Currencies
 
         public int FactionId => factionId;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             EconomySystem.Instance.Add(this);
         }
