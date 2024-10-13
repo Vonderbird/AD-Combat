@@ -10,13 +10,11 @@ namespace ADC.Currencies
         private readonly WaitUntil wait;
         protected readonly int factionId;
         public abstract decimal PaymentAmount { get; }
-        public float PaymentPeriod { get; }
 
-        protected IncomeSource(float paymentPeriod, int factionId)
+        protected IncomeSource(int factionId)
         {
             IncomeId = Guid.NewGuid();
             this.factionId = factionId;
-            this.PaymentPeriod = paymentPeriod;
             EconomySystem.Instance.StartWave.AddListener(Update);
         }
         
