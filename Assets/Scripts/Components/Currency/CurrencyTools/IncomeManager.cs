@@ -18,7 +18,7 @@ namespace ADC.Currencies
         }
         public Guid AddSource(Biofuel amount)
         {
-            var incomeSource = new BioFuelIncomeSource(amount, factionId);
+            var incomeSource = new BiofuelIncomeSource(amount, factionId);
             incomeSources.Add(incomeSource.IncomeId, incomeSource);
             totalIncomeRate += amount.Value;
             IncomeChanged?.Invoke(totalIncomeRate);

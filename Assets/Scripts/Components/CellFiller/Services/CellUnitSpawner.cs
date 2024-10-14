@@ -14,7 +14,7 @@ namespace ADC.UnitCreation
 {
     public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
     {
-        protected IUnitManager unitMgr { private set; get; }
+        protected RTSEngine.UnitExtension.IUnitManager unitMgr { private set; get; }
 
         private readonly Dictionary<int, UnitParameters> unitsSpawn = new();
 
@@ -27,7 +27,7 @@ namespace ADC.UnitCreation
 
         public void Init(IGameManager gameMgr)
         {
-            unitMgr = gameMgr.GetService<IUnitManager>();
+            unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>();
         }
 
         private void OnEnable()

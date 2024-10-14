@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace ADC.Currencies
 {
-    public class BioFuelIncomeSource : IncomeSource
+    public class BiofuelIncomeSource : IncomeSource
     {
         private readonly Biofuel paymentAmount;
         public override decimal PaymentAmount => paymentAmount.Value;
-        public BioFuelIncomeSource(Biofuel paymentAmount, int factionId) :
+        public BiofuelIncomeSource(Biofuel paymentAmount, int factionId) :
             base(factionId)
         {
             this.paymentAmount = paymentAmount;
