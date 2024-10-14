@@ -13,7 +13,7 @@ using IUnit = RTSEngine.Entities.IUnit;
 namespace ADC.UnitCreation
 {
 
-    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IEntityPostInitializable
+    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator
 
 
     {
@@ -46,7 +46,7 @@ namespace ADC.UnitCreation
 
         private SpawnUnitsList spawnUnitsList;
 
-        protected IUnitManager unitMgr { private set; get; }
+        protected RTSEngine.UnitExtension.IUnitManager unitMgr { private set; get; }
 
         private CellsManager cellsManager;
 
@@ -83,7 +83,7 @@ namespace ADC.UnitCreation
                 cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
             }
 
-            this.unitMgr = gameMgr.GetService<IUnitManager>
+            this.unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>
                 ();
             Entity.Selection.Selected += cellsManager.OnEntitySelected;
             Entity.Selection.Deselected += cellsManager.OnEntityDeselected;
