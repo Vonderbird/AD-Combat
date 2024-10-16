@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ADC
 {
-    public class SkyForger : UnitManager
+    public class SkyForger : AttackManager
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; }
 

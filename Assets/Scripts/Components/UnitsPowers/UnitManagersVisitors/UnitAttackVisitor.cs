@@ -2,11 +2,17 @@ namespace ADC
 {
     public class UnitAttackVisitor : IUnitManagerVisitor
     {
-        IAttackTypeVisitor attackTypeVisitor;
-        public void Visit(SkyForger skyForger){}
-        public void Visit(TkArty skyForger)
+        public void Visit(SkyForger skyForger)
         {
-            attackTypeVisitor.Visit(skyForger.AttackType);
+            skyForger.AttackType.Attack();
+        }
+        public void Visit(TkArty tkArty)
+        {
+            tkArty.AttackType.Attack();
+        }
+        public void Visit(Adamnt adamnt)
+        {
+            adamnt.AttackType.Attack();
         }
     }
 }

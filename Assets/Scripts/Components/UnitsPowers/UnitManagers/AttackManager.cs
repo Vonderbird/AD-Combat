@@ -9,19 +9,22 @@ namespace ADC
 {
 
     [RequireComponent(typeof(IUnit))]
-    public abstract class UnitManager:MonoBehaviour
+    public abstract class AttackManager:MonoBehaviour
     {
         [SerializeField] protected UnitSpecs baseSpecs;
         protected IUnit unit { private set; get; }
 
         protected abstract List<ISpecialAbility> specialAbilities { get; set; }
 
-
         public IDefenceType DefenceType { get; private set; }
         public IAttackType AttackType { get; private set; }
+        public IArmorType ArmorType { private set; get; }
+        public IWeaponType WeaponType { private set; get; }
 
         protected UnitAttack unitAttack;
         protected IUnitHealth unitHealth;
+
+        public AttackManager Target { get; private set; }
 
         protected void Awake()
         {

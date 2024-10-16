@@ -3,6 +3,7 @@ namespace ADC
     public interface IUnitManagerVisitor
     {
         void Visit(SkyForger skyForger);
-        void Visit(TkArty skyForger);
+        void Visit(TkArty tkArty);
+        void Visit(Adamnt adamnt);
     }
 }
