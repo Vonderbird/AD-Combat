@@ -4,11 +4,15 @@ namespace ADC
 {
     public class TkArty : UnitManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; }
-
-        public override void Accept(IUnitVisitor visitor)
+        protected override List<ISpecialAbility> specialAbilities { get; set; } = new()
         {
-            throw new System.NotImplementedException();
+            new AdvancingThePathway(),
+            new FlameWalker()
+        };
+
+        public override void Accept(IUnitManagerVisitor managerVisitor)
+        {
+            managerVisitor.Visit(this);
         }
     }
 }

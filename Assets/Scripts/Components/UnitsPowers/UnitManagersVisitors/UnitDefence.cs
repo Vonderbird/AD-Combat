@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ADC
 {
-    public class UnitDefence: IUnitVisitor
+    public class UnitDefence: IUnitManagerVisitor
     {
         private readonly Dictionary<Tuple<IArmor, IWeapon>, float> armorWeaponEffectTable;
 

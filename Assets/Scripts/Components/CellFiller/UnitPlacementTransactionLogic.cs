@@ -18,8 +18,7 @@ namespace ADC.UnitCreation
                 return false;
             }
 
-
-            if (!Produce(args.Biofuel))
+            if (args.Biofuel > 0m && !Produce(args.Biofuel))
             {
                 Debug.LogWarning($"Faction {factionId}: Failed to produce Biofuel. Attempting to refund WarScrap.");
 
