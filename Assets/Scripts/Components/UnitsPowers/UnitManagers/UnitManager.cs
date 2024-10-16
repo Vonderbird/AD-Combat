@@ -2,24 +2,49 @@ using System.Collections.Generic;
 using RTSEngine;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
+using RTSEngine.Health;
 using UnityEngine;
 
 namespace ADC
 {
-    public abstract class UnitManager: FactionEntityTargetComponent<IFactionEntity>
+
+    [RequireComponent(typeof(IUnit))]
+    public abstract class UnitManager:MonoBehaviour
     {
         [SerializeField] protected UnitSpecs baseSpecs;
         protected IUnit unit { private set; get; }
 
         protected abstract List<ISpecialAbility> specialAbilities { get; set; }
 
-        protected override void OnTargetInit()
+
+        public IDefenceType DefenceType { get; private set; }
+        public IAttackType AttackType { get; private set; }
+
+        protected UnitAttack unitAttack;
+        protected IUnitHealth unitHealth;
+
+        protected void Awake()
         {
-            this.unit = factionEntity as IUnit;
+            unit = GetComponent<Unit>();
+            unitAttack = GetComponentInChildren<UnitAttack>();
+            unitHealth = GetComponent<UnitHealth>();
+
+            // Unit Damage Info and how to update it
+            // Unit Health Info and how to update it
+            // Unit Hit by Who for specifying attack and defence type
+            // Unit Attack What for specifying attack and defence type
+            // 
         }
 
-        protected IDefenceType defenceType;
-        protected IAttackType attackType;
+        private void OnEnable()
+        {
+
+        }
+
+        private void OnDisable()
+        {
+
+        }
 
         public UnitExperience xp;
         public UnitEquipments equipments;
@@ -29,18 +54,22 @@ namespace ADC
             //defencePower = xp.Level * equipments.Power * 0.2f;
         }
 
-        public abstract void Accept(IUnitVisitor visitor);
+        public abstract void Accept(IUnitManagerVisitor managerVisitor);
 
-
-        public override bool IsIdle { get; }
-        public override bool IsTargetInRange(Vector3 sourcePosition, TargetData<IEntity> target)
+        public void OnAttackChanged()
         {
-            throw new System.NotImplementedException();
+            var unitAttackData = unitAttack.Damage.Data;
+            unitAttackData.unit = 13;
+            unitAttackData.building = 13;
+            //unitAttack.Damage.Data = unitAttackData;
+
         }
 
-        public override ErrorMessage IsTargetValid(SetTargetInputData testInput)
+        public void OnDefenceChanged()
         {
-            throw new System.NotImplementedException();
+
         }
+
+
     }
 }

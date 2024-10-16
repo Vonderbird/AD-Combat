@@ -6,9 +6,9 @@ namespace ADC
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; }
 
-        public override void Accept(IUnitVisitor visitor)
+        public override void Accept(IUnitManagerVisitor managerVisitor)
         {
-            throw new System.NotImplementedException();
+            managerVisitor.Visit(this);
         }
     }
 }

@@ -26,16 +26,17 @@ namespace RTSEngine.Attack
         public DamageData Data => data;
 
         [SerializeField, Tooltip("Enable or disable area of attack damage.")]
-        private bool areaAttackEnabled = false; 
+        private bool areaAttackEnabled = false;
         [SerializeField, Tooltip("When area of attack is enabled, this defines the ranges and damage values per range. Define the elements of this field with increasing range size.")]
         private DamageRangeData[] areaAttackData = new DamageRangeData[0];
         public IEnumerable<DamageRangeData> AreaAttackData => areaAttackData;
 
         [SerializeField, Tooltip("Enable or disable damage over time.")]
-        private bool dotEnabled = false; 
+        private bool dotEnabled = false;
         [SerializeField, Tooltip("When damage over time is enabled, this defines the parameters of the DoT.")]
-        private DamageOverTimeData dotData = new DamageOverTimeData();
-        public DamageOverTimeData DotData => dotData;
+        private DamageOverTimeData baseDotData = new DamageOverTimeData();
+        public DamageOverTimeData BaseDotData => baseDotData;
+        public DamageOverTimeData DotData { get; private set; }
 
         [SerializeField, Tooltip("Define what hit effect objects will be used with which target faction entities when damage is dealt.")]
         private FactionEntityDependantHitEffectData[] hitEffects = new FactionEntityDependantHitEffectData[0];
@@ -62,7 +63,7 @@ namespace RTSEngine.Attack
 
         public CustomEventHandler<IAttackComponent, HealthUpdateArgs> AttackDamageDealt;
 
-        private void RaiseAttackDamageDealt (HealthUpdateArgs e)
+        private void RaiseAttackDamageDealt(HealthUpdateArgs e)
         {
             var handler = AttackDamageDealt;
             handler?.Invoke(SourceAttackComp, e);
@@ -72,6 +73,7 @@ namespace RTSEngine.Attack
         #region Initializing/Terminating
         protected override void OnInit()
         {
+            if (DotData.cycleDuration == 0) DotData = BaseDotData;
             this.gridSearch = gameMgr.GetService<IGridSearchHandler>();
         }
         #endregion
@@ -93,21 +95,21 @@ namespace RTSEngine.Attack
 
         public void UpdateDotData(DamageOverTimeData newDotData)
         {
-            this.dotData = newDotData;
+            this.DotData = newDotData;
         }
         #endregion
 
         #region Triggering Damage
-        public void Trigger (IFactionEntity target, Vector3 targetPosition)
+        public void Trigger(IFactionEntity target, Vector3 targetPosition)
         {
-            if (areaAttackEnabled == true) 
+            if (areaAttackEnabled == true)
                 TriggerArea(target.IsValid() ? target.transform.position : targetPosition, sourceFactionID: SourceAttackComp.Entity.FactionID);
             // Apply damage directly
-            else if(target.IsValid())
+            else if (target.IsValid())
                 Deal(target, data.Get(target));
         }
 
-        private void TriggerArea (Vector3 center, int sourceFactionID)
+        private void TriggerArea(Vector3 center, int sourceFactionID)
         {
             gridSearch.Search(
                 center,
@@ -115,7 +117,7 @@ namespace RTSEngine.Attack
                 -1,
                 SourceAttackComp.IsTargetValid,
                 // Set to true because we do not want to tie the target to the LOS parameters.
-                playerCommand: true, 
+                playerCommand: true,
                 out IReadOnlyList<IFactionEntity> targetsInRange);
 
             for (int i = 0; i < targetsInRange.Count; i++)
@@ -126,10 +128,10 @@ namespace RTSEngine.Attack
                 for (int j = 0; j < areaAttackData.Length; j++)
                 {
                     // As long as the right range for this faction entity isn't found, move to the next one
-                    if (distance > areaAttackData[j].range) 
+                    if (distance > areaAttackData[j].range)
                         continue;
 
-                    Deal(target, areaAttackData[j].data.Get(target)); 
+                    Deal(target, areaAttackData[j].data.Get(target));
 
                     // Area attack range found, move to the next target.
                     break;
@@ -139,7 +141,7 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Dealing Damage
-        private void Deal (IFactionEntity target, int value)
+        private void Deal(IFactionEntity target, int value)
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
                 return;
@@ -165,8 +167,8 @@ namespace RTSEngine.Attack
                     break;
                 }
 
-            if (dotEnabled == true) 
-                target.Health.AddDamageOverTime(dotData, value, SourceAttackComp.Entity);
+            if (dotEnabled == true)
+                target.Health.AddDamageOverTime(DotData, value, SourceAttackComp.Entity);
             else
                 target.Health.Add(new HealthUpdateArgs(-value, SourceAttackComp.Entity));
 
