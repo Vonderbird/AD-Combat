@@ -1,18 +1,22 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ADC
 {
-    public class TkArty : AttackManager
+    public class Adamnt : AttackManager
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; } = new()
         {
-            new AdvancingThePathway(),
-            new FlameWalker()
         };
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {
             managerVisitor.Visit(this);
+        }
+
+        public void TestTargetLock()
+        {
+            Debug.Log("Target Locked!");
         }
     }
 }
