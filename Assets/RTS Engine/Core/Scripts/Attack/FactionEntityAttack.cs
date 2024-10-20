@@ -81,8 +81,10 @@ namespace RTSEngine.EntityComponent
 
         [SerializeField, Tooltip("Enable/disable cooldown time for the attack.")]
         private GlobalTimeModifiedTimer cooldown = new GlobalTimeModifiedTimer();
-        public bool IsCooldownActive => cooldown.IsActive;
-        public float CurrCooldownValue => cooldown.CurrValue;
+        public GlobalTimeModifiedTimer Cooldown => cooldown;
+
+        public bool IsCooldownActive => Cooldown.IsActive;
+        public float CurrCooldownValue => Cooldown.CurrValue;
 
         // LAUNCHER
         [SerializeField, Tooltip("Settings for launching the attack.")]
@@ -175,7 +177,7 @@ namespace RTSEngine.EntityComponent
         {
             this.attackMgr = gameMgr.GetService<IAttackManager>();
 
-            cooldown.Init(gameMgr, OnCooldownOver);
+            Cooldown.Init(gameMgr, OnCooldownOver);
 
             // Init attack sub-components:
             damage.Init(gameMgr, this);
@@ -385,7 +387,7 @@ namespace RTSEngine.EntityComponent
                 return ErrorMessage.attackTypeNotReady;
             else if (reloadTimer.CurrValue > 0.0f)
                 return ErrorMessage.attackTypeReloadNonZero;
-            else if (cooldown.IsActive)
+            else if (Cooldown.IsActive)
                 return ErrorMessage.attackTypeInCooldown;
             return LineOfSight.IsInSight(Target);
         }
@@ -473,8 +475,8 @@ namespace RTSEngine.EntityComponent
             ResetReload(isAttackComplete: true);
 
             // Activate cooldown (if it can be enabled)
-            cooldown.IsActive = true;
-            if(cooldown.IsActive)
+            Cooldown.IsActive = true;
+            if(Cooldown.IsActive)
                 RaiseCooldownUpdated();
 
             //reset the reload (done in the parent class, reload = progress), delay and the terrain attack mode right on launch, else the launch keeps getting triggered as long as the attack is not complete
@@ -523,7 +525,7 @@ namespace RTSEngine.EntityComponent
 
             // Attack once or cooldown is active? cancel attack to prevent source from attacking again
             if (engageOptions.engageOnce == true
-                || cooldown.IsActive)
+                || Cooldown.IsActive)
                 Stop();
         }
 
@@ -617,7 +619,7 @@ namespace RTSEngine.EntityComponent
                 return ErrorMessage.attackTypeActive;
             else if (IsLocked)
                 return ErrorMessage.attackTypeLocked;
-            else if (cooldown.IsActive)
+            else if (Cooldown.IsActive)
                 return ErrorMessage.attackTypeInCooldown;
 
             return ErrorMessage.none;
@@ -693,7 +695,7 @@ namespace RTSEngine.EntityComponent
                 SetTargetTaskUI,
                 requireActiveComponent: false,
                 showCondition: IsActive,
-                lockedCondition: cooldown.IsActive,
+                lockedCondition: Cooldown.IsActive,
                 lockedData: setTargetCooldownUIData) == false)
                 return false;
 
@@ -705,7 +707,7 @@ namespace RTSEngine.EntityComponent
                         {
                             data = switchTaskUI.Data,
 
-                            locked = cooldown.IsActive,
+                            locked = Cooldown.IsActive,
                             lockedData = switchAttackCooldownUIData
                         });
                 else

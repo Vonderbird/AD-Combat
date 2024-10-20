@@ -1,10 +1,14 @@
 namespace ADC
 {
-    public class CarbonCompound : IDefenceType
+    public class CarbonCompound : ArmorType
     {
-        public void Defend()
+        public override void Defend()
         {
             throw new System.NotImplementedException();
+        }
+
+        public CarbonCompound(ArmorTypeInitArgs args) : base(args)
+        {
         }
     }
 }

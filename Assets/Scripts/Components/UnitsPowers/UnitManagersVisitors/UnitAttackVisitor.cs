@@ -4,15 +4,15 @@ namespace ADC
     {
         public void Visit(SkyForger skyForger)
         {
-            skyForger.AttackType.Attack();
+            skyForger.Weapon.Attack();
         }
         public void Visit(TkArty tkArty)
         {
-            tkArty.AttackType.Attack();
+            tkArty.Weapon.Attack();
         }
         public void Visit(Adamnt adamnt)
         {
-            adamnt.AttackType.Attack();
+            adamnt.Weapon.Attack();
         }
     }
 }

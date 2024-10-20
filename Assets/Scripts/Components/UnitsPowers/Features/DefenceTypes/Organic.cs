@@ -1,10 +1,14 @@
 namespace ADC
 {
-    public class Organic : IDefenceType
+    public class Organic : ArmorType
     {
-        public void Defend()
+        public override void Defend()
         {
             throw new System.NotImplementedException();
+        }
+
+        public Organic(ArmorTypeInitArgs args) : base(args)
+        {
         }
     }
 }

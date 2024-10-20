@@ -1,16 +1,14 @@
 namespace ADC
 {
-    public class Biological: WeaponType
+    public class ExplosiveRounds : WeaponType
     {
-        public Biological(WeaponTypeInitArgs initArgs) : base(initArgs)
+        public ExplosiveRounds(WeaponTypeInitArgs initArgs) : base(initArgs)
         {
         }
 
         public override void Attack()
         {
-
             throw new System.NotImplementedException();
         }
-
     }
 }

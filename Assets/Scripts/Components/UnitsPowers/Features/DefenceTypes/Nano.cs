@@ -1,10 +1,14 @@
 namespace ADC
 {
-    public class Nano : IDefenceType
+    public class Nano : ArmorType
     {
-        public void Defend()
+        public override void Defend()
         {
             throw new System.NotImplementedException();
+        }
+
+        public Nano(ArmorTypeInitArgs args) : base(args)
+        {
         }
     }
 }
