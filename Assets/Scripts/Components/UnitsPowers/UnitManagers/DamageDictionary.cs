@@ -62,7 +62,7 @@ namespace ADC
             ""Biological"": ""50%""
           }
         }";
-        Dictionary<Type, Dictionary<Type, float>> testval = new Dictionary<Type, Dictionary<Type, float>>()
+        Dictionary<Type, Dictionary<Type, float>> basevalues = new Dictionary<Type, Dictionary<Type, float>>()
         {
             {typeof(Organic), new () {
                 { typeof(BluntAttack), 1.0f },
@@ -112,11 +112,9 @@ private readonly Dictionary<(Type, Type), float> valuesDict;
 
 public DamageDictionary()
 {
-
-
-    var baseValues = JsonUtility.FromJson<Dictionary<Type, Dictionary<Type, float>>>(jsonValues);
+    //var baseValues = JsonUtility.FromJson<Dictionary<Type, Dictionary<Type, float>>>(jsonValues);
     valuesDict = new();
-    foreach (var (armor, values) in baseValues)
+    foreach (var (armor, values) in basevalues)
     {
         foreach (var (weapon, damage) in values)
         {
