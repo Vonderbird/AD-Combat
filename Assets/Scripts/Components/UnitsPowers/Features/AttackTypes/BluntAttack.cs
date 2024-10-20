@@ -1,8 +1,8 @@
 namespace ADC
 {
-    public class Biological: WeaponType
+    public class BluntAttack : WeaponType
     {
-        public Biological(WeaponTypeInitArgs initArgs) : base(initArgs)
+        public BluntAttack(WeaponTypeInitArgs initArgs) : base(initArgs)
         {
         }
 
