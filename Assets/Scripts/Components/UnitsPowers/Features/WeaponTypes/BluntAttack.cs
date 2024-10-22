@@ -1,14 +1,18 @@
 namespace ADC
 {
-    public class Plasma: WeaponType
+    public class BluntAttack : Weapon
     {
-        public Plasma(WeaponTypeInitArgs initArgs) : base(initArgs)
+        public BluntAttack(WeaponInitArgs initArgs) : base(initArgs)
         {
         }
 
         public override void Attack()
         {
+
             throw new System.NotImplementedException();
         }
+
+        public override int Damage { get; set; }
+
     }
 }

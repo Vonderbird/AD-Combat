@@ -1,16 +1,16 @@
 namespace ADC
 {
-    public class Kinetic : WeaponType
+    public class ExplosiveRounds : Weapon
     {
-        public Kinetic(WeaponTypeInitArgs initArgs) : base(initArgs)
+        public ExplosiveRounds(WeaponInitArgs initArgs) : base(initArgs)
         {
         }
 
         public override void Attack()
         {
-
             throw new System.NotImplementedException();
         }
 
+        public override int Damage { get; set; }
     }
 }

@@ -124,8 +124,8 @@ namespace ADC
                 }
             }
         }
-        private readonly Type armorType = typeof(ArmorType);
-        private readonly Type weaponType = typeof(WeaponType);
+        private readonly Type armorType = typeof(Shield);
+        private readonly Type weaponType = typeof(Weapon);
         public float this[Type armor, Type weapon]
         {
             get

@@ -1,16 +1,16 @@
 namespace ADC
 {
-    public class BluntAttack : WeaponType
+    public class Sharpened: Weapon
     {
-        public BluntAttack(WeaponTypeInitArgs initArgs) : base(initArgs)
+        public Sharpened(WeaponInitArgs initArgs) : base(initArgs)
         {
         }
 
         public override void Attack()
         {
-
             throw new System.NotImplementedException();
         }
 
+        public override int Damage { get; set; }
     }
 }

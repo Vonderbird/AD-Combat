@@ -1,13 +1,15 @@
 namespace ADC
 {
-    public class ScaledPlate : ArmorType
+    public class ScaledPlate : Shield
     {
         public override void Defend()
         {
             throw new System.NotImplementedException();
         }
 
-        public ScaledPlate(ArmorTypeInitArgs args) : base(args)
+        public override int Armor { get; }
+
+        public ScaledPlate(ShieldInitArgs args) : base(args)
         {
         }
     }

@@ -1,13 +1,15 @@
 namespace ADC
 {
-    public class LightTacticalAssault : ArmorType
+    public class LightTacticalAssault : Shield
     {
         public override void Defend()
         {
             throw new System.NotImplementedException();
         }
 
-        public LightTacticalAssault(ArmorTypeInitArgs args) : base(args)
+        public override int Armor { get; }
+
+        public LightTacticalAssault(ShieldInitArgs args) : base(args)
         {
         }
     }

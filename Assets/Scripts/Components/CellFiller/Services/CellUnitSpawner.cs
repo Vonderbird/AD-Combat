@@ -43,7 +43,14 @@ namespace ADC.UnitCreation
 
         private void OnDisable()
         {
-            EconomySystem.Instance.StartWave.RemoveListener(OnStartWave);
+            try
+            {
+                EconomySystem.Instance.StartWave.RemoveListener(OnStartWave);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[CellUnitSpawner] {e.Message}");
+            }
         }
 
         private void OnStartWave()

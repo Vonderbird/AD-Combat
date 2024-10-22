@@ -1,13 +1,15 @@
 namespace ADC
 {
-    public class HeavyPlate : ArmorType
+    public class CarbonCompound : Shield
     {
         public override void Defend()
         {
             throw new System.NotImplementedException();
         }
 
-        public HeavyPlate(ArmorTypeInitArgs args) : base(args)
+        public override int Armor { get; }
+
+        public CarbonCompound(ShieldInitArgs args) : base(args)
         {
         }
     }
