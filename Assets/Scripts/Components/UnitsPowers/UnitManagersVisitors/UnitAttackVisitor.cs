@@ -5,6 +5,7 @@ namespace ADC
         public void Visit(SkyForger skyForger)
         {
             skyForger.Weapon.Attack();
+            //skyForger.specialAbilities.ForEach(c => c.Play());
         }
         public void Visit(TkArty tkArty)
         {

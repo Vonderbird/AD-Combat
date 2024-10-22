@@ -46,7 +46,7 @@ namespace ADC
                                 DontDestroyOnLoad(singletonObject);
 
                             Debug.Log($"[Singleton] An instance of '{typeof(T)}' was created " +
-                                      (_instance.DestroyOnLoad ? "without" : "with") + " DontDestroyOnLoad.");
+                                      (_instance.DestroyOnLoad ? "without" : "with") + " Dont DestroyOnLoad.");
                         }
                     }
 

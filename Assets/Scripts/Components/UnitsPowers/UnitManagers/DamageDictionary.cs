@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ADC
 {
+
     public class DamageDictionary
     {
         private const string jsonValues = @"{""Organic"":
@@ -62,6 +63,7 @@ namespace ADC
             ""Biological"": ""50%""
           }
         }";
+
         Dictionary<Type, Dictionary<Type, float>> basevalues = new Dictionary<Type, Dictionary<Type, float>>()
         {
             {typeof(Organic), new () {
@@ -108,48 +110,101 @@ namespace ADC
                 { typeof(Biological), 0.5f }}},
         };
 
-private readonly Dictionary<(Type, Type), float> valuesDict;
+        private readonly Dictionary<(Type, Type), float> valuesDict;
 
-public DamageDictionary()
-{
-    //var baseValues = JsonUtility.FromJson<Dictionary<Type, Dictionary<Type, float>>>(jsonValues);
-    valuesDict = new();
-    foreach (var (armor, values) in basevalues)
+        public DamageDictionary()
+        {
+            //var baseValues = JsonUtility.FromJson<Dictionary<Type, Dictionary<Type, float>>>(jsonValues);
+            valuesDict = new();
+            foreach (var (armor, values) in basevalues)
+            {
+                foreach (var (weapon, damage) in values)
+                {
+                    valuesDict.Add((armor, weapon), damage);
+                }
+            }
+        }
+        private readonly Type armorType = typeof(ArmorType);
+        private readonly Type weaponType = typeof(WeaponType);
+        public float this[Type armor, Type weapon]
+        {
+            get
+            {
+                if (!armor.IsSubclassOf(armorType))
+                {
+                    Debug.LogError($"[DamageDictionary] {armor.Name} is not subclass of {armorType.Name}.");
+                    return 0.0f;
+                }
+
+                if (!weapon.IsSubclassOf(weaponType))
+                {
+                    Debug.LogError($"[DamageDictionary] {weapon.Name} is not subclass of {weaponType.Name}.");
+                    return 0.0f;
+                }
+
+                if (valuesDict.TryGetValue((armorType, weaponType), out var value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Debug.LogError($"[DamageDictionary] The damage value for {armor.Name} and {weapon.Name} is not defined.");
+                    return 0.0f;
+                }
+            }
+        }
+    }
+
+    public interface IWeaponArmorParams { }
+    public class BluntAttackParams : IWeaponArmorParams { }
+    public class KineticParams : IWeaponArmorParams { }
+    public class PlasmaParams : IWeaponArmorParams { }
+    public class ExplosiveRoundsParams : IWeaponArmorParams { }
+    public class IncendiaryParams : IWeaponArmorParams { }
+    public class BiologicalParams : IWeaponArmorParams { }
+
+
+    public interface IArmorWeaponParams
     {
-        foreach (var (weapon, damage) in values)
-        {
-            valuesDict.Add((armor, weapon), damage);
-        }
+        void GetParam(BluntAttackParams args);
+        void GetParam(KineticParams args);
+        void GetParam(PlasmaParams args);
+        void GetParam(ExplosiveRoundsParams args);
+        void GetParam(IncendiaryParams args);
+        void GetParam(BiologicalParams args);
     }
-}
-private readonly Type armorType = typeof(ArmorType);
-private readonly Type weaponType = typeof(WeaponType);
-public float this[Type armor, Type weapon]
-{
-    get
+
+    public class OrganicParams : IArmorWeaponParams
     {
-        if (!armor.IsSubclassOf(armorType))
+        public void GetParam(BluntAttackParams args)
         {
-            Debug.LogError($"[DamageDictionary] {armor.Name} is not subclass of {armorType.Name}.");
-            return 0.0f;
+            throw new NotImplementedException();
         }
 
-        if (!weapon.IsSubclassOf(weaponType))
+        public void GetParam(KineticParams args)
         {
-            Debug.LogError($"[DamageDictionary] {weapon.Name} is not subclass of {weaponType.Name}.");
-            return 0.0f;
+            throw new NotImplementedException();
         }
 
-        if (valuesDict.TryGetValue((armorType, weaponType), out var value))
+        public void GetParam(PlasmaParams args)
         {
-            return value;
+            throw new NotImplementedException();
         }
-        else
+
+        public void GetParam(ExplosiveRoundsParams args)
         {
-            Debug.LogError($"[DamageDictionary] The damage value for {armor.Name} and {weapon.Name} is not defined.");
-            return 0.0f;
+            throw new NotImplementedException();
+        }
+
+        public void GetParam(IncendiaryParams args)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetParam(BiologicalParams args)
+        {
+            throw new NotImplementedException();
         }
     }
-}
-    }
+
 }
