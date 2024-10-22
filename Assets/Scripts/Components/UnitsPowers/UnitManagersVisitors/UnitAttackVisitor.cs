@@ -15,5 +15,10 @@ namespace ADC
         {
             adamnt.Weapon.Attack();
         }
+
+        public void Visit(Naloxian naloxian)
+        {
+            naloxian.Weapon.Attack();
+        }
     }
 }

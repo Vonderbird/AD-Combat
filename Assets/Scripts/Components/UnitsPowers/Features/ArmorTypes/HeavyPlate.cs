@@ -1,13 +1,15 @@
 namespace ADC
 {
-    public class Nano : ArmorType
+    public class HeavyPlate : Shield
     {
         public override void Defend()
         {
             throw new System.NotImplementedException();
         }
 
-        public Nano(ArmorTypeInitArgs args) : base(args)
+        public override int Armor { get; }
+
+        public HeavyPlate(ShieldInitArgs args) : base(args)
         {
         }
     }

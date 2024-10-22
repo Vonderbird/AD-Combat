@@ -1,13 +1,15 @@
 namespace ADC
 {
-    public class CarbonCompound : ArmorType
+    public class Organic : Shield
     {
         public override void Defend()
         {
             throw new System.NotImplementedException();
         }
 
-        public CarbonCompound(ArmorTypeInitArgs args) : base(args)
+        public override int Armor { get; }
+
+        public Organic(ShieldInitArgs args) : base(args)
         {
         }
     }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace ADC
 {
-    public class TkArty : AttackManager
+    public class TkArty : UnitBattleManager
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; } = new()
         {

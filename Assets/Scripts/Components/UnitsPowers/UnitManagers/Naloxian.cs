@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class Adamnt : UnitBattleManager
+    public class Naloxian : UnitBattleManager
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; } = new()
         {

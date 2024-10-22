@@ -1,15 +1,17 @@
 namespace ADC
 {
-    public class Sharpened: WeaponType
+    public class Biological: Weapon
     {
-        public Sharpened(WeaponTypeInitArgs initArgs) : base(initArgs)
+        public Biological(WeaponInitArgs initArgs) : base(initArgs)
         {
         }
 
         public override void Attack()
         {
+
             throw new System.NotImplementedException();
         }
 
+        public override int Damage { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 namespace ADC
 {
-    public class Incendiary : WeaponType
+    public class Plasma: Weapon
     {
-        public Incendiary(WeaponTypeInitArgs initArgs) : base(initArgs)
+        public Plasma(WeaponInitArgs initArgs) : base(initArgs)
         {
         }
 
@@ -10,5 +10,8 @@ namespace ADC
         {
             throw new System.NotImplementedException();
         }
+
+        public override int Damage { get; set; }
+
     }
 }

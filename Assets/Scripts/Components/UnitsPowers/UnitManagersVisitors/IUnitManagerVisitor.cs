@@ -5,5 +5,6 @@ namespace ADC
         void Visit(SkyForger skyForger);
         void Visit(TkArty tkArty);
         void Visit(Adamnt adamnt);
+        void Visit(Naloxian naloxian);
     }
 }

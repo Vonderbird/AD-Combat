@@ -6,9 +6,10 @@ namespace ADC
     [Serializable]
     public struct UnitSpecs
     {
-        [SerializeField] public float Armor;
-        [SerializeField] public float HealthPoint;
-        [SerializeField] public float ManaPoint;
-        [SerializeField] public float Damage;
+        public int Armor;
+        public int HealthPoint;
+        public int ManaPoint;
+        public int UnitDamage;
+        public int BuildingDamage;
     }
 }
