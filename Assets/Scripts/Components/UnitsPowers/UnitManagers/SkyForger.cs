@@ -5,6 +5,7 @@ namespace ADC
     public class SkyForger : AttackManager
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; }
+        
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {

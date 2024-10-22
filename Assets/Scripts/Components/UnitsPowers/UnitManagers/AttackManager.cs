@@ -28,7 +28,7 @@ namespace ADC
 
         public AttackManager Target { get; private set; }
 
-        public UnitExperience xp;
+        public UnitExperience XP { get; private set; }
         public UnitEquipments equipments;
 
         protected void Awake()
@@ -60,6 +60,7 @@ namespace ADC
 
 
             // Unit Hit by Who for specifying attack and defence type
+            unitAttack.TargetUpdated += OnAttackUpdated;
             Debug.Log(unitAttack.Target.instance == null ? "is null" : unitAttack.Target.instance.Name);
             unitHealth.AddDamageOverTime(
                 new DamageOverTimeData { cycleDuration = 3, cycles = 10, infinite = false }
@@ -78,6 +79,7 @@ namespace ADC
         }
 
 
+
         private void OnEnable()
         {
 
@@ -87,11 +89,6 @@ namespace ADC
         {
 
         }
-
-        //private void Update()
-        //{
-        //}
-
 
         private void CooldownUpdated(IAttackComponent sender, EventArgs args)
         {
@@ -118,23 +115,35 @@ namespace ADC
         }
         public void CalculateSpecs()
         {
-            //defencePower = xp.Level * equipments.Power * 0.2f;
+            //defencePower = XP.Level * equipments.Power * 0.2f;
         }
 
         public abstract void Accept(IUnitManagerVisitor managerVisitor);
 
         public void OnAttackChanged()
         {
-            var unitAttackData = unitAttack.Damage.Data;
-            unitAttackData.unit = 13;
-            unitAttackData.building = 13;
-            //unitAttack.Damage.Data = unitAttackData;
 
         }
 
         public void OnDefenceChanged()
         {
 
+        }
+
+        private void OnAttackUpdated(IEntityTargetComponent sender, TargetDataEventArgs args)
+        {
+            var target = args.Data.instance;
+            if (target is IUnit u)
+            {
+                Target = u.GetComponent<AttackManager>();
+
+
+                var unitAttackData = unitAttack.Damage.Data;
+                
+
+                unitAttackData.unit = 13;
+                unitAttackData.building = 13;
+            }
         }
 
         // Call after transaction! or Inventory Equipment! or ...
