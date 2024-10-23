@@ -14,9 +14,9 @@ namespace ADC
 
         public void Visit(SkyForger skyForger)
         {
-            var armor = skyForger.Shield;
-            var defence = skyForger.Weapon;
-            var targetWeapon = skyForger.Target.Weapon;
+            //var armor = skyForger.Shield;
+            //var defence = skyForger.Weapon;
+            //var targetWeapon = skyForger.Target.Weapon;
             throw new System.NotImplementedException();
         }
 
