@@ -1,7 +1,17 @@
+using System;
 using RTSEngine.EntityComponent;
 
 namespace ADC
 {
+    public struct EquipmentEventArgs
+    {
+        public EquipmentEventArgs(IEquipment equipment)
+        {
+            Equipment = equipment;
+        }
+
+        public IEquipment Equipment { get; set; }
+    }
     public class WeaponEventArgs
     {
         public Weapon Weapon { get; set; }

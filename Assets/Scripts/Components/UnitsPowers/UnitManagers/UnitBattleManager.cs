@@ -13,10 +13,11 @@ namespace ADC
     public abstract class UnitBattleManager : MonoBehaviour
     {
         [SerializeField] protected UnitSpecs baseSpecs;
-        protected UnitSpecs currentSpecs;
         protected IUnit unit { private set; get; }
 
-        public EquipmentManager EquipmentManager { get; private set; }
+        private EquipmentManager EquipmentManager;
+        private UnitSpecsManager UnitSpecs;
+        private IUnitSpecsCalculator unitSpecsCalculator;
 
         protected abstract List<ISpecialAbility> specialAbilities { get; set; }
 
@@ -29,24 +30,26 @@ namespace ADC
         public UnitExperience XP { get; private set; }
         public UnitEquipments equipments;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             unit = GetComponent<Unit>();
             unitAttack = GetComponentInChildren<UnitAttack>();
             unitHealth = GetComponent<UnitHealth>();
-            EquipmentManager = new EquipmentManager(unitAttack, unitHealth);
-            currentSpecs = baseSpecs; // with updates and load from saved data
+            var thirdParty = new RtsEngineInteractionManager(unitAttack, unitHealth, unit);
+            UnitSpecs = new UnitSpecsManager(thirdParty);
+            EquipmentManager = new EquipmentManager();
         }
 
         private void Start()
         {
+            UnitSpecs.UpdateSpecs(baseSpecs);
             //// Unit UnitDamage Info and how to update it
-            unitAttack.Damage.UpdateDamage(new DamageData()
-            {
-                building = currentSpecs.BuildingDamage,
-                unit = currentSpecs.UnitDamage,
-                custom = Array.Empty<CustomDamageData>()
-            });
+            //unitAttack.Damage.UpdateDamage(new DamageData()
+            //{
+            //    building = currentSpecs.BuildingDamage,
+            //    unit = currentSpecs.UnitDamage,
+            //    custom = Array.Empty<CustomDamageData>()
+            //});
             //// Unit Health Info and how to update it
             //unitHealth.SetMax(new RTSEngine.Event.HealthUpdateArgs(1000, unit));
             //unitHealth.SetMaxLocal(new RTSEngine.Event.HealthUpdateArgs(1000, unit));
@@ -86,12 +89,27 @@ namespace ADC
 
         private void OnEnable()
         {
-
+            EquipmentManager.EquipmentAdded += OnEquipmentAdded;
+            EquipmentManager.EquipmentRemoved += OnEquipmentRemoved;
         }
 
         private void OnDisable()
         {
+            EquipmentManager.EquipmentAdded -= OnEquipmentAdded;
+            EquipmentManager.EquipmentRemoved -= OnEquipmentRemoved;
+        }
 
+
+
+        private void OnEquipmentAdded(object sender, EquipmentEventArgs e)
+        {
+            var unitSpecs = unitSpecsCalculator.CalculateAll();
+            UnitSpecs.UpdateSpecs(unitSpecs);
+
+        }
+        private void OnEquipmentRemoved(object sender, EquipmentEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 

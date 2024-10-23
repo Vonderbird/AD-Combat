@@ -1,25 +1,10 @@
 using System;
 using System.Collections.Generic;
-using RTSEngine.Attack;
-using RTSEngine.Entities;
-using RTSEngine.EntityComponent;
-using RTSEngine.Event;
-using RTSEngine.Health;
 
 namespace ADC
 {
     public class EquipmentManager
     {
-        private readonly UnitAttack unitAttack;
-        private readonly UnitHealth unitHealth;
-        private readonly IUnit unit;
-
-        public EquipmentManager(UnitAttack unitAttack, UnitHealth unitHealth)
-        {
-            this.unitAttack = unitAttack;
-            this.unitHealth = unitHealth;
-            unit = unitHealth.Unit;
-        }
         public Shield Shield { get; private set; }
         public Weapon Weapon { get; private set; }
 
@@ -27,8 +12,6 @@ namespace ADC
         private HashSet<IAttackEquipment> attackEquipments;
 
         // Call after transaction! or Inventory Equipment! or ...
-
-       
 
         public void SetWeapon(Weapon weapon)
         {
@@ -54,28 +37,39 @@ namespace ADC
 
         private void AddEquipment(IEquipment equipment)
         {
+            var isAdded = false;
             if (equipment is IProtectorEquipment p)
             {
                 protectiveEquipments.Add(p);
+                isAdded = true;
             }
 
             if (equipment is IAttackEquipment a)
             {
                 attackEquipments.Add(a);
+                isAdded = true;
             }
+
+            if (isAdded)
+                EquipmentAdded?.Invoke(this, new EquipmentEventArgs(equipment));
         }
 
         private void RemoveEquipment(IEquipment equipment)
         {
+            var isRemoved = false;
             if (equipment is IProtectorEquipment p)
             {
                 protectiveEquipments.Remove(p);
+                isRemoved = true;
             }
 
             if (equipment is IAttackEquipment a)
             {
                 attackEquipments.Remove(a);
+                isRemoved = true;
             }
+            if(isRemoved)
+                EquipmentRemoved?.Invoke(this, new EquipmentEventArgs(equipment));
         }
 
         // Call after transaction! or Inventory Equipment! or ...
@@ -90,21 +84,9 @@ namespace ADC
             // Modify RTS-Engine damage, health etc.
         }
 
-        public void SetUnitArmor(IProtectorEquipment value)
-        {
 
-        }
-
-        public void SetUnitMaxHealth(IHitPointEquipment value)
-        {
-
-        }
-
-        public void SetUnitDamage(IAttackEquipment value)
-        {
-            unitAttack.Damage.UpdateDamage(new DamageData() { building = 1000, unit = 1000 });
-        }
-
+        public event EventHandler<EquipmentEventArgs> EquipmentRemoved;
+        public event EventHandler<EquipmentEventArgs> EquipmentAdded;
 
         private readonly WeaponEventArgs weaponEventArgs = new();
         public event EventHandler<WeaponEventArgs> WeaponChanged;
