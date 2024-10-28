@@ -1,4 +1,6 @@
 
+using System;
+
 namespace ADC
 {
     public class Level
@@ -14,5 +16,7 @@ namespace ADC
     public class UnitExperience
     {
         public Level Level { get; private set; }
+
+        public event EventHandler<Level> LevelChanged;
     }
 }

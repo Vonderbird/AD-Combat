@@ -7,7 +7,16 @@ namespace ADC
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; } = new()
         {
+            new AdvancingThePathway(),
+            new FlameWalker(),
+            new Tempest()
         };
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {
