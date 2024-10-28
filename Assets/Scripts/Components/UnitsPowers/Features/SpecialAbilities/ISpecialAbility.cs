@@ -1,57 +1,95 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ADC
 {
     public interface ISpecialAbility
     {
+        Level Level { get; }
         event EventHandler UnLocked;
         void Use();
         void OnLevelChanged(object sender, Level e);
     }
 
-    public class AdvancingThePathway : ISpecialAbility
+    public abstract class SpecialAbilityBase : ISpecialAbility
     {
+        public Level Level { get; protected set; }
         public event EventHandler UnLocked;
 
-        public void Use()
+        protected bool isUnlocked;
+
+        public virtual void Unlock()
         {
-            throw new System.NotImplementedException();
+            isUnlocked = true;
+            UnLocked?.Invoke(this, EventArgs.Empty);
         }
 
-        public void OnLevelChanged(object sender, Level e)
+        public abstract void Use();
+        public abstract void OnLevelChanged(object sender, Level e);
+
+    }
+
+
+    public class AdvancingThePathway : SpecialAbilityBase
+    {
+        public override void Use()
         {
-            throw new NotImplementedException();
+            if (!isUnlocked)
+            {
+                Debug.LogError("Ability is not unlocked.");
+                return;
+            }
+
+            // Implement specific logic for using Advancing The Pathway
+            Debug.Log("Using Advancing The Pathway!");
+        }
+
+        public override void OnLevelChanged(object sender, Level e)
+        {
+            // Implement logic for level changes specific to Advancing The Pathway
+            Debug.Log($"Advancing The Pathway leveled up to level {e.Value}!");
+        }
+
+    }
+
+    public class Tempest : SpecialAbilityBase
+    {
+        public override void Use()
+        {
+            if (!isUnlocked)
+            {
+                Debug.LogError("Ability is not unlocked.");
+                return;
+            }
+
+            // Implement specific logic for using Tempest
+            Debug.Log("Using Tempest!");
+        }
+
+        public override void OnLevelChanged(object sender, Level e)
+        {
+            // Implement logic for level changes specific to Tempest
+            Debug.Log($"Tempest leveled up to level {e.Value}!");
         }
     }
-    public class Tempest : ISpecialAbility
+    public class FlameWalker : SpecialAbilityBase
     {
-        public event EventHandler UnLocked;
-
-        public void Use()
+        public override void Use()
         {
-            throw new System.NotImplementedException();
+            if (!isUnlocked)
+            {
+                Debug.LogError("Ability is not unlocked.");
+                return;
+            }
+
+            // Implement specific logic for using Tempest
+            Debug.Log("Using Tempest!");
         }
 
-        public void OnLevelChanged(object sender, Level e)
+        public override void OnLevelChanged(object sender, Level e)
         {
-            throw new NotImplementedException();
-        }
-    }
-    public class FlameWalker : ISpecialAbility
-    {
-        public event EventHandler UnLocked;
-
-        public void Use()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnLevelChanged(object sender, Level e)
-        {
-            throw new NotImplementedException();
+            // Implement logic for level changes specific to Tempest
+            Debug.Log($"Tempest leveled up to level {e.Value}!");
         }
     }
 }

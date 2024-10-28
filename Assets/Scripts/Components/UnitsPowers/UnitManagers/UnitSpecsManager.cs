@@ -39,6 +39,17 @@ namespace ADC
             CurrentSpecs.Update(additiveSpecs + BaseSpecs);
         }
 
+
+        public void ApplyBuff<T>(T buffAmount, float duration) where T : IUnitFeature<int, T>
+        {
+            Debug.LogError("Not Implemented");
+        }
+
+        public void Heal(int value)
+        {
+            Debug.LogError("Not Implemented");
+        }
+
         private void OnChanged(object sender, Armor e)
         {
             thirdPartyManager.SetUnitArmor(e.Value);
