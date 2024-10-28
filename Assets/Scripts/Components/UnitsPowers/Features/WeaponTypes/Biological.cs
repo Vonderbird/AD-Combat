@@ -19,10 +19,6 @@ namespace ADC
             set => buildingDamage = value;
         }
 
-        public Biological(WeaponInitArgs initArgs) : base(initArgs)
-        {
-        }
-
         public override void Attack()
         {
 

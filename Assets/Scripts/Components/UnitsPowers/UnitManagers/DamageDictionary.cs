@@ -90,7 +90,7 @@ namespace ADC
                     return 0.0f;
                 }
 
-                if (valuesDict.TryGetValue((shieldType, weaponType), out var value))
+                if (valuesDict.TryGetValue((shield, weapon), out var value))
                 {
                     return value;
                 }
@@ -102,57 +102,4 @@ namespace ADC
             }
         }
     }
-
-    public interface IWeaponArmorParams { }
-    public class BluntAttackParams : IWeaponArmorParams { }
-    public class KineticParams : IWeaponArmorParams { }
-    public class PlasmaParams : IWeaponArmorParams { }
-    public class ExplosiveRoundsParams : IWeaponArmorParams { }
-    public class IncendiaryParams : IWeaponArmorParams { }
-    public class BiologicalParams : IWeaponArmorParams { }
-
-
-    public interface IArmorWeaponParams
-    {
-        void GetParam(BluntAttackParams args);
-        void GetParam(KineticParams args);
-        void GetParam(PlasmaParams args);
-        void GetParam(ExplosiveRoundsParams args);
-        void GetParam(IncendiaryParams args);
-        void GetParam(BiologicalParams args);
-    }
-
-    public class OrganicParams : IArmorWeaponParams
-    {
-        public void GetParam(BluntAttackParams args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetParam(KineticParams args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetParam(PlasmaParams args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetParam(ExplosiveRoundsParams args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetParam(IncendiaryParams args)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetParam(BiologicalParams args)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
 }
