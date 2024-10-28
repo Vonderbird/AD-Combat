@@ -1,5 +1,6 @@
 using System;
 using RTSEngine.EntityComponent;
+using UnityEngine;
 
 namespace ADC
 {
@@ -21,15 +22,27 @@ namespace ADC
         public UnitAttack UnitAttack { get; set; }
     }
 
-    public abstract class Weapon : IEquipment, IAttackEquipment
+    public abstract class Weapon : MonoBehaviour, IEquipment<Weapon>, IAttackEquipment
     {
         protected readonly WeaponInitArgs InitArgs;
+
+
+        public float Power { get; private set; } // ?
+        public float Defence { get; private set; } // ?
+        public float Level { get; private set; } // ?
+        public float Health { get; private set; } // ?
 
         protected Weapon(WeaponInitArgs initArgs)
         {
             InitArgs = initArgs;
         }
         public abstract void Attack();
-        public abstract int Damage { get; set; }
+        public abstract int UnitDamage { get; set; }
+        public abstract int BuildingDamage { get; set; }
+
+        public void Modify(Weapon equipment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
