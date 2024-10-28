@@ -5,7 +5,12 @@ namespace ADC
     public class SkyForger : UnitBattleManager
     {
         protected override List<ISpecialAbility> specialAbilities { get; set; }
-        
+
+
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {

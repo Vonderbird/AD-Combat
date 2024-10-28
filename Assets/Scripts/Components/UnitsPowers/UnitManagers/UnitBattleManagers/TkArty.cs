@@ -10,6 +10,11 @@ namespace ADC
             new FlameWalker()
         };
 
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {
             managerVisitor.Visit(this);

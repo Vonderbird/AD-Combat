@@ -154,6 +154,17 @@ namespace ADC
             activeAbilityId = id;
         }
 
+        public virtual void OnUseAbility()
+        {
+            ActiveAbility?.Use();
+        }
+
+        public virtual void OnUseAbility(int id)
+        {
+            if(specialAbilities==null ||  specialAbilities.Count<id+1) return;
+            specialAbilities[id].Use();
+        }
+
         #region Unused methods
         public void OnWeaponChanged()
         {
