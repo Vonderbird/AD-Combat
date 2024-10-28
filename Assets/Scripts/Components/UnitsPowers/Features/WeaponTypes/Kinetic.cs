@@ -18,9 +18,6 @@ namespace ADC
             get => buildingDamage;
             set => buildingDamage = value;
         }
-        public Kinetic(WeaponInitArgs initArgs) : base(initArgs)
-        {
-        }
 
         public override void Attack()
         {

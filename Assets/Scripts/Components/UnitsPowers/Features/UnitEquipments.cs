@@ -28,5 +28,20 @@ namespace ADC
         {
             this.weapon = weapon;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is UnitEquipments other)
+            {
+                return Equals(shield, other.shield) && Equals(weapon, other.weapon);
+            }
+            return false;
+        }
+
+
+        public override int GetHashCode()
+        {
+            return (shield?.GetHashCode() ?? 0) ^ (weapon?.GetHashCode() ?? 0);
+        }
     }
 }

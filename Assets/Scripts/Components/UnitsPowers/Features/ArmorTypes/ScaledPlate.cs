@@ -4,15 +4,44 @@ namespace ADC
 {
     public class ScaledPlate : Shield
     {
-        [SerializeField] private int armor;
-        public override int Armor => armor;
         public override void Defend()
         {
             throw new System.NotImplementedException();
         }
 
-        public ScaledPlate(ShieldInitArgs args) : base(args)
+        public override void Defend(Biological weapon)
         {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Defend(BluntAttack weapon)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Defend(ExplosiveRounds weapon)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Defend(Incendiary weapon)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Defend(Kinetic weapon)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Defend(Plasma weapon)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Defend(Sharpened weapon)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

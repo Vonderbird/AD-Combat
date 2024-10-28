@@ -24,7 +24,7 @@ namespace ADC
 
     public abstract class Weapon : MonoBehaviour, IEquipment<Weapon>, IAttackEquipment
     {
-        protected readonly WeaponInitArgs InitArgs;
+        protected WeaponInitArgs InitArgs;
 
 
         public float Power { get; private set; } // ?
@@ -32,7 +32,7 @@ namespace ADC
         public float Level { get; private set; } // ?
         public float Health { get; private set; } // ?
 
-        protected Weapon(WeaponInitArgs initArgs)
+        public void Init(WeaponInitArgs initArgs)
         {
             InitArgs = initArgs;
         }

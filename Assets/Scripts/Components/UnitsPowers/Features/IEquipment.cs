@@ -12,6 +12,17 @@ namespace ADC
         int BuildingDamage { get; }
 
     }
-    public interface IProtectorEquipment { int Armor { get; } }
+    public interface IProtectorEquipment
+    {
+        int Armor { get; }
+        void Defend();
+        void Defend(Biological weapon);
+        void Defend(BluntAttack weapon);
+        void Defend(ExplosiveRounds weapon);
+        void Defend(Incendiary weapon);
+        void Defend(Kinetic weapon);
+        void Defend(Plasma weapon);
+        void Defend(Sharpened weapon);
+    }
     public interface IHitPointEquipment { int HitPoint { get; } }
 }
