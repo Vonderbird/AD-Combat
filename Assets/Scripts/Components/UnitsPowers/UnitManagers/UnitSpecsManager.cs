@@ -6,24 +6,37 @@ namespace ADC
 {
     public class UnitSpecsManager
     {
+        protected UnitSpecs baseSpecs;
         protected UnitSpecs currentSpecs;
+        protected UnitSpecs additiveSpecs;
         private IThirdPartyInteractionManager thirdPartyManager;
+
+        public UnitSpecs BaseSpecs => baseSpecs;
+        public UnitSpecs CurrentSpecs => currentSpecs;
 
         public UnitSpecsManager(IThirdPartyInteractionManager thirdPartyManager)
         {
             Debug.Log("Begin Unit Specs Manager");
             this.thirdPartyManager = thirdPartyManager;
 
-            currentSpecs.Armor.Changed += OnChanged;
-            currentSpecs.HealthPoint.Changed += OnChanged;
-            currentSpecs.BuildingDamage.Changed += OnChanged;
-            currentSpecs.UnitDamage.Changed += OnChanged;
-            currentSpecs.ManaPoint.Changed += OnChanged;
+            CurrentSpecs.Armor.Changed += OnChanged;
+            CurrentSpecs.HealthPoint.Changed += OnChanged;
+            CurrentSpecs.BuildingDamage.Changed += OnChanged;
+            CurrentSpecs.UnitDamage.Changed += OnChanged;
+            CurrentSpecs.ManaPoint.Changed += OnChanged;
         }
 
-        public void UpdateSpecs(UnitSpecs unitSpecs)
+
+        public void UpdateBaseSpecs(UnitSpecs baseSpecs)
         {
-            currentSpecs.Update(unitSpecs);
+            this.BaseSpecs.Update(baseSpecs);
+            CurrentSpecs.Update(additiveSpecs + baseSpecs);
+        }
+
+        public void UpdateAdditiveSpecs(UnitSpecs additiveSpecs)
+        {
+            this.additiveSpecs.Update(additiveSpecs);
+            CurrentSpecs.Update(additiveSpecs + BaseSpecs);
         }
 
         private void OnChanged(object sender, Armor e)

@@ -6,43 +6,64 @@ using RTSEngine.EntityComponent;
 using RTSEngine.Event;
 using RTSEngine.Health;
 using UnityEngine;
+using Object = System.Object;
 
 namespace ADC
 {
     [RequireComponent(typeof(IUnit))]
     public abstract class UnitBattleManager : MonoBehaviour
     {
-        [SerializeField] protected UnitSpecs baseSpecs;
-        protected IUnit unit { private set; get; }
+        [SerializeField] protected UnitSpecs levelZeroSpecs;
 
-        private EquipmentManager EquipmentManager;
-        private UnitSpecsManager UnitSpecs;
+        [SerializeField] protected UnitEquipments baseEquipments;
+        
+        protected IUnit unit { get; private set; }
+
+        public EquipmentManager EquipmentManager { get; private set; }
+        public UnitSpecsManager Specs { get; private set; }
         private IUnitSpecsCalculator unitSpecsCalculator;
 
         protected abstract List<ISpecialAbility> specialAbilities { get; set; }
+        protected int activeAbilityId = 0;
+        public ISpecialAbility ActiveAbility => 
+            specialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
 
-
-        protected UnitAttack unitAttack;
-        protected UnitHealth unitHealth;
+        private IThirdPartyInteractionManager thirdParty;
+        //protected UnitAttack unitAttack;
+        //protected UnitHealth unitHealth;
 
         public UnitBattleManager Target { get; private set; }
 
         public UnitExperience XP { get; private set; }
-        public UnitEquipments equipments;
 
         protected virtual void Awake()
         {
             unit = GetComponent<Unit>();
-            unitAttack = GetComponentInChildren<UnitAttack>();
-            unitHealth = GetComponent<UnitHealth>();
-            var thirdParty = new RtsEngineInteractionManager(unitAttack, unitHealth, unit);
-            UnitSpecs = new UnitSpecsManager(thirdParty);
+            var unitAttack = GetComponentInChildren<UnitAttack>();
+            var unitHealth = GetComponent<UnitHealth>();
+            thirdParty = new RtsEngineInteractionManager(unitAttack, unitHealth, unit);
+            Specs = new UnitSpecsManager(thirdParty);
             EquipmentManager = new EquipmentManager();
+
+            foreach (var specialAbility in specialAbilities)
+            {
+                XP.LevelChanged += specialAbility.OnLevelChanged;
+            }
         }
 
         private void Start()
         {
-            UnitSpecs.UpdateSpecs(baseSpecs);
+            unitSpecsCalculator = new UnitSpecsCalculator(this);
+
+            // 1. LoadData();
+            // 2. XP.Level for base spaces upgrade!
+            Specs.UpdateBaseSpecs(levelZeroSpecs);
+            EquipmentManager.UpdateEquipments(Specs.BaseSpecs, baseEquipments);
+            Specs.UpdateAdditiveSpecs(EquipmentManager.AddedSpecs);
+
+            thirdParty.TargetUpdated += OnTargetUpdated;
+
+            #region For Information
             //// Unit UnitDamage Info and how to update it
             //unitAttack.Damage.UpdateDamage(new DamageData()
             //{
@@ -67,7 +88,6 @@ namespace ADC
 
 
             //// Unit Hit by Who for specifying attack and defence type
-            unitAttack.TargetUpdated += OnTargetUpdated;
             //Debug.Log(unitAttack.Target.instance == null ? "is null" : unitAttack.Target.instance.Name);
             //unitHealth.AddDamageOverTime(
             //    new DamageOverTimeData { cycleDuration = 3, cycles = 10, infinite = false }
@@ -83,9 +103,10 @@ namespace ADC
             //// Unit Attack What for specifying attack and defence type
             ////unitAttack.TargetUpdated;
             //// 
+
+            #endregion
+
         }
-
-
 
         private void OnEnable()
         {
@@ -99,19 +120,55 @@ namespace ADC
             EquipmentManager.EquipmentRemoved -= OnEquipmentRemoved;
         }
 
-
-
         private void OnEquipmentAdded(object sender, EquipmentEventArgs e)
         {
             var unitSpecs = unitSpecsCalculator.CalculateAll();
-            UnitSpecs.UpdateSpecs(unitSpecs);
+            Specs.UpdateAdditiveSpecs(unitSpecs);
 
         }
+        
         private void OnEquipmentRemoved(object sender, EquipmentEventArgs e)
         {
-            throw new NotImplementedException();
+            var unitSpecs = unitSpecsCalculator.CalculateAll();
+            Specs.UpdateAdditiveSpecs(unitSpecs);
         }
 
+        public abstract void Accept(IUnitManagerVisitor managerVisitor);
+
+        private void OnTargetUpdated(Object sender, dynamic t)
+        {
+            if (t is IUnit u)
+            {
+                Target = u.GetComponent<UnitBattleManager>();
+                var (unitDmg, buildingDmg) = unitSpecsCalculator.CalculateDamage(Target);
+                thirdParty.SetDamage(unitDmg, buildingDmg);
+            }
+            else
+            {
+                thirdParty.SetDamage(Specs.CurrentSpecs.UnitDamage, Specs.CurrentSpecs.BuildingDamage);
+            }
+        }
+
+        public void OnSetActiveAbility(int id)
+        {
+            activeAbilityId = id;
+        }
+
+        #region Unused methods
+        public void OnWeaponChanged()
+        {
+
+        }
+
+        public void OnShieldChanged()
+        {
+
+        }
+
+        public void CalculateSpecs()
+        {
+            //defencePower = XP.Level * equipments.Power * 0.2f;
+        }
 
         private void CooldownUpdated(IAttackComponent sender, EventArgs args)
         {
@@ -136,37 +193,8 @@ namespace ADC
             Debug.LogError("Not Implemented");
             //throw new System.NotImplementedException();
         }
-        public void CalculateSpecs()
-        {
-            //defencePower = XP.Level * equipments.Power * 0.2f;
-        }
 
-        public abstract void Accept(IUnitManagerVisitor managerVisitor);
-
-        public void OnAttackChanged()
-        {
-
-        }
-
-        public void OnDefenceChanged()
-        {
-
-        }
-
-        private void OnTargetUpdated(IEntityTargetComponent sender, TargetDataEventArgs args)
-        {
-            Debug.Log($"target args: {args.Data.instance.Name}");
-            var target = args.Data.instance;
-            if (target is IUnit u)
-            {
-                Target = u.GetComponent<UnitBattleManager>();
-                Debug.Log($"target : {Target}");
-                unitAttack.Damage.UpdateDamage(new DamageData()
-                { building = 1000, unit = 1000, custom = Array.Empty<CustomDamageData>() });
-            }
-        }
-
-       
+        #endregion
     }
 
 }

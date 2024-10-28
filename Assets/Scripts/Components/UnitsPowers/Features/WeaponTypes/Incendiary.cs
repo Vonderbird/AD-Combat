@@ -1,7 +1,23 @@
+using UnityEngine;
+
 namespace ADC
 {
     public class Incendiary : Weapon
     {
+        [SerializeField] private int unitDamage;
+        [SerializeField] private int buildingDamage;
+
+        public override int UnitDamage
+        {
+            get => unitDamage;
+            set => unitDamage = value;
+        }
+
+        public override int BuildingDamage
+        {
+            get => buildingDamage;
+            set => buildingDamage = value;
+        }
         public Incendiary(WeaponInitArgs initArgs) : base(initArgs)
         {
         }
@@ -10,8 +26,6 @@ namespace ADC
         {
             throw new System.NotImplementedException();
         }
-
-        public override int Damage { get; set; }
 
     }
 }

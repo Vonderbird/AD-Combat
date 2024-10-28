@@ -1,24 +1,30 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using static Codice.Client.Common.Connection.AskCredentialsToUser;
 
 namespace ADC
 {
+    
+
     public class EquipmentManager
     {
-        public Shield Shield { get; private set; }
-        public Weapon Weapon { get; private set; }
+        public UnitEquipments Equipments { get; private set; }
 
-        private HashSet<IProtectorEquipment> protectiveEquipments;
-        private HashSet<IAttackEquipment> attackEquipments;
+        public HashSet<IProtectorEquipment> ProtectiveEquipments { get; } = new();
+        public HashSet<IAttackEquipment> AttackEquipments { get; } = new();
+
+        private UnitSpecs addedSpecs;
+        public UnitSpecs AddedSpecs => addedSpecs;
 
         // Call after transaction! or Inventory Equipment! or ...
 
         public void SetWeapon(Weapon weapon)
         {
-            if(Weapon!=null)
-                RemoveEquipment(Weapon);
-            Weapon = weapon;
-            AddEquipment(Weapon);
+            if(Equipments.Weapon != null)
+                RemoveEquipment(weapon);
+            Equipments.Update(weapon);
+            AddEquipment(weapon);
 
             weaponEventArgs.Weapon = weapon;
             WeaponChanged?.Invoke(this, weaponEventArgs);
@@ -35,19 +41,44 @@ namespace ADC
 
         }
 
+        public void SetShield(Shield shield)
+        {
+            if (Equipments.Shield != null)
+                RemoveEquipment(shield);
+            Equipments.Update(shield);
+            AddEquipment(shield);
+
+            shieldEventArgs.Shield = shield;
+            ArmorChanged?.Invoke(this, shieldEventArgs);
+
+            //SetUnitArmor();
+            // set RTS-Engine shield objects and settings
+            // Modify RTS-Engine damage, health etc.
+        }
+        
         private void AddEquipment(IEquipment equipment)
         {
             var isAdded = false;
             if (equipment is IProtectorEquipment p)
             {
-                protectiveEquipments.Add(p);
+                ProtectiveEquipments.Add(p);
                 isAdded = true;
             }
 
             if (equipment is IAttackEquipment a)
             {
-                attackEquipments.Add(a);
+                AttackEquipments.Add(a);
                 isAdded = true;
+            }
+            
+            switch (equipment)
+            {
+                case Weapon w:
+                    SetWeapon(w);
+                    break;
+                case Shield s:
+                    SetShield(s);
+                    break;
             }
 
             if (isAdded)
@@ -59,13 +90,13 @@ namespace ADC
             var isRemoved = false;
             if (equipment is IProtectorEquipment p)
             {
-                protectiveEquipments.Remove(p);
+                ProtectiveEquipments.Remove(p);
                 isRemoved = true;
             }
 
             if (equipment is IAttackEquipment a)
             {
-                attackEquipments.Remove(a);
+                AttackEquipments.Remove(a);
                 isRemoved = true;
             }
             if(isRemoved)
@@ -73,17 +104,12 @@ namespace ADC
         }
 
         // Call after transaction! or Inventory Equipment! or ...
-        public void SetShield(Shield shield)
+        
+        public void UpdateEquipments(UnitSpecs baseSpecs, UnitEquipments baseEquipments) // , UnitEquipments baseEquipments );
         {
-            Shield = shield;
-            shieldEventArgs.Shield = shield;
-            ArmorChanged?.Invoke(this, shieldEventArgs);
-
-            //SetUnitArmor();
-            // set RTS-Engine shield objects and settings
-            // Modify RTS-Engine damage, health etc.
+            Equipments.Update(baseEquipments);
+            // Calculate Added Specs
         }
-
 
         public event EventHandler<EquipmentEventArgs> EquipmentRemoved;
         public event EventHandler<EquipmentEventArgs> EquipmentAdded;
