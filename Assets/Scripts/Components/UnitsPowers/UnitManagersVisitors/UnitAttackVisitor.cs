@@ -2,10 +2,10 @@ namespace ADC
 {
     public class UnitAttackVisitor : IUnitManagerVisitor
     {
-        public void Visit(SkyForger skyForger)
+        public void Visit(SiegeBreaker siegeBreaker)
         {
-            //skyForger.Weapon.Attack();
-            //skyForger.specialAbilities.ForEach(c => c.Play());
+            //siegeBreaker.Weapon.Attack();
+            //siegeBreaker.specialAbilities.ForEach(c => c.Play());
         }
         public void Visit(TkArty tkArty)
         {

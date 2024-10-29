@@ -12,11 +12,11 @@ namespace ADC
             this.armorWeaponEffectTable = armorWeaponEffectTable;
         }
 
-        public void Visit(SkyForger skyForger)
+        public void Visit(SiegeBreaker siegeBreaker)
         {
-            //var armor = skyForger.Shield;
-            //var defence = skyForger.Weapon;
-            //var targetWeapon = skyForger.Target.Weapon;
+            //var armor = siegeBreaker.Shield;
+            //var defence = siegeBreaker.Weapon;
+            //var targetWeapon = siegeBreaker.Target.Weapon;
             throw new System.NotImplementedException();
         }
 

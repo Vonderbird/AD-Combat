@@ -12,10 +12,10 @@ namespace ADC
             this.healingAmount = healingAmount;
         }
 
-        public void Visit(SkyForger skyForger)
+        public void Visit(SiegeBreaker siegeBreaker)
         {
-            skyForger.Specs.Heal(healingAmount * 2);
-            Debug.Log($"Healed SkyForger by {healingAmount * 2} HP.");
+            siegeBreaker.Specs.Heal(healingAmount * 2);
+            Debug.Log($"Healed SiegeBreaker by {healingAmount * 2} HP.");
         }
 
         public void Visit(TkArty tkArty)

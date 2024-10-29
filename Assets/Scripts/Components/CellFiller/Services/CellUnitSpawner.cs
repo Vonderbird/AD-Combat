@@ -49,7 +49,7 @@ namespace ADC.UnitCreation
             }
             catch (Exception e)
             {
-                Debug.LogError($"[CellUnitSpawner] {e.Message}");
+                //Debug.LogError($"[CellUnitSpawner] {e.Message}");
             }
         }
 
