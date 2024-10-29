@@ -111,6 +111,11 @@ namespace ADC.UnitCreation
                 var unitPlacementCosts = targetUnit.GetComponent<UnitPlacementCosts>();
                 creationTasks[taskID].Init(this, taskID, gameMgr);
                 creationTasks[taskID].Enable();
+                if (unitPlacementCosts == null)
+                {
+                    Debug.LogError(targetUnit.Name +": " + targetUnit.transform.parent);
+                    continue;
+                }
                 spawnUnitsList.AddSpawnUnitUITask(creationTasks[taskID], OnActivateTask, (float)unitPlacementCosts.WarScrap.Value);
             }
 

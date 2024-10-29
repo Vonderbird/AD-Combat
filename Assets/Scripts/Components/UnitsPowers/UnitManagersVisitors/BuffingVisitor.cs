@@ -13,12 +13,12 @@ namespace ADC
             this.duration = duration;
         }
 
-        public void Visit(SkyForger skyForger)
+        public void Visit(SiegeBreaker siegeBreaker)
         {
-            skyForger.Specs.ApplyBuff(
-                new UnitDamage((int)(skyForger.Specs.BaseSpecs.UnitDamage * buffMultiplier)),
+            siegeBreaker.Specs.ApplyBuff(
+                new UnitDamage((int)(siegeBreaker.Specs.BaseSpecs.UnitDamage * buffMultiplier)),
                 duration);
-            Debug.Log($"Buffed SkyForger's damage by {buffMultiplier * 100 - 100}% for {duration} seconds.");
+            Debug.Log($"Buffed SiegeBreaker's damage by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }
 
         public void Visit(TkArty tkArty)
