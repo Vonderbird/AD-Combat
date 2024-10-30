@@ -17,15 +17,14 @@ namespace ADC
         public UnitSpecsManager(IThirdPartyInteractionManager thirdPartyManager)
         {
             Debug.Log("Begin Unit Specs Manager");
-            this.thirdPartyManager = thirdPartyManager;
-
-            CurrentSpecs.Armor.Changed += OnChanged;
+            this.thirdPartyManager = thirdPartyManager; 
+            currentSpecs.Initialize();
+            currentSpecs.Armor.Changed += OnChanged;
             CurrentSpecs.HealthPoint.Changed += OnChanged;
             CurrentSpecs.BuildingDamage.Changed += OnChanged;
             CurrentSpecs.UnitDamage.Changed += OnChanged;
             CurrentSpecs.ManaPoint.Changed += OnChanged;
         }
-
 
         public void UpdateBaseSpecs(UnitSpecs baseSpecs)
         {
@@ -37,17 +36,6 @@ namespace ADC
         {
             this.additiveSpecs.Update(additiveSpecs);
             CurrentSpecs.Update(additiveSpecs + BaseSpecs);
-        }
-
-
-        public void ApplyBuff<T>(T buffAmount, float duration) where T : IUnitFeature<int, T>
-        {
-            Debug.LogError("Not Implemented");
-        }
-
-        public void Heal(int value)
-        {
-            Debug.LogError("Not Implemented");
         }
 
         private void OnChanged(object sender, Armor e)
@@ -65,7 +53,6 @@ namespace ADC
             thirdPartyManager.SetUnitDamage(e.Value);
         }
 
-
         private void OnChanged(object sender, BuildingDamage e)
         {
             thirdPartyManager.SetBuildingDamage(e.Value);
@@ -74,6 +61,14 @@ namespace ADC
         private void OnChanged(object sender, ManaPoint e)
         {
             thirdPartyManager.SetManaPoint(e.Value);
+        }
+        public void Heal(int value)
+        {
+            Debug.LogError("Not Implemented");
+        }
+        public void ApplyBuff<T>(T buffAmount, float duration) where T : IUnitFeature<int, T>
+        {
+            Debug.LogError("Not Implemented");
         }
     }
 }

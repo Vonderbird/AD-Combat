@@ -1,3 +1,5 @@
+using System.Linq;
+using ADC.Currencies;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,20 +18,21 @@ namespace ADC
         {
             get
             {
-                if (_applicationIsQuitting)
-                {
-                    Debug.LogWarning(
-                        $"[Singleton] Instance '{typeof(T)}' already destroyed on application quit. Won't create again - returning null.");
-                    return null;
-                }
+                //if (_applicationIsQuitting)
+                //{
+                //    Debug.LogWarning(
+                //        $"[Singleton] Instance '{typeof(T)}' already destroyed on application quit. Won't create again - returning null.");
+                //    return null;
+                //}
 
                 lock (_lock)
                 {
                     if (_instance == null)
                     {
-                        _instance = (T)FindObjectOfType(typeof(T));
+                        var instances = FindObjectsByType<T>(FindObjectsInactive.Exclude,FindObjectsSortMode.None);
+                        _instance = instances.FirstOrDefault();
 
-                        if (FindObjectsOfType(typeof(T)).Length > 1)
+                        if (instances.Length > 1)
                         {
                             Debug.LogError(
                                 $"[{typeof(T).Name}] Something went wrong - there should never be more than 1 singleton of type '{typeof(T)}'. Reopening the scene might fix it.");
@@ -57,12 +60,14 @@ namespace ADC
 
         private void OnDestroy()
         {
+            Debug.Log("What destroy!");
             _applicationIsQuitting = true;
         }
 
         // Optional: Clear the _applicationIsQuitting flag if needed (useful for play mode testing in the editor)
         protected virtual void OnApplicationQuit()
         {
+            Debug.Log("What Quit!");
             _applicationIsQuitting = true;
         }
     }
