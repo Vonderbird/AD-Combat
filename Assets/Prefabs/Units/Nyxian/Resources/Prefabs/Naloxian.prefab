@@ -1203,6 +1203,7 @@ GameObject:
   - component: {fileID: 4408908569933417830}
   - component: {fileID: 1746829275819322123}
   - component: {fileID: 2638106885590150756}
+  - component: {fileID: 4376790243361202577}
   m_Layer: 0
   m_Name: Naloxian
   m_TagString: Untagged
@@ -1575,6 +1576,32 @@ MonoBehaviour:
   PayWarScrap: 20
   incomeRatio: 0.1
   refundRatio: 0.75
+--- !u!114 &4376790243361202577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a5ad1b8af3d274587bcc55e270726f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelZeroSpecs:
+    Armor:
+      value: 10
+    HealthPoint:
+      value: 15
+    ManaPoint:
+      value: 20
+    UnitDamage:
+      value: 10
+    BuildingDamage:
+      value: 10
+  baseEquipments:
+    shield: {fileID: -1598321634351741357, guid: a280df018fc2dc64198e592574735a18, type: 3}
+    weapon: {fileID: 4129587449221663352, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
 --- !u!1001 &1129004617793929749
 PrefabInstance:
   m_ObjectHideFlags: 0

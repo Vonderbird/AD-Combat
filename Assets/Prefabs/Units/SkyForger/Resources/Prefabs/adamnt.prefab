@@ -1203,6 +1203,7 @@ GameObject:
   - component: {fileID: 4408908569933417830}
   - component: {fileID: 6127250628261784917}
   - component: {fileID: 4978606142287481498}
+  - component: {fileID: -5928395728565144353}
   m_Layer: 0
   m_Name: adamnt
   m_TagString: Untagged
@@ -1576,6 +1577,32 @@ MonoBehaviour:
   PayWarScrap: 30
   incomeRatio: 0.1
   refundRatio: 0.75
+--- !u!114 &-5928395728565144353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a55cbce527834e47a400fa96aa092b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelZeroSpecs:
+    Armor:
+      value: 35
+    HealthPoint:
+      value: 5
+    ManaPoint:
+      value: 10
+    UnitDamage:
+      value: 13
+    BuildingDamage:
+      value: 13
+  baseEquipments:
+    shield: {fileID: -6624906158298354111, guid: 5bcb1246315947e4f9f5661cb328f408, type: 3}
+    weapon: {fileID: 4129587449221663352, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
 --- !u!1001 &4310657640882167820
 PrefabInstance:
   m_ObjectHideFlags: 0

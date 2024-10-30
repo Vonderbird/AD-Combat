@@ -23,7 +23,7 @@ namespace ADC
         public UnitSpecsManager Specs { get; private set; }
         private IUnitSpecsCalculator unitSpecsCalculator;
 
-        protected abstract List<ISpecialAbility> specialAbilities { get; set; }
+        protected virtual List<ISpecialAbility> specialAbilities { get; set; } = new() { };
         protected int activeAbilityId = 0;
         public ISpecialAbility ActiveAbility => 
             specialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
@@ -34,7 +34,7 @@ namespace ADC
 
         public UnitBattleManager Target { get; private set; }
 
-        public UnitExperience XP { get; private set; }
+        public UnitExperience XP { get; private set; } = new();
 
         protected virtual void Awake()
         {
