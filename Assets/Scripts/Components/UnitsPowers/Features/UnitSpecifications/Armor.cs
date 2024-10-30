@@ -30,6 +30,5 @@ namespace ADC
         }
 
         public event EventHandler<Armor> Changed;
-
     }
 }

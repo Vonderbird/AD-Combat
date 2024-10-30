@@ -7,12 +7,21 @@ namespace ADC
     [Serializable]
     public struct UnitSpecs
     {
-        [SerializeField] public Armor Armor;
-        [SerializeField] public HealthPoint HealthPoint;
-        [SerializeField] public ManaPoint ManaPoint;
-        [SerializeField] public UnitDamage UnitDamage;
-        [SerializeField] public BuildingDamage BuildingDamage;
-        
+        public Armor Armor;
+        public HealthPoint HealthPoint;
+        public ManaPoint ManaPoint;
+        public UnitDamage UnitDamage;
+        public BuildingDamage BuildingDamage;
+
+        public void Initialize()
+        {
+            Armor = new Armor();
+            HealthPoint = new HealthPoint();
+            ManaPoint = new ManaPoint();
+            UnitDamage = new UnitDamage();
+            BuildingDamage = new BuildingDamage();
+        }
+
         public void Update(UnitSpecs unitSpecs)
         {
             Armor.Value = unitSpecs.Armor;
