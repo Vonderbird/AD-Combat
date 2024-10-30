@@ -4,7 +4,13 @@ namespace ADC
     {
         void Visit(SiegeBreaker siegeBreaker);
         void Visit(TkArty tkArty);
-        void Visit(Adamnt adamnt);
+        void Visit(AdamantiumLegionElite adamantiumLegionElite);
         void Visit(Naloxian naloxian);
+        void Visit(FrostbornHunter frostbornHunter);
+        void Visit(ThunderkinDemolitionist thunderkinDemolitionist);
+        void Visit(DeepwalkerInfilterator deepwalkerInfilterator);
+        void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank);
+        void Visit(FrostbornIceStalker frostbornIceStalker);
+        void Visit(ThunderkinWarWagon thunderkinWarWagon);
     }
 }

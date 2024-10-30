@@ -29,12 +29,12 @@ namespace ADC
             Debug.Log($"Buffed TkArty's armor by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }
 
-        public void Visit(Adamnt adamnt)
+        public void Visit(AdamantiumLegionElite adamantiumLegionElite)
         {
-            adamnt.Specs.ApplyBuff(
-                new HealthPoint((int)( adamnt.Specs.BaseSpecs.HealthPoint * buffMultiplier)),
+            adamantiumLegionElite.Specs.ApplyBuff(
+                new HealthPoint((int)( adamantiumLegionElite.Specs.BaseSpecs.HealthPoint * buffMultiplier)),
                 duration);
-            Debug.Log($"Buffed Adamnt's health by {buffMultiplier * 100 - 100}% for {duration} seconds.");
+            Debug.Log($"Buffed AdamantiumLegionElite's health by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }
 
         public void Visit(Naloxian naloxian)
@@ -43,6 +43,36 @@ namespace ADC
                 new ManaPoint((int)( naloxian.Specs.BaseSpecs.ManaPoint* buffMultiplier)),
                 duration);
             Debug.Log($"Buffed Naloxian's mana by {buffMultiplier * 100 - 100}% for {duration} seconds.");
+        }
+
+        public void Visit(FrostbornHunter frostbornHunter)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Visit(ThunderkinDemolitionist thunderkinDemolitionist)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Visit(DeepwalkerInfilterator deepwalkerInfilterator)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Visit(FrostbornIceStalker frostbornIceStalker)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Visit(ThunderkinWarWagon thunderkinWarWagon)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

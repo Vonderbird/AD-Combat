@@ -24,12 +24,42 @@ namespace ADC
         {
             throw new System.NotImplementedException();
         }
-        public void Visit(Adamnt adamnt)
+        public void Visit(AdamantiumLegionElite adamantiumLegionElite)
         {
             throw new System.NotImplementedException();
         }
 
         public void Visit(Naloxian naloxian)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(FrostbornHunter frostbornHunter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(ThunderkinDemolitionist thunderkinDemolitionist)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(DeepwalkerInfilterator deepwalkerInfilterator)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(FrostbornIceStalker frostbornIceStalker)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(ThunderkinWarWagon thunderkinWarWagon)
         {
             throw new NotImplementedException();
         }

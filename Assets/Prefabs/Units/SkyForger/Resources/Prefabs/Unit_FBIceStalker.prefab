@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 189463438910978982}
   - component: {fileID: 862318814814099318}
   - component: {fileID: -5051017779270383256}
+  - component: {fileID: 4347451953426277384}
   m_Layer: 0
   m_Name: Unit_FBIceStalker
   m_TagString: Untagged
@@ -587,6 +588,32 @@ MonoBehaviour:
   PayWarScrap: 50
   incomeRatio: 0.1
   refundRatio: 0.75
+--- !u!114 &4347451953426277384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837683883374114850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8abffe8f2171adc42bdd68b05fc4f20c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelZeroSpecs:
+    Armor:
+      value: 0
+    HealthPoint:
+      value: 0
+    ManaPoint:
+      value: 0
+    UnitDamage:
+      value: 0
+    BuildingDamage:
+      value: 0
+  baseEquipments:
+    shield: {fileID: 0}
+    weapon: {fileID: 0}
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0
