@@ -28,6 +28,27 @@ namespace ADC
             return damage.value;
         }
 
+        public static UnitDamage operator +(UnitDamage a1, int a2)
+        {
+            a1.Value += a2;
+            return a1;
+        }
+        public static UnitDamage operator -(UnitDamage a1, int a2)
+        {
+            a1.Value -= a2;
+            return a1;
+        }
+        public static UnitDamage operator *(UnitDamage a1, int a2)
+        {
+            a1.Value *= a2;
+            return a1;
+        }
+        public static UnitDamage operator /(UnitDamage a1, int a2)
+        {
+            a1.Value /= a2;
+            return a1;
+        }
+
         public event EventHandler<UnitDamage> Changed;
     }
 }

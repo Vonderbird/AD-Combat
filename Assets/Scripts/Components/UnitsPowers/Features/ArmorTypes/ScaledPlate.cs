@@ -14,7 +14,7 @@ namespace ADC
             throw new System.NotImplementedException();
         }
 
-        public override void Defend(BluntAttack weapon)
+        public override void Defend(ElectroMagnetic weapon)
         {
             throw new System.NotImplementedException();
         }
@@ -24,7 +24,7 @@ namespace ADC
             throw new System.NotImplementedException();
         }
 
-        public override void Defend(Incendiary weapon)
+        public override void Defend(Sharpened weapon)
         {
             throw new System.NotImplementedException();
         }
@@ -35,11 +35,6 @@ namespace ADC
         }
 
         public override void Defend(Plasma weapon)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Defend(Sharpened weapon)
         {
             throw new System.NotImplementedException();
         }

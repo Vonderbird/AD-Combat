@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class BluntAttack : Weapon
+    public class ElectroMagnetic : Weapon
     {
         [SerializeField] private int unitDamage;
         [SerializeField] private int buildingDamage;

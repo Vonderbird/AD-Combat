@@ -32,7 +32,7 @@ namespace ADC
         public void Visit(AdamantiumLegionElite adamantiumLegionElite)
         {
             adamantiumLegionElite.Specs.ApplyBuff(
-                new HealthPoint((int)( adamantiumLegionElite.Specs.BaseSpecs.HealthPoint * buffMultiplier)),
+                new HealthPoint((int)( adamantiumLegionElite.Specs.BaseSpecs.HealthPoint* buffMultiplier)),
                 duration);
             Debug.Log($"Buffed AdamantiumLegionElite's health by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }

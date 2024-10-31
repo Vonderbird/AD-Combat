@@ -24,6 +24,50 @@ namespace ADC
             this.unit = unit;
 
             unitAttack.TargetUpdated += OnTargetUpdated;
+
+
+            #region For Information
+            //// Unit UnitDamage Info and how to update it
+            //unitAttack.Damage.UpdateDamage(new DamageData()
+            //{
+            //    building = currentSpecs.BuildingDamage,
+            //    unit = currentSpecs.UnitDamage,
+            //    custom = Array.Empty<CustomDamageData>()
+            //});
+            //// Unit Health Info and how to update it
+            //unitHealth.SetMax(new RTSEngine.Event.HealthUpdateArgs(1000, unit));
+            //unitHealth.SetMaxLocal(new RTSEngine.Event.HealthUpdateArgs(1000, unit));
+            //unitHealth.Add(new RTSEngine.Event.HealthUpdateArgs(-1, unit));
+            //Debug.Log($"unitHealth.CurrHealth: {unitHealth.CurrHealth}");
+            //unitHealth.EntityDead += OnEntityDead;
+            //unitHealth.EntityHealthUpdated += OnHealthUpdated;
+            //unitHealth.EntityMaxHealthUpdated += OnMaxHealthUpdated;
+            //Debug.Log($"unitHealth.IsDead: {unitHealth.IsDead}");
+            //Debug.Log($"unitHealth.CanBeAttacked: {unitHealth.CanBeAttacked}");
+            ////Debug.Log(unitHealth.DOTHandlers.First()?.UnitDamage);
+
+            //unitHealth.Add(new RTSEngine.Event.HealthUpdateArgs(-1, unit));
+            //Debug.Log($"unitHealth.EntityDead: {unitHealth.IsDead}");
+
+
+            //// Unit Hit by Who for specifying attack and defence type
+            //Debug.Log(unitAttack.Target.instance == null ? "is null" : unitAttack.Target.instance.Name);
+            //unitHealth.AddDamageOverTime(
+            //    new DamageOverTimeData { cycleDuration = 3, cycles = 10, infinite = false }
+            //    , 5, unit);
+            //Debug.Log(unitHealth.TerminatedBy?.Name);
+            ////var attackDistanceHandler = unitAttack.AttackDistanceHandler as AttackFormationSelector;
+            ////Debug.Log(attackDistanceHandler.MovementFormation.);
+            //Debug.Log(unitAttack.CurrCooldownValue);
+            //Debug.Log(unitAttack.Cooldown.CurrValue);
+            //unitAttack.SetActive(false, true);
+            //unitAttack.CooldownUpdated += CooldownUpdated;
+            ////unitAttack.ActiveStatusUpdate
+            //// Unit Attack What for specifying attack and defence type
+            ////unitAttack.TargetUpdated;
+            //// 
+
+            #endregion
         }
 
         private void OnTargetUpdated(IEntityTargetComponent sender, TargetDataEventArgs args)
@@ -39,8 +83,9 @@ namespace ADC
 
         public void SetUnitMaxHealth(int value)
         {
-            Debug.Log($"unit: {unit}");
             unitHealth.SetMax(new HealthUpdateArgs(value, unit));
+            if (unitHealth.CurrHealth > unitHealth.MaxHealth)
+                unitHealth.Add(new HealthUpdateArgs(unitHealth.MaxHealth - unitHealth.CurrHealth, unit));
         }
 
         public void SetDamage(int unitDamage, int buildingDamage)

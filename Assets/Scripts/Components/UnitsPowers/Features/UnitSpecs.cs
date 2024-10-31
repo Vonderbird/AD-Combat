@@ -5,18 +5,18 @@ namespace ADC
 {
 
     [Serializable]
-    public struct UnitSpecs
+    public class UnitSpecs
     {
-        public Armor Armor;
         public HealthPoint HealthPoint;
+        public Armor Armor;
         public ManaPoint ManaPoint;
         public UnitDamage UnitDamage;
         public BuildingDamage BuildingDamage;
 
-        public void Initialize()
+        public UnitSpecs()
         {
-            Armor = new Armor();
             HealthPoint = new HealthPoint();
+            Armor = new Armor();
             ManaPoint = new ManaPoint();
             UnitDamage = new UnitDamage();
             BuildingDamage = new BuildingDamage();

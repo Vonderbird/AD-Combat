@@ -28,6 +28,27 @@ namespace ADC
             return hp.value;
         }
 
+        public static HealthPoint operator +(HealthPoint a1, int a2)
+        {
+            a1.Value += a2;
+            return a1;
+        }
+        public static HealthPoint operator -(HealthPoint a1, int a2)
+        {
+            a1.Value -= a2;
+            return a1;
+        }
+        public static HealthPoint operator *(HealthPoint a1, int a2)
+        {
+            a1.Value *= a2;
+            return a1;
+        }
+        public static HealthPoint operator /(HealthPoint a1, int a2)
+        {
+            a1.Value /= a2;
+            return a1;
+        }
+
         public event EventHandler<HealthPoint> Changed;
     }
 }

@@ -32,6 +32,8 @@ namespace ADC
         public float Level { get; private set; } // ?
         public float Health { get; private set; } // ?
 
+        public static Weapon Default { get; } = new NoWeapon();
+
         public void Init(WeaponInitArgs initArgs)
         {
             InitArgs = initArgs;
@@ -44,5 +46,16 @@ namespace ADC
         {
             throw new NotImplementedException();
         }
+    }
+
+    public class NoWeapon: Weapon
+    {
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int UnitDamage { get; set; }
+        public override int BuildingDamage { get; set; }
     }
 }

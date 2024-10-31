@@ -9,13 +9,12 @@ namespace ADC
 
     public class EquipmentManager
     {
-        public UnitEquipments Equipments { get; private set; }
+        public UnitEquipments Equipments { get; private set; } = new();
 
         public HashSet<IProtectorEquipment> ProtectiveEquipments { get; } = new();
         public HashSet<IAttackEquipment> AttackEquipments { get; } = new();
 
-        private UnitSpecs addedSpecs;
-        public UnitSpecs AddedSpecs => addedSpecs;
+        public UnitSpecs AddedSpecs { get; private set; } = new();
 
         // Call after transaction! or Inventory Equipment! or ...
 
@@ -62,12 +61,15 @@ namespace ADC
             if (equipment is IProtectorEquipment p)
             {
                 ProtectiveEquipments.Add(p);
+                AddedSpecs.Armor += p.Armor;
                 isAdded = true;
             }
 
             if (equipment is IAttackEquipment a)
             {
                 AttackEquipments.Add(a);
+                AddedSpecs.UnitDamage += a.UnitDamage;
+                AddedSpecs.BuildingDamage += a.BuildingDamage;
                 isAdded = true;
             }
             
@@ -91,12 +93,15 @@ namespace ADC
             if (equipment is IProtectorEquipment p)
             {
                 ProtectiveEquipments.Remove(p);
+                AddedSpecs.Armor -= p.Armor;
                 isRemoved = true;
             }
 
             if (equipment is IAttackEquipment a)
             {
                 AttackEquipments.Remove(a);
+                AddedSpecs.UnitDamage -= a.UnitDamage;
+                AddedSpecs.BuildingDamage -= a.BuildingDamage;
                 isRemoved = true;
             }
             if(isRemoved)

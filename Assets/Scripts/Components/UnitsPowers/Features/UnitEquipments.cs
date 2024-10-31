@@ -5,28 +5,45 @@ namespace ADC
 {
 
     [Serializable]
-    public struct UnitEquipments
+    public class UnitEquipments
     {
         [SerializeField] private Shield shield;
         [SerializeField] private Weapon weapon;
 
-        public Shield Shield => shield;
-        public Weapon Weapon => weapon;
+        public Shield Shield 
+        {
+            get => shield ?? Shield.Default;
+            private set
+            {
+                Debug.Log($"shield: {shield} : {value}");
+                shield = value;
+            }
+        }
+
+        public Weapon Weapon
+        {
+            get => weapon ?? Weapon.Default;
+            private set
+            {
+                Debug.Log($"weapon: {weapon} : {value}");
+                weapon = value;
+            }
+        }
 
         public void Update(UnitEquipments unitEquipments)
         {
-            shield = unitEquipments.Shield;
-            weapon = unitEquipments.Weapon;
+            Shield = unitEquipments.Shield;
+            Weapon = unitEquipments.Weapon;
         }
 
         public void Update(Shield shield)
         {
-            this.shield = shield;
+            Shield = shield;
         }
 
         public void Update(Weapon weapon)
         {
-            this.weapon = weapon;
+            Weapon = weapon;
         }
 
         public override bool Equals(object obj)

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using RTSEngine.Attack;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using RTSEngine.Event;
@@ -29,8 +28,6 @@ namespace ADC
             specialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
 
         private IThirdPartyInteractionManager thirdParty;
-        //protected UnitAttack unitAttack;
-        //protected UnitHealth unitHealth;
 
         public UnitBattleManager Target { get; private set; }
 
@@ -44,6 +41,10 @@ namespace ADC
             thirdParty = new RtsEngineInteractionManager(unitAttack, unitHealth, unit);
             Specs = new UnitSpecsManager(thirdParty);
             EquipmentManager = new EquipmentManager();
+
+
+            thirdParty.TargetUpdated += OnTargetUpdated;
+            Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
             foreach (var specialAbility in specialAbilities)
             {
@@ -59,52 +60,7 @@ namespace ADC
             // 2. XP.Level for base spaces upgrade!
             Specs.UpdateBaseSpecs(levelZeroSpecs);
             EquipmentManager.UpdateEquipments(Specs.BaseSpecs, baseEquipments);
-            Specs.UpdateAdditiveSpecs(EquipmentManager.AddedSpecs);
-
-            thirdParty.TargetUpdated += OnTargetUpdated;
-
-            #region For Information
-            //// Unit UnitDamage Info and how to update it
-            //unitAttack.Damage.UpdateDamage(new DamageData()
-            //{
-            //    building = currentSpecs.BuildingDamage,
-            //    unit = currentSpecs.UnitDamage,
-            //    custom = Array.Empty<CustomDamageData>()
-            //});
-            //// Unit Health Info and how to update it
-            //unitHealth.SetMax(new RTSEngine.Event.HealthUpdateArgs(1000, unit));
-            //unitHealth.SetMaxLocal(new RTSEngine.Event.HealthUpdateArgs(1000, unit));
-            //unitHealth.Add(new RTSEngine.Event.HealthUpdateArgs(-1, unit));
-            //Debug.Log($"unitHealth.CurrHealth: {unitHealth.CurrHealth}");
-            //unitHealth.EntityDead += OnEntityDead;
-            //unitHealth.EntityHealthUpdated += OnHealthUpdated;
-            //unitHealth.EntityMaxHealthUpdated += OnMaxHealthUpdated;
-            //Debug.Log($"unitHealth.IsDead: {unitHealth.IsDead}");
-            //Debug.Log($"unitHealth.CanBeAttacked: {unitHealth.CanBeAttacked}");
-            ////Debug.Log(unitHealth.DOTHandlers.First()?.UnitDamage);
-
-            //unitHealth.Add(new RTSEngine.Event.HealthUpdateArgs(-1, unit));
-            //Debug.Log($"unitHealth.EntityDead: {unitHealth.IsDead}");
-
-
-            //// Unit Hit by Who for specifying attack and defence type
-            //Debug.Log(unitAttack.Target.instance == null ? "is null" : unitAttack.Target.instance.Name);
-            //unitHealth.AddDamageOverTime(
-            //    new DamageOverTimeData { cycleDuration = 3, cycles = 10, infinite = false }
-            //    , 5, unit);
-            //Debug.Log(unitHealth.TerminatedBy?.Name);
-            ////var attackDistanceHandler = unitAttack.AttackDistanceHandler as AttackFormationSelector;
-            ////Debug.Log(attackDistanceHandler.MovementFormation.);
-            //Debug.Log(unitAttack.CurrCooldownValue);
-            //Debug.Log(unitAttack.Cooldown.CurrValue);
-            //unitAttack.SetActive(false, true);
-            //unitAttack.CooldownUpdated += CooldownUpdated;
-            ////unitAttack.ActiveStatusUpdate
-            //// Unit Attack What for specifying attack and defence type
-            ////unitAttack.TargetUpdated;
-            //// 
-
-            #endregion
+            Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
         }
 
@@ -123,14 +79,14 @@ namespace ADC
         private void OnEquipmentAdded(object sender, EquipmentEventArgs e)
         {
             var unitSpecs = unitSpecsCalculator.CalculateAll();
-            Specs.UpdateAdditiveSpecs(unitSpecs);
+            Specs.BindEquipmentSpecs(unitSpecs);
 
         }
         
         private void OnEquipmentRemoved(object sender, EquipmentEventArgs e)
         {
             var unitSpecs = unitSpecsCalculator.CalculateAll();
-            Specs.UpdateAdditiveSpecs(unitSpecs);
+            Specs.BindEquipmentSpecs(unitSpecs);
         }
 
         public abstract void Accept(IUnitManagerVisitor managerVisitor);
