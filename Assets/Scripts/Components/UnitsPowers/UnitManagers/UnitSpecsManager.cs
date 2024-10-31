@@ -6,23 +6,23 @@ namespace ADC
 {
     public class UnitSpecsManager
     {
-        protected UnitSpecs baseSpecs = new UnitSpecs();
-        protected UnitSpecs currentSpecs = new UnitSpecs();
-        protected UnitSpecs equipmentSpecs = new UnitSpecs();
+        protected UnitSpecs baseSpecs = new();
+        protected UnitSpecs equipmentSpecs = new();
         private IThirdPartyInteractionManager thirdPartyManager;
 
         public UnitSpecs BaseSpecs => baseSpecs;
-        public UnitSpecs CurrentSpecs => currentSpecs;
+
+        public UnitSpecs CurrentSpecs { get; } = new();
 
         public UnitSpecsManager(IThirdPartyInteractionManager thirdPartyManager)
         {
             Debug.Log("Begin Unit Specs Manager");
             this.thirdPartyManager = thirdPartyManager;
-            CurrentSpecs.HealthPoint.Changed += OnHealthPointChanged;
-            currentSpecs.Armor.Changed += OnArmorChanged;
-            CurrentSpecs.BuildingDamage.Changed += OnBuildingDamageChanged;
-            CurrentSpecs.UnitDamage.Changed += OnUnitDamageChanged;
-            CurrentSpecs.ManaPoint.Changed += OnChanged;
+            CurrentSpecs.SetHandler(OnArmorChanged);
+            CurrentSpecs.SetHandler(OnHealthPointChanged);
+            CurrentSpecs.SetHandler(OnBuildingDamageChanged);
+            CurrentSpecs.SetHandler(OnUnitDamageChanged);
+            CurrentSpecs.SetHandler(OnChanged);
         }
 
         public void UpdateBaseSpecs(UnitSpecs baseSpecs)
@@ -33,31 +33,31 @@ namespace ADC
 
         public void BindEquipmentSpecs(UnitSpecs equipmentSpecs)
         {
-            equipmentSpecs.Armor.Changed += (o, a) =>
+            equipmentSpecs.SetHandler((object o, Armor a) =>
             {
-                this.equipmentSpecs.Armor.Value = a;
-                CurrentSpecs.Armor.Value = a + BaseSpecs.Armor;
-            };
-            equipmentSpecs.HealthPoint.Changed += (o, a) =>
+                this.equipmentSpecs.Armor = a;
+                CurrentSpecs.Armor = a + BaseSpecs.Armor;
+            });
+            equipmentSpecs.SetHandler((object o, HealthPoint a) =>
             {
-                this.equipmentSpecs.HealthPoint.Value = a;
-                CurrentSpecs.HealthPoint.Value = a + BaseSpecs.HealthPoint;
-            };
-            equipmentSpecs.BuildingDamage.Changed += (o, a) =>
+                this.equipmentSpecs.HealthPoint = a;
+                CurrentSpecs.HealthPoint = a + BaseSpecs.HealthPoint;
+            });
+            equipmentSpecs.SetHandler((object o, BuildingDamage a) =>
             {
-                this.equipmentSpecs.BuildingDamage.Value = a;
-                CurrentSpecs.BuildingDamage.Value = a + BaseSpecs.BuildingDamage;
-            };
-            equipmentSpecs.UnitDamage.Changed += (o, a) =>
+                this.equipmentSpecs.BuildingDamage = a;
+                CurrentSpecs.BuildingDamage = a + BaseSpecs.BuildingDamage;
+            });
+            equipmentSpecs.SetHandler((object o, UnitDamage a) =>
             {
-                this.equipmentSpecs.UnitDamage.Value = a;
-                CurrentSpecs.UnitDamage.Value = a + BaseSpecs.UnitDamage;
-            };
-            equipmentSpecs.ManaPoint.Changed += (o, a) =>
+                this.equipmentSpecs.UnitDamage = a;
+                CurrentSpecs.UnitDamage = a + BaseSpecs.UnitDamage;
+            });
+            equipmentSpecs.SetHandler((object o, ManaPoint a) =>
             {
-                this.equipmentSpecs.ManaPoint.Value = a;
-                CurrentSpecs.ManaPoint.Value = a + BaseSpecs.ManaPoint;
-            };
+                this.equipmentSpecs.ManaPoint = a;
+                CurrentSpecs.ManaPoint = a + BaseSpecs.ManaPoint;
+            });
         }
 
         private void OnArmorChanged(object sender, Armor e)
