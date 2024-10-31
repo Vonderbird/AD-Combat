@@ -7,28 +7,48 @@ namespace ADC
     [Serializable]
     public class UnitSpecs
     {
-        public HealthPoint HealthPoint;
-        public Armor Armor;
-        public ManaPoint ManaPoint;
-        public UnitDamage UnitDamage;
-        public BuildingDamage BuildingDamage;
+        [SerializeField] private HealthPoint healthPoint = new();
+        [SerializeField] private Armor armor = new();
+        [SerializeField] private ManaPoint manaPoint = new();
+        [SerializeField] private UnitDamage unitDamage = new();
+        [SerializeField] private BuildingDamage buildingDamage  = new();
 
-        public UnitSpecs()
+        public HealthPoint HealthPoint
         {
-            HealthPoint = new HealthPoint();
-            Armor = new Armor();
-            ManaPoint = new ManaPoint();
-            UnitDamage = new UnitDamage();
-            BuildingDamage = new BuildingDamage();
+            get => healthPoint;
+            set => healthPoint.Value = value.Value;
         }
 
+        public Armor Armor
+        {
+            get => armor;
+            set => armor.Value = value.Value;
+        }
+
+        public ManaPoint ManaPoint
+        {
+            get => manaPoint;
+            set => manaPoint.Value = value.Value;
+        }
+
+        public UnitDamage UnitDamage
+        {
+            get => unitDamage;
+            set => unitDamage.Value = value.Value;
+        }
+        public BuildingDamage BuildingDamage
+        {
+            get => buildingDamage;
+            set => buildingDamage.Value = value.Value;
+        }
+        
         public void Update(UnitSpecs unitSpecs)
         {
-            Armor.Value = unitSpecs.Armor;
-            HealthPoint.Value = unitSpecs.HealthPoint;
-            ManaPoint.Value = unitSpecs.ManaPoint;
-            UnitDamage.Value = unitSpecs.UnitDamage;
-            BuildingDamage.Value = unitSpecs.BuildingDamage;
+            Armor = unitSpecs.Armor;
+            HealthPoint= unitSpecs.HealthPoint;
+            ManaPoint= unitSpecs.ManaPoint;
+            UnitDamage = unitSpecs.UnitDamage;
+            BuildingDamage= unitSpecs.BuildingDamage;
         }
 
         public static UnitSpecs operator +(UnitSpecs a, UnitSpecs b)
@@ -55,5 +75,25 @@ namespace ADC
             };
         }
 
+        public void SetHandler(Action<object, Armor> handler)
+        {
+            armor.Changed += handler.Invoke;
+        }
+        public void SetHandler(Action<object, HealthPoint> handler)
+        {
+            healthPoint.Changed += handler.Invoke;
+        }
+        public void SetHandler(Action<object, ManaPoint> handler)
+        {
+            manaPoint.Changed += handler.Invoke;
+        }
+        public void SetHandler(Action<object, UnitDamage> handler)
+        {
+            unitDamage.Changed += handler.Invoke;
+        }
+        public void SetHandler(Action<object, BuildingDamage> handler)
+        {
+            buildingDamage.Changed += handler.Invoke;
+        }
     }
 }
