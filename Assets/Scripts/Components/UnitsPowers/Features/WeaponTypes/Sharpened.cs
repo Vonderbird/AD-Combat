@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class Sharpened: Weapon
+    public class Sharpened : Weapon
     {
         [SerializeField] private int unitDamage;
         [SerializeField] private int buildingDamage;

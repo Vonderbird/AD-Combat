@@ -28,6 +28,27 @@ namespace ADC
             return mp.value;
         }
 
+        public static ManaPoint operator +(ManaPoint a1, int a2)
+        {
+            a1.Value += a2;
+            return a1;
+        }
+        public static ManaPoint operator -(ManaPoint a1, int a2)
+        {
+            a1.Value -= a2;
+            return a1;
+        }
+        public static ManaPoint operator *(ManaPoint a1, int a2)
+        {
+            a1.Value *= a2;
+            return a1;
+        }
+        public static ManaPoint operator /(ManaPoint a1, int a2)
+        {
+            a1.Value /= a2;
+            return a1;
+        }
+
         public event EventHandler<ManaPoint> Changed;
     }
 }

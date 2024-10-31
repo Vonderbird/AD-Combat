@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2171562416481444558}
   - component: {fileID: 2236740861129545775}
-  - component: {fileID: 4129587449221663352}
+  - component: {fileID: 1342521683084785007}
   m_Layer: 0
   m_Name: Sharpened
   m_TagString: Untagged
@@ -130,7 +130,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4129587449221663352
+--- !u!114 &1342521683084785007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,11 +139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4640703100646885893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44357a603f4754549b2af56f1b9c261d, type: 3}
+  m_Script: {fileID: 11500000, guid: a6b9f9d502739604fa182a55ccf352d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitDamage: 0
-  buildingDamage: 0
+  unitDamage: 75
+  buildingDamage: 45
 --- !u!1 &8008551652279091616
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,7 @@ namespace ADC
         public float Defence { get; private set; } // ?
         public float Level { get; private set; } // ?
         public float Health { get; private set; } // ?
+        public static Shield Default { get; } = new NoShield();
 
         public void Initialize(ShieldInitArgs args)
         {
@@ -40,11 +41,48 @@ namespace ADC
 
         public abstract void Defend();
         public abstract void Defend(Biological weapon);
-        public abstract void Defend(BluntAttack weapon);
+        public abstract void Defend(ElectroMagnetic weapon);
         public abstract void Defend(ExplosiveRounds weapon);
-        public abstract void Defend(Incendiary weapon);
+        public abstract void Defend(Sharpened weapon);
         public abstract void Defend(Kinetic weapon);
         public abstract void Defend(Plasma weapon);
-        public abstract void Defend(Sharpened weapon);
+    }
+
+    public class NoShield: Shield
+    {
+        public override void Defend()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Defend(Biological weapon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Defend(ElectroMagnetic weapon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Defend(ExplosiveRounds weapon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Defend(Sharpened weapon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Defend(Kinetic weapon)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Defend(Plasma weapon)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

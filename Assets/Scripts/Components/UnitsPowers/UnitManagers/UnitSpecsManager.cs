@@ -6,9 +6,9 @@ namespace ADC
 {
     public class UnitSpecsManager
     {
-        protected UnitSpecs baseSpecs;
-        protected UnitSpecs currentSpecs;
-        protected UnitSpecs additiveSpecs;
+        protected UnitSpecs baseSpecs = new UnitSpecs();
+        protected UnitSpecs currentSpecs = new UnitSpecs();
+        protected UnitSpecs equipmentSpecs = new UnitSpecs();
         private IThirdPartyInteractionManager thirdPartyManager;
 
         public UnitSpecs BaseSpecs => baseSpecs;
@@ -17,43 +17,65 @@ namespace ADC
         public UnitSpecsManager(IThirdPartyInteractionManager thirdPartyManager)
         {
             Debug.Log("Begin Unit Specs Manager");
-            this.thirdPartyManager = thirdPartyManager; 
-            currentSpecs.Initialize();
-            currentSpecs.Armor.Changed += OnChanged;
-            CurrentSpecs.HealthPoint.Changed += OnChanged;
-            CurrentSpecs.BuildingDamage.Changed += OnChanged;
-            CurrentSpecs.UnitDamage.Changed += OnChanged;
+            this.thirdPartyManager = thirdPartyManager;
+            CurrentSpecs.HealthPoint.Changed += OnHealthPointChanged;
+            currentSpecs.Armor.Changed += OnArmorChanged;
+            CurrentSpecs.BuildingDamage.Changed += OnBuildingDamageChanged;
+            CurrentSpecs.UnitDamage.Changed += OnUnitDamageChanged;
             CurrentSpecs.ManaPoint.Changed += OnChanged;
         }
 
         public void UpdateBaseSpecs(UnitSpecs baseSpecs)
         {
             this.BaseSpecs.Update(baseSpecs);
-            CurrentSpecs.Update(additiveSpecs + baseSpecs);
+            CurrentSpecs.Update(equipmentSpecs + baseSpecs);
         }
 
-        public void UpdateAdditiveSpecs(UnitSpecs additiveSpecs)
+        public void BindEquipmentSpecs(UnitSpecs equipmentSpecs)
         {
-            this.additiveSpecs.Update(additiveSpecs);
-            CurrentSpecs.Update(additiveSpecs + BaseSpecs);
+            equipmentSpecs.Armor.Changed += (o, a) =>
+            {
+                this.equipmentSpecs.Armor.Value = a;
+                CurrentSpecs.Armor.Value = a + BaseSpecs.Armor;
+            };
+            equipmentSpecs.HealthPoint.Changed += (o, a) =>
+            {
+                this.equipmentSpecs.HealthPoint.Value = a;
+                CurrentSpecs.HealthPoint.Value = a + BaseSpecs.HealthPoint;
+            };
+            equipmentSpecs.BuildingDamage.Changed += (o, a) =>
+            {
+                this.equipmentSpecs.BuildingDamage.Value = a;
+                CurrentSpecs.BuildingDamage.Value = a + BaseSpecs.BuildingDamage;
+            };
+            equipmentSpecs.UnitDamage.Changed += (o, a) =>
+            {
+                this.equipmentSpecs.UnitDamage.Value = a;
+                CurrentSpecs.UnitDamage.Value = a + BaseSpecs.UnitDamage;
+            };
+            equipmentSpecs.ManaPoint.Changed += (o, a) =>
+            {
+                this.equipmentSpecs.ManaPoint.Value = a;
+                CurrentSpecs.ManaPoint.Value = a + BaseSpecs.ManaPoint;
+            };
         }
 
-        private void OnChanged(object sender, Armor e)
+        private void OnArmorChanged(object sender, Armor e)
         {
             thirdPartyManager.SetUnitArmor(e.Value);
         }
 
-        private void OnChanged(object sender, HealthPoint e)
+        private void OnHealthPointChanged(object sender, HealthPoint e)
         {
             thirdPartyManager.SetUnitMaxHealth(e.Value);
         }
 
-        private void OnChanged(object sender, UnitDamage e)
+        private void OnUnitDamageChanged(object sender, UnitDamage e)
         {
             thirdPartyManager.SetUnitDamage(e.Value);
         }
 
-        private void OnChanged(object sender, BuildingDamage e)
+        private void OnBuildingDamageChanged(object sender, BuildingDamage e)
         {
             thirdPartyManager.SetBuildingDamage(e.Value);
         }
@@ -66,7 +88,7 @@ namespace ADC
         {
             Debug.LogError("Not Implemented");
         }
-        public void ApplyBuff<T>(T buffAmount, float duration) where T : IUnitFeature<int, T>
+        public void ApplyBuff<T>(T buffAmount, float duration) // where T : IUnitFeature<int, T>
         {
             Debug.LogError("Not Implemented");
         }

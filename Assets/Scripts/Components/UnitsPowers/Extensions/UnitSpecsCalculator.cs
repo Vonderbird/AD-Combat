@@ -36,12 +36,16 @@ namespace ADC
                                   UnitBattleManager.EquipmentManager.AttackEquipments
                                       .Sum(equipment => equipment.UnitDamage);
 
-            if (target)
+            if (target != null)
             {
-                unitDamageSummation *= damageDictionary[
-                    UnitBattleManager.EquipmentManager.Equipments.Shield.GetType(),
-                    target.EquipmentManager.Equipments.Weapon.GetType()
+                var armorFactor = MathF.Pow(1 - (MathF.Sign(target.Specs.CurrentSpecs.Armor) * 0.06f),
+                    MathF.Abs(target.Specs.CurrentSpecs.Armor));
+
+                unitDamageSummation *= armorFactor * damageDictionary[
+                    target.EquipmentManager.Equipments.Shield.GetType(),
+                    UnitBattleManager.EquipmentManager.Equipments.Weapon.GetType()
                 ];
+
             }
 
             float buildingDamageSummation = UnitBattleManager.Specs.BaseSpecs.BuildingDamage +

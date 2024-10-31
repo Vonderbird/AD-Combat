@@ -1589,10 +1589,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelZeroSpecs:
-    Armor:
-      value: 10
     HealthPoint:
       value: 15
+    Armor:
+      value: 10
     ManaPoint:
       value: 20
     UnitDamage:
@@ -1601,7 +1601,7 @@ MonoBehaviour:
       value: 10
   baseEquipments:
     shield: {fileID: -1598321634351741357, guid: a280df018fc2dc64198e592574735a18, type: 3}
-    weapon: {fileID: 4129587449221663352, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
+    weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
 --- !u!1001 &1129004617793929749
 PrefabInstance:
   m_ObjectHideFlags: 0
