@@ -30,23 +30,19 @@ namespace ADC
 
         public static ManaPoint operator +(ManaPoint a1, int a2)
         {
-            a1.Value += a2;
-            return a1;
+            return new ManaPoint(a1.value + a2);
         }
         public static ManaPoint operator -(ManaPoint a1, int a2)
         {
-            a1.Value -= a2;
-            return a1;
+            return new ManaPoint(a1.value - a2);
         }
         public static ManaPoint operator *(ManaPoint a1, int a2)
         {
-            a1.Value *= a2;
-            return a1;
+            return new ManaPoint(a1.value * a2);
         }
         public static ManaPoint operator /(ManaPoint a1, int a2)
         {
-            a1.Value /= a2;
-            return a1;
+            return new ManaPoint(a1.value / a2);
         }
 
         public event EventHandler<ManaPoint> Changed;

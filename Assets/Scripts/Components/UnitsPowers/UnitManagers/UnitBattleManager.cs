@@ -58,9 +58,10 @@ namespace ADC
 
             // 1. LoadData();
             // 2. XP.Level for base spaces upgrade!
+            //Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
+
             Specs.UpdateBaseSpecs(levelZeroSpecs);
             EquipmentManager.UpdateEquipments(Specs.BaseSpecs, baseEquipments);
-            Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
         }
 
@@ -76,18 +77,6 @@ namespace ADC
             EquipmentManager.EquipmentRemoved -= OnEquipmentRemoved;
         }
 
-        private void OnEquipmentAdded(object sender, EquipmentEventArgs e)
-        {
-            var unitSpecs = unitSpecsCalculator.CalculateAll();
-            Specs.BindEquipmentSpecs(unitSpecs);
-
-        }
-        
-        private void OnEquipmentRemoved(object sender, EquipmentEventArgs e)
-        {
-            var unitSpecs = unitSpecsCalculator.CalculateAll();
-            Specs.BindEquipmentSpecs(unitSpecs);
-        }
 
         public abstract void Accept(IUnitManagerVisitor managerVisitor);
 
@@ -123,6 +112,20 @@ namespace ADC
 
 
         #region Unused methods
+
+        private void OnEquipmentAdded(object sender, EquipmentEventArgs e)
+        {
+            //var unitSpecs = unitSpecsCalculator.CalculateAll();
+            //Specs.BindEquipmentSpecs(unitSpecs);
+
+        }
+
+        private void OnEquipmentRemoved(object sender, EquipmentEventArgs e)
+        {
+            //var unitSpecs = unitSpecsCalculator.CalculateAll();
+            //Specs.BindEquipmentSpecs(unitSpecs);
+        }
+        
         public void OnWeaponChanged()
         {
 

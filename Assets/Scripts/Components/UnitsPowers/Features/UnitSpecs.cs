@@ -45,12 +45,12 @@ namespace ADC
         public void Update(UnitSpecs unitSpecs)
         {
             Armor = unitSpecs.Armor;
-            HealthPoint= unitSpecs.HealthPoint;
+            HealthPoint = unitSpecs.HealthPoint;
             ManaPoint= unitSpecs.ManaPoint;
             UnitDamage = unitSpecs.UnitDamage;
             BuildingDamage= unitSpecs.BuildingDamage;
         }
-
+        
         public static UnitSpecs operator +(UnitSpecs a, UnitSpecs b)
         {
             return new UnitSpecs()
