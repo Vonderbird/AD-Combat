@@ -31,7 +31,7 @@ namespace ADC
 
         public UnitBattleManager Target { get; private set; }
 
-        public UnitExperience XP { get; private set; } = new();
+        public UnitExperience Xp { get; private set; } = new();
 
         protected virtual void Awake()
         {
@@ -48,7 +48,7 @@ namespace ADC
 
             foreach (var specialAbility in specialAbilities)
             {
-                XP.LevelChanged += specialAbility.OnLevelChanged;
+                Xp.Level.LevelChanged += specialAbility.OnLevelChanged;
             }
         }
 
@@ -57,7 +57,7 @@ namespace ADC
             unitSpecsCalculator = new UnitSpecsCalculator(this);
 
             // 1. LoadData();
-            // 2. XP.Level for base spaces upgrade!
+            // 2. Xp.Level for base spaces upgrade!
             //Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
             Specs.UpdateBaseSpecs(levelZeroSpecs);
@@ -138,7 +138,7 @@ namespace ADC
 
         public void CalculateSpecs()
         {
-            //defencePower = XP.Level * equipments.Power * 0.2f;
+            //defencePower = Xp.Level * equipments.Power * 0.2f;
         }
 
         private void CooldownUpdated(IAttackComponent sender, EventArgs args)

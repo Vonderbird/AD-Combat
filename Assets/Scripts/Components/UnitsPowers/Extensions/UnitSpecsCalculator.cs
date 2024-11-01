@@ -26,8 +26,8 @@ namespace ADC
 
         public int CalculateHitPoint()
         {
-            // attackManager.Weapon + attackManager.Shield + attackManager.XP + attackManager.baseAttack
-            //return 0.0f + 0.0f + attackManager.XP.Level * attackManager.;
+            // attackManager.Weapon + attackManager.Shield + attackManager.Xp + attackManager.baseAttack
+            //return 0.0f + 0.0f + attackManager.Xp.Level * attackManager.;
             return 0;
         }
 
