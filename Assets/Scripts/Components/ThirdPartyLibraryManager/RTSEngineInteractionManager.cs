@@ -76,10 +76,7 @@ namespace ADC
         }
 
 
-        public void SetUnitArmor(int value)
-        {
-            Debug.LogError($"[RtsEngineInteractionManager] The method 'SetUnitArmor' is not implemented!");
-        }
+        public void SetUnitArmor(int value) { }
 
         public void SetUnitMaxHealth(int value)
         {
@@ -109,9 +106,6 @@ namespace ADC
             unitAttack.Damage.UpdateDamage(damageData);
         }
 
-        public void SetManaPoint(int value)
-        {
-            Debug.LogError($"[RtsEngineInteractionManager] The method 'SetManaPoint' is not implemented!");
-        }
+        public void SetManaPoint(int value) { }
     }
 }

@@ -8,7 +8,7 @@ namespace ADC
         Level Level { get; }
         event EventHandler UnLocked;
         void Use();
-        void OnLevelChanged(object sender, Level e);
+        void OnLevelChanged(object sender, LevelChangeEventArgs e);
     }
 
     public abstract class SpecialAbilityBase : ISpecialAbility
@@ -25,7 +25,7 @@ namespace ADC
         }
 
         public abstract void Use();
-        public abstract void OnLevelChanged(object sender, Level e);
+        public abstract void OnLevelChanged(object sender, LevelChangeEventArgs e);
 
     }
 
@@ -44,10 +44,10 @@ namespace ADC
             Debug.Log("Using Advancing The Pathway!");
         }
 
-        public override void OnLevelChanged(object sender, Level e)
+        public override void OnLevelChanged(object sender, LevelChangeEventArgs e)
         {
             // Implement logic for level changes specific to Advancing The Pathway
-            Debug.Log($"Advancing The Pathway leveled up to level {e.Value}!");
+            Debug.Log($"Advancing The Pathway leveled up to level {e.NewLevel}!");
         }
 
     }
@@ -66,10 +66,10 @@ namespace ADC
             Debug.Log("Using Tempest!");
         }
 
-        public override void OnLevelChanged(object sender, Level e)
+        public override void OnLevelChanged(object sender, LevelChangeEventArgs e)
         {
             // Implement logic for level changes specific to Tempest
-            Debug.Log($"Tempest leveled up to level {e.Value}!");
+            Debug.Log($"Tempest leveled up to level {e.NewLevel}!");
         }
     }
     public class FlameWalker : SpecialAbilityBase
@@ -86,10 +86,10 @@ namespace ADC
             Debug.Log("Using Tempest!");
         }
 
-        public override void OnLevelChanged(object sender, Level e)
+        public override void OnLevelChanged(object sender, LevelChangeEventArgs e)
         {
             // Implement logic for level changes specific to Tempest
-            Debug.Log($"Tempest leveled up to level {e.Value}!");
+            Debug.Log($"Tempest leveled up to level {e.NewLevel}!");
         }
     }
 }
