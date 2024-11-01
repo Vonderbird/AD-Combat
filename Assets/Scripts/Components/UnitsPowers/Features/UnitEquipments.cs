@@ -30,12 +30,6 @@ namespace ADC
             }
         }
 
-        public void Update(UnitEquipments unitEquipments)
-        {
-            Shield = unitEquipments.Shield;
-            Weapon = unitEquipments.Weapon;
-        }
-
         public void Update(Shield shield)
         {
             Shield = shield;

@@ -73,16 +73,6 @@ namespace ADC
                 isAdded = true;
             }
             
-            switch (equipment)
-            {
-                case Weapon w:
-                    SetWeapon(w);
-                    break;
-                case Shield s:
-                    SetShield(s);
-                    break;
-            }
-
             if (isAdded)
                 EquipmentAdded?.Invoke(this, new EquipmentEventArgs(equipment));
         }
@@ -112,7 +102,8 @@ namespace ADC
         
         public void UpdateEquipments(UnitSpecs baseSpecs, UnitEquipments baseEquipments) // , UnitEquipments baseEquipments );
         {
-            Equipments.Update(baseEquipments);
+            SetShield(baseEquipments.Shield);
+            SetWeapon(baseEquipments.Weapon);
             // Calculate Added Specs
         }
 

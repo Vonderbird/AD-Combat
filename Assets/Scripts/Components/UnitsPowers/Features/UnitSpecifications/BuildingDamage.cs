@@ -30,23 +30,19 @@ namespace ADC
 
         public static BuildingDamage operator +(BuildingDamage a1, int a2)
         {
-            a1.Value += a2;
-            return a1;
+            return new BuildingDamage(a1.value + a2);
         }
         public static BuildingDamage operator -(BuildingDamage a1, int a2)
         {
-            a1.Value -= a2;
-            return a1;
+            return new BuildingDamage(a1.value - a2);
         }
         public static BuildingDamage operator *(BuildingDamage a1, int a2)
         {
-            a1.Value *= a2;
-            return a1;
+            return new BuildingDamage(a1.value * a2);
         }
         public static BuildingDamage operator /(BuildingDamage a1, int a2)
         {
-            a1.Value /= a2;
-            return a1;
+            return new BuildingDamage(a1.value / a2);
         }
 
         public event EventHandler<BuildingDamage> Changed;

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using UnityEngine;
 
 namespace ADC
 {
@@ -65,12 +66,14 @@ namespace ADC
 
         public int CalculateArmor()
         {
-            throw new System.NotImplementedException();
+            Debug.LogError("[UnitSpecsCalculator] not implemented");
+            return 0;
         }
 
         public UnitSpecs CalculateAll()
         {
-            throw new System.NotImplementedException();
+            Debug.LogError("[UnitSpecsCalculator] not implemented");
+            return new UnitSpecs();
         }
     }
 }

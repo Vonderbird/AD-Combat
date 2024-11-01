@@ -1,4 +1,5 @@
 using System;
+using RTSEngine;
 using UnityEngine;
 
 namespace ADC
@@ -7,7 +8,7 @@ namespace ADC
     public struct Armor : IUnitFeature<int, Armor>
     {
         [SerializeField] private int value;
-        public Armor(int value): this()
+        public Armor(int value) : this()
         {
             this.value = value;
         }
@@ -30,23 +31,19 @@ namespace ADC
 
         public static Armor operator +(Armor a1, int a2)
         {
-            a1.Value += a2;
-            return a1;
+            return new Armor(a1.value + a2);
         }
         public static Armor operator -(Armor a1, int a2)
         {
-            a1.Value -= a2;
-            return a1;
+            return new Armor(a1.value - a2);
         }
         public static Armor operator *(Armor a1, int a2)
         {
-            a1.Value *= a2;
-            return a1;
+            return new Armor(a1.value * a2);
         }
         public static Armor operator /(Armor a1, int a2)
         {
-            a1.Value /= a2;
-            return a1;
+            return new Armor(a1.value / a2);
         }
 
         public event EventHandler<Armor> Changed;

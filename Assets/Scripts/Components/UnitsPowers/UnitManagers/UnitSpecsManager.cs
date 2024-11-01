@@ -14,6 +14,7 @@ namespace ADC
 
         public UnitSpecs CurrentSpecs { get; } = new();
 
+        #region Bind Value Inner Changes
         public UnitSpecsManager(IThirdPartyInteractionManager thirdPartyManager)
         {
             Debug.Log("Begin Unit Specs Manager");
@@ -22,68 +23,78 @@ namespace ADC
             CurrentSpecs.SetHandler(OnHealthPointChanged);
             CurrentSpecs.SetHandler(OnBuildingDamageChanged);
             CurrentSpecs.SetHandler(OnUnitDamageChanged);
-            CurrentSpecs.SetHandler(OnChanged);
-        }
-
-        public void UpdateBaseSpecs(UnitSpecs baseSpecs)
-        {
-            this.BaseSpecs.Update(baseSpecs);
-            CurrentSpecs.Update(equipmentSpecs + baseSpecs);
-        }
-
-        public void BindEquipmentSpecs(UnitSpecs equipmentSpecs)
-        {
-            equipmentSpecs.SetHandler((object o, Armor a) =>
-            {
-                this.equipmentSpecs.Armor = a;
-                CurrentSpecs.Armor = a + BaseSpecs.Armor;
-            });
-            equipmentSpecs.SetHandler((object o, HealthPoint a) =>
-            {
-                this.equipmentSpecs.HealthPoint = a;
-                CurrentSpecs.HealthPoint = a + BaseSpecs.HealthPoint;
-            });
-            equipmentSpecs.SetHandler((object o, BuildingDamage a) =>
-            {
-                this.equipmentSpecs.BuildingDamage = a;
-                CurrentSpecs.BuildingDamage = a + BaseSpecs.BuildingDamage;
-            });
-            equipmentSpecs.SetHandler((object o, UnitDamage a) =>
-            {
-                this.equipmentSpecs.UnitDamage = a;
-                CurrentSpecs.UnitDamage = a + BaseSpecs.UnitDamage;
-            });
-            equipmentSpecs.SetHandler((object o, ManaPoint a) =>
-            {
-                this.equipmentSpecs.ManaPoint = a;
-                CurrentSpecs.ManaPoint = a + BaseSpecs.ManaPoint;
-            });
+            CurrentSpecs.SetHandler(OnManaPointChanged);
         }
 
         private void OnArmorChanged(object sender, Armor e)
         {
             thirdPartyManager.SetUnitArmor(e.Value);
         }
-
         private void OnHealthPointChanged(object sender, HealthPoint e)
         {
             thirdPartyManager.SetUnitMaxHealth(e.Value);
         }
-
-        private void OnUnitDamageChanged(object sender, UnitDamage e)
-        {
-            thirdPartyManager.SetUnitDamage(e.Value);
-        }
-
         private void OnBuildingDamageChanged(object sender, BuildingDamage e)
         {
             thirdPartyManager.SetBuildingDamage(e.Value);
         }
-
-        private void OnChanged(object sender, ManaPoint e)
+        private void OnUnitDamageChanged(object sender, UnitDamage e)
+        {
+            thirdPartyManager.SetUnitDamage(e.Value);
+        }
+        private void OnManaPointChanged(object sender, ManaPoint e)
         {
             thirdPartyManager.SetManaPoint(e.Value);
         }
+        #endregion
+        
+        public void UpdateBaseSpecs(UnitSpecs baseSpecs)
+        {
+            this.BaseSpecs.Update(baseSpecs);
+            CurrentSpecs.Update(equipmentSpecs + baseSpecs);
+        }
+
+        #region Bind Equipment Changes
+        public void BindEquipmentSpecs(UnitSpecs equipSpecs)
+        {
+            equipSpecs.SetHandler(ArmorChangeHandler);
+            equipSpecs.SetHandler(HealthPointChangeHandler);
+            equipSpecs.SetHandler(BuildingDamageChangeHandler);
+            equipSpecs.SetHandler(UnitDamageChangeHandler);
+            equipSpecs.SetHandler(ManaPointChangeHandler);
+        }
+        private void ArmorChangeHandler(object o, Armor a)
+        {
+            equipmentSpecs.Armor = a;
+            CurrentSpecs.Armor = a + BaseSpecs.Armor;
+        }
+        private void HealthPointChangeHandler(object o, HealthPoint a)
+        {
+            equipmentSpecs.HealthPoint = a;
+            CurrentSpecs.HealthPoint = a + BaseSpecs.HealthPoint;
+        }
+        private void BuildingDamageChangeHandler(object o, BuildingDamage a)
+        {
+            equipmentSpecs.BuildingDamage = a;
+            CurrentSpecs.BuildingDamage = a + BaseSpecs.BuildingDamage;
+        }
+        private void UnitDamageChangeHandler(object o, UnitDamage a)
+        {
+            equipmentSpecs.UnitDamage = a;
+            CurrentSpecs.UnitDamage = a + BaseSpecs.UnitDamage;
+        }
+
+        private void ManaPointChangeHandler(object o, ManaPoint a)
+        {
+            equipmentSpecs.ManaPoint = a;
+            CurrentSpecs.ManaPoint = a + BaseSpecs.ManaPoint;
+        }
+
+
+        
+
+        #endregion
+        
         public void Heal(int value)
         {
             Debug.LogError("Not Implemented");

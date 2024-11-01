@@ -30,23 +30,19 @@ namespace ADC
 
         public static HealthPoint operator +(HealthPoint a1, int a2)
         {
-            a1.Value += a2;
-            return a1;
+            return new HealthPoint(a1.value + a2);
         }
         public static HealthPoint operator -(HealthPoint a1, int a2)
         {
-            a1.Value -= a2;
-            return a1;
+            return new HealthPoint(a1.value - a2);
         }
         public static HealthPoint operator *(HealthPoint a1, int a2)
         {
-            a1.Value *= a2;
-            return a1;
+            return new HealthPoint(a1.value * a2);
         }
         public static HealthPoint operator /(HealthPoint a1, int a2)
         {
-            a1.Value /= a2;
-            return a1;
+            return new HealthPoint(a1.value / a2);
         }
 
         public event EventHandler<HealthPoint> Changed;
