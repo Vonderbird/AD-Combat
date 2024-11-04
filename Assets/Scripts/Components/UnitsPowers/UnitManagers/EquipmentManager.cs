@@ -100,10 +100,10 @@ namespace ADC
 
         // Call after transaction! or Inventory Equipment! or ...
         
-        public void UpdateEquipments(UnitSpecs baseSpecs, UnitEquipments baseEquipments) // , UnitEquipments baseEquipments );
+        public void UpdateEquipments(UnitSpecs baseSpecs, UnitEquipments targetEquipments) // , UnitEquipments baseEquipments );
         {
-            SetShield(baseEquipments.Shield);
-            SetWeapon(baseEquipments.Weapon);
+            SetShield(targetEquipments.Shield);
+            SetWeapon(targetEquipments.Weapon);
             // Calculate Added Specs
         }
 

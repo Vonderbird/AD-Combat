@@ -17,7 +17,7 @@ namespace ADC
         int Armor { get; }
         void Defend();
         void Defend(Biological weapon);
-        void Defend(ElectroMagnetic weapon);
+        void Defend(Electromagnetic weapon);
         void Defend(ExplosiveRounds weapon);
         void Defend(Sharpened weapon);
         void Defend(Kinetic weapon);

@@ -14,7 +14,7 @@ namespace ADC
             throw new System.NotImplementedException();
         }
 
-        public override void Defend(ElectroMagnetic weapon)
+        public override void Defend(Electromagnetic weapon)
         {
             throw new System.NotImplementedException();
         }

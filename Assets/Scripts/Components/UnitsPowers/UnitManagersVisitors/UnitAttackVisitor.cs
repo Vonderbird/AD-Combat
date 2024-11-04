@@ -2,12 +2,12 @@ namespace ADC
 {
     public class UnitAttackVisitor : IUnitManagerVisitor
     {
-        public void Visit(SiegeBreaker siegeBreaker)
+        public void Visit(AdamantiumLegionSiegeBreaker adamantiumLegionSiegeBreaker)
         {
-            //siegeBreaker.Weapon.Attack();
-            //siegeBreaker.specialAbilities.ForEach(c => c.Play());
+            //adamantiumLegionSiegeBreaker.Weapon.Attack();
+            //adamantiumLegionSiegeBreaker.specialAbilities.ForEach(c => c.Play());
         }
-        public void Visit(TkArty tkArty)
+        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
             //tkArty.Weapon.Attack();
         }
@@ -32,11 +32,6 @@ namespace ADC
         }
 
         public void Visit(DeepwalkerInfilterator deepwalkerInfilterator)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
             throw new System.NotImplementedException();
         }

@@ -12,16 +12,16 @@ namespace ADC
             this.healingAmount = healingAmount;
         }
 
-        public void Visit(SiegeBreaker siegeBreaker)
+        public void Visit(AdamantiumLegionSiegeBreaker adamantiumLegionSiegeBreaker)
         {
-            siegeBreaker.Specs.Heal(healingAmount * 2);
-            Debug.Log($"Healed SiegeBreaker by {healingAmount * 2} HP.");
+            adamantiumLegionSiegeBreaker.Specs.Heal(healingAmount * 2);
+            Debug.Log($"Healed AdamantiumLegionSiegeBreaker by {healingAmount * 2} HP.");
         }
 
-        public void Visit(TkArty tkArty)
+        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
-            tkArty.Specs.Heal(healingAmount);
-            Debug.Log($"Healed TkArty by {healingAmount} HP.");
+            thunderkinArtilleryTank.Specs.Heal(healingAmount);
+            Debug.Log($"Healed ThunderkinArtilleryTank by {healingAmount} HP.");
         }
 
         public void Visit(AdamantiumLegionElite adamantiumLegionElite)
@@ -47,11 +47,6 @@ namespace ADC
         }
 
         public void Visit(DeepwalkerInfilterator deepwalkerInfilterator)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
             throw new NotImplementedException();
         }
