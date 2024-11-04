@@ -13,20 +13,20 @@ namespace ADC
             this.duration = duration;
         }
 
-        public void Visit(SiegeBreaker siegeBreaker)
+        public void Visit(AdamantiumLegionSiegeBreaker adamantiumLegionSiegeBreaker)
         {
-            siegeBreaker.Specs.ApplyBuff(
-                new UnitDamage((int)(siegeBreaker.Specs.BaseSpecs.UnitDamage * buffMultiplier)),
+            adamantiumLegionSiegeBreaker.Specs.ApplyBuff(
+                new UnitDamage((int)(adamantiumLegionSiegeBreaker.Specs.BaseSpecs.UnitDamage * buffMultiplier)),
                 duration);
-            Debug.Log($"Buffed SiegeBreaker's damage by {buffMultiplier * 100 - 100}% for {duration} seconds.");
+            Debug.Log($"Buffed AdamantiumLegionSiegeBreaker's damage by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }
 
-        public void Visit(TkArty tkArty)
+        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
-            tkArty.Specs.ApplyBuff(
-                new Armor((int)(tkArty.Specs.BaseSpecs.Armor * buffMultiplier)),
+            thunderkinArtilleryTank.Specs.ApplyBuff(
+                new Armor((int)(thunderkinArtilleryTank.Specs.BaseSpecs.Armor * buffMultiplier)),
                 duration);
-            Debug.Log($"Buffed TkArty's armor by {buffMultiplier * 100 - 100}% for {duration} seconds.");
+            Debug.Log($"Buffed ThunderkinArtilleryTank's armor by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }
 
         public void Visit(AdamantiumLegionElite adamantiumLegionElite)
@@ -59,12 +59,7 @@ namespace ADC
         {
             throw new System.NotImplementedException();
         }
-
-        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         public void Visit(FrostbornIceStalker frostbornIceStalker)
         {
             throw new System.NotImplementedException();

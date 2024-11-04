@@ -4,13 +4,17 @@ namespace ADC
 {
     public class ThunderkinArtilleryTank : UnitBattleManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; } = new() { };
+        protected override List<ISpecialAbility> specialAbilities { get; set; }
 
-
-        //protected override void Awake()
-        //{
-        //    base.Awake();
-        //}
+        protected override void Awake()
+        {
+            specialAbilities = new()
+            {
+                new AdvancingThePathway(this),
+                new FlameWalker(this)
+            };
+            base.Awake();
+        }
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {

@@ -41,7 +41,7 @@ namespace ADC
 
         public abstract void Defend();
         public abstract void Defend(Biological weapon);
-        public abstract void Defend(ElectroMagnetic weapon);
+        public abstract void Defend(Electromagnetic weapon);
         public abstract void Defend(ExplosiveRounds weapon);
         public abstract void Defend(Sharpened weapon);
         public abstract void Defend(Kinetic weapon);
@@ -60,7 +60,7 @@ namespace ADC
             throw new NotImplementedException();
         }
 
-        public override void Defend(ElectroMagnetic weapon)
+        public override void Defend(Electromagnetic weapon)
         {
             throw new NotImplementedException();
         }

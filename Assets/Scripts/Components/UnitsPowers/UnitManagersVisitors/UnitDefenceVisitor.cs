@@ -12,15 +12,15 @@ namespace ADC
             this.armorWeaponEffectTable = armorWeaponEffectTable;
         }
 
-        public void Visit(SiegeBreaker siegeBreaker)
+        public void Visit(AdamantiumLegionSiegeBreaker adamantiumLegionSiegeBreaker)
         {
-            //var armor = siegeBreaker.Shield;
-            //var defence = siegeBreaker.Weapon;
-            //var targetWeapon = siegeBreaker.Target.Weapon;
+            //var armor = adamantiumLegionSiegeBreaker.Shield;
+            //var defence = adamantiumLegionSiegeBreaker.Weapon;
+            //var targetWeapon = adamantiumLegionSiegeBreaker.Target.Weapon;
             throw new System.NotImplementedException();
         }
 
-        public void Visit(TkArty tkArty)
+        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
             throw new System.NotImplementedException();
         }
@@ -45,11 +45,6 @@ namespace ADC
         }
 
         public void Visit(DeepwalkerInfilterator deepwalkerInfilterator)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
             throw new NotImplementedException();
         }

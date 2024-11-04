@@ -10,7 +10,7 @@ namespace ADC
         private readonly Dictionary<Type, Dictionary<Type, float>> baseValues = new()
         {
             {typeof(Organic), new () {
-                { typeof(ElectroMagnetic), 1.0f },
+                { typeof(Electromagnetic), 1.0f },
                 { typeof(Kinetic), 1.0f },
                 { typeof(Plasma), 0.8f },
                 { typeof(ExplosiveRounds), 1.0f },
@@ -18,7 +18,7 @@ namespace ADC
                 { typeof(Biological), 1.0f } } },
 
             {typeof(LightTacticalAssault), new (){
-                { typeof(ElectroMagnetic), 0.7f },
+                { typeof(Electromagnetic), 0.7f },
                 { typeof(Kinetic), 0.9f },
                 { typeof(Plasma), 1.1f },
                 { typeof(ExplosiveRounds), 0.9f },
@@ -26,7 +26,7 @@ namespace ADC
                 { typeof(Biological), 0.8f }}},
 
             {typeof(Nano), new (){
-                { typeof(ElectroMagnetic), 1.1f },
+                { typeof(Electromagnetic), 1.1f },
                 { typeof(Kinetic), 0.8f },
                 { typeof(Plasma),1.3f },
                 { typeof(ExplosiveRounds), 1.2f },
@@ -34,7 +34,7 @@ namespace ADC
                 { typeof(Biological), 0.75f }}},
 
             {typeof(ScaledPlate), new (){
-                { typeof(ElectroMagnetic), 0.9f },
+                { typeof(Electromagnetic), 0.9f },
                 { typeof(Kinetic), 0.5f },
                 { typeof(Plasma), 2.0f },
                 { typeof(ExplosiveRounds), 0.5f },
@@ -42,7 +42,7 @@ namespace ADC
                 { typeof(Biological), 0.5f }}},
 
             {typeof(CarbonCompound), new (){
-                { typeof(ElectroMagnetic), 1.2f },
+                { typeof(Electromagnetic), 1.2f },
                 { typeof(Kinetic), 1.0f },
                 { typeof(Plasma), 0.5f },
                 { typeof(ExplosiveRounds), 0.75f },
@@ -50,7 +50,7 @@ namespace ADC
                 { typeof(Biological), 0.9f }}},
 
             {typeof(HeavyPlate), new (){
-                { typeof(ElectroMagnetic), 1.0f },
+                { typeof(Electromagnetic), 1.0f },
                 { typeof(Kinetic), 0.8f },
                 { typeof(Plasma), 1.0f },
                 { typeof(ExplosiveRounds), 1.75f },

@@ -5,18 +5,19 @@ namespace ADC
 {
     public class AdamantiumLegionElite : UnitBattleManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; } = new()
+        protected override List<ISpecialAbility> specialAbilities { get; set; }
+
+
+        protected override void Awake()
         {
-            new AdvancingThePathway(),
-            new FlameWalker(),
-            new Tempest()
-        };
-
-
-        //protected override void Awake()
-        //{
-        //    base.Awake();
-        //}
+            specialAbilities = new()
+            {
+                new AdvancingThePathway(this),
+                new FlameWalker(this),
+                new Tempest(this)
+            };
+            base.Awake();
+        }
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {

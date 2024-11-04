@@ -4,13 +4,14 @@ namespace ADC
 {
     public class FrostbornHunter : UnitBattleManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; } = new() { };
+        protected override List<ISpecialAbility> specialAbilities { get; set; }
 
 
-        //protected override void Awake()
-        //{
-        //    base.Awake();
-        //}
+        protected override void Awake()
+        {
+            specialAbilities = new();
+            base.Awake();
+        }
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {
