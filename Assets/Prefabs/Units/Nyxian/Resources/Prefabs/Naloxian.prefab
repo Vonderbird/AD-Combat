@@ -317,9 +317,9 @@ MonoBehaviour:
   requireIdleEntity: 1
   targetFinderData:
     enabled: 1
-    reloadTime: 1
-    range: 8
-    idleOnly: 1
+    reloadTime: 2
+    range: 25
+    idleOnly: 0
     typePicker:
       type: 0
       options:
@@ -352,7 +352,7 @@ MonoBehaviour:
     fetchType: 0
     items:
     - {fileID: 22100000, guid: eb1404e2c46fe65459b1dd715592fb51, type: 2}
-  progressDuration: 0.4
+  progressDuration: 1
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
   sourceEffect:
@@ -380,7 +380,7 @@ MonoBehaviour:
   requireTarget: 1
   allowMultipleTerrainAttacks: 0
   terrainAttackActive: 0
-  reloadDuration: 0.5
+  reloadDuration: 1
   delayTriggerEnabled: 0
   attackIterationTriggered: 0
   cooldown:
@@ -389,9 +389,19 @@ MonoBehaviour:
       _min: 1
       _max: 2
   launcher:
-    useAttackObjects: 0
+    useAttackObjects: 1
     launchType: 1
-    sources: []
+    sources:
+    - attackObject:
+        input: {fileID: 2733471814133545326, guid: 00994ba5f87d17a40b8dba4cbbce8da6, type: 3}
+      launchPosition: {fileID: 8144202394407343653}
+      launchRotationAngles: {x: 0, y: 0, z: 0}
+      preDelayTime: 0
+      postDelayTime: 0.84
+      launchDelayTime: 0.84
+      damageInDelay: 0
+      delayParentObject: {fileID: 8144202394407343653}
+      index: 0
     attackIterationLaunchEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -485,18 +495,18 @@ MonoBehaviour:
   showAttackIterationGizmos: 1
   formation:
     unitStoppingDistance:
-      _min: 0
-      _max: 1.5
-    unitEnableDistance: 0.75
+      _min: 10
+      _max: 20
+    unitEnableDistance: 11
     buildingStoppingDistance:
-      _min: 0
-      _max: 1.5
-    noTargetStoppingDistance:
-      _min: 5
+      _min: 3
       _max: 10
-    enforceMinStoppingDistance: 0
-    minStoppingDistance: 0.5
-    stopMovementOnTargetInRange: 0
+    noTargetStoppingDistance:
+      _min: 0
+      _max: 1
+    enforceMinStoppingDistance: 1
+    minStoppingDistance: 0.3
+    stopMovementOnTargetInRange: 1
     updateMvtDistance: 2
     movementFormation:
       lastType: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
@@ -507,7 +517,7 @@ MonoBehaviour:
           value: 0.2
         intProperties: []
   moveOnAttack: 0
-  followDistance: 9
+  followDistance: 20
   attackMoveEnabled: 1
   attackMoveTaskUI: {fileID: 0}
 --- !u!1 &5167101900905923025
@@ -1707,5 +1717,10 @@ Animator:
 --- !u!4 &585959204143982078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aa47ee277a20f5440b37597dbfee9d0b, type: 3}
+  m_PrefabInstance: {fileID: 1129004617793929749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8144202394407343653 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -95416330665389008, guid: aa47ee277a20f5440b37597dbfee9d0b, type: 3}
   m_PrefabInstance: {fileID: 1129004617793929749}
   m_PrefabAsset: {fileID: 0}
