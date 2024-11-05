@@ -48,5 +48,21 @@ namespace ADC.Currencies
         }
 
         public bool IsEmpty => Value == default;
+
+
+        public bool Equals(WarScrap warScrap)
+        {
+            return this.Value == warScrap.Value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null && this.Equals((WarScrap)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 }

@@ -45,5 +45,20 @@ namespace ADC.Currencies
         }
 
         public bool IsEmpty => Value == default;
+
+        public bool Equals(Biofuel biofuel)
+        {
+            return this.Value == biofuel.Value;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj != null && this.Equals((Biofuel)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 }

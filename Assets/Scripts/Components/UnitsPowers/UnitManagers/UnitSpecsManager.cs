@@ -17,7 +17,6 @@ namespace ADC
         #region Bind Value Inner Changes
         public UnitSpecsManager(IThirdPartyInteractionManager thirdPartyManager)
         {
-            Debug.Log("Begin Unit Specs Manager");
             this.thirdPartyManager = thirdPartyManager;
             CurrentSpecs.SetHandler(OnArmorChanged);
             CurrentSpecs.SetHandler(OnHealthPointChanged);

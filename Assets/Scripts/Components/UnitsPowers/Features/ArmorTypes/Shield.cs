@@ -31,11 +31,12 @@ namespace ADC
         public float Defence { get; private set; } // ?
         public float Level { get; private set; } // ?
         public float Health { get; private set; } // ?
-        public static Shield Default { get; } = new NoShield();
+        public static Shield Default { get; private set; } 
 
         public void Initialize(ShieldInitArgs args)
         {
             Args = args;
+            Default = new GameObject("NoShield").AddComponent<NoShield>();
         }
 
 

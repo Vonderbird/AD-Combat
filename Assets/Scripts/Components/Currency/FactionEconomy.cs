@@ -89,7 +89,6 @@ namespace ADC.Currencies
 
         private void UpdateVisualizers(CurrencyChangeEventArgs<Biofuel> arg0)
         {
-            Debug.Log("Update Biofuel");
             BiofuelVisualizers = BiofuelVisualizers.Where(v => v).ToHashSet();
             foreach (var biofuelVisualizer in BiofuelVisualizers)
             {
@@ -99,7 +98,6 @@ namespace ADC.Currencies
 
         private void UpdateVisualizers(CurrencyChangeEventArgs<WarScrap> arg0)
         {
-            Debug.Log("Update Biofuel WarScrap");
             WarScrapVisualizers = WarScrapVisualizers.Where(v => v).ToHashSet();
             foreach (var warScrapVisualizer in WarScrapVisualizers)
             {
