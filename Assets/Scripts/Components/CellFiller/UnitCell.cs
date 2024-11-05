@@ -11,7 +11,7 @@ namespace ADC.UnitCreation
     public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
         IPointerMoveHandler
     {
-        [SerializeField] private Renderer renderer;
+        [SerializeField] private Renderer cellRenderer;
         [SerializeField] private int materialId;
         [SerializeField] private float cellSizeFactor = 0.5f;
         public ParticleSystemGroup SpawnParticle { get; set; }
@@ -45,10 +45,10 @@ namespace ADC.UnitCreation
         void Awake()
         {
             cellEventArgs = new CellEventArgs(CellId);
-            if (!renderer)
-                renderer = GetComponentInChildren<Renderer>();
+            if (!cellRenderer)
+                cellRenderer = GetComponentInChildren<Renderer>();
 
-            renderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
+            cellRenderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
             ;
         }
 
@@ -75,7 +75,7 @@ namespace ADC.UnitCreation
             if (!isFilled) return;
             isFilled = false;
             if (hoverIsEnable)
-                renderer.materials[materialId].color = Color.green;
+                cellRenderer.materials[materialId].color = Color.green;
 
             if (DeleteParticle)
             {
@@ -104,23 +104,23 @@ namespace ADC.UnitCreation
 
         public void OnCellAdditiveEntered()
         {
-            renderer.materials[materialId].color = decoObject == null ? Color.green : Color.gray;
+            cellRenderer.materials[materialId].color = decoObject == null ? Color.green : Color.gray;
         }
 
         public void OnCellDeletionEntered()
         {
-            renderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
+            cellRenderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
         }
 
         public void OnCellExit()
         {
-            renderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
+            cellRenderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
         }
 
         public void OnCellAdditiveClicked()
         {
             isFilled = true;
-            renderer.materials[materialId].color = Color.red;
+            cellRenderer.materials[materialId].color = Color.red;
         }
 
         public void OnCellDeletionClicked()

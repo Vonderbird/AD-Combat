@@ -32,11 +32,12 @@ namespace ADC
         public float Level { get; private set; } // ?
         public float Health { get; private set; } // ?
 
-        public static Weapon Default { get; } = new NoWeapon();
+        public static Weapon Default { get; private set; }
 
         public void Init(WeaponInitArgs initArgs)
         {
             InitArgs = initArgs;
+            Default = new GameObject("NoWeapon").AddComponent<NoWeapon>();
         }
         public abstract void Attack();
         public abstract int UnitDamage { get; set; }

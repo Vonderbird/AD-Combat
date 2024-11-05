@@ -76,7 +76,6 @@ public class UnitManager : MonoBehaviour
                 }
             }
 
-            Debug.Log("Units moved to battleground");
         }
     }
 

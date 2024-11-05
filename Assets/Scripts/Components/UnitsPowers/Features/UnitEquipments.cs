@@ -15,7 +15,7 @@ namespace ADC
             get => shield ?? Shield.Default;
             private set
             {
-                Debug.Log($"shield: {shield} : {value}");
+                //Debug.Log($"shield: {shield} : {value}");
                 shield = value;
             }
         }
@@ -25,7 +25,7 @@ namespace ADC
             get => weapon ?? Weapon.Default;
             private set
             {
-                Debug.Log($"weapon: {weapon} : {value}");
+                //Debug.Log($"weapon: {weapon} : {value}");
                 weapon = value;
             }
         }

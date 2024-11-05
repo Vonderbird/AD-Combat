@@ -60,14 +60,12 @@ namespace ADC
 
         private void OnDestroy()
         {
-            Debug.Log("What destroy!");
             _applicationIsQuitting = true;
         }
 
         // Optional: Clear the _applicationIsQuitting flag if needed (useful for play mode testing in the editor)
         protected virtual void OnApplicationQuit()
         {
-            Debug.Log("What Quit!");
             _applicationIsQuitting = true;
         }
     }
