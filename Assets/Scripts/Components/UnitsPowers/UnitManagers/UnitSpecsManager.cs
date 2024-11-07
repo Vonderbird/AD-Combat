@@ -1,10 +1,10 @@
-using System.Reflection;
+using ADC.API;
 using UnityEngine;
 
 
 namespace ADC
 {
-    public class UnitSpecsManager
+    public class UnitSpecsManager: IUnitSpecsManager
     {
         protected UnitSpecs baseSpecs = new();
         protected UnitSpecs equipmentSpecs = new();
@@ -98,9 +98,50 @@ namespace ADC
         {
             Debug.LogError("Not Implemented");
         }
-        public void ApplyBuff<T>(T buffAmount, float duration) // where T : IUnitFeature<int, T>
+
+        public void ApplyBuff(UnitDamage unitDamage, float duration)
         {
             Debug.LogError("Not Implemented");
         }
+
+        public void ApplyBuff(Armor armor, float duration)
+        {
+            Debug.LogError("Not Implemented");
+        }
+
+        public void ApplyBuff(HealthPoint healthPoint, float duration)
+        {
+            Debug.LogError("Not Implemented");
+        }
+
+        public void ApplyBuff(ManaPoint manaPoint, float duration)
+        {
+            Debug.LogError("Not Implemented");
+        }
+
+        public void ApplyBuff<T>(T buffAmount, float duration) where T : IUnitFeature<int, T>
+        {
+            if (buffAmount is Armor a)
+            {
+                ApplyBuff(a, duration);
+            }
+            else if (buffAmount is UnitDamage ud)
+            {
+                ApplyBuff(ud, duration);
+            }
+            else if (buffAmount is HealthPoint hp)
+            {
+                ApplyBuff(hp, duration);
+            }
+            else if (buffAmount is ManaPoint mp)
+            {
+                ApplyBuff(mp, duration);
+            }
+            else
+            {
+                Debug.LogError("Not Implemented");
+            }
+        }
     }
+
 }

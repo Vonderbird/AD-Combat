@@ -1,4 +1,4 @@
-namespace ADC
+namespace ADC.API
 {
     public interface IEquipment { }
     public interface IEquipment<in T> : IEquipment
@@ -16,12 +16,6 @@ namespace ADC
     {
         int Armor { get; }
         void Defend();
-        void Defend(Biological weapon);
-        void Defend(Electromagnetic weapon);
-        void Defend(ExplosiveRounds weapon);
-        void Defend(Sharpened weapon);
-        void Defend(Kinetic weapon);
-        void Defend(Plasma weapon);
     }
     public interface IHitPointEquipment { int HitPoint { get; } }
 }

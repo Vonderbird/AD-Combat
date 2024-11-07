@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ADC.API;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using RTSEngine.Event;
@@ -9,7 +10,7 @@ using UnityEngine;
 namespace ADC
 {
     [RequireComponent(typeof(IUnit))]
-    public abstract class UnitBattleManager : MonoBehaviour
+    public abstract class UnitBattleManager : MonoBehaviour, IUnitBattleManager
     {
         
         [SerializeField] private DamageFactors damageFactors;
@@ -21,8 +22,8 @@ namespace ADC
         
         protected IUnit unit { get; private set; }
 
-        public EquipmentManager EquipmentManager { get; private set; }
-        public UnitSpecsManager Specs { get; private set; }
+        public IEquipmentManager EquipmentManager { get; private set; }
+        public IUnitSpecsManager Specs { get; private set; }
         private IUnitSpecsCalculator unitSpecsCalculator;
 
         protected virtual List<ISpecialAbility> specialAbilities { get; set; } = new() { };

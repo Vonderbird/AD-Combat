@@ -86,7 +86,7 @@ namespace RTSEngine.Attack
         private FactionEntityDependantHitEffectData obstacleHitEffect = new FactionEntityDependantHitEffectData();
 
         // Responsible for assigning the actual damage to the target's health.
-        protected CustomAttackDamage damage { private set; get; }
+        protected AttackDamage damage { private set; get; }
 
         private new Rigidbody rigidbody;
         private new Collider collider;
@@ -304,7 +304,7 @@ namespace RTSEngine.Attack
         private void ApplyDamage(GameObject targetObject, IFactionEntity target, Vector3 targetPosition)
         {
             // Deal damage
-            damage.Trigger(target, targetPosition);
+            damage.Trigger(target, targetPosition, true);
             didDamage = true;
 
             // Hit effect and audio

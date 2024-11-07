@@ -1,8 +1,7 @@
 using System;
-using RTSEngine;
 using UnityEngine;
 
-namespace ADC
+namespace ADC.API
 {
     [Serializable]
     public struct Armor : IUnitFeature<int, Armor>
