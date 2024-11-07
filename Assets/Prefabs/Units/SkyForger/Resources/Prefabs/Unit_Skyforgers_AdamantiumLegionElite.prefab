@@ -1603,6 +1603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a55cbce527834e47a400fa96aa092b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageFactors:
+    ReceiveRangeDamageFactor: 0.7
   levelZeroSpecs:
     healthPoint:
       value: 550

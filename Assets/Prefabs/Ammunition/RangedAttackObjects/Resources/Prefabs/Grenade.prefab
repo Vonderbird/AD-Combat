@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5873531941681840976}
   - component: {fileID: 2904308078252135898}
   - component: {fileID: 8940150136530196031}
-  - component: {fileID: 9222174075546979989}
+  - component: {fileID: -2326538743257853238}
   - component: {fileID: 1725337949932529238}
   m_Layer: 0
   m_Name: Grenade
@@ -167,7 +167,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9222174075546979989
+--- !u!114 &-2326538743257853238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8334881734067692792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 903827dccafd4fd4898d5beb841b13be, type: 3}
+  m_Script: {fileID: 11500000, guid: 4526b787edde80d42b47e83cab7a5e47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   code: adc_ammunition_grenade
@@ -185,7 +185,7 @@ MonoBehaviour:
     y: 0
   enableLifeTime: 1
   defaultLifeTime: 3
-  disableTime: 1
+  disableTime: 0
   spawnPositionOffset: {x: 0, y: 0, z: 0}
   offsetLocalPosition: 0
   initEvent:
@@ -205,25 +205,7 @@ MonoBehaviour:
     maxHeightDifference: 0
     curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -233,25 +215,7 @@ MonoBehaviour:
     maxHeightDifference: 0
     curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -265,7 +229,7 @@ MonoBehaviour:
   childOnDamage: 0
   obstacleLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   triggerEffect:
     input: {fileID: 0}
   triggerEffectFaceTarget: 1
