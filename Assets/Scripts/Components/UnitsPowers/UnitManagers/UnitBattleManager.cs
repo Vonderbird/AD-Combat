@@ -5,16 +5,19 @@ using RTSEngine.EntityComponent;
 using RTSEngine.Event;
 using RTSEngine.Health;
 using UnityEngine;
-using Object = System.Object;
 
 namespace ADC
 {
     [RequireComponent(typeof(IUnit))]
     public abstract class UnitBattleManager : MonoBehaviour
     {
+        
+        [SerializeField] private DamageFactors damageFactors;
+
         [SerializeField] protected UnitSpecs levelZeroSpecs;
 
         [SerializeField] protected UnitEquipments baseEquipments;
+
         
         protected IUnit unit { get; private set; }
 
@@ -32,6 +35,8 @@ namespace ADC
         public UnitBattleManager Target { get; private set; }
 
         public UnitExperience Xp { get; private set; } = new();
+
+        public DamageFactors Factors => damageFactors;
 
         protected virtual void Awake()
         {
@@ -80,7 +85,7 @@ namespace ADC
 
         public abstract void Accept(IUnitManagerVisitor managerVisitor);
 
-        private void OnTargetUpdated(Object sender, dynamic t)
+        private void OnTargetUpdated(object sender, dynamic t)
         {
             if (t is IUnit u)
             {
@@ -168,4 +173,11 @@ namespace ADC
         #endregion
     }
 
+    [Serializable]
+    public class DamageFactors
+    {
+        [SerializeField] public float receiveRangeDamageFactor = 1.0f;
+
+        public float ReceiveRangeDamageFactor => receiveRangeDamageFactor;
+    }
 }
