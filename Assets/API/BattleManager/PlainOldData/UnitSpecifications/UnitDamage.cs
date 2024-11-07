@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ADC
+namespace ADC.API
 {
     [Serializable]
     public struct UnitDamage : IUnitFeature<int, UnitDamage>

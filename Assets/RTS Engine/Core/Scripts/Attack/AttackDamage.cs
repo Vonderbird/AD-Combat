@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using ADC.API;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -100,13 +100,13 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Triggering Damage
-        public void Trigger(IFactionEntity target, Vector3 targetPosition)
+        public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack=false)
         {
             if (areaAttackEnabled == true)
                 TriggerArea(target.IsValid() ? target.transform.position : targetPosition, sourceFactionID: SourceAttackComp.Entity.FactionID);
             // Apply damage directly
             else if (target.IsValid())
-                Deal(target, data.Get(target));
+                Deal(target, data.Get(target), rangedAttack);
         }
 
         private void TriggerArea(Vector3 center, int sourceFactionID)
@@ -141,10 +141,19 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Dealing Damage
-        private void Deal(IFactionEntity target, int value)
+        private void Deal(IFactionEntity target, int value, bool rangedAttack = false)
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
                 return;
+
+            var damageFactor = 1.0f;
+            var targetBattleComponent = target.GetComponent<IUnitBattleManager>();
+            var thisBattleComponent = this.SourceAttackComp.Entity.GetComponent<IUnitBattleManager>();
+            if (targetBattleComponent != null && thisBattleComponent != null)
+            {
+                Debug.Log($"rangedAttack: {rangedAttack}");
+                Debug.Log($"thisBattleComponent: {thisBattleComponent}, targetBattleComponent: {targetBattleComponent}, value: {value}");
+            }
 
             foreach (FactionEntityDependantHitEffectData hitEffectData in hitEffects)
                 if (hitEffectData.picker.IsValidTarget(target))

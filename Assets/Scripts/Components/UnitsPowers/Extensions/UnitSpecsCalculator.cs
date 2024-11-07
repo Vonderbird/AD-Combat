@@ -1,22 +1,13 @@
 using System;
 using System.Linq;
+using ADC.API;
 using UnityEngine;
 
 namespace ADC
 {
-    public interface IUnitSpecsCalculator
-    {
-        UnitBattleManager UnitBattleManager { get; }
-        int CalculateHitPoint();
-        (int, int) CalculateDamage(UnitBattleManager target = null);
-        int CalculateArmor();
-        UnitSpecs CalculateAll();
-    }
-
-
     public class UnitSpecsCalculator : IUnitSpecsCalculator
     {
-        public UnitBattleManager UnitBattleManager { get; }
+        public IUnitBattleManager UnitBattleManager { get; }
         private DamageDictionary damageDictionary;
         public UnitSpecsCalculator(UnitBattleManager unitBattleManager)
         {
@@ -31,7 +22,7 @@ namespace ADC
             return 0;
         }
 
-        public (int, int) CalculateDamage(UnitBattleManager target = null)
+        public (int, int) CalculateDamage(IUnitBattleManager target = null)
         {
             float unitDamageSummation = UnitBattleManager.Specs.BaseSpecs.UnitDamage +
                                   UnitBattleManager.EquipmentManager.AttackEquipments

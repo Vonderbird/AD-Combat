@@ -1,8 +1,7 @@
 using System;
-using RTSEngine.EntityComponent;
 using UnityEngine;
 
-namespace ADC
+namespace ADC.API
 {
     public struct EquipmentEventArgs
     {
@@ -19,7 +18,7 @@ namespace ADC
     }
     public class WeaponInitArgs
     {
-        public UnitAttack UnitAttack { get; set; }
+        //public UnitAttack UnitAttack { get; set; }
     }
 
     public abstract class Weapon : MonoBehaviour, IEquipment<Weapon>, IAttackEquipment

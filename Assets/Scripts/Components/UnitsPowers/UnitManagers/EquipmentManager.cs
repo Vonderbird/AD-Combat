@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using static Codice.Client.Common.Connection.AskCredentialsToUser;
+using ADC.API;
 
 namespace ADC
 {
     
 
-    public class EquipmentManager
+    public class EquipmentManager: IEquipmentManager
     {
         public UnitEquipments Equipments { get; private set; } = new();
 
@@ -117,4 +116,5 @@ namespace ADC
         public event EventHandler<ShieldEventArgs> ArmorChanged;
 
     }
+
 }
