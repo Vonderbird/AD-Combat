@@ -1,20 +1,23 @@
 ﻿using System.Collections.Generic;
+using ADC.API;
 using UnityEngine;
 
 namespace ADC
 {
     public class AdamantiumLegionElite : UnitBattleManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; }
+        public override List<ISpecialAbility> specialAbilities { get; protected set; }
 
 
         protected override void Awake()
         {
             specialAbilities = new()
             {
-                new AdvancingThePathway(this),
-                new FlameWalker(this),
-                new Tempest(this)
+                new AdamantiumArmor(this, 1),
+                new BeamBlade(this, 1),
+                new BrothersInArms(this, 2),
+                new IronBreakerElite(this, 2),
+                new AdvancedAdamantiumArmor(this, 2)
             };
             base.Awake();
         }

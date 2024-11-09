@@ -4,7 +4,7 @@ namespace ADC
 {
     public class AdvancingThePathway : SpecialAbilityBase
     {
-        public AdvancingThePathway(UnitBattleManager unitBattleManager) : base(unitBattleManager)
+        public AdvancingThePathway(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel)
         {
         }
         public override void Use()

@@ -63,6 +63,8 @@ namespace RTSEngine.Attack
 
         public CustomEventHandler<IAttackComponent, HealthUpdateArgs> AttackDamageDealt;
 
+        public BaseUnitSpecsCalculator SpecsCalculator { get; set; }
+
         private void RaiseAttackDamageDealt(HealthUpdateArgs e)
         {
             var handler = AttackDamageDealt;
@@ -75,6 +77,9 @@ namespace RTSEngine.Attack
         {
             if (DotData.cycleDuration == 0) DotData = BaseDotData;
             this.gridSearch = gameMgr.GetService<IGridSearchHandler>();
+            SpecsCalculator = gameMgr.FindObjectOfType_<BaseUnitSpecsCalculator>();
+            if (!SpecsCalculator)
+                Debug.LogError($"[AttackDamage] There is no SpecsCalculator in the scene!");
         }
         #endregion
 
@@ -150,16 +155,31 @@ namespace RTSEngine.Attack
             var targetBattleComponent = target.GetComponent<IUnitBattleManager>();
             var thisBattleComponent = this.SourceAttackComp.Entity.GetComponent<IUnitBattleManager>();
             if (targetBattleComponent != null && thisBattleComponent != null)
-            {
-                Debug.Log($"rangedAttack: {rangedAttack}");
-                Debug.Log($"thisBattleComponent: {thisBattleComponent}, targetBattleComponent: {targetBattleComponent}, value: {value}");
+            { 
+                //SpecsCalculator.CalculateUnitDamage(targetBattleComponent);
+                //if(rangedAttack && SpecsCalculator)
+                //    damageFactor = SpecsCalculator.GetRangedDamageFactor(thisBattleComponent, targetBattleComponent);
+                thisBattleComponent.specialAbilities.ForEach(sa =>
+                {
+                    if (sa is IDealtDamageModifierAbility ddm)
+                        value = ddm.ModifyDealtDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
+                            rangedAttack, false, value));
+                });
+                targetBattleComponent.specialAbilities.ForEach(sa=>
+                {
+                    if (sa is IReceivedDamageModifierAbility rdm)
+                        value = rdm.ModifyReceivedDamage(
+                            new DamageArgs(thisBattleComponent, targetBattleComponent,
+                                rangedAttack, false, value));
+                });
+
             }
 
             foreach (FactionEntityDependantHitEffectData hitEffectData in hitEffects)
                 if (hitEffectData.picker.IsValidTarget(target))
                 {
                     effectObjPool.Spawn(
-                        hitEffectData.effect.Output,
+                        hitEffectData.effect.Output, 
                         new EffectObjectSpawnInput(
                             parent: null,
 
@@ -189,7 +209,7 @@ namespace RTSEngine.Attack
 
             LastTarget = target;
 
-            RaiseAttackDamageDealt(new HealthUpdateArgs(value, target));
+            RaiseAttackDamageDealt(new HealthUpdateArgs((int)(value * damageFactor), target));
             Debug.Log($"Damage dealt is: {value}");
             damageDealtEvent.Invoke();
         }

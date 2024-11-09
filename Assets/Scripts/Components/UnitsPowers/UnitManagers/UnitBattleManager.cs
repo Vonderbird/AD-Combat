@@ -24,9 +24,9 @@ namespace ADC
 
         public IEquipmentManager EquipmentManager { get; private set; }
         public IUnitSpecsManager Specs { get; private set; }
-        private IUnitSpecsCalculator unitSpecsCalculator;
+        private BaseUnitSpecsCalculator unitSpecsCalculator;
 
-        protected virtual List<ISpecialAbility> specialAbilities { get; set; } = new() { };
+        public virtual List<ISpecialAbility> specialAbilities { get; protected set; } = new() { };
         protected int activeAbilityId = 0;
         public ISpecialAbility ActiveAbility => 
             specialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
@@ -54,13 +54,15 @@ namespace ADC
 
             foreach (var specialAbility in specialAbilities)
             {
-                Xp.Level.LevelChanged += specialAbility.OnLevelChanged;
+                //Xp.Level.LevelChanged += specialAbility.OnLevelChanged;
             }
+
+            
         }
 
         private void Start()
         {
-            unitSpecsCalculator = new UnitSpecsCalculator(this);
+            unitSpecsCalculator = FindObjectOfType<UnitSpecsCalculator>();
 
             // 1. LoadData();
             // 2. Xp.Level for base spaces upgrade!
@@ -91,7 +93,7 @@ namespace ADC
             if (t is IUnit u)
             {
                 Target = u.GetComponent<UnitBattleManager>();
-                var (unitDmg, buildingDmg) = unitSpecsCalculator.CalculateDamage(Target);
+                var (unitDmg, buildingDmg) = unitSpecsCalculator.CalculateDamage(this, Target);
                 thirdParty.SetDamage(unitDmg, buildingDmg);
             }
             else

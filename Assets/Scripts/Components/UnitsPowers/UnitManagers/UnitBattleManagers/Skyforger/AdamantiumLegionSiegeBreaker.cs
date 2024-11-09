@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using ADC.API;
 
 namespace ADC
 {
     public class AdamantiumLegionSiegeBreaker : UnitBattleManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; }
+        public override List<ISpecialAbility> specialAbilities { get; protected set; }
 
 
         protected override void Awake()

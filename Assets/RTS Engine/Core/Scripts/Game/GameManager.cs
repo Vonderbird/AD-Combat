@@ -13,6 +13,7 @@ using RTSEngine.Audio;
 using RTSEngine.Logging;
 using RTSEngine.Service;
 using RTSEngine.Utilities;
+using Object = System.Object;
 
 namespace RTSEngine.Game
 {
@@ -474,6 +475,12 @@ namespace RTSEngine.Game
 
             SceneManager.LoadScene(prevScene);
         }
+
+        public T FindObjectOfType_<T>() where T: UnityEngine.Object
+        {
+            return FindFirstObjectByType<T>();
+        }
+
         #endregion
     }
 }

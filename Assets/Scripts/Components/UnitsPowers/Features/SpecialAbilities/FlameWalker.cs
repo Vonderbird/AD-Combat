@@ -4,7 +4,7 @@ namespace ADC
 {
     public class FlameWalker : SpecialAbilityBase
     {
-        public FlameWalker(UnitBattleManager unitBattleManager) : base(unitBattleManager)
+        public FlameWalker(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel)
         {
         }
         public override void Use()
