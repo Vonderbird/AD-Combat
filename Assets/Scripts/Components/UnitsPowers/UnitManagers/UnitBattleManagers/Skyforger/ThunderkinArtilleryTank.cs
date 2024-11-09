@@ -1,17 +1,18 @@
+using ADC.API;
 using System.Collections.Generic;
 
 namespace ADC
 {
     public class ThunderkinArtilleryTank : UnitBattleManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; }
+        public override List<ISpecialAbility> specialAbilities { get; protected set; }
 
         protected override void Awake()
         {
             specialAbilities = new()
             {
-                new AdvancingThePathway(this),
-                new FlameWalker(this)
+                new Destroyer(this, 1),
+                new ArtilleryUpgrade(this, 2)
             };
             base.Awake();
         }

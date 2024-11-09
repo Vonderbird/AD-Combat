@@ -1,10 +1,11 @@
+using ADC.API;
 using System.Collections.Generic;
 
 namespace ADC
 {
     public class ThunderkinWarWagon : UnitBattleManager
     {
-        protected override List<ISpecialAbility> specialAbilities { get; set; }
+        public override List<ISpecialAbility> specialAbilities { get; protected set; }
 
 
         protected override void Awake()

@@ -5,44 +5,28 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class UnitSpecsCalculator : IUnitSpecsCalculator
+    public class UnitSpecsCalculator : BaseUnitSpecsCalculator
     {
-        public IUnitBattleManager UnitBattleManager { get; }
+        //public override IUnitBattleManager UnitBattleManager { get; }
         private DamageDictionary damageDictionary;
-        public UnitSpecsCalculator(UnitBattleManager unitBattleManager)
+        private void Awake()
         {
-            UnitBattleManager = unitBattleManager;
+            //UnitBattleManager = unitBattleManager;
             damageDictionary = new DamageDictionary();
         }
 
-        public int CalculateHitPoint()
+        public override int CalculateHitPoint()
         {
             // attackManager.Weapon + attackManager.Shield + attackManager.Xp + attackManager.baseAttack
             //return 0.0f + 0.0f + attackManager.Xp.Level * attackManager.;
             return 0;
         }
 
-        public (int, int) CalculateDamage(IUnitBattleManager target = null)
+        public override (int, int) CalculateDamage(IUnitBattleManager attacker, IUnitBattleManager target = null)
         {
-            float unitDamageSummation = UnitBattleManager.Specs.BaseSpecs.UnitDamage +
-                                  UnitBattleManager.EquipmentManager.AttackEquipments
-                                      .Sum(equipment => equipment.UnitDamage);
+            var unitDamageSummation = CalculateUnitDamage(attacker, target);
 
-            if (target != null)
-            {
-                var armorFactor = MathF.Pow(1 - (MathF.Sign(target.Specs.CurrentSpecs.Armor) * 0.06f),
-                    MathF.Abs(target.Specs.CurrentSpecs.Armor));
-
-                unitDamageSummation *= armorFactor * damageDictionary[
-                    target.EquipmentManager.Equipments.Shield.GetType(),
-                    UnitBattleManager.EquipmentManager.Equipments.Weapon.GetType()
-                ];
-
-            }
-
-            float buildingDamageSummation = UnitBattleManager.Specs.BaseSpecs.BuildingDamage +
-                                    UnitBattleManager.EquipmentManager.AttackEquipments
-                                        .Sum(equipment => equipment.BuildingDamage);
+            var buildingDamageSummation = CalculateBuildingDamage(attacker);
 
             //if (target)
             //{
@@ -55,13 +39,48 @@ namespace ADC
             return ((int)unitDamageSummation, (int)buildingDamageSummation);
         }
 
-        public int CalculateArmor()
+        public override int CalculateBuildingDamage(IUnitBattleManager attacker)
+        {
+            float buildingDamageSummation = attacker.Specs.BaseSpecs.BuildingDamage +
+                                            attacker.EquipmentManager.AttackEquipments
+                                                .Sum(equipment => equipment.BuildingDamage);
+            return (int)buildingDamageSummation;
+        }
+
+        public override int CalculateUnitDamage(IUnitBattleManager attacker, IUnitBattleManager target)
+        {
+            float unitDamageSummation = attacker.Specs.BaseSpecs.UnitDamage +
+                                        attacker.EquipmentManager.AttackEquipments
+                                            .Sum(equipment => equipment.UnitDamage);
+
+            if (target != null)
+            {
+                var armorFactor = MathF.Pow(1 - (MathF.Sign(target.Specs.CurrentSpecs.Armor) * 0.06f),
+                    MathF.Abs(target.Specs.CurrentSpecs.Armor));
+
+                unitDamageSummation *= armorFactor * damageDictionary[
+                    target.EquipmentManager.Equipments.Shield.GetType(),
+                    attacker.EquipmentManager.Equipments.Weapon.GetType()
+                ];
+
+            }
+
+            return (int)unitDamageSummation;
+        }
+
+        public override float GetRangedDamageFactor(IUnitBattleManager thisBattleComponent, IUnitBattleManager targetBattleComponent)
+        {
+            Debug.LogError("[UnitSpecsCalculator] not implemented");
+            return 1.0f;
+        }
+
+        public override int CalculateArmor()
         {
             Debug.LogError("[UnitSpecsCalculator] not implemented");
             return 0;
         }
 
-        public UnitSpecs CalculateAll()
+        public override UnitSpecs CalculateAll()
         {
             Debug.LogError("[UnitSpecsCalculator] not implemented");
             return new UnitSpecs();

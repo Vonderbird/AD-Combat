@@ -42,5 +42,7 @@ namespace RTSEngine.Game
         void SetPeaceTime(float time);
 
         void LeaveGame();
+
+        T FindObjectOfType_<T>() where T : UnityEngine.Object;
     }
 }

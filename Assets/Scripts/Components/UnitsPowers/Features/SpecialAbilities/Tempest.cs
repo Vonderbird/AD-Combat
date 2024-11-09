@@ -4,9 +4,8 @@ namespace ADC
 {
     public class Tempest : SpecialAbilityBase
     {
-        public Tempest(UnitBattleManager unitBattleManager) : base(unitBattleManager)
-        {
-        }
+        public Tempest(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel) { }
+
         public override void Use()
         {
             if (!isUnlocked)

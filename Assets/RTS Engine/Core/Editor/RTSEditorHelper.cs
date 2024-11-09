@@ -269,7 +269,7 @@ namespace RTSEngine.EditorOnly
                         GetEntityPrefabsPerCategory().Add(category, Enumerable.Repeat(entity, 1));
                 }
             }
-
+             
             if (allValid)
                 Debug.Log("[RTSEditorHelper] Cached entity prefabs placed in a path that ends with '*/Resources/Prefabs'. All cached entities passed the validity tests.");
             else
