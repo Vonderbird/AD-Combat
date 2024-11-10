@@ -153,6 +153,8 @@ namespace ADC.UnitCreation
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            if (eventData.button != PointerEventData.InputButton.Left)
+                return;
             if (!IsBuildingSelected) return;
 
             cellEventArgs.eventData = eventData;

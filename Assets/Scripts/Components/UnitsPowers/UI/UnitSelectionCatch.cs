@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class UnitUIInfo
+    public struct UnitUIInfo
     {
 
     }
@@ -22,10 +22,12 @@ namespace ADC
         private void OnUnitDeselected(IEntity sender, EntityDeselectionEventArgs args)
         {
             Debug.Log($"args: {args}");
+            UnitStatsUIPanelManager.Instance.OnUnitDeselected(sender);
         }
 
         private void OnUnitSelected(IEntity sender, EntitySelectionEventArgs args)
         {
+            UnitStatsUIPanelManager.Instance.OnUnitSelected(new UnitUIInfo());
             Debug.Log($"args: {args}");
             if (sender is IUnit unit)
             {
