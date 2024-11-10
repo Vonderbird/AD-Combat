@@ -10,6 +10,7 @@ using UnityEngine;
 namespace ADC
 {
     [RequireComponent(typeof(IUnit))]
+    [RequireComponent(typeof(UnitSelectionCatch))]
     public abstract class UnitBattleManager : MonoBehaviour, IUnitBattleManager
     {
         
