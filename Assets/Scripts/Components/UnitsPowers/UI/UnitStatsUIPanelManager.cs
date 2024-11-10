@@ -1,10 +1,12 @@
 using System.Collections;
+using ADC.API;
+using RTSEngine.Entities;
 using UnityEngine;
 
 namespace ADC
 {
     [RequireComponent(typeof(UnitStatsUIFiller))]
-    public class UnitStatsUIPanelManager : MonoBehaviour
+    public class UnitStatsUIPanelManager : Singleton<UnitStatsUIPanelManager>
     {
         private UnitStatsUIOnOff unitStatsUiOnOff;
         private UnitStatsUIFiller unitStatsUiFiller;
@@ -22,7 +24,7 @@ namespace ADC
 
         }
 
-        public void OnUnitDeselected()
+        public void OnUnitDeselected(IEntity sender)
         {
             unitStatsUiOnOff.DisableButton();
             unitStatsUiOnOff.ClosePanel();

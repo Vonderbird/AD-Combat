@@ -41,7 +41,7 @@ namespace ADC.UnitCreation
 
         private void OnActivateUnit(SpawnUnitActivatorButton unitButton)
         {
-            if (!activeButton || activeButton.Equals(unitButton)) return;
+            if (activeButton && activeButton.Equals(unitButton)) return;
             activeButton?.OnDeactivateButton();
             activeButton = unitButton;
             activeButton?.OnActivateButton();
