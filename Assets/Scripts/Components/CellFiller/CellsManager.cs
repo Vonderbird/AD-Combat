@@ -65,10 +65,10 @@ namespace ADC.UnitCreation
 
             foreach (var (_, unitCell) in UnitCells)
             {
-                unitCell.CellAdditiveEntered.AddListener(OnCellAdditiveEntered);
+                unitCell.CellSelectionEntered.AddListener(OnCellSelectionEntered);
                 unitCell.CellDeletionEntered.AddListener(OnCellDeletionEntered);
                 unitCell.CellExit.AddListener(OnCellExit);
-                unitCell.CellAdditiveClicked.AddListener(OnCellAdditiveClicked);
+                unitCell.CellSelectiveClicked.AddListener(OnCellSelectiveClicked);
                 unitCell.CellDeletionClicked.AddListener(OnCellDeletionClicked);
                 unitCell.DeleteButton = deleteButton;
             }
@@ -77,11 +77,19 @@ namespace ADC.UnitCreation
                 unitSpawner.OnUnitsSpawned.AddListener(OnCellUnitSpawned);
         }
 
-        private void OnCellAdditiveEntered(CellEventArgs arg0)
+        private void OnCellSelectionEntered(CellEventArgs arg0)
+        {
+            if (activeTask.HasValue)
+                OnCellAdditiveEnterd(arg0);
+            else
+                OnFilledCellSelectionEntered(arg0);
+
+        }
+
+        private void OnCellAdditiveEnterd(CellEventArgs arg0)
         {
             if (arg0.IsFilled || !activeTask.HasValue) return;
             OnCellExit(arg0);
-
 
             var taskPopulation = 0;
             foreach (var requiredResource in activeTask.UnitCreationTask.RequiredResources)
@@ -100,6 +108,21 @@ namespace ADC.UnitCreation
                 .ToList();
             if (nearestCellIds.Count < taskPopulation) return;
             foreach (var cellId in nearestCellIds)
+                UnitCells[cellId].OnCellAdditiveEntered();
+        }
+
+        private void OnFilledCellSelectionEntered(CellEventArgs arg0)
+        {
+            if (!arg0.IsFilled || activeTask.HasValue) return;
+
+            if (!cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup)) return;
+            if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
+            {
+                Debug.LogError($"[CellManager] The unitCellsGroups did not sync with cellGroupIds");
+                return;
+            }
+
+            foreach (var cellId in cellIds) 
                 UnitCells[cellId].OnCellAdditiveEntered();
         }
 
@@ -135,7 +158,40 @@ namespace ADC.UnitCreation
             //unitCells[arg0.CellId].OnCellExit();
         }
 
-        public void OnCellAdditiveClicked(CellEventArgs arg0)
+        private void OnCellsDeselect(CellEventArgs arg0)
+        {
+            foreach (var (_, unitCell) in UnitCells)
+            {
+                unitCell.OnCellDeselected();
+            }
+        }
+
+        public void OnCellSelectiveClicked(CellEventArgs arg0)
+        {
+            if (activeTask.HasValue)
+                OnCellAdditiveClicked(arg0);
+            else
+                OnFilledCellSelectionClicked(arg0);
+
+        }
+
+        private void OnFilledCellSelectionClicked(CellEventArgs arg0)
+        {
+            if(!arg0.IsFilled || activeTask.HasValue) return;
+            OnCellExit(arg0);
+
+            if (!cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup)) return;
+            if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
+            {
+                Debug.LogError($"[CellManager] The unitCellsGroups did not sync with cellGroupIds");
+                return;
+            }
+
+            foreach (var cellId in cellIds)
+                UnitCells[cellId].OnCellSelected();
+        }
+
+        private void OnCellAdditiveClicked(CellEventArgs arg0)
         {
             if (arg0.IsFilled || !activeTask.HasValue) return;
             if (cellGroupIds.ContainsKey(arg0.CellId))
@@ -235,7 +291,7 @@ namespace ADC.UnitCreation
         public void OnDisabled()
         {
             foreach (var (_, unitCell) in UnitCells)
-                unitCell.CellAdditiveClicked.RemoveListener(OnCellAdditiveClicked);
+                unitCell.CellSelectiveClicked.RemoveListener(OnCellSelectiveClicked);
 
             if (unitSpawner)
                 unitSpawner.OnUnitsSpawned.RemoveListener(OnCellUnitSpawned);

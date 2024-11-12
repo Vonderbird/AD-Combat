@@ -116,7 +116,7 @@ namespace ADC.UnitCreation
                     Debug.LogError(targetUnit.Name +": " + targetUnit.transform.parent);
                     continue;
                 }
-                spawnUnitsList.AddSpawnUnitUITask(creationTasks[taskID], OnActivateTask, (float)unitPlacementCosts.WarScrap.Value);
+                spawnUnitsList.AddSpawnUnitUITask(creationTasks[taskID], OnActivateTask, OnDeactivateTask, (float)unitPlacementCosts.WarScrap.Value);
             }
 
             allCreationTasks.AddRange(creationTasks);
@@ -129,7 +129,7 @@ namespace ADC.UnitCreation
         {
             deleteButton ??= FindAnyObjectByType<DeleteButton>();
             if (deleteButton != null)
-                deleteButton.Clicked.AddListener(DeactivateTask);
+                deleteButton.Clicked.AddListener(OnDeactivateTask);
 
             if (cellsManager != null)
             {
@@ -147,7 +147,7 @@ namespace ADC.UnitCreation
             }
 
             if (deleteButton)
-                deleteButton.Clicked.RemoveListener(DeactivateTask);
+                deleteButton.Clicked.RemoveListener(OnDeactivateTask);
         }
 
         protected override ErrorMessage CompleteTaskActionLocal(int creationTaskID, bool playerCommand)
@@ -238,7 +238,7 @@ namespace ADC.UnitCreation
                 activeTaskData.UnitCreationTask = task;
         }
 
-        public void DeactivateTask()
+        public void OnDeactivateTask()
         {
             activeTaskData.UnitCreationTask = null;
         }
