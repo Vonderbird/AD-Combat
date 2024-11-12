@@ -140,31 +140,15 @@ namespace ADC.UnitCreation
                 UnitCells[cellId].OnCellDeletionEntered();
         }
 
+
         private void OnCellExit(CellEventArgs arg0)
         {
             foreach (var (_, unitCell) in UnitCells)
             {
                 unitCell.OnCellExit();
             }
-            //if (cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup))
-            //{
-            //    if (unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
-            //    {
-            //        foreach (var cellId in cellIds)
-            //            unitCells[cellId].OnCellExit();
-            //        return;
-            //    }
-            //}
-            //unitCells[arg0.CellId].OnCellExit();
         }
 
-        private void OnCellsDeselect(CellEventArgs arg0)
-        {
-            foreach (var (_, unitCell) in UnitCells)
-            {
-                unitCell.OnCellDeselected();
-            }
-        }
 
         public void OnCellSelectiveClicked(CellEventArgs arg0)
         {
@@ -178,7 +162,7 @@ namespace ADC.UnitCreation
         private void OnFilledCellSelectionClicked(CellEventArgs arg0)
         {
             if(!arg0.IsFilled || activeTask.HasValue) return;
-            OnCellExit(arg0);
+            OnAllCellsUnselect(arg0);
 
             if (!cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup)) return;
             if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
@@ -191,6 +175,13 @@ namespace ADC.UnitCreation
                 UnitCells[cellId].OnCellSelected();
         }
 
+        private void OnAllCellsUnselect(CellEventArgs arg0)
+        {
+            foreach (var (_, unitCell) in UnitCells)
+            {
+                unitCell.OnCellUnSelect();
+            }
+        }
         private void OnCellAdditiveClicked(CellEventArgs arg0)
         {
             if (arg0.IsFilled || !activeTask.HasValue) return;
