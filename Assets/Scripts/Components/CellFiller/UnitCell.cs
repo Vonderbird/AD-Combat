@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,14 @@ namespace ADC.UnitCreation
     public class UnitCell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
         IPointerMoveHandler
     {
+        public enum CellState
+        {
+            UnselectedPointerOver,
+            UnselectedPointerOut,
+            SelectedPointerOver,
+            SelectedPointerOut
+        }
+
         [SerializeField] private Renderer cellRenderer;
         [SerializeField] private int materialId;
         [SerializeField] private float cellSizeFactor = 0.5f;
@@ -20,15 +29,42 @@ namespace ADC.UnitCreation
         [SerializeField] private Color defaultEmptyColor = Color.white;
         [SerializeField] private Color defaultFilledColor = Color.gray;
 
+        private CellState State
+        {
+            get => cellState;
+            set
+            {
+                if (value == cellState) return;
+
+                cellState = value;
+                switch (value)
+                {
+                    case CellState.UnselectedPointerOver:
+                        cellRenderer.materials[materialId].color = Color.green;
+                        break;
+                    case CellState.UnselectedPointerOut:
+                        cellRenderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
+                        break;
+                    case CellState.SelectedPointerOver:
+                        cellRenderer.materials[materialId].color = Color.cyan;
+                        break;
+                    case CellState.SelectedPointerOut:
+                        cellRenderer.materials[materialId].color = Color.magenta;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(value), value, null);
+                }
+            } 
+        }
 
         private static int _incrementalId;
         public int CellId { get; } = _incrementalId++;
 
         private GameObject decoObject = null;
         private CellEventArgs cellEventArgs;
-        public UnityEvent<CellEventArgs> CellAdditiveClicked;
+        public UnityEvent<CellEventArgs> CellSelectiveClicked;
         public UnityEvent<CellEventArgs> CellDeletionClicked;
-        public UnityEvent<CellEventArgs> CellAdditiveEntered;
+        public UnityEvent<CellEventArgs> CellSelectionEntered;
         public UnityEvent<CellEventArgs> CellDeletionEntered;
         public UnityEvent<CellEventArgs> CellExit;
 
@@ -49,7 +85,7 @@ namespace ADC.UnitCreation
                 cellRenderer = GetComponentInChildren<Renderer>();
 
             cellRenderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
-            ;
+            State = CellState.SelectedPointerOut;
         }
 
         public void CreateDecoObject(IUnit unitPrefab, ParticleSystemGroup spawnParticle,
@@ -93,6 +129,7 @@ namespace ADC.UnitCreation
         }
 
         private WaitForSeconds deleteDelay = new(1.5f);
+        private CellState cellState;
 
         IEnumerator DeleteDecoWithDelay(GameObject tempObject)
         {
@@ -104,23 +141,36 @@ namespace ADC.UnitCreation
 
         public void OnCellAdditiveEntered()
         {
-            cellRenderer.materials[materialId].color = decoObject == null ? Color.green : Color.gray;
+            State = IsFilled ? CellState.SelectedPointerOut : CellState.UnselectedPointerOut;
+            //cellRenderer.materials[materialId].color = Color.green; //decoObject == null ? Color.green : Color.gray;
         }
 
         public void OnCellDeletionEntered()
         {
-            cellRenderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
+            State = IsFilled ? CellState.UnselectedPointerOut : CellState.SelectedPointerOver;
+            //cellRenderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
         }
 
         public void OnCellExit()
         {
-            cellRenderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
+            State = IsFilled? CellState.UnselectedPointerOut : CellState.SelectedPointerOut;
+            //cellRenderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
         }
-
+        public void OnCellSelected()
+        {
+            State = CellState.SelectedPointerOver;
+            //cellRenderer.materials[materialId].color = Color.magenta; 
+        }
+        public void OnCellDeselected()
+        {
+            State = CellState.UnselectedPointerOut;
+            //cellRenderer.materials[materialId].color = Color.gray ;
+        }
         public void OnCellAdditiveClicked()
         {
             isFilled = true;
-            cellRenderer.materials[materialId].color = Color.red;
+            State = CellState.SelectedPointerOver;
+            //cellRenderer.materials[materialId].color = Color.red;
         }
 
         public void OnCellDeletionClicked()
@@ -138,7 +188,7 @@ namespace ADC.UnitCreation
             if (DeleteButton && DeleteButton.IsDeleteEnabled)
                 CellDeletionEntered?.Invoke(cellEventArgs);
             else
-                CellAdditiveEntered?.Invoke(cellEventArgs);
+                CellSelectionEntered?.Invoke(cellEventArgs);
             hoverIsEnable = true;
         }
 
@@ -167,7 +217,7 @@ namespace ADC.UnitCreation
             {
                 cellEventArgs.HitPoint = GetPointerHitPoint(eventData);
                 //cellEventArgs.DecoObject = decoObject;
-                CellAdditiveClicked?.Invoke(cellEventArgs);
+                CellSelectiveClicked?.Invoke(cellEventArgs);
             }
         }
 
@@ -206,7 +256,7 @@ namespace ADC.UnitCreation
             if (DeleteButton && DeleteButton.IsDeleteEnabled)
                 CellDeletionEntered?.Invoke(cellEventArgs);
             else
-                CellAdditiveEntered?.Invoke(cellEventArgs);
+                CellSelectionEntered?.Invoke(cellEventArgs);
             hoverIsEnable = true;
         }
 
@@ -220,6 +270,8 @@ namespace ADC.UnitCreation
             tempParticle.LifeSpan = 3f;
             tempParticle?.Play();
         }
+
+
     }
 
     public class CellEventArgs
