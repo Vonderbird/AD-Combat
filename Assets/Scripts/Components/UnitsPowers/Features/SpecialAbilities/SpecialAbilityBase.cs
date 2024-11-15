@@ -1,21 +1,24 @@
 using System;
 using ADC.API;
+using UnityEngine;
 
 namespace ADC
 {
-    public abstract class SpecialAbilityBase : ISpecialAbility
+    public abstract class SpecialAbilityBase : ScriptableObject, ISpecialAbility
     {
-        public int UnlockLevel { get; protected set; }
+        [SerializeField] private int unlockLevel = 1;
+        public int UnlockLevel => unlockLevel;
         public event EventHandler UnLocked;
 
         protected bool isUnlocked;
-        protected UnitBattleManager UnitBattleManager;
+        protected IUnitBattleManager UnitBattleManager;
 
-        protected SpecialAbilityBase(UnitBattleManager unitBattleManager, int unlockLevel)
+        public virtual ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             UnitBattleManager = unitBattleManager;
-            UnlockLevel = unlockLevel;
-            isUnlocked = unlockLevel == 1;
+            if (unlockLevel <= 1)
+                Unlock();
+            return this;
         }
 
         public virtual void Unlock()
@@ -25,6 +28,7 @@ namespace ADC
         }
 
         public abstract void Use();
+
         public abstract void OnLevelChanged(object sender, LevelChangeEventArgs e);
 
     }

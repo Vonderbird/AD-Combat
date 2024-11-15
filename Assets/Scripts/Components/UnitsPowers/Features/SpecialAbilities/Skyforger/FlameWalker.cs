@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class Tempest : SpecialAbilityBase
+    [CreateAssetMenu(fileName = "FlameWalker", menuName = "ADC/SpecialAbilities/FlameWalker", order = 99)]
+    public class FlameWalker : SpecialAbilityBase
     {
-        public Tempest(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel) { }
-
         public override void Use()
         {
             if (!isUnlocked)

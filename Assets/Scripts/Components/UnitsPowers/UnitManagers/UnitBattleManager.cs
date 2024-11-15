@@ -19,18 +19,19 @@ namespace ADC
         [SerializeField] protected UnitSpecs levelZeroSpecs;
 
         [SerializeField] protected UnitEquipments baseEquipments;
+        [SerializeField] protected SpecialAbilityBase[] specialAbilities;
 
-        
         protected IUnit unit { get; private set; }
 
         public IEquipmentManager EquipmentManager { get; private set; }
         public IUnitSpecsManager Specs { get; private set; }
         private BaseUnitSpecsCalculator unitSpecsCalculator;
 
-        public virtual List<ISpecialAbility> specialAbilities { get; protected set; } = new() { };
+        public virtual List<ISpecialAbility> SpecialAbilities { get; protected set; }
+
         protected int activeAbilityId = 0;
         public ISpecialAbility ActiveAbility => 
-            specialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
+            SpecialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
 
         private IThirdPartyInteractionManager thirdParty;
 
@@ -53,8 +54,15 @@ namespace ADC
             thirdParty.TargetUpdated += OnTargetUpdated;
             Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
+            SpecialAbilities = new List<ISpecialAbility>(specialAbilities.Length);
             foreach (var specialAbility in specialAbilities)
             {
+                if (specialAbility == null)
+                {
+                    Debug.LogError($"[UnitBattleManager] Special Ability on {name} is not assigned properly!");
+                    continue;
+                }
+                SpecialAbilities.Add(specialAbility.Initialize(this));
                 //Xp.Level.LevelChanged += specialAbility.OnLevelChanged;
             }
 
@@ -115,8 +123,8 @@ namespace ADC
 
         public virtual void OnUseAbility(int id)
         {
-            if(specialAbilities==null ||  specialAbilities.Count<id+1) return;
-            specialAbilities[id].Use();
+            if(SpecialAbilities==null ||  SpecialAbilities.Count<id+1) return;
+            SpecialAbilities[id].Use();
         }
 
 

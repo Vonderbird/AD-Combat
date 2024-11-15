@@ -30,10 +30,10 @@ namespace ADC
             Debug.Log($"Healed AdamantiumLegionElite by {healingAmount / 2} HP.");
         }
 
-        public void Visit(Naloxian naloxian)
+        public void Visit(NaloxianBowman naloxianBowman)
         {
-            naloxian.Specs.Heal(healingAmount);
-            Debug.Log($"Healed Naloxian by {healingAmount} HP.");
+            naloxianBowman.Specs.Heal(healingAmount);
+            Debug.Log($"Healed NaloxianBowman by {healingAmount} HP.");
         }
 
         public void Visit(FrostbornHunter frostbornHunter)

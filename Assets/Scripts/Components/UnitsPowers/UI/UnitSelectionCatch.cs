@@ -5,12 +5,7 @@ using UnityEngine;
 
 namespace ADC
 {
-    public struct UnitUIInfo
-    {
-
-    }
-
-    public class UnitSelectionCatch : MonoBehaviour
+    public class UnitSelectionCatch : UnitSelectionInfo
     {
         private void Awake()
         {
@@ -19,13 +14,13 @@ namespace ADC
             unitSelection.Deselected += OnUnitDeselected;
         }
 
-        private void OnUnitDeselected(IEntity sender, EntityDeselectionEventArgs args)
+        public override void OnUnitDeselected(IEntity sender, EntityDeselectionEventArgs args)
         {
             Debug.Log($"args: {args}");
             UnitStatsUIPanelManager.Instance.OnUnitDeselected(sender);
         }
 
-        private void OnUnitSelected(IEntity sender, EntitySelectionEventArgs args)
+        public override void OnUnitSelected(IEntity sender, EntitySelectionEventArgs args)
         {
             UnitStatsUIPanelManager.Instance.OnUnitSelected(new UnitUIInfo());
             Debug.Log($"args: {args}");
@@ -36,12 +31,6 @@ namespace ADC
                     var uiInfo = ExtractUnitUIInfo(unit);
                 }
             }
-
-        }
-
-        private UnitUIInfo ExtractUnitUIInfo(IUnit unit)
-        {
-            return new UnitUIInfo();
         }
     }
 }

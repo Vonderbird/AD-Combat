@@ -5,7 +5,7 @@ namespace ADC
         public void Visit(AdamantiumLegionSiegeBreaker adamantiumLegionSiegeBreaker)
         {
             //adamantiumLegionSiegeBreaker.Weapon.Attack();
-            //adamantiumLegionSiegeBreaker.specialAbilities.ForEach(c => c.Play());
+            //adamantiumLegionSiegeBreaker.SpecialAbilities.ForEach(c => c.Play());
         }
         public void Visit(ThunderkinArtilleryTank thunderkinArtilleryTank)
         {
@@ -16,9 +16,9 @@ namespace ADC
             //adamantiumLegionElite.Weapon.Attack();
         }
 
-        public void Visit(Naloxian naloxian)
+        public void Visit(NaloxianBowman naloxianBowman)
         {
-            //naloxian.Weapon.Attack();
+            //naloxianBowman.Weapon.Attack();
         }
 
         public void Visit(FrostbornHunter frostbornHunter)

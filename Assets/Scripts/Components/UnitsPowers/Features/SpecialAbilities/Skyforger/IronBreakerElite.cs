@@ -2,10 +2,9 @@ using UnityEngine;
 
 namespace ADC
 {
+    [CreateAssetMenu(fileName = "IronBreakerElite", menuName = "ADC/SpecialAbilities/IronBreakerElite", order = 99)]
     public class IronBreakerElite : SpecialAbilityBase
     {
-        public IronBreakerElite(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel) { }
-
         public override void Use()
         {
             if (!isUnlocked)

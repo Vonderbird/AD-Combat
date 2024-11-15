@@ -28,7 +28,7 @@ namespace ADC.UnitCreation
         //[SerializeField] private UnitSpawnData taskData;
 
         [SerializeField, Tooltip("List of unit creation tasks that can be launched through this component.")]
-        private List<UnitCreationTask> creationTasks = new List<UnitCreationTask>();
+        private List<UnitCreationTask> creationTasks = new();
 
         private List<UnitCreationTask> allCreationTasks;
         private ActiveTaskContainer activeTaskData = new();
@@ -81,6 +81,7 @@ namespace ADC.UnitCreation
                 deleteButton ??= FindAnyObjectByType<DeleteButton>();
                 cellsManager.OnEnabled(deleteButton);
                 cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
+                cellsManager.SelectionCellClicked.AddListener(OnSelectionCellClicked);
             }
 
             this.unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>
@@ -123,6 +124,11 @@ namespace ADC.UnitCreation
             testTransform = new GameObject("Test Transform").transform;
             testTransform.SetParent(spawnTransform);
             unitPlacementTransaction = new UnitPlacementTransactionLogic(Entity.FactionID);
+        }
+
+        private void OnSelectionCellClicked(CellEventArgs arg0)
+        {
+            throw new System.NotImplementedException();
         }
 
         void OnEnable()

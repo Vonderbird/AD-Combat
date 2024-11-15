@@ -5,14 +5,14 @@ namespace ADC
 {
     public class AdamantiumLegionSiegeBreaker : UnitBattleManager
     {
-        public override List<ISpecialAbility> specialAbilities { get; protected set; }
+        //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
 
 
-        protected override void Awake()
-        {
-            specialAbilities = new();
-            base.Awake();
-        }
+        //protected override void Awake()
+        //{
+        //    SpecialAbilities = new();
+        //    base.Awake();
+        //}
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {
