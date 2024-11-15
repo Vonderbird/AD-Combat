@@ -159,13 +159,13 @@ namespace RTSEngine.Attack
                 //SpecsCalculator.CalculateUnitDamage(targetBattleComponent);
                 //if(rangedAttack && SpecsCalculator)
                 //    damageFactor = SpecsCalculator.GetRangedDamageFactor(thisBattleComponent, targetBattleComponent);
-                thisBattleComponent.specialAbilities.ForEach(sa =>
+                thisBattleComponent.SpecialAbilities.ForEach(sa =>
                 {
                     if (sa is IDealtDamageModifierAbility ddm)
                         value = ddm.ModifyDealtDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
                             rangedAttack, false, value));
                 });
-                targetBattleComponent.specialAbilities.ForEach(sa=>
+                targetBattleComponent.SpecialAbilities.ForEach(sa=>
                 {
                     if (sa is IReceivedDamageModifierAbility rdm)
                         value = rdm.ModifyReceivedDamage(

@@ -7,6 +7,8 @@ namespace ADC.API
         int UnlockLevel { get; }
         event EventHandler UnLocked;
         void Use();
+
+        ISpecialAbility Initialize(IUnitBattleManager unitBattleManager);
         //void OnLevelChanged(object sender, LevelChangeEventArgs e);
     }
 

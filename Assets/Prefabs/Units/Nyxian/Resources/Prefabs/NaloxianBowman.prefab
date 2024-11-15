@@ -1214,8 +1214,9 @@ GameObject:
   - component: {fileID: 1746829275819322123}
   - component: {fileID: 2638106885590150756}
   - component: {fileID: 4376790243361202577}
+  - component: {fileID: 4961990629512393059}
   m_Layer: 0
-  m_Name: Naloxian
+  m_Name: NaloxianBowman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1582,8 +1583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd2ba078d399f04fa4a3039be4f75f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getBiofuel: 200
-  PayWarScrap: 200
+  getBiofuel: 170
+  PayWarScrap: 170
   incomeRatio: 0.1
   refundRatio: 0.75
 --- !u!114 &4376790243361202577
@@ -1598,20 +1599,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a5ad1b8af3d274587bcc55e270726f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageFactors:
+    receiveRangeDamageFactor: 1
   levelZeroSpecs:
     healthPoint:
-      value: 450
+      value: 400
     armor:
-      value: 5
+      value: 3
     manaPoint:
       value: 0
     unitDamage:
-      value: 75
+      value: 60
     buildingDamage:
-      value: 75
+      value: 60
   baseEquipments:
-    shield: {fileID: -1598321634351741357, guid: a280df018fc2dc64198e592574735a18, type: 3}
+    shield: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
     weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
+  specialAbilities:
+  - {fileID: 11400000, guid: 333b2a6bba1e6cb4ebde103c790361f2, type: 2}
+--- !u!114 &4961990629512393059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84afbfb2f96851e4ba36bbcd0ff2d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1129004617793929749
 PrefabInstance:
   m_ObjectHideFlags: 0

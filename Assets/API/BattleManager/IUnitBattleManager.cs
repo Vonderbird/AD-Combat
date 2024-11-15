@@ -33,6 +33,6 @@ namespace ADC.API
 
         IUnitSpecsManager Specs { get;  }
         IEquipmentManager EquipmentManager { get; }
-        List<ISpecialAbility> specialAbilities { get; }
+        List<ISpecialAbility> SpecialAbilities { get; }
     }
 }

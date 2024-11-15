@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ADC.API;
 using ADC.Currencies;
 using JetBrains.Annotations;
 using RTSEngine.Entities;
@@ -19,12 +20,14 @@ namespace ADC.UnitCreation
         private readonly IncomeManager incomeManager;
         private readonly Dictionary<int, UnitCell> unitCells = new();
         private readonly Dictionary<int, Vector3> cellPositions = new();
+        private readonly Dictionary<int, IUnitBattleManager> groupUnit;
 
         private Dictionary<int, List<int>> unitCellsGroups = new();
         private readonly Dictionary<int, int> cellGroupIds = new();
 
         public UnityEvent<CellEventArgs> AdditiveCellClicked = new();
         public UnityEvent<CellEventArgs> DeletionCellClicked = new();
+        public UnityEvent<CellEventArgs> SelectionCellClicked = new();
 
         private readonly UnitPlacementTransactionLogic unitPlacementTransaction;
         private readonly UnitDeletionTransactionLogic unitDeletionTransaction;
@@ -173,6 +176,8 @@ namespace ADC.UnitCreation
 
             foreach (var cellId in cellIds)
                 UnitCells[cellId].OnCellSelected();
+
+            SelectionCellClicked?.Invoke(arg0);
         }
 
         private void OnAllCellsUnselect(CellEventArgs arg0)

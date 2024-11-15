@@ -38,12 +38,12 @@ namespace ADC
             Debug.Log($"Buffed AdamantiumLegionElite's health by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }
 
-        public void Visit(Naloxian naloxian)
+        public void Visit(NaloxianBowman naloxianBowman)
         {
-            naloxian.Specs.ApplyBuff(
-                new ManaPoint((int)( naloxian.Specs.BaseSpecs.ManaPoint* buffMultiplier)),
+            naloxianBowman.Specs.ApplyBuff(
+                new ManaPoint((int)( naloxianBowman.Specs.BaseSpecs.ManaPoint* buffMultiplier)),
                 duration);
-            Debug.Log($"Buffed Naloxian's mana by {buffMultiplier * 100 - 100}% for {duration} seconds.");
+            Debug.Log($"Buffed NaloxianBowman's mana by {buffMultiplier * 100 - 100}% for {duration} seconds.");
         }
 
         public void Visit(FrostbornHunter frostbornHunter)

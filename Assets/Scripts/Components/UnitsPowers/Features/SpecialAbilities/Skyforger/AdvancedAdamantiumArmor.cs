@@ -1,12 +1,10 @@
-using ADC.API;
 using UnityEngine;
 
 namespace ADC
 {
-    public class AdamantiumArmor : SpecialAbilityBase, IReceivedDamageModifierAbility
+    [CreateAssetMenu(fileName = "AdvancedAdamantiumArmor", menuName = "ADC/SpecialAbilities/AdvancedAdamantiumArmor", order = 99)]
+    public class AdvancedAdamantiumArmor : SpecialAbilityBase
     {
-        public AdamantiumArmor(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel) { }
-
         public override void Use()
         {
             if (!isUnlocked)
@@ -23,17 +21,6 @@ namespace ADC
         {
             // Implement logic for level changes specific to Advancing The Pathway
             Debug.Log($"Advancing The Pathway leveled up to level {e.NewLevel}!");
-        }
-
-        public int ModifyReceivedDamage(DamageArgs damage)
-        {
-            if (!isUnlocked) return damage.Value;
-            if (damage.IsRanged)
-            {
-                return (int)(damage.Value * 0.7f);
-            }
-
-            return damage.Value;
         }
     }
 }

@@ -1205,6 +1205,7 @@ GameObject:
   - component: {fileID: 6127250628261784917}
   - component: {fileID: 4978606142287481498}
   - component: {fileID: -5928395728565144353}
+  - component: {fileID: 4961990629512393059}
   m_Layer: 0
   m_Name: Unit_Skyforgers_AdamantiumLegionElite
   m_TagString: Untagged
@@ -1604,7 +1605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFactors:
-    ReceiveRangeDamageFactor: 0.7
+    receiveRangeDamageFactor: 1
   levelZeroSpecs:
     healthPoint:
       value: 550
@@ -1619,6 +1620,21 @@ MonoBehaviour:
   baseEquipments:
     shield: {fileID: -6624906158298354111, guid: 5bcb1246315947e4f9f5661cb328f408, type: 3}
     weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
+  specialAbilities:
+  - {fileID: 11400000, guid: 5e7802f202be13f4dbd52cb205b04325, type: 2}
+  - {fileID: 11400000, guid: abb59eedda996a34b9688d91c6319b56, type: 2}
+--- !u!114 &4961990629512393059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84afbfb2f96851e4ba36bbcd0ff2d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4310657640882167820
 PrefabInstance:
   m_ObjectHideFlags: 0

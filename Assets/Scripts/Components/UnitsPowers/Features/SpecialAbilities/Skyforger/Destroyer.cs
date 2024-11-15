@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class BrothersInArms : SpecialAbilityBase
+    [CreateAssetMenu(fileName = "Destroyer", menuName = "ADC/SpecialAbilities/Destroyer", order = 99)]
+    public class Destroyer : SpecialAbilityBase
     {
-        public BrothersInArms(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel) { }
 
         public override void Use()
         {

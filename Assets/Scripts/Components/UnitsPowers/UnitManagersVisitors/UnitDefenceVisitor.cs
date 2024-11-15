@@ -30,7 +30,7 @@ namespace ADC
             throw new System.NotImplementedException();
         }
 
-        public void Visit(Naloxian naloxian)
+        public void Visit(NaloxianBowman naloxianBowman)
         {
             throw new NotImplementedException();
         }

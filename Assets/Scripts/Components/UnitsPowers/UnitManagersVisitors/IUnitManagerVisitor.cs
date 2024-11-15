@@ -4,7 +4,7 @@ namespace ADC
     {
         void Visit(AdamantiumLegionSiegeBreaker adamantiumLegionSiegeBreaker);
         void Visit(AdamantiumLegionElite adamantiumLegionElite);
-        void Visit(Naloxian naloxian);
+        void Visit(NaloxianBowman naloxianBowman);
         void Visit(FrostbornHunter frostbornHunter);
         void Visit(ThunderkinDemolitionist thunderkinDemolitionist);
         void Visit(DeepwalkerInfilterator deepwalkerInfilterator);

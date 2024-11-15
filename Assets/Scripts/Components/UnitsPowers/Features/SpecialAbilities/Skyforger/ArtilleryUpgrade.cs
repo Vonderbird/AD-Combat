@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class AdvancedAdamantiumArmor : SpecialAbilityBase
-    {
-        public AdvancedAdamantiumArmor(UnitBattleManager unitBattleManager, int unlockLevel) : base(unitBattleManager, unlockLevel) { }
+    [CreateAssetMenu(fileName = "ArtilleryUpgrade", menuName = "ADC/SpecialAbilities/ArtilleryUpgrade", order = 99)]
 
+    public class ArtilleryUpgrade : SpecialAbilityBase
+    {
         public override void Use()
         {
             if (!isUnlocked)
