@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 658584974987628832}
   - component: {fileID: 6868590259389363605}
   - component: {fileID: 718050269071717858}
+  - component: {fileID: 7546815636660312967}
   m_Layer: 0
   m_Name: building_components
   m_TagString: Untagged
@@ -256,12 +257,14 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     prefabObject: {fileID: 2837683883374114850, guid: 195c510dba621e84881a5915d4a45b0e, type: 3}
+    unitWarScrapCost: 0
     squadData:
       enabled: 0
       count: 0
     limit: 0
     maxAmount: 0
     spawnParticleSystem: {fileID: 0}
+    deletionParticleSystem: {fileID: 0}
   - taskTitle: Skyforgers
     taskUI: {fileID: 11400000, guid: b04fd20f2ab379c4e856c97a53ea6cb8, type: 2}
     allowedFactionTypes:
@@ -286,12 +289,14 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     prefabObject: {fileID: 2837683883374114850, guid: 91c5361d135e0de4d83926bd7b3e84db, type: 3}
+    unitWarScrapCost: 0
     squadData:
       enabled: 0
       count: 0
     limit: 0
     maxAmount: 0
     spawnParticleSystem: {fileID: 0}
+    deletionParticleSystem: {fileID: 0}
   - taskTitle: Frostborn
     taskUI: {fileID: 11400000, guid: 67181b22a6bdb3341afb65cf85969ba7, type: 2}
     allowedFactionTypes:
@@ -316,17 +321,31 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     prefabObject: {fileID: 2837683883374114850, guid: 401850385f184ee4b8ca2c01fc66090b, type: 3}
+    unitWarScrapCost: 0
     squadData:
       enabled: 0
       count: 0
     limit: 0
     maxAmount: 0
     spawnParticleSystem: {fileID: 0}
+    deletionParticleSystem: {fileID: 0}
   spawnTransform: {fileID: 0}
   gotoTransform: {fileID: 0}
   SpawnUnitAdded:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7546815636660312967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798487289311097671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3825f74a01c40394b9c4353fa32f4fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5002389365287838682
 GameObject:
   m_ObjectHideFlags: 0

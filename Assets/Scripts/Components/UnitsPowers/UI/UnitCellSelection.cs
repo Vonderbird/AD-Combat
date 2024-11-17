@@ -1,23 +1,30 @@
-using RTSEngine.Entities;
-using RTSEngine.Event;
+using ADC.API;
+using ADC.UnitCreation;
 
 namespace ADC
 {
     public class UnitCellSelection : UnitSelectionInfo
     {
-        public override void OnUnitSelected(IEntity sender, EntitySelectionEventArgs args)
+        private void Awake()
         {
-            UnitStatsUIPanelManager.Instance.OnUnitSelected(new UnitUIInfo());
+            var cellFillerComponent = GetComponent<CellFillerComponent>();
+            cellFillerComponent.UnitCellSelected += OnUnitSelected;
+            cellFillerComponent.UnitCellDeselected += OnUnitDeselected;
+            //var cellManager = cellFillerComponent.
+            // OnUnitCellSelected
+            // OnUnitCellDeselected
 
-            if (sender is IUnit unit)
-            {
-                var uiInfo = ExtractUnitUIInfo(unit);
-            }
+        }
+        public override void OnUnitSelected(object sender, SelectionEventArgs args)
+        {
+            var uiInfo = ExtractUnitUIInfo(args.SelectedUnit);
+            UnitStatsUIPanelManager.Instance.OnUnitSelected(uiInfo);
+
         }
 
-        public override void OnUnitDeselected(IEntity sender, EntityDeselectionEventArgs args)
+        public override void OnUnitDeselected(object sender, DeselectionEventArgs args)
         {
-            UnitStatsUIPanelManager.Instance.OnUnitDeselected(sender);
+            UnitStatsUIPanelManager.Instance.OnUnitDeselected(args.SelectedUnit);
         }
 
     }

@@ -1,10 +1,13 @@
 using System;
+using UnityEngine;
 
 namespace ADC.API
 {
     public interface ISpecialAbility
     {
         int UnlockLevel { get; }
+        Sprite Icon { get; }
+        string Name { get; }
         event EventHandler UnLocked;
         void Use();
 

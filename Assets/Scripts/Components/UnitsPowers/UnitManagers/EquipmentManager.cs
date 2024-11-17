@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using ADC.API;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ADC
 {
@@ -21,10 +23,11 @@ namespace ADC
         {
             if(Equipments.Weapon != null)
                 RemoveEquipment(weapon);
-            Equipments.Update(weapon);
-            AddEquipment(weapon);
+            var w = Object.Instantiate(weapon, unitBattleManger.transform, false);
+            Equipments.Update(w);
+            AddEquipment(w);
 
-            weaponEventArgs.Weapon = weapon;
+            weaponEventArgs.Weapon = w;
             WeaponChanged?.Invoke(this, weaponEventArgs);
 
             // set RTS-Engine weapon objects and settings
@@ -43,10 +46,11 @@ namespace ADC
         {
             if (Equipments.Shield != null)
                 RemoveEquipment(shield);
-            Equipments.Update(shield);
-            AddEquipment(shield);
+            var sh = Object.Instantiate(shield, unitBattleManger.transform, false);
+            Equipments.Update(sh);
+            AddEquipment(sh);
 
-            shieldEventArgs.Shield = shield;
+            shieldEventArgs.Shield = sh;
             ArmorChanged?.Invoke(this, shieldEventArgs);
 
             //SetUnitArmor();
@@ -113,6 +117,13 @@ namespace ADC
         public event EventHandler<WeaponEventArgs> WeaponChanged;
 
         private readonly ShieldEventArgs shieldEventArgs = new();
+        private readonly UnitBattleManager unitBattleManger;
+
+        public EquipmentManager(UnitBattleManager unitBattleManager)
+        {
+            this.unitBattleManger = unitBattleManager;
+        }
+
         public event EventHandler<ShieldEventArgs> ArmorChanged;
 
     }

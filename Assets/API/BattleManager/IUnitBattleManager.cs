@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ADC.API
 {
@@ -34,5 +35,7 @@ namespace ADC.API
         IUnitSpecsManager Specs { get;  }
         IEquipmentManager EquipmentManager { get; }
         List<ISpecialAbility> SpecialAbilities { get; }
+
+        T GetComponent<T>() where T: Object;
     }
 }
