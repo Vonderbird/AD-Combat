@@ -1,3 +1,4 @@
+using System;
 using RTSEngine;
 using UnityEngine;
 using ADC.Currencies;
@@ -8,7 +9,9 @@ using RTSEngine.Selection;
 using RTSEngine.UnitExtension;
 using RTSEngine.EntityComponent;
 using System.Collections.Generic;
+using ADC.API;
 using IUnit = RTSEngine.Entities.IUnit;
+using SelectionType = RTSEngine.Selection.SelectionType;
 
 namespace ADC.UnitCreation
 {
@@ -42,11 +45,14 @@ namespace ADC.UnitCreation
 
         public UnityEvent<IUnit> SpawnUnitAdded = new();
 
+        public EventHandler<SelectionEventArgs> UnitCellSelected;
+        public EventHandler<DeselectionEventArgs> UnitCellDeselected;
+
         public override IReadOnlyList<IEntityComponentTaskInput> Tasks { get; }
 
         private SpawnUnitsList spawnUnitsList;
 
-        protected RTSEngine.UnitExtension.IUnitManager unitMgr { private set; get; }
+        protected IUnitManager unitMgr { private set; get; }
 
         private CellsManager cellsManager;
 
@@ -81,7 +87,9 @@ namespace ADC.UnitCreation
                 deleteButton ??= FindAnyObjectByType<DeleteButton>();
                 cellsManager.OnEnabled(deleteButton);
                 cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
-                cellsManager.SelectionCellClicked.AddListener(OnSelectionCellClicked);
+                //cellsManager.SelectionCellClicked.AddListener(OnSelectionCellClicked);
+                cellsManager.UnitCellSelected += UnitCellSelected;
+                cellsManager.UnitCellDeselected += UnitCellDeselected;
             }
 
             this.unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>
@@ -126,10 +134,6 @@ namespace ADC.UnitCreation
             unitPlacementTransaction = new UnitPlacementTransactionLogic(Entity.FactionID);
         }
 
-        private void OnSelectionCellClicked(CellEventArgs arg0)
-        {
-            throw new System.NotImplementedException();
-        }
 
         void OnEnable()
         {

@@ -6,6 +6,7 @@ using RTSEngine.EntityComponent;
 using RTSEngine.Event;
 using RTSEngine.Health;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ADC
 {
@@ -28,6 +29,10 @@ namespace ADC
         private BaseUnitSpecsCalculator unitSpecsCalculator;
 
         public virtual List<ISpecialAbility> SpecialAbilities { get; protected set; }
+        public T GetComponent<T>() where T : Object
+        {
+            return transform.GetComponent<T>();
+        }
 
         protected int activeAbilityId = 0;
         public ISpecialAbility ActiveAbility => 
@@ -48,7 +53,7 @@ namespace ADC
             var unitHealth = GetComponent<UnitHealth>();
             thirdParty = new RtsEngineInteractionManager(unitAttack, unitHealth, unit);
             Specs = new UnitSpecsManager(thirdParty);
-            EquipmentManager = new EquipmentManager();
+            EquipmentManager = new EquipmentManager(this);
 
 
             thirdParty.TargetUpdated += OnTargetUpdated;

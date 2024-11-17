@@ -1,6 +1,4 @@
-using System.Collections;
 using ADC.API;
-using RTSEngine.Entities;
 using UnityEngine;
 
 namespace ADC
@@ -21,10 +19,10 @@ namespace ADC
         {
             unitStatsUiOnOff.EnableButton();
             unitStatsUiOnOff.OpenPanel();
-
+            unitStatsUiFiller.SetAll(unitUIInfo);
         }
 
-        public void OnUnitDeselected(IEntity sender)
+        public void OnUnitDeselected(IUnitBattleManager unit)
         {
             unitStatsUiOnOff.DisableButton();
             unitStatsUiOnOff.ClosePanel();

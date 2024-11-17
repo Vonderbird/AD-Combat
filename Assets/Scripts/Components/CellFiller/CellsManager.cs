@@ -2,16 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ADC.API;
-using ADC.Currencies;
-using JetBrains.Annotations;
-using RTSEngine.Entities;
-using RTSEngine.Event;
 using UnityEngine;
+using ADC.Currencies;
+using RTSEngine.Event;
+using RTSEngine.Entities;
 using UnityEngine.Events;
+using JetBrains.Annotations;
 
 namespace ADC.UnitCreation
 {
-
     public class CellsManager
     {
         private Transform cellsParent;
@@ -20,14 +19,19 @@ namespace ADC.UnitCreation
         private readonly IncomeManager incomeManager;
         private readonly Dictionary<int, UnitCell> unitCells = new();
         private readonly Dictionary<int, Vector3> cellPositions = new();
-        private readonly Dictionary<int, IUnitBattleManager> groupUnit;
 
         private Dictionary<int, List<int>> unitCellsGroups = new();
         private readonly Dictionary<int, int> cellGroupIds = new();
+        private readonly Dictionary<int, IUnitBattleManager> groupUnit = new();
+        private int selectedUnitGroup;
 
         public UnityEvent<CellEventArgs> AdditiveCellClicked = new();
         public UnityEvent<CellEventArgs> DeletionCellClicked = new();
-        public UnityEvent<CellEventArgs> SelectionCellClicked = new();
+        //public UnityEvent<CellEventArgs> SelectionCellClicked = new();
+
+
+        public EventHandler<SelectionEventArgs> UnitCellSelected;
+        public EventHandler<DeselectionEventArgs> UnitCellDeselected;
 
         private readonly UnitPlacementTransactionLogic unitPlacementTransaction;
         private readonly UnitDeletionTransactionLogic unitDeletionTransaction;
@@ -44,7 +48,6 @@ namespace ADC.UnitCreation
         /// Value(IUnit): Unit's prefab
         /// </summary>
         private Dictionary<int, IUnit> positionedUnitsPrefabs = new();
-
 
         public CellsManager([NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
             [NotNull] ActiveTaskContainer activeTask, int factionId)
@@ -143,7 +146,6 @@ namespace ADC.UnitCreation
                 UnitCells[cellId].OnCellDeletionEntered();
         }
 
-
         private void OnCellExit(CellEventArgs arg0)
         {
             foreach (var (_, unitCell) in UnitCells)
@@ -152,22 +154,22 @@ namespace ADC.UnitCreation
             }
         }
 
-
         public void OnCellSelectiveClicked(CellEventArgs arg0)
         {
             if (activeTask.HasValue)
                 OnCellAdditiveClicked(arg0);
             else
                 OnFilledCellSelectionClicked(arg0);
-
         }
 
         private void OnFilledCellSelectionClicked(CellEventArgs arg0)
         {
             if(!arg0.IsFilled || activeTask.HasValue) return;
-            OnAllCellsUnselect(arg0);
 
             if (!cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup)) return;
+            if(selectedUnitGroup == cellGroup) return;
+            OnAllCellsUnselect(arg0);
+
             if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
             {
                 Debug.LogError($"[CellManager] The unitCellsGroups did not sync with cellGroupIds");
@@ -177,15 +179,25 @@ namespace ADC.UnitCreation
             foreach (var cellId in cellIds)
                 UnitCells[cellId].OnCellSelected();
 
-            SelectionCellClicked?.Invoke(arg0);
+            if (!groupUnit.TryGetValue(cellGroup, out var unitPrefab))
+            {
+                Debug.LogError($"[CellManager] cellGroup is not in the groupUnit!");
+                return;
+            }
+            selectedUnitGroup = cellGroup;
+            UnitCellSelected?.Invoke(this, new SelectionEventArgs(SelectionType.single, unitPrefab));
         }
 
         private void OnAllCellsUnselect(CellEventArgs arg0)
         {
+            //var cellIds = new HashSet<int>(unitCellsGroups.ContainsKey(selectedUnitGroup)? 
+            //    unitCellsGroups[selectedUnitGroup]: new List<int>());
+
             foreach (var (_, unitCell) in UnitCells)
-            {
                 unitCell.OnCellUnSelect();
-            }
+            if (!groupUnit.TryGetValue(selectedUnitGroup, out var unitPrefab)) return;
+            UnitCellDeselected?.Invoke(this, new DeselectionEventArgs(unitPrefab));
+            selectedUnitGroup = -1;
         }
         private void OnCellAdditiveClicked(CellEventArgs arg0)
         {
@@ -223,6 +235,7 @@ namespace ADC.UnitCreation
             AdditiveCellClicked?.Invoke(arg0);
             int groupId = nearestCellIds.First();
             unitCellsGroups.Add(groupId, new List<int>(taskPopulation));
+            groupUnit.Add(groupId, unitToSpawn.GetComponent<IUnitBattleManager>());
             Vector3 averagePosition = Vector3.zero;
             foreach (var cellId in nearestCellIds)
             {
@@ -261,6 +274,7 @@ namespace ADC.UnitCreation
 
             incomeManager.RemoveSource(unitIncomeSources[cellGroup]);
             unitIncomeSources.Remove(cellGroup);
+            groupUnit.Remove(cellGroup);
 
             DeletionCellClicked?.Invoke(arg0);
             foreach (var cellId in cellIds)

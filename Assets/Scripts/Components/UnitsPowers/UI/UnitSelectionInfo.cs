@@ -1,20 +1,34 @@
-using RTSEngine.Entities;
-using RTSEngine.Event;
+using System.Linq;
+using ADC.API;
 using UnityEngine;
 
 namespace ADC
 {
     public struct UnitUIInfo
     {
-
+        public string Title;
+        public Sprite UnitBanner;
+        public WeaponUIInfo Weapon;
+        public ShieldUIInfo Shield;
+        public Sprite[] SpecialAbilityIcons;
     }
+
     public abstract class UnitSelectionInfo : MonoBehaviour
     {
-        public abstract void OnUnitSelected(IEntity sender, EntitySelectionEventArgs args);
-        public abstract void OnUnitDeselected(IEntity sender, EntityDeselectionEventArgs args);
-        protected UnitUIInfo ExtractUnitUIInfo(IUnit unit)
+        public abstract void OnUnitSelected(object sender, SelectionEventArgs args);
+        public abstract void OnUnitDeselected(object sender, DeselectionEventArgs args);
+        protected UnitUIInfo ExtractUnitUIInfo(IUnitBattleManager unit)
         {
-            return new UnitUIInfo();
+            var UUI = new UnitUIInfo();
+            var selectionCatch = unit.GetComponent<UnitSelectionCatch>();
+            UUI.Title = selectionCatch.Title;
+            UUI.UnitBanner = selectionCatch.UnitBanner;
+
+            UUI.Weapon = unit.EquipmentManager.Equipments.Weapon.UIInfo;
+            UUI.Shield = unit.EquipmentManager.Equipments.Shield.UIInfo;
+            UUI.SpecialAbilityIcons = unit.SpecialAbilities.Select(s => s.Icon).ToArray();
+
+            return UUI;
         }
     }
 }

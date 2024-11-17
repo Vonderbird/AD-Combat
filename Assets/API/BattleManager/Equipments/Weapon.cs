@@ -21,22 +21,44 @@ namespace ADC.API
         //public UnitAttack UnitAttack { get; set; }
     }
 
+    [Serializable]
+    public struct WeaponUIInfo
+    {
+        public string Title;
+        public Sprite Icon;
+    }
+
     public abstract class Weapon : MonoBehaviour, IEquipment<Weapon>, IAttackEquipment
     {
-        protected WeaponInitArgs InitArgs;
+        //protected WeaponInitArgs InitArgs;
+        [SerializeField] private WeaponUIInfo uiInfo;
 
-
+        public WeaponUIInfo UIInfo => uiInfo;
         public float Power { get; private set; } // ?
         public float Defence { get; private set; } // ?
         public float Level { get; private set; } // ?
         public float Health { get; private set; } // ?
 
-        public static Weapon Default { get; private set; }
+        private static Weapon defaultWeapon;
+        private static object lockObj = new();
 
-        public void Init(WeaponInitArgs initArgs)
+        public static Weapon Default
         {
-            InitArgs = initArgs;
-            Default = new GameObject("NoWeapon").AddComponent<NoWeapon>();
+            get
+            {
+                lock (lockObj)
+                {
+                    if (defaultWeapon)
+                        defaultWeapon = new GameObject("NoWeapon").AddComponent<NoWeapon>();
+                }
+                return defaultWeapon;
+            }
+        }
+
+        public void Awake() //Initialize(WeaponInitArgs initArgs)
+        {
+            if (string.IsNullOrEmpty(uiInfo.Title))
+                uiInfo.Title = GetType().Name;
         }
         public abstract void Attack();
         public abstract int UnitDamage { get; set; }

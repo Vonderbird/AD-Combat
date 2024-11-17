@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ADC.API;
+//using ADC.API;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -61,7 +62,7 @@ namespace RTSEngine.Attack
         [SerializeField, Tooltip("Triggered when damage is dealt to a target.")]
         private UnityEvent damageDealtEvent = null;
 
-        public CustomEventHandler<IAttackComponent, HealthUpdateArgs> AttackDamageDealt;
+        public Event.CustomEventHandler<IAttackComponent, HealthUpdateArgs> AttackDamageDealt;
 
         public BaseUnitSpecsCalculator SpecsCalculator { get; set; }
 

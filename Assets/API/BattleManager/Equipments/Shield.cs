@@ -13,10 +13,19 @@ namespace ADC.API
         //public UnitHealth UnitHealth { get; set; }
     }
 
+    [Serializable]
+    public struct ShieldUIInfo
+    {
+        public string Title;
+        public Sprite Icon;
+    }
+
     public abstract class Shield: MonoBehaviour, IEquipment<Shield>, IProtectorEquipment
     {
 
         [SerializeField] private int armor;
+        [SerializeField] private ShieldUIInfo uiInfo;
+        public ShieldUIInfo UIInfo => uiInfo;
 
         public virtual int Armor
         {
@@ -24,18 +33,33 @@ namespace ADC.API
             protected set => armor = value;
         }
 
-        protected ShieldInitArgs Args;
+        //protected ShieldInitArgs Args;
 
         public float Power { get; private set; } // ?
         public float Defence { get; private set; } // ?
         public float Level { get; private set; } // ?
         public float Health { get; private set; } // ?
-        public static Shield Default { get; private set; } 
+        private static Shield defaultShield;
+        private static object lockObj = new();
 
-        public void Initialize(ShieldInitArgs args)
+        public static Shield Default
         {
-            Args = args;
-            Default = new GameObject("NoShield").AddComponent<NoShield>();
+            get
+            {
+                lock(lockObj)
+                {
+                    if (defaultShield)
+                        defaultShield = new GameObject("NoShield").AddComponent<NoShield>();
+                }
+                return defaultShield;
+            }
+        }
+
+        public void Awake() //Initialize(ShieldInitArgs args)
+        {
+            //Args = args;
+            if (string.IsNullOrEmpty(uiInfo.Title))
+                uiInfo.Title = GetType().Name;
         }
 
 
