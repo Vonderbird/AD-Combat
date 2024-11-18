@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 862318814814099318}
   - component: {fileID: 4227257564850849854}
   - component: {fileID: 8069041691504157466}
+  - component: {fileID: 8878664139287177139}
   m_Layer: 0
   m_Name: Unit_Skyforgers_ThunderkinWarWagon
   m_TagString: Untagged
@@ -614,6 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d38cf58ed89c1447ba2f8a02bfc564b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageFactors:
+    receiveRangeDamageFactor: 1
   levelZeroSpecs:
     healthPoint:
       value: 450
@@ -628,6 +631,37 @@ MonoBehaviour:
   baseEquipments:
     shield: {fileID: -5449205069775238374, guid: 94d93efc72355284b8b1583d8e406828, type: 3}
     weapon: {fileID: -5494195708882483914, guid: 187d8989d3c0a764898d6a3c2fa903f6, type: 3}
+  specialAbilities: []
+  specs:
+    baseSpecs:
+      healthPoint:
+        value: 450
+      armor:
+        value: 6
+      manaPoint:
+        value: 0
+      unitDamage:
+        value: 90
+      buildingDamage:
+        value: 90
+  equipmentManager:
+    equipments:
+      shield: {fileID: -5449205069775238374, guid: 94d93efc72355284b8b1583d8e406828, type: 3}
+      weapon: {fileID: -5494195708882483914, guid: 187d8989d3c0a764898d6a3c2fa903f6, type: 3}
+--- !u!114 &8878664139287177139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837683883374114850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84afbfb2f96851e4ba36bbcd0ff2d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 
+  unitBanner: {fileID: 0}
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0

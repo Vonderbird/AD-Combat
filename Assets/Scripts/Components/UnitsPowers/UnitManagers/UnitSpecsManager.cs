@@ -1,12 +1,15 @@
+using System;
 using ADC.API;
 using UnityEngine;
 
 
 namespace ADC
 {
+    [Serializable]
     public class UnitSpecsManager: IUnitSpecsManager
     {
-        protected UnitSpecs baseSpecs = new();
+        [SerializeField]
+        protected UnitSpecs baseSpecs;
         protected UnitSpecs equipmentSpecs = new();
         private IThirdPartyInteractionManager thirdPartyManager;
 
@@ -15,7 +18,7 @@ namespace ADC
         public UnitSpecs CurrentSpecs { get; } = new();
 
         #region Bind Value Inner Changes
-        public UnitSpecsManager(IThirdPartyInteractionManager thirdPartyManager)
+        public void Initialize(IThirdPartyInteractionManager thirdPartyManager)
         {
             this.thirdPartyManager = thirdPartyManager;
             CurrentSpecs.SetHandler(OnArmorChanged);
@@ -49,7 +52,7 @@ namespace ADC
         
         public void UpdateBaseSpecs(UnitSpecs baseSpecs)
         {
-            this.BaseSpecs.Update(baseSpecs);
+            BaseSpecs.Update(baseSpecs);
             CurrentSpecs.Update(equipmentSpecs + baseSpecs);
         }
 

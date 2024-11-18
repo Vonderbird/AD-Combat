@@ -10,7 +10,16 @@ namespace ADC
         [SerializeField] private string title = "";
         [SerializeField] private Sprite unitBanner = null;
 
-        public string Title => title;
+        public string Title
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(title)) return title;
+                title = GetComponent<IUnitBattleManager>().GetType().Name;
+                return title;
+            }
+        }
+
         public Sprite UnitBanner => unitBanner;
 
 
@@ -21,8 +30,6 @@ namespace ADC
                 new SelectionEventArgs((SelectionType)args.Type, s.GetComponent<IUnitBattleManager>()));
             unitSelection.Deselected += (s, args) => OnUnitDeselected(s,
                 new DeselectionEventArgs(s.GetComponent<IUnitBattleManager>()));
-            if (string.IsNullOrEmpty(title))
-                title = GetComponent<IUnitBattleManager>().GetType().Name;
         }
 
         public override void OnUnitSelected(object sender, SelectionEventArgs args)

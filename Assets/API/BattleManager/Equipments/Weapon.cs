@@ -33,7 +33,16 @@ namespace ADC.API
         //protected WeaponInitArgs InitArgs;
         [SerializeField] private WeaponUIInfo uiInfo;
 
-        public WeaponUIInfo UIInfo => uiInfo;
+        public WeaponUIInfo UIInfo
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(uiInfo.Title)) return uiInfo;
+                uiInfo.Title = GetType().Name;
+                return uiInfo;
+            }
+        }
+
         public float Power { get; private set; } // ?
         public float Defence { get; private set; } // ?
         public float Level { get; private set; } // ?
@@ -55,11 +64,6 @@ namespace ADC.API
             }
         }
 
-        public void Awake() //Initialize(WeaponInitArgs initArgs)
-        {
-            if (string.IsNullOrEmpty(uiInfo.Title))
-                uiInfo.Title = GetType().Name;
-        }
         public abstract void Attack();
         public abstract int UnitDamage { get; set; }
         public abstract int BuildingDamage { get; set; }
