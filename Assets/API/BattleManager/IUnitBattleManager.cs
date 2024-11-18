@@ -11,21 +11,24 @@ namespace ADC.API
         UnitSpecs AddedSpecs { get; }
         HashSet<IAttackEquipment> AttackEquipments { get; }
         UnitEquipments Equipments { get; }
-        void UpdateEquipments(UnitSpecs specsBaseSpecs, UnitEquipments baseEquipments);
+        void Initialize(IUnitBattleManager unitBattleManager);
+        void UpdateEquipments(UnitEquipments baseEquipments);
 
         event EventHandler<EquipmentEventArgs> EquipmentRemoved;
-        event EventHandler<EquipmentEventArgs> EquipmentAdded;
+        event EventHandler<EquipmentEventArgs> EquipmentAdded; 
     }
 
     public interface IUnitSpecsManager
     {
         UnitSpecs BaseSpecs { get; }
         UnitSpecs CurrentSpecs { get; }
+        public void Initialize(IThirdPartyInteractionManager thirdPartyManager);
         void BindEquipmentSpecs(UnitSpecs addedSpecs);
         void UpdateBaseSpecs(UnitSpecs levelZeroSpecs);
         void Heal(int healingAmount);
         void ApplyBuff<T>(T buffAmount, float duration) where T : IUnitFeature<int, T>;
     }
+
     public interface IUnitBattleManager
     {
         //GameObject UnitObject { get; }
@@ -36,6 +39,7 @@ namespace ADC.API
         IEquipmentManager EquipmentManager { get; }
         List<ISpecialAbility> SpecialAbilities { get; }
 
+        public Transform Transform { get; }
         T GetComponent<T>() where T: Object;
     }
 }

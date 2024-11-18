@@ -1,7 +1,6 @@
 using System;
-using RTSEngine.Entities;
 
-namespace ADC
+namespace ADC.API
 {
     public interface IThirdPartyInteractionManager
     {

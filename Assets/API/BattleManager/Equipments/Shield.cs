@@ -25,7 +25,15 @@ namespace ADC.API
 
         [SerializeField] private int armor;
         [SerializeField] private ShieldUIInfo uiInfo;
-        public ShieldUIInfo UIInfo => uiInfo;
+        public ShieldUIInfo UIInfo
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(uiInfo.Title)) return uiInfo;
+                uiInfo.Title = GetType().Name;
+                return uiInfo;
+            }
+        }
 
         public virtual int Armor
         {
@@ -53,13 +61,6 @@ namespace ADC.API
                 }
                 return defaultShield;
             }
-        }
-
-        public void Awake() //Initialize(ShieldInitArgs args)
-        {
-            //Args = args;
-            if (string.IsNullOrEmpty(uiInfo.Title))
-                uiInfo.Title = GetType().Name;
         }
 
 

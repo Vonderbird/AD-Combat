@@ -14,31 +14,57 @@ namespace ADC
     [RequireComponent(typeof(UnitSelectionCatch))]
     public abstract class UnitBattleManager : MonoBehaviour, IUnitBattleManager
     {
-        
+
         [SerializeField] private DamageFactors damageFactors;
 
-        [SerializeField] protected UnitSpecs levelZeroSpecs;
+        //[SerializeField] protected UnitSpecs levelZeroSpecs;
 
-        [SerializeField] protected UnitEquipments baseEquipments;
+        //[SerializeField] protected UnitEquipments baseEquipments;
         [SerializeField] protected SpecialAbilityBase[] specialAbilities;
 
         protected IUnit unit { get; private set; }
 
-        public IEquipmentManager EquipmentManager { get; private set; }
-        public IUnitSpecsManager Specs { get; private set; }
+        public IEquipmentManager EquipmentManager => equipmentManager;
+
+        public IUnitSpecsManager Specs => specs;
+
         private BaseUnitSpecsCalculator unitSpecsCalculator;
 
-        public virtual List<ISpecialAbility> SpecialAbilities { get; protected set; }
+        private List<ISpecialAbility> specialAbilitiesList;
+        public virtual List<ISpecialAbility> SpecialAbilities
+        {
+            get
+            {
+                if (specialAbilitiesList != null) return specialAbilitiesList;
+                specialAbilitiesList = new List<ISpecialAbility>(specialAbilities.Length);
+                foreach (var specialAbility in specialAbilities)
+                {
+                    if (specialAbility == null)
+                    {
+                        Debug.LogError($"[UnitBattleManager] Special Ability on {name} is not assigned properly!");
+                        continue;
+                    }
+
+                    specialAbilitiesList.Add(specialAbility.Initialize(this));
+                    //Xp.Level.LevelChanged += specialAbility.OnLevelChanged;
+                }
+                return specialAbilitiesList;
+            }
+        }
+
+        public Transform Transform => transform;
         public T GetComponent<T>() where T : Object
         {
             return transform.GetComponent<T>();
         }
 
         protected int activeAbilityId = 0;
-        public ISpecialAbility ActiveAbility => 
+        public ISpecialAbility ActiveAbility =>
             SpecialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
 
         private IThirdPartyInteractionManager thirdParty;
+        [SerializeField] private UnitSpecsManager specs;
+        [SerializeField] private EquipmentManager equipmentManager;
 
         public UnitBattleManager Target { get; private set; }
 
@@ -52,26 +78,11 @@ namespace ADC
             var unitAttack = GetComponentInChildren<UnitAttack>();
             var unitHealth = GetComponent<UnitHealth>();
             thirdParty = new RtsEngineInteractionManager(unitAttack, unitHealth, unit);
-            Specs = new UnitSpecsManager(thirdParty);
-            EquipmentManager = new EquipmentManager(this);
-
+            Specs.Initialize(thirdParty);
+            EquipmentManager.Initialize(this);
 
             thirdParty.TargetUpdated += OnTargetUpdated;
             Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
-
-            SpecialAbilities = new List<ISpecialAbility>(specialAbilities.Length);
-            foreach (var specialAbility in specialAbilities)
-            {
-                if (specialAbility == null)
-                {
-                    Debug.LogError($"[UnitBattleManager] Special Ability on {name} is not assigned properly!");
-                    continue;
-                }
-                SpecialAbilities.Add(specialAbility.Initialize(this));
-                //Xp.Level.LevelChanged += specialAbility.OnLevelChanged;
-            }
-
-            
         }
 
         private void Start()
@@ -82,8 +93,8 @@ namespace ADC
             // 2. Xp.Level for base spaces upgrade!
             //Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
-            Specs.UpdateBaseSpecs(levelZeroSpecs);
-            EquipmentManager.UpdateEquipments(Specs.BaseSpecs, baseEquipments);
+            //Specs.UpdateBaseSpecs(levelZeroSpecs);
+            //EquipmentManager.UpdateEquipments(baseEquipments);
 
         }
 
@@ -128,7 +139,7 @@ namespace ADC
 
         public virtual void OnUseAbility(int id)
         {
-            if(SpecialAbilities==null ||  SpecialAbilities.Count<id+1) return;
+            if (SpecialAbilities == null || SpecialAbilities.Count < id + 1) return;
             SpecialAbilities[id].Use();
         }
 
@@ -147,7 +158,7 @@ namespace ADC
             //var unitSpecs = unitSpecsCalculator.CalculateAll();
             //Specs.BindEquipmentSpecs(unitSpecs);
         }
-        
+
         public void OnWeaponChanged()
         {
 

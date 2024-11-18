@@ -1617,6 +1617,22 @@ MonoBehaviour:
     weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
   specialAbilities:
   - {fileID: 11400000, guid: 333b2a6bba1e6cb4ebde103c790361f2, type: 2}
+  specs:
+    baseSpecs:
+      healthPoint:
+        value: 400
+      armor:
+        value: 3
+      manaPoint:
+        value: 0
+      unitDamage:
+        value: 60
+      buildingDamage:
+        value: 60
+  equipmentManager:
+    equipments:
+      shield: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
+      weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
 --- !u!114 &4961990629512393059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1629,6 +1645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84afbfb2f96851e4ba36bbcd0ff2d27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: 
+  unitBanner: {fileID: 0}
 --- !u!1001 &1129004617793929749
 PrefabInstance:
   m_ObjectHideFlags: 0

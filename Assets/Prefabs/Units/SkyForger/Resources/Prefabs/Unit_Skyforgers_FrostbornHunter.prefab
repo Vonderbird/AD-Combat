@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 862318814814099318}
   - component: {fileID: 445136717863983266}
   - component: {fileID: -8173252081627468136}
+  - component: {fileID: 8878664139287177139}
   m_Layer: 0
   m_Name: Unit_Skyforgers_FrostbornHunter
   m_TagString: Untagged
@@ -614,6 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d35f28eeea37648b1f71af3b531800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageFactors:
+    receiveRangeDamageFactor: 1
   levelZeroSpecs:
     healthPoint:
       value: 500
@@ -628,6 +631,37 @@ MonoBehaviour:
   baseEquipments:
     shield: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
     weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
+  specialAbilities: []
+  specs:
+    baseSpecs:
+      healthPoint:
+        value: 500
+      armor:
+        value: 2
+      manaPoint:
+        value: 0
+      unitDamage:
+        value: 60
+      buildingDamage:
+        value: 60
+  equipmentManager:
+    equipments:
+      shield: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
+      weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
+--- !u!114 &8878664139287177139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837683883374114850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84afbfb2f96851e4ba36bbcd0ff2d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 
+  unitBanner: {fileID: 0}
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0

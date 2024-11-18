@@ -6,11 +6,11 @@ using Object = UnityEngine.Object;
 
 namespace ADC
 {
-    
-
+    [Serializable]
     public class EquipmentManager: IEquipmentManager
     {
-        public UnitEquipments Equipments { get; private set; } = new();
+        [SerializeField] private UnitEquipments equipments;
+        public UnitEquipments Equipments => equipments;
 
         public HashSet<IProtectorEquipment> ProtectiveEquipments { get; } = new();
         public HashSet<IAttackEquipment> AttackEquipments { get; } = new();
@@ -23,7 +23,7 @@ namespace ADC
         {
             if(Equipments.Weapon != null)
                 RemoveEquipment(weapon);
-            var w = Object.Instantiate(weapon, unitBattleManger.transform, false);
+            var w = Object.Instantiate(weapon, unitBattleManager.Transform, false);
             Equipments.Update(w);
             AddEquipment(w);
 
@@ -46,7 +46,7 @@ namespace ADC
         {
             if (Equipments.Shield != null)
                 RemoveEquipment(shield);
-            var sh = Object.Instantiate(shield, unitBattleManger.transform, false);
+            var sh = Object.Instantiate(shield, unitBattleManager.Transform, false);
             Equipments.Update(sh);
             AddEquipment(sh);
 
@@ -103,7 +103,7 @@ namespace ADC
 
         // Call after transaction! or Inventory Equipment! or ...
         
-        public void UpdateEquipments(UnitSpecs baseSpecs, UnitEquipments targetEquipments) // , UnitEquipments baseEquipments );
+        public void UpdateEquipments(UnitEquipments targetEquipments) // , UnitEquipments baseEquipments );
         {
             SetShield(targetEquipments.Shield);
             SetWeapon(targetEquipments.Weapon);
@@ -117,11 +117,11 @@ namespace ADC
         public event EventHandler<WeaponEventArgs> WeaponChanged;
 
         private readonly ShieldEventArgs shieldEventArgs = new();
-        private readonly UnitBattleManager unitBattleManger;
+        private IUnitBattleManager unitBattleManager;
 
-        public EquipmentManager(UnitBattleManager unitBattleManager)
+        public void Initialize(IUnitBattleManager unitBattleManager)
         {
-            this.unitBattleManger = unitBattleManager;
+            this.unitBattleManager = unitBattleManager;
         }
 
         public event EventHandler<ShieldEventArgs> ArmorChanged;

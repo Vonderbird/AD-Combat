@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 862318814814099318}
   - component: {fileID: 4458865290066704662}
   - component: {fileID: 6798225920357010047}
+  - component: {fileID: 8878664139287177139}
   m_Layer: 0
   m_Name: Unit_Skyforgers_DeepWalkerInfiltrator
   m_TagString: Untagged
@@ -614,6 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e4c7c91038d4a4bac852c1eb7da4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageFactors:
+    receiveRangeDamageFactor: 1
   levelZeroSpecs:
     healthPoint:
       value: 300
@@ -628,6 +631,37 @@ MonoBehaviour:
   baseEquipments:
     shield: {fileID: 6845831786844167640, guid: d07341b2f044ff34c883b24560562ea5, type: 3}
     weapon: {fileID: -3855065494628038951, guid: 67de84313c9c3b647b7fd035dab11f03, type: 3}
+  specialAbilities: []
+  specs:
+    baseSpecs:
+      healthPoint:
+        value: 300
+      armor:
+        value: 1
+      manaPoint:
+        value: 0
+      unitDamage:
+        value: 55
+      buildingDamage:
+        value: 55
+  equipmentManager:
+    equipments:
+      shield: {fileID: 6845831786844167640, guid: d07341b2f044ff34c883b24560562ea5, type: 3}
+      weapon: {fileID: -3855065494628038951, guid: 67de84313c9c3b647b7fd035dab11f03, type: 3}
+--- !u!114 &8878664139287177139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837683883374114850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84afbfb2f96851e4ba36bbcd0ff2d27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: 
+  unitBanner: {fileID: 0}
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0
