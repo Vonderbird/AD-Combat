@@ -1,18 +1,27 @@
 using ADC.API;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace ADC
 {
     public class ThunderkinArtilleryTank : UnitBattleManager
     {
-        //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
+        [SerializeField] private SimpleUnitUpdateInfo updateInfo;
+
+        public override IUnitUpdateInfo UpdateInfo
+        {
+            get
+            {
+                updateInfo.OnUpdateAction ??= OnUnitUpdate;
+                return updateInfo;
+            }
+        }
 
         //protected override void Awake()
         //{
-        //    SpecialAbilities = new()
+        //    UpdateInfo = new SimpleUnitUpdateInfo()
         //    {
-        //        new Destroyer(this, 1),
-        //        new ArtilleryUpgrade(this, 2)
+        //        Cost = new(250),
+        //        OnUpdateAction = OnUnitUpdate
         //    };
         //    base.Awake();
         //}

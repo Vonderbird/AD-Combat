@@ -9,9 +9,12 @@ namespace ADC
         [SerializeField] private int unlockLevel = 1;
         [SerializeField] private string name;
         [SerializeField] private Sprite icon;
+        [SerializeField] private GameObject infoCellPrefab;
         public int UnlockLevel => unlockLevel;
         public Sprite Icon => icon;
         public string Name => name;
+
+        public GameObject InfoCellPrefab => infoCellPrefab;
 
         public event EventHandler UnLocked;
 

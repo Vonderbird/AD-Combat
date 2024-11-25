@@ -3,7 +3,6 @@ using UnityEngine;
 namespace ADC
 {
     [CreateAssetMenu(fileName = "ArtilleryUpgrade", menuName = "ADC/SpecialAbilities/ArtilleryUpgrade", order = 99)]
-
     public class ArtilleryUpgrade : SpecialAbilityBase
     {
         public override void Use()
