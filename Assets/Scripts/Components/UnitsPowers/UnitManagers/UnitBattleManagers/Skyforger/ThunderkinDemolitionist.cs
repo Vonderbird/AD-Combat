@@ -1,16 +1,28 @@
 using ADC.API;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace ADC
 {
     public class ThunderkinDemolitionist : UnitBattleManager
     {
-        //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
+        [SerializeField] private SimpleUnitUpdateInfo updateInfo;
 
+        public override IUnitUpdateInfo UpdateInfo
+        {
+            get
+            {
+                updateInfo.OnUpdateAction ??= OnUnitUpdate;
+                return updateInfo;
+            }
+        }
 
         //protected override void Awake()
         //{
-        //    SpecialAbilities = new();
+        //    UpdateInfo = new SimpleUnitUpdateInfo()
+        //    {
+        //        Cost = new(250),
+        //        OnUpdateAction = OnUnitUpdate
+        //    };
         //    base.Awake();
         //}
 

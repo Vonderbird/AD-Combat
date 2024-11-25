@@ -6,6 +6,7 @@ using Object = UnityEngine.Object;
 
 namespace ADC.API
 {
+    public interface IUnitUpdateInfo { }
     public interface IEquipmentManager
     {
         UnitSpecs AddedSpecs { get; }
@@ -37,6 +38,7 @@ namespace ADC.API
 
         IUnitSpecsManager Specs { get;  }
         IEquipmentManager EquipmentManager { get; }
+        IUnitUpdateInfo UpdateInfo { get; }
         List<ISpecialAbility> SpecialAbilities { get; }
 
         public Transform Transform { get; }

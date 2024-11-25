@@ -1,24 +1,24 @@
-﻿using System.Collections.Generic;
-using ADC.API;
+﻿using ADC.API;
+using ADC.Currencies;
 using UnityEngine;
 
 namespace ADC
 {
     public class AdamantiumLegionElite : UnitBattleManager
     {
-        //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
+        [SerializeField] private SimpleUnitUpdateInfo updateInfo;
 
+        public override IUnitUpdateInfo UpdateInfo
+        {
+            get
+            {
+                updateInfo.OnUpdateAction ??= OnUnitUpdate;
+                return updateInfo;
+            }
+        }
 
         //protected override void Awake()
         //{
-        //    SpecialAbilities = new()
-        //    {
-        //        new AdamantiumArmor(this, 1),
-        //        new BeamBlade(this, 1),
-        //        new BrothersInArms(this, 2),
-        //        new IronBreakerElite(this, 2),
-        //        new AdvancedAdamantiumArmor(this, 2)
-        //    };
         //    base.Awake();
         //}
 

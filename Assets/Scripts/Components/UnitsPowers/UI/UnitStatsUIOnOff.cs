@@ -6,7 +6,7 @@ namespace ADC
 { 
     public class UnitStatsUIOnOff : MonoBehaviour
     {
-        private UIOnOffTransition onOffTransition = UIOnOffTransition.Closed;
+        private UIOnOffTransition onOffTransition;
         [SerializeField] private RectTransform uiRectTransform;
         [SerializeField] private float openPosition = 0;
         [SerializeField] private float closePosition = -250;
@@ -28,8 +28,11 @@ namespace ADC
                 else
                     ClosePanel();
             });
+            btn.interactable = false;
+            onOffTransition = UIOnOffTransition.Opened;
+            ClosePanel();
         }
-
+        
         public void EnableButton()
         {
             btn.interactable = true;

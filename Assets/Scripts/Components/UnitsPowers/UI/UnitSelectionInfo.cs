@@ -6,11 +6,13 @@ namespace ADC
 {
     public struct UnitUIInfo
     {
+        public IUnitBattleManager Unit;
         public string Title;
         public Sprite UnitBanner;
         public WeaponUIInfo Weapon;
         public ShieldUIInfo Shield;
         public Sprite[] SpecialAbilityIcons;
+        public IUnitUpdateInfo UpdateInfo;
     }
 
     public abstract class UnitSelectionInfo : MonoBehaviour
@@ -21,13 +23,14 @@ namespace ADC
         {
             var UUI = new UnitUIInfo();
             var selectionCatch = unit.GetComponent<UnitSelectionCatch>();
+            UUI.Unit = unit;
             UUI.Title = selectionCatch.Title;
             UUI.UnitBanner = selectionCatch.UnitBanner;
 
             UUI.Weapon = unit.EquipmentManager.Equipments.Weapon.UIInfo;
             UUI.Shield = unit.EquipmentManager.Equipments.Shield.UIInfo;
             UUI.SpecialAbilityIcons = unit.SpecialAbilities.Select(s => s.Icon).ToArray();
-
+            UUI.UpdateInfo = unit.UpdateInfo;
             return UUI;
         }
     }

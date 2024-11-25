@@ -14,7 +14,7 @@ namespace ADC
     [RequireComponent(typeof(UnitSelectionCatch))]
     public abstract class UnitBattleManager : MonoBehaviour, IUnitBattleManager
     {
-
+        
         [SerializeField] private DamageFactors damageFactors;
 
         //[SerializeField] protected UnitSpecs levelZeroSpecs;
@@ -22,9 +22,11 @@ namespace ADC
         //[SerializeField] protected UnitEquipments baseEquipments;
         [SerializeField] protected SpecialAbilityBase[] specialAbilities;
 
+        [SerializeField] private GameObject updateUIPrefab;
         protected IUnit unit { get; private set; }
 
         public IEquipmentManager EquipmentManager => equipmentManager;
+        public abstract IUnitUpdateInfo UpdateInfo { get; }
 
         public IUnitSpecsManager Specs => specs;
 
@@ -71,6 +73,8 @@ namespace ADC
         public UnitExperience Xp { get; private set; } = new();
 
         public DamageFactors Factors => damageFactors;
+
+        public GameObject UpdateUiPrefab => updateUIPrefab;
 
         protected virtual void Awake()
         {
@@ -143,6 +147,11 @@ namespace ADC
             SpecialAbilities[id].Use();
         }
 
+        public virtual void OnUnitUpdate()
+        {
+            // ?
+            // SpecialAbilities.ForEach(s=>s.UnlockLevel());
+        }
 
         #region Unused methods
 

@@ -1,16 +1,29 @@
-using System.Collections.Generic;
 using ADC.API;
+using UnityEngine;
 
 namespace ADC
 {
     public class AdamantiumLegionSiegeBreaker : UnitBattleManager
     {
         //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
+        [SerializeField] private SimpleUnitUpdateInfo updateInfo;
 
+        public override IUnitUpdateInfo UpdateInfo
+        {
+            get
+            {
+                updateInfo.OnUpdateAction ??= OnUnitUpdate;
+                return updateInfo;
+            }
+        }
 
         //protected override void Awake()
         //{
-        //    SpecialAbilities = new();
+        //    UpdateInfo = new SimpleUnitUpdateInfo()
+        //    {
+        //        Cost = new(250),
+        //        OnUpdateAction = OnUnitUpdate
+        //    };
         //    base.Awake();
         //}
 
