@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using ADC.API;
+using RTSEngine.EntityComponent;
 using UnityEngine;
 
 namespace ADC
@@ -11,47 +13,48 @@ namespace ADC
         EMP
     }
 
-    public struct FrostbornHunterUpdateArgs : IUnitUpdateArgs
+    [Serializable]
+    public class UnitAttackMode
     {
-        public FrostBornMode Mode { get; set; }
+        [SerializeField] private bool isActive;
+        [SerializeField] private string name;
+        [SerializeField] private UnitSpecs specs;
+        [SerializeField] private UnitAttack unitAttack;
+
+        public bool IsActive => isActive;
+        public string Name => name;
+        public UnitSpecs Specs => specs;
+        public UnitAttack Attack => unitAttack;
     }
 
     public class FrostbornHunter : UnitBattleManager
     {
         //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
+        public string ActiveMode { get; private set; }
+        [SerializeField] private UnitAttackMode[] modes;
 
-        public FrostBornMode Mode { get; private set; }
-
-        [SerializeField] private FreeMultiModelUpdateInfo updateInfo;
+        private FreeMultiModelUpdateInfo updateInfo;
         public override IUnitUpdateInfo UpdateInfo
         {
             get
             {
-                if (updateInfo.OnUpdateAction != null) return updateInfo;
+                if (updateInfo != null) return updateInfo;
+                updateInfo = new FreeMultiModelUpdateInfo();
                 updateInfo.OnUpdateAction = OnUpdateMode;
-                updateInfo.Modes = Enum.GetNames(typeof(FrostBornMode));
-                updateInfo.ActiveMode = Enum.GetName(typeof(FrostBornMode), Mode);
+                updateInfo.Modes = modes.Select(m => m.Name).ToArray();
+                updateInfo.ActiveMode = string.IsNullOrEmpty(ActiveMode) ? modes.First(m => m.IsActive).Name : ActiveMode;
                 return updateInfo;
             }
         }
 
-
-        //protected override void Awake()
-        //{
-        //    UpdateInfo = new FreeMultiModelUpdateInfo()
-        //    {
-        //        Modes = Enum.GetNames(typeof(FrostBornMode)),
-        //        OnUpdateAction = OnUpdateMode
-        //    };
-        //    base.Awake();
-        //}
-
         private void OnUpdateMode(string mode)
         {
-            if (Enum.TryParse(typeof(FrostBornMode), mode, true, out var outMode))
-            {
-                Mode = (FrostBornMode)outMode;
-            }
+            var modeInfo = modes.FirstOrDefault(m => m.Name == ActiveMode);
+            modeInfo?.Attack.SetActive(false, false);
+            ActiveMode = mode;
+            modeInfo = modes.FirstOrDefault(m => m.Name == ActiveMode);
+            modeInfo?.Attack.SetActive(true, true);
+            modeInfo?.Specs.Update(modeInfo.Specs);
         }
 
         public override void Accept(IUnitManagerVisitor managerVisitor)

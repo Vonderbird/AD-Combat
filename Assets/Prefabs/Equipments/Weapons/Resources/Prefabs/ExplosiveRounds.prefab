@@ -143,8 +143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiInfo:
-    Title: 
-    Icon: {fileID: 0}
+    title: 
+    icon: {fileID: 21300000, guid: ba8b41121a51ed245a058d6493df3e41, type: 3}
+    strongAgainst1: {fileID: -5449205069775238374, guid: 94d93efc72355284b8b1583d8e406828, type: 3}
+    strongAgainst2: {fileID: -6624906158298354111, guid: 5bcb1246315947e4f9f5661cb328f408, type: 3}
+    weakAgainst1: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
+    weakAgainst2: {fileID: 6845831786844167640, guid: d07341b2f044ff34c883b24560562ea5, type: 3}
   unitDamage: 0
   buildingDamage: 0
 --- !u!1 &8008551652279091616

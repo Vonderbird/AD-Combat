@@ -178,7 +178,6 @@ namespace ADC.UnitCreation
 
             foreach (var cellId in cellIds)
                 UnitCells[cellId].OnCellSelected();
-
             if (!groupUnit.TryGetValue(cellGroup, out var unitPrefab))
             {
                 Debug.LogError($"[CellManager] cellGroup is not in the groupUnit!");

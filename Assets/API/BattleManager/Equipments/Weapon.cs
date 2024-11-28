@@ -21,19 +21,13 @@ namespace ADC.API
         //public UnitAttack UnitAttack { get; set; }
     }
 
-    [Serializable]
-    public struct WeaponUIInfo
-    {
-        public string Title;
-        public Sprite Icon;
-    }
 
     public abstract class Weapon : MonoBehaviour, IEquipment<Weapon>, IAttackEquipment
     {
         //protected WeaponInitArgs InitArgs;
         [SerializeField] private WeaponUIInfo uiInfo;
-
-        public WeaponUIInfo UIInfo
+        
+        public IEquipmentUIInfo UIInfo
         {
             get
             {
@@ -68,13 +62,14 @@ namespace ADC.API
         public abstract int UnitDamage { get; set; }
         public abstract int BuildingDamage { get; set; }
 
+
         public void Modify(Weapon equipment)
         {
             throw new NotImplementedException();
         }
     }
 
-    public class NoWeapon: Weapon
+    public class NoWeapon : Weapon
     {
         public override void Attack()
         {

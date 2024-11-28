@@ -12,20 +12,14 @@ namespace ADC.API
     {
         //public UnitHealth UnitHealth { get; set; }
     }
-
-    [Serializable]
-    public struct ShieldUIInfo
-    {
-        public string Title;
-        public Sprite Icon;
-    }
+    
 
     public abstract class Shield: MonoBehaviour, IEquipment<Shield>, IProtectorEquipment
     {
 
         [SerializeField] private int armor;
         [SerializeField] private ShieldUIInfo uiInfo;
-        public ShieldUIInfo UIInfo
+        public IEquipmentUIInfo UIInfo
         {
             get
             {

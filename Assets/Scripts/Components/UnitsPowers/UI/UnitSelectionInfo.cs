@@ -9,8 +9,8 @@ namespace ADC
         public IUnitBattleManager Unit;
         public string Title;
         public Sprite UnitBanner;
-        public WeaponUIInfo Weapon;
-        public ShieldUIInfo Shield;
+        public IEquipmentUIInfo Weapon;
+        public IEquipmentUIInfo Shield;
         public Sprite[] SpecialAbilityIcons;
         public IUnitUpdateInfo UpdateInfo;
     }
