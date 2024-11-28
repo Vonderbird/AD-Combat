@@ -13,6 +13,12 @@ namespace ADC
         Dictionary<string, Toggle> toggles = new();
         private List<Toggle> allToggles = new();
         public event EventHandler<string> ModeChanged;
+
+        //private Action<string> onModeUpdate;
+        //public void SetAction (Action<string> action)
+        //{
+        //    onModeUpdate = action;
+        //}
         public void AddMode(string name, bool isActive)
         {
             var toggleIns = Instantiate(toggleObject, togglesParent);
@@ -39,6 +45,7 @@ namespace ADC
                 }
             });
             toggles[name].interactable = false;
+            ModeChanged?.Invoke(this, name);
         }
     }
 }
