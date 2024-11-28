@@ -7,7 +7,7 @@ namespace ADC
     {
         [SerializeField] private int unitDamage;
         [SerializeField] private int buildingDamage;
-
+        
         public override int UnitDamage
         {
             get => unitDamage;

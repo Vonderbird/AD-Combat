@@ -227,5 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armor: 0
   uiInfo:
-    Title: 
-    Icon: {fileID: 0}
+    title: 
+    icon: {fileID: 21300000, guid: a6163a304f6e6924f86336fe61518574, type: 3}
+    strongAgainst1: {fileID: 8319479850339799683, guid: 4fcfd0d8a9ed5a6498d29b7c1696fb84, type: 3}
+    strongAgainst2: {fileID: -5494195708882483914, guid: 187d8989d3c0a764898d6a3c2fa903f6, type: 3}
+    weakAgainst1: {fileID: -3855065494628038951, guid: 67de84313c9c3b647b7fd035dab11f03, type: 3}
+    weakAgainst2: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
