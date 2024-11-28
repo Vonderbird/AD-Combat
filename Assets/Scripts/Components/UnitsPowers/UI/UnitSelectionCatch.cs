@@ -34,11 +34,11 @@ namespace ADC
 
         public override void OnUnitSelected(object sender, SelectionEventArgs args)
         {
-            if (args.Type == SelectionType.single)
-            {
+            //if (args.Type == SelectionType.single))
+            //{
                 var uiInfo = ExtractUnitUIInfo(args.SelectedUnit);
                 UnitStatsUIPanelManager.Instance.OnUnitSelected(uiInfo);
-            }
+            //}
         }
         public override void OnUnitDeselected(object sender, DeselectionEventArgs args)
         {

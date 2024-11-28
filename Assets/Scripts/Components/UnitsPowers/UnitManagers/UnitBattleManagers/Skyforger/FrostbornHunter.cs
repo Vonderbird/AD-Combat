@@ -38,7 +38,7 @@ namespace ADC
         {
             get
             {
-                if (updateInfo == null)
+                if (updateInfo == null || updateInfo.OnUpdateAction == null)
                 {
                     updateInfo = new FreeMultiModelUpdateInfo
                     {
