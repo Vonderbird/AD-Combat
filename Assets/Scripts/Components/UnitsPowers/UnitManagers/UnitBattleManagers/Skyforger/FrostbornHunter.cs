@@ -38,10 +38,14 @@ namespace ADC
         {
             get
             {
-                if (updateInfo != null) return updateInfo;
-                updateInfo = new FreeMultiModelUpdateInfo();
-                updateInfo.OnUpdateAction = OnUpdateMode;
-                updateInfo.Modes = modes.Select(m => m.Name).ToArray();
+                if (updateInfo == null)
+                {
+                    updateInfo = new FreeMultiModelUpdateInfo
+                    {
+                        OnUpdateAction = OnUpdateMode,
+                        Modes = modes.Select(m => m.Name).ToArray()
+                    };
+                }
                 updateInfo.ActiveMode = string.IsNullOrEmpty(ActiveMode) ? modes.First(m => m.IsActive).Name : ActiveMode;
                 return updateInfo;
             }
