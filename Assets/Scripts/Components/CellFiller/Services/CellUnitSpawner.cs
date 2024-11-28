@@ -75,7 +75,7 @@ namespace ADC.UnitCreation
             spawnEventArgs.UnitIds.Clear();
             foreach (var (id, unitParameters) in unitsSpawn)
             {
-                unitMgr.CreateUnit(
+                var message = unitMgr.CreateUnit(
                     unitParameters.Unit,
                     unitParameters.SpawnPosition,
                     Quaternion.identity,
@@ -99,7 +99,7 @@ namespace ADC.UnitCreation
 
                         playerCommand = false,
                     });
-
+                Debug.Log($"message: {message}");
                 spawnEventArgs.UnitIds.Add(id);
             }
 

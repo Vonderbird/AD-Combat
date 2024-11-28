@@ -222,8 +222,8 @@ namespace ADC.UnitCreation
         /// <param name="e"></param>
         public void OnAdditionCellClicked(CellEventArgs e)
         {
-            if (e.IsFilled || !activeTaskData.HasValue) return;
-            var unitToSpawn = activeTaskData.UnitCreationTask.TargetObject;
+            if (e.IsFilled || !activeTaskData.HasValue || !cellsManager.CellGroupIds.ContainsKey(e.CellId)) return;
+            var unitToSpawn = cellsManager.GroupUnit[cellsManager.CellGroupIds[e.CellId]].GetComponent<Unit>();//activeTaskData.UnitCreationTask.TargetObject;
 
             testTransform.localPosition = cellsManager.UnitCells[e.CellId].transform.localPosition;
 
