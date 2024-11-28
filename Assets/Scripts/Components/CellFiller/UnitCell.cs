@@ -1,5 +1,10 @@
 using System;
 using System.Collections;
+using ADC.API;
+using RTSEngine.Entities;
+using RTSEngine.EntityComponent;
+using RTSEngine.Health;
+using RTSEngine.Selection;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -149,19 +154,25 @@ namespace ADC.UnitCreation
 
         #endregion
 
-        public void CreateDecoObject(IUnit unitPrefab, ParticleSystemGroup spawnParticle,
+        public IUnitBattleManager CreateDecoObject(IUnit unitPrefab, ParticleSystemGroup spawnParticle,
             ParticleSystemGroup deleteParticle, Vector3 position, float scaleFactor)
         {
             if (decoObject)
             {
                 Debug.LogError($"Deco Object is not empty!");
-                return;
+                return null;
             }
 
-            decoObject = Instantiate(unitPrefab.Model, position, Quaternion.Euler(new Vector3(0, 90, 0)), transform);
+            var unitObject = Instantiate(unitPrefab as Unit, position, Quaternion.Euler(new Vector3(0, -90, 0)), transform);
+            decoObject = unitObject.gameObject;
+            decoObject.GetComponent<IUnitHealth>().enabled = false;
+            decoObject.GetComponentInChildren<UnitMovement>().enabled = false;
+            decoObject.GetComponentInChildren<UnitSelection>().gameObject.SetActive(false);
             SpawnParticle = spawnParticle;
             DeleteParticle = deleteParticle;
             decoObject.transform.localScale = Vector3.one * scaleFactor;
+
+            return decoObject.GetComponent<IUnitBattleManager>();
         }
 
         public void ResetCell()

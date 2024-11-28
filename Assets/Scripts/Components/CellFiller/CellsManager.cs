@@ -22,7 +22,9 @@ namespace ADC.UnitCreation
 
         private Dictionary<int, List<int>> unitCellsGroups = new();
         private readonly Dictionary<int, int> cellGroupIds = new();
+        public Dictionary<int, int> CellGroupIds => cellGroupIds;
         private readonly Dictionary<int, IUnitBattleManager> groupUnit = new();
+        public Dictionary<int, IUnitBattleManager> GroupUnit => groupUnit;
         private int selectedUnitGroup;
 
         public UnityEvent<CellEventArgs> AdditiveCellClicked = new();
@@ -178,13 +180,13 @@ namespace ADC.UnitCreation
 
             foreach (var cellId in cellIds)
                 UnitCells[cellId].OnCellSelected();
-            if (!groupUnit.TryGetValue(cellGroup, out var unitPrefab))
+            if (!groupUnit.TryGetValue(cellGroup, out var unitDeco))
             {
                 Debug.LogError($"[CellManager] cellGroup is not in the groupUnit!");
                 return;
             }
             selectedUnitGroup = cellGroup;
-            UnitCellSelected?.Invoke(this, new SelectionEventArgs(SelectionType.single, unitPrefab));
+            UnitCellSelected?.Invoke(this, new SelectionEventArgs(SelectionType.single, unitDeco));
         }
 
         private void OnAllCellsUnselect(CellEventArgs arg0)
@@ -194,8 +196,8 @@ namespace ADC.UnitCreation
 
             foreach (var (_, unitCell) in UnitCells)
                 unitCell.OnCellUnSelect();
-            if (!groupUnit.TryGetValue(selectedUnitGroup, out var unitPrefab)) return;
-            UnitCellDeselected?.Invoke(this, new DeselectionEventArgs(unitPrefab));
+            if (!groupUnit.TryGetValue(selectedUnitGroup, out var unitDeco)) return;
+            UnitCellDeselected?.Invoke(this, new DeselectionEventArgs(unitDeco));
             selectedUnitGroup = -1;
         }
         private void OnCellAdditiveClicked(CellEventArgs arg0)
@@ -224,17 +226,11 @@ namespace ADC.UnitCreation
                 .ToList();
             if (nearestCellIds.Count < taskPopulation) return;
 
-            var unitToSpawn = this.activeTask.UnitCreationTask.TargetObject;
-            var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
-            if (unitPlacementCosts)
-                if (!unitPlacementTransaction.Process(unitPlacementCosts)) return;
 
             arg0.UnitScaleFactor = 1 + MathF.Log(taskPopulation);
 
-            AdditiveCellClicked?.Invoke(arg0);
             int groupId = nearestCellIds.First();
             unitCellsGroups.Add(groupId, new List<int>(taskPopulation));
-            groupUnit.Add(groupId, unitToSpawn.GetComponent<IUnitBattleManager>());
             Vector3 averagePosition = Vector3.zero;
             foreach (var cellId in nearestCellIds)
             {
@@ -244,12 +240,25 @@ namespace ADC.UnitCreation
                 cellGroupIds.Add(cellId, groupId);
             }
 
-            UnitCells[groupId].CreateDecoObject(
+
+            var unitToSpawn = this.activeTask.UnitCreationTask.TargetObject;
+            var unitDeco = UnitCells[groupId].CreateDecoObject(
                 activeTask.UnitCreationTask.TargetObject,
                 activeTask.UnitCreationTask.SpawnParticleSystem,
                 activeTask.UnitCreationTask.DeletionParticleSystem,
                 averagePosition / taskPopulation,
                 arg0.UnitScaleFactor);
+            var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
+            if (unitPlacementCosts)
+                if (!unitPlacementTransaction.Process(unitPlacementCosts)) return;
+
+
+
+
+            groupUnit.Add(groupId, unitDeco);
+
+            AdditiveCellClicked?.Invoke(arg0);
+
             var incomeSourceId = incomeManager.AddSource(
                 unitPlacementCosts.WarScrap * unitPlacementCosts.IncomeRatio);
             unitIncomeSources.Add(groupId, incomeSourceId);
