@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ADC.API;
+using ADC.UnitCreation;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using RTSEngine.Event;
@@ -14,7 +15,7 @@ namespace ADC
     [RequireComponent(typeof(UnitSelectionCatch))]
     public abstract class UnitBattleManager : MonoBehaviour, IUnitBattleManager
     {
-        
+
         [SerializeField] private DamageFactors damageFactors;
 
         //[SerializeField] protected UnitSpecs levelZeroSpecs;
@@ -70,11 +71,15 @@ namespace ADC
 
         public UnitBattleManager Target { get; private set; }
 
+        public IUnitBattleManager CellUnit { get; private set; }
+
         public UnitExperience Xp { get; private set; } = new();
 
         public DamageFactors Factors => damageFactors;
 
         public GameObject UpdateUiPrefab => updateUIPrefab;
+
+        private CellFillerComponent cellFillerComponent;
 
         protected virtual void Awake()
         {
@@ -87,6 +92,9 @@ namespace ADC
 
             thirdParty.TargetUpdated += OnTargetUpdated;
             Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
+            cellFillerComponent = FindObjectOfType<CellFillerComponent>();
+            CellUnit = cellFillerComponent.GetCorrespondingUnitCell(this);
+            GetInfoFromUnitCell();
         }
 
         private void Start()
@@ -152,6 +160,8 @@ namespace ADC
             // ?
             // SpecialAbilities.ForEach(s=>s.UnlockLevel());
         }
+
+        protected virtual void GetInfoFromUnitCell() { }
 
         #region Unused methods
 
