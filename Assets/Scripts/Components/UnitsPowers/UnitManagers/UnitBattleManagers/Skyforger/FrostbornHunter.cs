@@ -30,7 +30,8 @@ namespace ADC
     public class FrostbornHunter : UnitBattleManager
     {
         //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
-        public string ActiveMode { get; private set; }
+        [SerializeField] private string activeMode;
+        public string ActiveMode { get => activeMode; private set => activeMode = value; }
         [SerializeField] private UnitAttackMode[] modes;
 
         private FreeMultiModelUpdateInfo updateInfo;
@@ -54,16 +55,24 @@ namespace ADC
         private void OnUpdateMode(string mode)
         {
             var modeInfo = modes.FirstOrDefault(m => m.Name == ActiveMode);
-            modeInfo?.Attack.SetActive(false, false);
+            //modeInfo?.Attack.SetActive(false, false);
             ActiveMode = mode;
-            modeInfo = modes.FirstOrDefault(m => m.Name == ActiveMode);
-            modeInfo?.Attack.SetActive(true, true);
+            //modeInfo = modes.FirstOrDefault(m => m.Name == ActiveMode);
+            //modeInfo?.Attack.SetActive(true, true);
             modeInfo?.Specs.Update(modeInfo.Specs);
         }
 
         public override void Accept(IUnitManagerVisitor managerVisitor)
         {
             managerVisitor.Visit(this);
+        }
+
+        protected override void GetInfoFromUnitCell()
+        {
+            if (CellUnit is FrostbornHunter fh)
+            {
+                OnUpdateMode(fh.ActiveMode);
+            }
         }
     }
 }

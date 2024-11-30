@@ -75,31 +75,32 @@ namespace ADC.UnitCreation
             spawnEventArgs.UnitIds.Clear();
             foreach (var (id, unitParameters) in unitsSpawn)
             {
+                var initParams = new InitUnitParameters
+                {
+                    factionID = unitParameters.Unit.FactionID,
+                    free = false,
+
+                    setInitialHealth = false,
+
+                    giveInitResources = true,
+
+                    rallypoint = unitParameters.Unit.Rallypoint,
+                    creatorEntityComponent = unitParameters.CreatorComponent,
+
+                    useGotoPosition = true,
+                    gotoPosition = unitParameters.GotoTransform.position,
+
+                    isSquad = unitParameters.UnitTask.SquadData.enabled,
+                    squadCount = unitParameters.UnitTask.SquadData.count,
+
+                    playerCommand = false,
+                };
+                Debug.Log($"UnitCode: {JsonUtility.ToJson(initParams.ToInput())}");
                 var message = unitMgr.CreateUnit(
                     unitParameters.Unit,
                     unitParameters.SpawnPosition,
                     Quaternion.identity,
-                    new InitUnitParameters
-                    {
-                        factionID = unitParameters.Unit.FactionID,
-                        free = false,
-
-                        setInitialHealth = false,
-
-                        giveInitResources = true,
-
-                        rallypoint = unitParameters.Unit.Rallypoint,
-                        creatorEntityComponent = unitParameters.CreatorComponent,
-
-                        useGotoPosition = true,
-                        gotoPosition = unitParameters.GotoTransform.position,
-
-                        isSquad = unitParameters.UnitTask.SquadData.enabled,
-                        squadCount = unitParameters.UnitTask.SquadData.count,
-
-                        playerCommand = false,
-                    });
-                Debug.Log($"message: {message}");
+                    initParams);
                 spawnEventArgs.UnitIds.Add(id);
             }
 

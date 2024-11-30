@@ -55,6 +55,10 @@ namespace ADC.UnitCreation
         protected IUnitManager unitMgr { private set; get; }
 
         private CellsManager cellsManager;
+        public CellsManager CellsManager => cellsManager;
+        public Vector3 SpawnPosition { get; }
+
+
 
         private DeleteButton deleteButton;
         protected IncomeManager incomeManager { private set; get; }
@@ -81,21 +85,21 @@ namespace ADC.UnitCreation
 
             unitSpawner = gameMgr.GetService<CellUnitSpawner>();
             incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
-            if (cellsManager == null)
+            if (CellsManager == null)
             {
                 cellsManager = new CellsManager(cellsParent, unitSpawner, activeTaskData, Entity.FactionID);
                 deleteButton ??= FindAnyObjectByType<DeleteButton>();
-                cellsManager.OnEnabled(deleteButton);
-                cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
+                CellsManager.OnEnabled(deleteButton);
+                CellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
                 //cellsManager.SelectionCellClicked.AddListener(OnSelectionCellClicked);
-                cellsManager.UnitCellSelected += UnitCellSelected;
-                cellsManager.UnitCellDeselected += UnitCellDeselected;
+                CellsManager.UnitCellSelected += UnitCellSelected;
+                CellsManager.UnitCellDeselected += UnitCellDeselected;
             }
 
             this.unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>
                 ();
-            Entity.Selection.Selected += cellsManager.OnEntitySelected;
-            Entity.Selection.Deselected += cellsManager.OnEntityDeselected;
+            Entity.Selection.Selected += CellsManager.OnEntitySelected;
+            Entity.Selection.Deselected += CellsManager.OnEntityDeselected;
             Entity.Selection.OnSelected(
                 new EntitySelectionEventArgs(SelectionType.single, SelectedType.newlySelected, true));
 
@@ -141,19 +145,19 @@ namespace ADC.UnitCreation
             if (deleteButton != null)
                 deleteButton.Clicked.AddListener(OnDeactivateTask);
 
-            if (cellsManager != null)
+            if (CellsManager != null)
             {
-                cellsManager.OnEnabled(deleteButton);
-                cellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
+                CellsManager.OnEnabled(deleteButton);
+                CellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
             }
         }
 
         void OnDisable()
         {
-            if (cellsManager != null)
+            if (CellsManager != null)
             {
-                cellsManager?.OnDisabled();
-                cellsManager.AdditiveCellClicked.RemoveListener(OnAdditionCellClicked);
+                CellsManager?.OnDisabled();
+                CellsManager.AdditiveCellClicked.RemoveListener(OnAdditionCellClicked);
             }
 
             if (deleteButton)
@@ -222,10 +226,10 @@ namespace ADC.UnitCreation
         /// <param name="e"></param>
         public void OnAdditionCellClicked(CellEventArgs e)
         {
-            if (e.IsFilled || !activeTaskData.HasValue || !cellsManager.CellGroupIds.ContainsKey(e.CellId)) return;
-            var unitToSpawn = cellsManager.GroupUnit[cellsManager.CellGroupIds[e.CellId]].GetComponent<Unit>();//activeTaskData.UnitCreationTask.TargetObject;
+            if (e.IsFilled || !activeTaskData.HasValue || !CellsManager.CellGroupIds.ContainsKey(e.CellId)) return;
+            var unitToSpawn = CellsManager.GroupUnit[CellsManager.CellGroupIds[e.CellId]].GetComponent<Unit>();//activeTaskData.UnitCreationTask.TargetObject;
 
-            testTransform.localPosition = cellsManager.UnitCells[e.CellId].transform.localPosition;
+            testTransform.localPosition = CellsManager.UnitCells[e.CellId].transform.localPosition;
 
             unitSpawner.AddNewUnit(new UnitParameters
             {
@@ -254,6 +258,21 @@ namespace ADC.UnitCreation
         }
 
 
-        public Vector3 SpawnPosition { get; }
+        public IUnitBattleManager GetCorrespondingUnitCell(IUnitBattleManager unitBattleManager)
+        {
+            if (CellsManager == null) return null;
+            foreach (var (groupId, cellUnit) in CellsManager.GroupUnit)
+            {
+                if (cellUnit.GetType() != unitBattleManager.GetType()) continue;
+                testTransform.localPosition = CellsManager.UnitCells[groupId].transform.localPosition;
+                if ((testTransform.position - unitBattleManager.Transform.localPosition).sqrMagnitude <
+                    1.0f)
+                {
+                    return cellUnit;
+                }
+            }
+
+            return null;
+        }
     }
 }
