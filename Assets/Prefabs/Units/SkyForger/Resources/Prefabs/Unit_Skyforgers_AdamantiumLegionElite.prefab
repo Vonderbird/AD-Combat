@@ -1606,23 +1606,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  levelZeroSpecs:
-    healthPoint:
-      value: 550
-    armor:
-      value: 3
-    manaPoint:
-      value: 0
-    unitDamage:
-      value: 30
-    buildingDamage:
-      value: 30
-  baseEquipments:
-    shield: {fileID: -6624906158298354111, guid: 5bcb1246315947e4f9f5661cb328f408, type: 3}
-    weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
   specialAbilities:
   - {fileID: 11400000, guid: 5e7802f202be13f4dbd52cb205b04325, type: 2}
   - {fileID: 11400000, guid: abb59eedda996a34b9688d91c6319b56, type: 2}
+  updateUIPrefab: {fileID: 0}
   specs:
     baseSpecs:
       healthPoint:
@@ -1639,6 +1626,11 @@ MonoBehaviour:
     equipments:
       shield: {fileID: -6624906158298354111, guid: 5bcb1246315947e4f9f5661cb328f408, type: 3}
       weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
+  updateInfo:
+    cost: 100
+    OnUpdateClicked2:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &4961990629512393059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1687,7 +1679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1695,7 +1687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1707,7 +1699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
