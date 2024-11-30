@@ -617,21 +617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  levelZeroSpecs:
-    healthPoint:
-      value: 300
-    armor:
-      value: 1
-    manaPoint:
-      value: 0
-    unitDamage:
-      value: 55
-    buildingDamage:
-      value: 55
-  baseEquipments:
-    shield: {fileID: 6845831786844167640, guid: d07341b2f044ff34c883b24560562ea5, type: 3}
-    weapon: {fileID: -3855065494628038951, guid: 67de84313c9c3b647b7fd035dab11f03, type: 3}
   specialAbilities: []
+  updateUIPrefab: {fileID: 0}
   specs:
     baseSpecs:
       healthPoint:
@@ -648,6 +635,11 @@ MonoBehaviour:
     equipments:
       shield: {fileID: 6845831786844167640, guid: d07341b2f044ff34c883b24560562ea5, type: 3}
       weapon: {fileID: -3855065494628038951, guid: 67de84313c9c3b647b7fd035dab11f03, type: 3}
+  updateInfo:
+    cost: 100
+    OnUpdateClicked2:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &8878664139287177139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,7 +1204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1220,7 +1212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1232,7 +1224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
