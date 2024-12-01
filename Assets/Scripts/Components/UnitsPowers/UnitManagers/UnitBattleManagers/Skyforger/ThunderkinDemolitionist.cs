@@ -1,4 +1,5 @@
 using ADC.API;
+using RTSEngine;
 using RTSEngine.EntityComponent;
 using System;
 using System.Linq;
@@ -6,13 +7,6 @@ using UnityEngine;
 
 namespace ADC
 {
-    public enum DemolitionistMode
-    {
-        Demolitionist,
-        Grenade,
-        EMP
-    }
-
     [Serializable]
     public class UnitAttackMode
     {
@@ -58,6 +52,11 @@ namespace ADC
             var modeInfo = modes.FirstOrDefault(m => m.Name == ActiveMode);
             //modeInfo?.Attack.SetActive(false, false);
             ActiveMode = mode;
+
+            foreach (var attackMode in modes)
+            {
+                attackMode.Attack.SetActiveLocal(attackMode.Name == ActiveMode, false);
+            }
             //modeInfo = modes.FirstOrDefault(m => m.Name == ActiveMode);
             //modeInfo?.Attack.SetActive(true, true);
             modeInfo?.Specs.Update(modeInfo.Specs);
@@ -77,6 +76,7 @@ namespace ADC
             if (CellUnit is ThunderkinDemolitionist fh)
             {
                 OnUpdateMode(fh.ActiveMode);
+
             }
         }
 
