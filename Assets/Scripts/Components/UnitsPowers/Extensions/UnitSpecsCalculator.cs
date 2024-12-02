@@ -22,6 +22,17 @@ namespace ADC
             return 0;
         }
 
+
+
+        public override (float, float) CalculateDamageFactor(IUnitBattleManager attacker, IUnitBattleManager target = null)
+        {
+            var unitDamageSummationFactor = CalculateUnitDamageFactor(attacker, target);
+
+            var buildingDamageSummationFactor = CalculateBuildingDamageFactor(attacker);
+
+            return (unitDamageSummationFactor, buildingDamageSummationFactor);
+        }
+
         public override (int, int) CalculateDamage(IUnitBattleManager attacker, IUnitBattleManager target = null)
         {
             var unitDamageSummation = CalculateUnitDamage(attacker, target);
@@ -36,9 +47,12 @@ namespace ADC
             //    ];
             //}
 
-            return ((int)unitDamageSummation, (int)buildingDamageSummation);
+            return (unitDamageSummation, buildingDamageSummation);
         }
-
+        public override float CalculateBuildingDamageFactor(IUnitBattleManager attacker)
+        {
+            return CalculateBuildingDamage(attacker) / (float)attacker.Specs.BaseSpecs.BuildingDamage;
+        }
         public override int CalculateBuildingDamage(IUnitBattleManager attacker)
         {
             float buildingDamageSummation = attacker.Specs.BaseSpecs.BuildingDamage +
@@ -47,6 +61,10 @@ namespace ADC
             return (int)buildingDamageSummation;
         }
 
+        public override float CalculateUnitDamageFactor(IUnitBattleManager attacker, IUnitBattleManager target)
+        {
+            return CalculateUnitDamage(attacker, target) /(float)attacker.Specs.BaseSpecs.UnitDamage;
+        }
         public override int CalculateUnitDamage(IUnitBattleManager attacker, IUnitBattleManager target)
         {
             float unitDamageSummation = attacker.Specs.BaseSpecs.UnitDamage +
@@ -85,5 +103,6 @@ namespace ADC
             Debug.LogError("[UnitSpecsCalculator] not implemented");
             return new UnitSpecs();
         }
+
     }
 }

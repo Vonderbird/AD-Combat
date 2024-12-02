@@ -62,9 +62,10 @@ namespace RTSEngine.Attack
         [SerializeField, Tooltip("Triggered when damage is dealt to a target.")]
         private UnityEvent damageDealtEvent = null;
 
+        private static BaseUnitSpecsCalculator specsCalculator;
+
         public Event.CustomEventHandler<IAttackComponent, HealthUpdateArgs> AttackDamageDealt;
 
-        public BaseUnitSpecsCalculator SpecsCalculator { get; set; }
 
         private void RaiseAttackDamageDealt(HealthUpdateArgs e)
         {
@@ -78,8 +79,9 @@ namespace RTSEngine.Attack
         {
             if (DotData.cycleDuration == 0) DotData = BaseDotData;
             this.gridSearch = gameMgr.GetService<IGridSearchHandler>();
-            SpecsCalculator = gameMgr.FindObjectOfType_<BaseUnitSpecsCalculator>();
-            if (!SpecsCalculator)
+            if(!specsCalculator)
+                specsCalculator = gameMgr.FindObjectOfType_<BaseUnitSpecsCalculator>();
+            if (!specsCalculator)
                 Debug.LogError($"[AttackDamage] There is no SpecsCalculator in the scene!");
         }
         #endregion
@@ -151,12 +153,13 @@ namespace RTSEngine.Attack
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
                 return;
-
+            //Debug.Log();
             var damageFactor = 1.0f;
             var targetBattleComponent = target.GetComponent<IUnitBattleManager>();
             var thisBattleComponent = this.SourceAttackComp.Entity.GetComponent<IUnitBattleManager>();
             if (targetBattleComponent != null && thisBattleComponent != null)
-            { 
+            {
+                value = (int)(value * specsCalculator.CalculateUnitDamageFactor(thisBattleComponent, targetBattleComponent));
                 //SpecsCalculator.CalculateUnitDamage(targetBattleComponent);
                 //if(rangedAttack && SpecsCalculator)
                 //    damageFactor = SpecsCalculator.GetRangedDamageFactor(thisBattleComponent, targetBattleComponent);

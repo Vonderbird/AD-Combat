@@ -130,13 +130,13 @@ namespace ADC
             if (t is IUnit u)
             {
                 Target = u.GetComponent<UnitBattleManager>();
-                var (unitDmg, buildingDmg) = unitSpecsCalculator.CalculateDamage(this, Target);
-                thirdParty.SetDamage(unitDmg, buildingDmg);
+                //var (unitDmg, buildingDmg) = unitSpecsCalculator.CalculateDamage(this, Target);
+                //thirdParty.SetDamage(unitDmg, buildingDmg);
             }
-            else
-            {
+            //else
+            //{
                 thirdParty.SetDamage(Specs.CurrentSpecs.UnitDamage, Specs.CurrentSpecs.BuildingDamage);
-            }
+            //}
         }
 
         public void OnSetActiveAbility(int id)
