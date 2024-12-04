@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 199327897886931820}
   - component: {fileID: 108748884003691000}
   - component: {fileID: 114995049663184070}
+  - component: {fileID: -3119862913208624554}
   m_Layer: 0
   m_Name: Projectile 2 electro
   m_TagString: Untagged
@@ -4996,6 +4997,20 @@ MonoBehaviour:
   useOnlyRotationOffset: 1
   UseFirePointRotation: 0
   DestoyMainEffect: 1
+--- !u!114 &-3119862913208624554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012013889074000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e95c0fdf62f554fb18af12cf6e951f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleFactor: 1
+  lifeSpan: -1
 --- !u!1 &1167830495793948
 GameObject:
   m_ObjectHideFlags: 0
