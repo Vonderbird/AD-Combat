@@ -211,7 +211,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   triggerEffect:
-    input: {fileID: 0}
+    input: {fileID: 1012013889074000, guid: 6dc968b09945e3845bdbf41de444f21c, type: 3}
   triggerEffectFaceTarget: 1
   triggerAudio:
     fetchType: 0

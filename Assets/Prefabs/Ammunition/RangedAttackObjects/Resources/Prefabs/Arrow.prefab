@@ -318,7 +318,25 @@ MonoBehaviour:
         _min: 1
         _max: 2
   triggerEffectsPostDelay: 1
-  hitEffects: []
+  hitEffects:
+  - picker:
+      type: 0
+      options:
+        codes: []
+        categories: []
+      targetUnits: 0
+      targetBuildings: 0
+    effect:
+      input: {fileID: 0}
+    faceSource: 0
+    audio:
+      fetchType: 0
+      items: []
+      cooldown:
+        enabled: 0
+        defaultValueRange:
+          _min: 0
+          _max: 0
   obstacleHitEffect:
     picker:
       type: 0
