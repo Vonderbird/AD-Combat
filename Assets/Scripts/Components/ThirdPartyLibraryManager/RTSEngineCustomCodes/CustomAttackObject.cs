@@ -12,6 +12,7 @@ using RTSEngine.Terrain;
 using RTSEngine.Event;
 using System;
 using ADC;
+using UnityEngine.Events;
 
 namespace RTSEngine.Attack
 {
@@ -112,6 +113,8 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Launching Attack Object
+
+        public UnityEvent Spawned;
         public void OnSpawn(AttackObjectSpawnInput data)
         {
             base.OnSpawn(data);
@@ -142,6 +145,10 @@ namespace RTSEngine.Attack
             // Trigger effect objects and audio if they are meant to be triggered after delay
             if (!InDelay || !triggerEffectsPostDelay)
                 TriggerEffectAudio();
+
+            Spawned?.Invoke();
+            if (!InDelay)
+                StartShooting?.Invoke();
 
             Data.source.Entity.Health.EntityDead += HandleSourceEntityDead;
         }
@@ -200,6 +207,8 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Handling State/Movement
+
+        [SerializeField] private UnityEvent StartShooting;
         protected override void OnActiveUpdate()
         {
             // Update the follow transform in case the attack object is "parented" into another game object that it needs to follow.
@@ -225,6 +234,7 @@ namespace RTSEngine.Attack
 
                     if (triggerEffectsPostDelay)
                         TriggerEffectAudio();
+                    StartShooting?.Invoke();
                 }
 
                 // The attack object doesn't move while in delay
@@ -300,9 +310,13 @@ namespace RTSEngine.Attack
             }
         }
 
+
+        [SerializeField] private UnityEvent hitSomething;
         //a method called to apply damage to a target (position)
         private void ApplyDamage(GameObject targetObject, IFactionEntity target, Vector3 targetPosition)
         {
+
+            hitSomething?.Invoke();
             // Deal damage
             damage.Trigger(target, targetPosition, true);
             didDamage = true;
