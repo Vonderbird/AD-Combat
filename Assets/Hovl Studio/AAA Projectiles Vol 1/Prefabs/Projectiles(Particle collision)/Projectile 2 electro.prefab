@@ -4997,7 +4997,7 @@ MonoBehaviour:
   rotationOffset: {x: 0, y: 0, z: 0}
   useOnlyRotationOffset: 1
   UseFirePointRotation: 0
-  DestoyMainEffect: 1
+  DestoyMainEffect: 0
 --- !u!114 &-3119862913208624554
 MonoBehaviour:
   m_ObjectHideFlags: 0
