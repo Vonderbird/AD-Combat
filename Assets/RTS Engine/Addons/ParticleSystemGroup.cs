@@ -1,31 +1,26 @@
 using System;
-using RTSEngine.Effect;
 using System.Collections;
 using System.Collections.Generic;
 using RTSEngine.Event;
-using RTSEngine.Game;
 using RTSEngine.Utilities;
-using UnityEditor;
 using UnityEngine;
-using RTSEngine.Determinism;
 using UnityEngine.Events;
-using RTSEngine.Audio;
 
-public class ParticleSystemGroup : MonoBehaviour, IEffectObject
+public class ParticleSystemGroup : MonoBehaviour
 {
 
-    private string code;
+    //private string code;
 
-    public string Code
-    {
-        get
-        {
-            if (string.IsNullOrEmpty(code))
-                code = GUID.Generate().ToString();
-            return code;
-        }
-    }
-    public EffectObjectState State { private set; get; }
+    //public string Code
+    //{
+    //    get
+    //    {
+    //        if (string.IsNullOrEmpty(code))
+    //            code = GUID.Generate().ToString();
+    //        return code;
+    //    }
+    //}
+    //public EffectObjectState State { private set; get; }
     private ParticleSystem[] particleSystems;
 
     [SerializeField] private float scaleFactor = 1.0f;
@@ -67,31 +62,6 @@ public class ParticleSystemGroup : MonoBehaviour, IEffectObject
     public FollowTransform FollowTransform => followTransform;
 
     protected IGlobalEventPublisher globalEvent { private set; get; }
-    protected IEffectObjectPool effectObjPool { private set; get; }
-    protected IGameAudioManager audioMgr { private set; get; }
-
-    #region Raising Events
-    public event CustomEventHandler<IEffectObject, EventArgs> EnableEvent;
-    private void RaiseEnableEvent()
-    {
-        var handler = EnableEvent;
-        handler?.Invoke(this, EventArgs.Empty);
-    }
-
-    public event CustomEventHandler<IEffectObject, EventArgs> DisableEvent;
-    private void RaiseDisableEvent()
-    {
-        var handler = DisableEvent;
-        handler?.Invoke(this, EventArgs.Empty);
-    }
-
-    public event CustomEventHandler<IEffectObject, EventArgs> DeactivateEvent;
-    private void RaiseDeactivateEvent()
-    {
-        var handler = DeactivateEvent;
-        handler?.Invoke(this, EventArgs.Empty);
-    }
-    #endregion
 
     private void Awake()
     {
@@ -105,160 +75,64 @@ public class ParticleSystemGroup : MonoBehaviour, IEffectObject
         }
     }
 
-    #region Initializing/Terminating
-
-    public void Init(IGameManager gameMgr)
-    {
-        EnableEvent?.Invoke(this, null);
-
-        this.globalEvent = gameMgr.GetService<IGlobalEventPublisher>();
-        this.effectObjPool = gameMgr.GetService<IEffectObjectPool>();
-        this.audioMgr = gameMgr.GetService<IGameAudioManager>();
-
-        //AudioSourceComponent = GetComponent<AudioSource>();
-
-        globalEvent.RaiseEffectObjectCreatedGlobal(this);
-
-        // Create the FollowTransform instance to be used to "parent" the attack object to delay parent or to the target it deals damage to.
-        followTransform = new FollowTransform(source: transform, OnFollowTargetInvalid);
-
-        initEvent.Invoke();
-
-        OnEffectObjectInit();
-    }
-
-    protected virtual void OnEffectObjectInit() { }
-
-    protected void OnPoolableObjectDestroy()
-    {
-        globalEvent?.RaiseEffectObjectDestroyedGlobal(this);
-
-        OnEffectObjectDestroy();
-    }
-
-    protected virtual void OnEffectObjectDestroy() { }
-    #endregion
-
-    private void Start()
-    {
-        
-    }
-
     public void Play()
     {
-        foreach (var system in particleSystems)
-            system?.Play();
+        ParticleSystem[] copyParticles = new List<ParticleSystem>(particleSystems).ToArray();
+
+        foreach (var system in copyParticles)
+        {
+            if (system)
+            {
+                system.Clear(true);
+                system.Simulate(0.0f, true, true);
+                system.Play();
+            }
+        }
+
 
         if (DeleteOnStop)
-            stopDeletionCoroutine = StartCoroutine(DeletedOnStop());
+            stopDeletionCoroutine = StartCoroutine(RunEventOnStop(copyParticles));
 
         if (LifeSpan > 0)
-            lifeTimeDeletionCoroutine = StartCoroutine(DeleteOnLifeEnds());
+            lifeTimeDeletionCoroutine = StartCoroutine(RunEventOnLifeEnds());
 
     }
 
-    private IEnumerator DeleteOnLifeEnds()
+    private IEnumerator RunEventOnLifeEnds()
     {
         yield return new WaitForSeconds(LifeSpan);
 
         if (stopDeletionCoroutine != null)
             StopCoroutine(stopDeletionCoroutine);
-        DisableEvent?.Invoke(this, null);
-        Destroy(gameObject);
+        Stopped?.Invoke(this, null);
+        //Destroy(gameObject);
     }
 
-    private IEnumerator DeletedOnStop()
+    private IEnumerator RunEventOnStop(ParticleSystem[] copyParticles)
     {
-        while (particleSystems.Length > 0)
+
+        while (copyParticles.Length > 0)
         {
             List<int> availableSystemsIndex = new();
-            for (var i = 0; i < particleSystems.Length; i++)
+            for (var i = 0; i < copyParticles.Length; i++)
             {
-                if (!particleSystems[i].isPlaying) continue;
+                if (!copyParticles[i].isPlaying) continue;
                 availableSystemsIndex.Add(i);
             }
             var availableSystems = new ParticleSystem[availableSystemsIndex.Count];
             for (var i = 0; i < availableSystemsIndex.Count; i++)
-                availableSystems[i] = particleSystems[i];
+                availableSystems[i] = copyParticles[i];
 
-            particleSystems = availableSystems;
+            copyParticles = availableSystems;
             yield return null;
         }
 
         if (lifeTimeDeletionCoroutine != null)
             StopCoroutine(lifeTimeDeletionCoroutine);
-        Destroy(gameObject);
-    }
-
-    public void OnSpawn(EffectObjectSpawnInput input)
-    {
-        Play();
-    }
-
-    protected void OnSpawn(PoolableObjectSpawnInput input)
-    {
-        transform.SetParent(input.parent, true);
-
-        if (input.useLocalTransform)
-            transform.localPosition = input.spawnPosition;
-        else
-            transform.position = input.spawnPosition;
-
-        input.spawnRotation.Apply(transform, input.useLocalTransform);
-
-        Play();
-
-
-        if (State != EffectObjectState.inactive)
-            return;
-
-        State = EffectObjectState.running;
-
-        //this.enableLifeTime = input.enableLifeTime;
-        //if (this.enableLifeTime)
-        //{
-        //    lastLifeTime = input.useDefaultLifeTime ? defaultLifeTime : input.customLifeTime;
-        //    timer = new TimeModifiedTimer(lastLifeTime);
-        //}
-        //else
-        //    lastLifeTime = 0.0f;
-
-        //if (offsetLocalPosition)
-        //    transform.localPosition += spawnPositionOffset;
-        //else
-        //    transform.position += spawnPositionOffset;
-
-        gameObject.SetActive(true);
-
-        enableEvent.Invoke();
-        RaiseEnableEvent();
-
-        OnEffectObjectSpawn();
-    }
-    protected virtual void OnEffectObjectSpawn() { }
-
-    public void Deactivate(bool useDisableTime = true)
-    {
-        DeletedOnStop();
-        DeactivateEvent?.Invoke(this, null);
+        Stopped?.Invoke(this, null);
+        //Destroy(gameObject);
     }
 
 
-    protected virtual void OnDeactivated()
-    {
-        effectObjPool.Despawn(this);
-    }
-
-    #region Handling Follow Transform
-    // Called when the supposed "parent" object of the attack object that it triggered damage is destroyed.
-    private void OnFollowTargetInvalid()
-    {
-        Deactivate(useDisableTime: false);
-    }
-    #endregion
-
-    private void OnDestroy()
-    {
-        OnPoolableObjectDestroy();
-    }
+    public event EventHandler Stopped;
 }
