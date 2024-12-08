@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using RTSEngine;
 using UnityEngine;
 using ADC.Currencies;
@@ -252,10 +253,13 @@ namespace ADC.UnitCreation
                 activeTaskData.UnitCreationTask = task;
         }
 
+        private WaitForSeconds waitForDeletion = new(4);
         public void OnDeactivateTask()
         {
             activeTaskData.UnitCreationTask = null;
+
         }
+
 
 
         public IUnitBattleManager GetCorrespondingUnitCell(IUnitBattleManager unitBattleManager)

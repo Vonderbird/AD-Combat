@@ -8,6 +8,7 @@ using RTSEngine.Event;
 using RTSEngine.Entities;
 using UnityEngine.Events;
 using JetBrains.Annotations;
+using System.Collections;
 
 namespace ADC.UnitCreation
 {
@@ -267,18 +268,32 @@ namespace ADC.UnitCreation
 
         private void OnCellDeletionClicked(CellEventArgs arg0)
         {
-            if (!cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup)) return;
+            EconomySystem.Instance.StartCoroutine(StartCellUnitDeactivation(arg0));
+        }
+
+
+        private WaitForSeconds waitForDeletion = new(4);
+        IEnumerator StartCellUnitDeactivation(CellEventArgs arg0)
+        {
+            if (!cellGroupIds.TryGetValue(arg0.CellId, out var cellGroup)) yield break;
             if (!unitCellsGroups.TryGetValue(cellGroup, out var cellIds))
             {
                 Debug.LogError($"[CellManager] The unitCellsGroups did not sync with cellGroupIds");
-                return;
+                yield break;
             }
 
 
             var unitToDelete = positionedUnitsPrefabs[cellGroup];
             var unitPlacementCosts = unitToDelete.GetComponent<UnitPlacementCosts>();
             if (unitPlacementCosts)
-                if (!unitDeletionTransaction.Process(unitPlacementCosts)) return;
+                if (!unitDeletionTransaction.Process(unitPlacementCosts)) yield break;
+
+            Transform unitTransform = unitToDelete.transform;
+            var creationVFX = unitTransform.GetComponentInChildren<CharacterCreationVFXs>();
+            creationVFX?.OnDeleteCharacter();
+
+            yield return waitForDeletion;
+
 
             incomeManager.RemoveSource(unitIncomeSources[cellGroup]);
             unitIncomeSources.Remove(cellGroup);
