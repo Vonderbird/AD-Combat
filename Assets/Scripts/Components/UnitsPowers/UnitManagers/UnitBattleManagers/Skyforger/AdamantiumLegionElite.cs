@@ -8,6 +8,13 @@ namespace ADC
     {
         [SerializeField] private SimpleUnitUpdateInfo updateInfo;
 
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+        }
+
         public override IUnitUpdateInfo UpdateInfo
         {
             get

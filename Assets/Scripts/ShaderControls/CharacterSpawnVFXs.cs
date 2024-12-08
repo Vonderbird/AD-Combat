@@ -11,6 +11,11 @@ namespace ADC
 
         [SerializeField] private Renderer[] manualControlRenderer;
 
+        private void Start()
+        {
+            OnSpawnCharacter();
+        }
+
         public void OnSpawnCharacter()
         {
             foreach (var v in visualEffects)
