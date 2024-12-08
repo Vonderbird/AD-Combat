@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using ADC.API;
 using UnityEngine;
+using System.Collections;
 
-public class UNI_Materialize : MonoBehaviour
+public class UNI_Materialize : Materialize
 {
     public SkinnedMeshRenderer skinnedMesh;
     public float materializeDuration = 4.0f;
 
-    public void Start_in()
+    public override void Start_in()
     {
         StartCoroutine(MaterializeIn());
     }
 
-    public void Start_out()
+    public override void Start_out()
     {
         StartCoroutine(MaterializeOut());
     }
