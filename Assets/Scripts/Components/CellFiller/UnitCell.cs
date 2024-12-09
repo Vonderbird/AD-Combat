@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using ADC.API;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
@@ -201,11 +202,15 @@ namespace ADC.UnitCreation
             decoObject = null;
         }
 
-        private WaitForSeconds deleteDelay = new(1.5f);
+        private WaitForSeconds deleteDelay = new(4.1f);
 
         IEnumerator DeleteDecoWithDelay(GameObject tempObject)
         {
+            var creationVFX = tempObject.transform.GetComponentsInChildren<CharacterCreationVFXs>().FirstOrDefault(c=>c.name=="Deletion");
+            creationVFX?.OnDeleteCharacter();
+
             yield return deleteDelay;
+            Debug.Log("Unit Deleted");
 
             if (tempObject)
                 Destroy(tempObject);

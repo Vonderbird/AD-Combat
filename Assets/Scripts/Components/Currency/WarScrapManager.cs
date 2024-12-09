@@ -22,7 +22,7 @@ namespace ADC.Currencies
         {
             if (amount.IsEmpty) return false;
             saveAmount += amount;
-            Debug.Log($"warscrap deposit amount: {amount}");
+            //Debug.Log($"warscrap deposit amount: {amount}");
             ValueChanged?.Invoke(
                 new CurrencyChangeEventArgs<WarScrap>(factionId, amount, saveAmount, CurrencyChangeType.DEPOSIT));
             return true;
@@ -33,7 +33,7 @@ namespace ADC.Currencies
             if (amount.IsEmpty) return false;
             if (amount > saveAmount) return false;
             saveAmount -= amount;
-            Debug.Log($"warscrap withdraw amount: {amount}");
+            //Debug.Log($"warscrap withdraw amount: {amount}");
             ValueChanged?.Invoke(new CurrencyChangeEventArgs<WarScrap>(factionId, amount, saveAmount,
                 CurrencyChangeType.WITHDRAW));
             return true;

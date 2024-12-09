@@ -127,12 +127,12 @@ namespace ADC.Currencies
 
         private void OnBiofuelChanged(CurrencyChangeEventArgs<Biofuel> arg0)
         {
-            Debug.LogError("Biofuel Change not Implemented");
+            //Debug.LogError("Biofuel Change not Implemented");
         }
 
         private void OnWarScrapChanged(CurrencyChangeEventArgs<WarScrap> args0)
         {
-            Debug.LogError("WarScrap Change not Implemented");
+            //Debug.LogError("WarScrap Change not Implemented");
         }
     }
 }

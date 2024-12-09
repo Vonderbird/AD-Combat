@@ -14,12 +14,11 @@ namespace ADC.UnitCreation
 
             if (!Produce(args.WarScrap * args.RefundRatio))
             {
-                Debug.LogWarning($"Faction {factionId}: Failed to produce WarScrap.");
+                //Debug.LogWarning($"Faction {factionId}: Failed to produce WarScrap.");
                 return false;
             }
 
-            Debug.Log(
-                $"Faction {factionId}: Successfully deleted unit and gained {args.WarScrap} WarScrap.");
+            //Debug.Log($"Faction {factionId}: Successfully deleted unit and gained {args.WarScrap} WarScrap.");
             return true;
         }
     }

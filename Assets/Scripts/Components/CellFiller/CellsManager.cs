@@ -288,12 +288,8 @@ namespace ADC.UnitCreation
             if (unitPlacementCosts)
                 if (!unitDeletionTransaction.Process(unitPlacementCosts)) yield break;
 
-            Transform unitTransform = unitToDelete.transform;
-            var creationVFX = unitTransform.GetComponentInChildren<CharacterCreationVFXs>();
-            creationVFX?.OnDeleteCharacter();
-
+            //Transform unitTransform = unitToDelete.transform;
             yield return waitForDeletion;
-
 
             incomeManager.RemoveSource(unitIncomeSources[cellGroup]);
             unitIncomeSources.Remove(cellGroup);

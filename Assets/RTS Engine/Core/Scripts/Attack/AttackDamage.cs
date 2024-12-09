@@ -214,7 +214,7 @@ namespace RTSEngine.Attack
             LastTarget = target;
 
             RaiseAttackDamageDealt(new HealthUpdateArgs((int)(value * damageFactor), target));
-            Debug.Log($"Damage dealt is: {value}");
+            //Debug.Log($"Damage dealt is: {value}");
             damageDealtEvent.Invoke();
         }
         #endregion

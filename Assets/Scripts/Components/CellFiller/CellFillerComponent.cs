@@ -253,7 +253,6 @@ namespace ADC.UnitCreation
                 activeTaskData.UnitCreationTask = task;
         }
 
-        private WaitForSeconds waitForDeletion = new(4);
         public void OnDeactivateTask()
         {
             activeTaskData.UnitCreationTask = null;

@@ -16,7 +16,7 @@ namespace ADC.Currencies
         protected override void Update()
         {
 
-            Debug.Log($"Update with income value: {PaymentAmount}");
+            //Debug.Log($"Update with income value: {PaymentAmount}");
             EconomySystem.Instance[factionId].Deposit(paymentAmount);
         }
     }

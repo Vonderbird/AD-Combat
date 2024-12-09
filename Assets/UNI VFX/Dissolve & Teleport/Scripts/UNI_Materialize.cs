@@ -32,7 +32,7 @@ public class UNI_Materialize : Materialize
     {
         float m_step = 1 / (materializeDuration * 50);
         float m_out = 1;
-        while (m_out > 0)
+        while (m_out > 0 && skinnedMesh!=null)
         {
             m_out -= m_step;
             skinnedMesh.material.SetFloat("_Materialize", m_out);
