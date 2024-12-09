@@ -38,8 +38,7 @@ namespace ADC.UnitCreation
                 }
             }
 
-            Debug.Log(
-                $"Faction {factionId}: Successfully placed unit. Spent {args.WarScrap} WarScrap and gained {args.Biofuel} Biofuel.");
+            //Debug.Log($"Faction {factionId}: Successfully placed unit. Spent {args.WarScrap} WarScrap and gained {args.Biofuel} Biofuel.");
             return true;
         }
     }

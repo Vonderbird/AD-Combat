@@ -52,7 +52,7 @@ namespace ADC.UnitCreation
 
         public void OnActivateButton()
         {
-            Debug.Log("Button Is Activated");
+            //Debug.Log("Button Is Activated");
             highlightBackground.color = highlightBackgroundColor;
             foreach (var highlightImage in highlightImages)
                 highlightImage.color = highlightColor;
@@ -62,7 +62,7 @@ namespace ADC.UnitCreation
 
         public void OnDeactivateButton()
         {
-            Debug.Log("Button Is Deactivated");
+            //Debug.Log("Button Is Deactivated");
             highlightBackground.color = defaultBackgroundColor;
             for (var i = 0; i < highlightImages.Length; i++)
                 highlightImages[i].color = defaultImageColors[i];

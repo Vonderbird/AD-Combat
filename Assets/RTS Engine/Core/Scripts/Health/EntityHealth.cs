@@ -296,7 +296,7 @@ namespace RTSEngine.Health
 
         public ErrorMessage AddLocal(HealthUpdateArgs args, bool force = false)
         {
-            Debug.Log($"HealthChanged: {args.Source} -> {args.Value}");
+            //Debug.Log($"HealthChanged: {args.Source} -> {args.Value}");
             if (!force)
             {
                 ErrorMessage errorMessage;

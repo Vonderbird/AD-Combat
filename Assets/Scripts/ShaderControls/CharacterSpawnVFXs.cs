@@ -6,6 +6,7 @@ namespace ADC
 {
     public class CharacterCreationVFXs : MonoBehaviour
     {
+        [SerializeField] private bool runOnStart = false;
         [SerializeField] private VisualEffect[] visualEffects;
         [SerializeField] private Materialize[] materializes;
 
@@ -13,7 +14,8 @@ namespace ADC
 
         private void Start()
         {
-            OnSpawnCharacter();
+            if(runOnStart)
+                OnSpawnCharacter();
         }
 
         public void OnSpawnCharacter()

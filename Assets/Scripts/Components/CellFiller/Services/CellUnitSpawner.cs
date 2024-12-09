@@ -95,7 +95,7 @@ namespace ADC.UnitCreation
 
                     playerCommand = false,
                 };
-                Debug.Log($"UnitCode: {JsonUtility.ToJson(initParams.ToInput())}");
+                //Debug.Log($"UnitCode: {JsonUtility.ToJson(initParams.ToInput())}");
                 var message = unitMgr.CreateUnit(
                     unitParameters.Unit,
                     unitParameters.SpawnPosition,
