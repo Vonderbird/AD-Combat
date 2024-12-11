@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using ADC.API;
 using ADC.UnitCreation;
@@ -97,6 +98,8 @@ namespace ADC
             GetInfoFromUnitCell();
         }
 
+
+
         private void Start()
         {
             unitSpecsCalculator = FindObjectOfType<UnitSpecsCalculator>();
@@ -107,7 +110,7 @@ namespace ADC
 
             //Specs.UpdateBaseSpecs(levelZeroSpecs);
             //EquipmentManager.UpdateEquipments(baseEquipments);
-
+            StartCoroutine(FreezeForSeconts(4.0f));
         }
 
         private void OnEnable()
@@ -124,6 +127,27 @@ namespace ADC
 
 
         public abstract void Accept(IUnitManagerVisitor managerVisitor);
+
+        IEnumerator FreezeForSeconts(float seconds)
+        {
+            yield return null;
+            if (unit == null)
+            {
+                Debug.LogError($"[UnitBattleManager] the unit field is not assigned!");
+                yield break;
+            }
+
+            if (unit.MovementComponent == null)
+            {
+                Debug.LogError($"[UnitBattleManager] the MovementComponent field is not implemented or assigned!");
+                yield break;
+            }
+            var target = unit.MovementComponent.Target;
+            unit.MovementComponent.SetActive(false, false);
+            yield return new WaitForSeconds(seconds);
+            unit.MovementComponent.SetActive(true, false);
+            unit.MovementComponent.SetTarget(target, false);
+        }
 
         private void OnTargetUpdated(object sender, dynamic t)
         {
