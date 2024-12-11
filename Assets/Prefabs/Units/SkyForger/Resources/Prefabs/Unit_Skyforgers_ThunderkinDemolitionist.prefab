@@ -1220,14 +1220,14 @@ MonoBehaviour:
   isActive: 0
   tabID:
     x: 0
-    y: 0
+    y: 1
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
     enabled: 1
     reloadTime: 1
     range: 8
-    idleOnly: 0
+    idleOnly: 1
     typePicker:
       type: 0
       options:
@@ -1297,9 +1297,19 @@ MonoBehaviour:
       _min: 1
       _max: 2
   launcher:
-    useAttackObjects: 0
-    launchType: 1
-    sources: []
+    useAttackObjects: 1
+    launchType: 0
+    sources:
+    - attackObject:
+        input: {fileID: 8334881734067692792, guid: 7bd0bb2c615bb4644aadf0275c1c73cf, type: 3}
+      launchPosition: {fileID: 6963220798416342033}
+      launchRotationAngles: {x: 0, y: 0, z: 0}
+      preDelayTime: 0
+      postDelayTime: 0
+      launchDelayTime: 0
+      damageInDelay: 0
+      delayParentObject: {fileID: 6963220798416342033}
+      index: 0
     attackIterationLaunchEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1392,17 +1402,17 @@ MonoBehaviour:
   showAttackIterationGizmos: 1
   formation:
     unitStoppingDistance:
-      _min: 0
-      _max: 1.5
-    unitEnableDistance: 0.75
-    buildingStoppingDistance:
-      _min: 0
-      _max: 1.5
-    noTargetStoppingDistance:
       _min: 5
-      _max: 10
+      _max: 15
+    unitEnableDistance: 7
+    buildingStoppingDistance:
+      _min: 5
+      _max: 15
+    noTargetStoppingDistance:
+      _min: 25
+      _max: 35
     enforceMinStoppingDistance: 0
-    minStoppingDistance: 0.5
+    minStoppingDistance: 5
     stopMovementOnTargetInRange: 0
     updateMvtDistance: 2
     movementFormation:
@@ -1432,8 +1442,8 @@ MonoBehaviour:
   code: Thunderkin_demolitionist_emp
   isActive: 0
   tabID:
-    x: 0
-    y: 1
+    x: 2
+    y: 3
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -1752,6 +1762,11 @@ Transform:
 --- !u!4 &5612332664833714460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2786410804663173835, guid: 8177f37e813b70541b811b1cbda7f09e, type: 3}
+  m_PrefabInstance: {fileID: 7730520088079395799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6963220798416342033 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8364865233876310074, guid: 8177f37e813b70541b811b1cbda7f09e, type: 3}
   m_PrefabInstance: {fileID: 7730520088079395799}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7460558982989698694 stripped
