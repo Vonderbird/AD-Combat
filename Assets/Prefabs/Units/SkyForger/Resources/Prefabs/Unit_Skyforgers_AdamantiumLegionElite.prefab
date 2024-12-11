@@ -273,7 +273,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 0, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 129.69104, y: 0.65765, z: -13.185873}
+      - m_Value: {x: 54.225426, y: 0.65765, z: 57.25226}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -282,7 +282,7 @@ VisualEffect:
       - m_Value: {x: 9.162409, y: 54.6647, z: 0.79549307}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 129.69505, y: 2.040606, z: -13.186235}
+      - m_Value: {x: 54.229446, y: 2.040606, z: 57.251892}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -833,7 +833,7 @@ MonoBehaviour:
     fetchType: 0
     items:
     - {fileID: 22100000, guid: 21ab23bd14dc28e428e2828e62120377, type: 2}
-  progressDuration: 0.4
+  progressDuration: 0.45
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
   sourceEffect:
@@ -861,9 +861,9 @@ MonoBehaviour:
   requireTarget: 1
   allowMultipleTerrainAttacks: 0
   terrainAttackActive: 0
-  reloadDuration: 0.5
+  reloadDuration: 0.55
   delayTriggerEnabled: 0
-  attackIterationTriggered: 0
+  attackIterationTriggered: 1
   cooldown:
     enabled: 0
     defaultValueRange:
@@ -879,8 +879,8 @@ MonoBehaviour:
   damage:
     enabled: 1
     data:
-      unit: 13
-      building: 13
+      unit: 0
+      building: 0
       custom: []
     areaAttackEnabled: 0
     areaAttackData: []
@@ -912,7 +912,31 @@ MonoBehaviour:
     resetDamageDealt: 0
     damageDealtEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 6274705309010622675}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6274705309010622675}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   weapon:
     toggableObjects:
     - {fileID: 7022324848530632382}
@@ -966,18 +990,18 @@ MonoBehaviour:
   showAttackIterationGizmos: 1
   formation:
     unitStoppingDistance:
-      _min: 0
-      _max: 1.5
-    unitEnableDistance: 0.75
+      _min: 2
+      _max: 4
+    unitEnableDistance: 2.5
     buildingStoppingDistance:
-      _min: 0
-      _max: 1.5
+      _min: 2
+      _max: 4
     noTargetStoppingDistance:
       _min: 5
       _max: 10
-    enforceMinStoppingDistance: 0
-    minStoppingDistance: 0.5
-    stopMovementOnTargetInRange: 0
+    enforceMinStoppingDistance: 1
+    minStoppingDistance: 2
+    stopMovementOnTargetInRange: 1
     updateMvtDistance: 2
     movementFormation:
       lastType: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
@@ -1802,6 +1826,7 @@ Transform:
   - {fileID: 4983658121523104117}
   - {fileID: 771200507929116996}
   - {fileID: 3454900673115476603}
+  - {fileID: 5147391194540749337}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1892988161537844388
@@ -2315,7 +2340,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 0, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 129.69104, y: 0.65765, z: -13.185873}
+      - m_Value: {x: 54.225426, y: 0.65765, z: 57.25226}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -2324,7 +2349,7 @@ VisualEffect:
       - m_Value: {x: 9.162409, y: 54.6647, z: 0.79549307}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 129.69505, y: 2.040606, z: -13.186235}
+      - m_Value: {x: 54.229446, y: 2.040606, z: 57.251892}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -2551,6 +2576,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c780b64d7b0c941a7428ec7f33a80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1123233423892626482
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5117478129899910104}
+    m_Modifications:
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99782044
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.06598838
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 7.567
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377868804346791137, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_Name
+      value: vfx_KassSlash_v8_blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377868804346791137, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433467854832030544, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+--- !u!4 &5147391194540749337 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+  m_PrefabInstance: {fileID: 1123233423892626482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6274705309010622675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6377868804346791137, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
+  m_PrefabInstance: {fileID: 1123233423892626482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4310657640882167820
 PrefabInstance:
   m_ObjectHideFlags: 0

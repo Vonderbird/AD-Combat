@@ -44,7 +44,7 @@ namespace RTSEngine.Entities
         IReadOnlyDictionary<string, IAddableUnit> AddableUnitComponents { get; }
 
         IMovementComponent MovementComponent { get; }
-        bool CanMove(bool playerCommand);
+        public bool CanMove(bool playerCommand);
         bool CanMove();
 
         string Code { get; }
