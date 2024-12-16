@@ -617,7 +617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  specialAbilities: []
+  specialAbilities:
+  - {fileID: 11400000, guid: 69ce3c7f735068743b199cfadb5836d3, type: 2}
   updateUIPrefab: {fileID: 0}
   specs:
     baseSpecs:
@@ -941,12 +942,12 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 0
-    y: 0
+    y: 2
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
     enabled: 1
-    reloadTime: 1
+    reloadTime: 8
     range: 8
     idleOnly: 0
     typePicker:
@@ -981,7 +982,7 @@ MonoBehaviour:
     fetchType: 0
     items:
     - {fileID: 22100000, guid: 2fae534b900a15643b994f1eaf0d3b29, type: 2}
-  progressDuration: 0.4
+  progressDuration: 4
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
   sourceEffect:
@@ -1009,7 +1010,7 @@ MonoBehaviour:
   requireTarget: 1
   allowMultipleTerrainAttacks: 0
   terrainAttackActive: 0
-  reloadDuration: 0.5
+  reloadDuration: 8
   delayTriggerEnabled: 0
   attackIterationTriggered: 0
   cooldown:
@@ -1030,8 +1031,13 @@ MonoBehaviour:
       unit: 13
       building: 13
       custom: []
-    areaAttackEnabled: 0
-    areaAttackData: []
+    areaAttackEnabled: 1
+    areaAttackData:
+    - range: 50
+      data:
+        unit: 55
+        building: 55
+        custom: []
     dotEnabled: 0
     baseDotData:
       infinite: 0
@@ -1113,19 +1119,19 @@ MonoBehaviour:
   showAttackIterationGizmos: 1
   formation:
     unitStoppingDistance:
-      _min: 0
-      _max: 1.5
-    unitEnableDistance: 0.75
+      _min: 8
+      _max: 15
+    unitEnableDistance: 10
     buildingStoppingDistance:
-      _min: 0
-      _max: 1.5
+      _min: 8
+      _max: 15
     noTargetStoppingDistance:
-      _min: 5
-      _max: 10
+      _min: 10
+      _max: 20
     enforceMinStoppingDistance: 0
-    minStoppingDistance: 0.5
+    minStoppingDistance: 10
     stopMovementOnTargetInRange: 0
-    updateMvtDistance: 2
+    updateMvtDistance: 20
     movementFormation:
       lastType: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
       type: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
@@ -1135,7 +1141,7 @@ MonoBehaviour:
           value: 0.2
         intProperties: []
   moveOnAttack: 0
-  followDistance: 9
+  followDistance: 25
   attackMoveEnabled: 0
   attackMoveTaskUI: {fileID: 0}
 --- !u!1 &8423986542023317977
