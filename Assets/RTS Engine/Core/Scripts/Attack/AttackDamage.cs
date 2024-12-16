@@ -108,16 +108,16 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Triggering Damage
-        public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack=false)
+        public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack=false, bool attackFromPostpone=false)
         {
             if (areaAttackEnabled == true)
-                TriggerArea(target.IsValid() ? target.transform.position : targetPosition, sourceFactionID: SourceAttackComp.Entity.FactionID);
+                TriggerArea(target.IsValid() ? target.transform.position : targetPosition, sourceFactionID: SourceAttackComp.Entity.FactionID, attackFromPostpone);
             // Apply damage directly
             else if (target.IsValid())
-                Deal(target, data.Get(target), rangedAttack);
+                Deal(target, data.Get(target), rangedAttack, attackFromPostpone);
         }
 
-        private void TriggerArea(Vector3 center, int sourceFactionID)
+        private void TriggerArea(Vector3 center, int sourceFactionID, bool attackFromPostpone = false)
         {
             gridSearch.Search(
                 center,
@@ -139,7 +139,7 @@ namespace RTSEngine.Attack
                     if (distance > areaAttackData[j].range)
                         continue;
 
-                    Deal(target, areaAttackData[j].data.Get(target));
+                    Deal(target, areaAttackData[j].data.Get(target), attackFromPostpone);
 
                     // Area attack range found, move to the next target.
                     break;
@@ -149,7 +149,7 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Dealing Damage
-        private void Deal(IFactionEntity target, int value, bool rangedAttack = false)
+        private void Deal(IFactionEntity target, int value, bool rangedAttack = false, bool attackFromPostpone = false)
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
                 return;
@@ -167,14 +167,18 @@ namespace RTSEngine.Attack
                 {
                     if (sa is IDealtDamageModifierAbility ddm)
                         value = ddm.ModifyDealtDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
-                            rangedAttack, false, value));
+                            rangedAttack, areaAttackEnabled, value));
+
+                    if (sa is IHackerDamageModifierAbility hdm && !attackFromPostpone)
+                        value = hdm.HackThenDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
+                            rangedAttack, areaAttackEnabled, value));
                 });
                 targetBattleComponent.SpecialAbilities.ForEach(sa=>
                 {
                     if (sa is IReceivedDamageModifierAbility rdm)
                         value = rdm.ModifyReceivedDamage(
                             new DamageArgs(thisBattleComponent, targetBattleComponent,
-                                rangedAttack, false, value));
+                                rangedAttack, areaAttackEnabled, value));
                 });
 
             }

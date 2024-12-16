@@ -35,7 +35,6 @@ namespace ADC.API
         //GameObject UnitObject { get; }
         //IEquipmentManager EquipmentManager { get; }
         //IUnitSpecsManager SpecsManager { get; }
-
         IUnitSpecsManager Specs { get;  }
         IEquipmentManager EquipmentManager { get; }
         IUnitUpdateInfo UpdateInfo { get; }
@@ -43,5 +42,6 @@ namespace ADC.API
 
         public Transform Transform { get; }
         T GetComponent<T>() where T: Object;
+        T GetComponentInChildren<T>() where T : Object;
     }
 }

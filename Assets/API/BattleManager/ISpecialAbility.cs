@@ -24,17 +24,22 @@ namespace ADC.API
     {
         int ModifyDealtDamage(DamageArgs damage);
     }
+    public interface IHackerDamageModifierAbility
+    {
+        int HackThenDamage(DamageArgs damage);
+    }
 
     public struct DamageArgs
     {
         public DamageArgs(IUnitBattleManager source, IUnitBattleManager target, 
-            bool isRanged, bool isArea, int value)
+            bool isRanged, bool isArea, int value, bool attackFromPostpone=false)
         {
             Source = source;
             IsRanged = isRanged;
             IsArea = isArea;
             Value = value;
             Target = target;
+            AttackFromPostpone = attackFromPostpone;
         }
 
         public IUnitBattleManager Source { get; set; }
@@ -42,5 +47,6 @@ namespace ADC.API
         public bool IsRanged { get; set; }
         public bool IsArea { get; set; }
         public int Value { get; set; }
+        public bool AttackFromPostpone { get; set; }
     }
 }
