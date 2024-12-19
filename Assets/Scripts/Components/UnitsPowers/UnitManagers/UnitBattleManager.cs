@@ -141,7 +141,7 @@ namespace ADC
                 Debug.LogError($"[UnitBattleManager] the unit field is not assigned!");
                 yield break;
             }
-
+            yield return new WaitUntil(() => unit.IsInitialized);
             if (unit.MovementComponent == null)
             {
                 Debug.LogError($"[UnitBattleManager] the MovementComponent field is not implemented or assigned!");

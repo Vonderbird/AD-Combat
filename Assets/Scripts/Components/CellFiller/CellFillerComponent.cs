@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using RTSEngine;
 using UnityEngine;
 using ADC.Currencies;
@@ -22,6 +21,7 @@ namespace ADC.UnitCreation
 
     {
         [SerializeField] private Transform cellsParent;
+        [SerializeField] private SpawnPointsManager spawnPointsManager;
 
         //[SerializeField]
         //private List<UnitCreationTask> taskUI = null;
@@ -85,6 +85,7 @@ namespace ADC.UnitCreation
             }
 
             unitSpawner = gameMgr.GetService<CellUnitSpawner>();
+            spawnPointsManager.OnInit(this);
             incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
             if (CellsManager == null)
             {
@@ -240,7 +241,8 @@ namespace ADC.UnitCreation
                 SpawnPosition = testTransform.position,
                 Unit = unitToSpawn,
                 Id = e.CellId,
-                UnitScaleFactor = e.UnitScaleFactor
+                UnitScaleFactor = e.UnitScaleFactor,
+                SpawnPointsManager = spawnPointsManager
             });
             SpawnUnitAdded?.Invoke(unitToSpawn);
         }

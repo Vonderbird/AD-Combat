@@ -73,6 +73,7 @@ namespace ADC.UnitCreation
             spawnEventArgs.UnitIds.Clear();
             foreach (var (id, unitParameters) in unitsSpawn)
             {
+                var spawnPoint = unitParameters.SpawnPointsManager.GetNextPoint();
                 var initParams = new InitUnitParameters
                 {
                     factionID = unitParameters.Unit.FactionID,
@@ -96,7 +97,7 @@ namespace ADC.UnitCreation
                 //Debug.Log($"UnitCode: {JsonUtility.ToJson(initParams.ToInput())}");
                 var message = unitMgr.CreateUnit(
                     unitParameters.Unit,
-                    unitParameters.SpawnPosition,
+                    spawnPoint.transform.position,
                     Quaternion.identity,
                     initParams);
                 spawnEventArgs.UnitIds.Add(id);
@@ -121,6 +122,7 @@ namespace ADC.UnitCreation
 
     public struct UnitParameters
     {
+        public SpawnPointsManager SpawnPointsManager { get; set; }
         public int Id { get; set; }
 
         public IUnit Unit { get; set; }
