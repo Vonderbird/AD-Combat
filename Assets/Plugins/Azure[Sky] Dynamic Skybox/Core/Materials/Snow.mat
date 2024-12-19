@@ -81,5 +81,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 0.19862808, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintColor: {r: 0.96770763, g: 0.97059464, b: 0.977443, a: 1}
+    - _TintColor: {r: 0.9366924, g: 0.9423523, b: 0.955778, a: 1}
   m_BuildTextureStacks: []
