@@ -119,7 +119,7 @@ namespace ADC.UnitCreation
                 CellState.UnselectedUnfilled => defaultEmptyColor,
                 CellState.UnselectedFilled => Color.cyan,
                 CellState.SelectedUnfilled => defaultEmptyColor,
-                CellState.SelectedFilled => Color.blue,
+                CellState.SelectedFilled => Color.magenta,
                 _ => defaultEmptyColor
             };
 
@@ -145,7 +145,7 @@ namespace ADC.UnitCreation
                 CellState.UnselectedUnfilled => defaultEmptyColor,
                 CellState.UnselectedFilled => defaultFilledColor,
                 CellState.SelectedUnfilled => defaultEmptyColor,
-                CellState.SelectedFilled => Color.black,
+                CellState.SelectedFilled => Color.yellow,
                 _ => defaultEmptyColor
             };
 
