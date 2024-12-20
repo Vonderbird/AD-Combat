@@ -83,7 +83,7 @@ namespace ADC.UnitCreation
 
                     giveInitResources = true,
 
-                    rallypoint = unitParameters.Unit.Rallypoint,
+                    rallypoint = unitParameters.SpawnPointsManager.Rallypoint,
                     creatorEntityComponent = unitParameters.CreatorComponent,
 
                     useGotoPosition = true,
