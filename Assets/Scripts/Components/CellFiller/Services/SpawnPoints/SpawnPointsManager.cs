@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ADC.UnitCreation;
 using RTSEngine.Determinism;
+using RTSEngine.EntityComponent;
 using UnityEngine;
 
 namespace ADC
@@ -13,11 +14,14 @@ namespace ADC
     {
         private CellFillerComponent fillerComponent;
         [SerializeField] private SpawnPoint[] spawnPoints;
+        [SerializeField] private Rallypoint rallypoint;
         private List<int> freePoints;
 
         private System.Random rnd = new ();
 
         private WaitForSeconds waitForGateRelease = new(4.2f);
+
+        public IRallypoint Rallypoint => rallypoint;
 
         public void OnInit(CellFillerComponent fillerComponent)
         {
