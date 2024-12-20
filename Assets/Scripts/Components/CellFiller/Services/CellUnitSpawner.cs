@@ -75,12 +75,12 @@ namespace ADC.UnitCreation
             var unitsSpawn2 = unitsSpawn.ToDictionary((kvp)=> kvp.Key, (kvp)=> kvp.Value);
             foreach (var (id, unitParameters) in unitsSpawn2)
             {
-                var spawnPoint = unitParameters.SpawnPointsManager.GetNextPoint();
-                while (spawnPoint==null)
-                {
-                    yield return waitForSeconds;
-                    spawnPoint = unitParameters.SpawnPointsManager.GetNextPoint();
-                }
+                //var spawnPoint = unitParameters.SpawnPointsManager.Point;
+                //while (spawnPoint==null)
+                //{
+                //    yield return waitForSeconds;
+                //    spawnPoint = unitParameters.SpawnPointsManager.GetNextPoint();
+                //}
                 var initParams = new InitUnitParameters
                 {
                     factionID = unitParameters.Unit.FactionID,
@@ -104,7 +104,7 @@ namespace ADC.UnitCreation
                 //Debug.Log($"UnitCode: {JsonUtility.ToJson(initParams.ToInput())}");
                 var message = unitMgr.CreateUnit(
                     unitParameters.Unit,
-                    spawnPoint.transform.position,
+                    unitParameters.SpawnPosition,
                     Quaternion.identity,
                     initParams);
                 spawnEventArgs.UnitIds.Add(id);

@@ -22,6 +22,7 @@ namespace ADC.UnitCreation
         private readonly Dictionary<int, Vector3> cellPositions = new();
 
         private Dictionary<int, List<int>> unitCellsGroups = new();
+        private readonly Dictionary<int, Vector3> unitsGroupPosition = new();
         private readonly Dictionary<int, int> cellGroupIds = new();
         public Dictionary<int, int> CellGroupIds => cellGroupIds;
         private readonly Dictionary<int, IUnitBattleManager> groupUnit = new();
@@ -39,6 +40,9 @@ namespace ADC.UnitCreation
         private readonly UnitPlacementTransactionLogic unitPlacementTransaction;
         private readonly UnitDeletionTransactionLogic unitDeletionTransaction;
         private readonly int factionId;
+        public Dictionary<int, UnitCell> UnitCells => unitCells;
+
+        public Dictionary<int, Vector3> UnitsGroupPosition => unitsGroupPosition;
 
         /// <summary>
         /// Key(int): Cell groupId,
@@ -66,7 +70,6 @@ namespace ADC.UnitCreation
             unitDeletionTransaction = new UnitDeletionTransactionLogic(factionId);
         }
 
-        public Dictionary<int, UnitCell> UnitCells => unitCells;
 
         public void OnEnabled(DeleteButton deleteButton)
         {
@@ -240,6 +243,8 @@ namespace ADC.UnitCreation
                 unitCellsGroups[groupId].Add(cellId);
                 cellGroupIds.Add(cellId, groupId);
             }
+            averagePosition /= taskPopulation;
+            UnitsGroupPosition[groupId] = averagePosition;
 
 
             var unitToSpawn = this.activeTask.UnitCreationTask.TargetObject;
@@ -247,8 +252,9 @@ namespace ADC.UnitCreation
                 activeTask.UnitCreationTask.TargetObject,
                 activeTask.UnitCreationTask.SpawnParticleSystem,
                 activeTask.UnitCreationTask.DeletionParticleSystem,
-                averagePosition / taskPopulation,
+                averagePosition,
                 arg0.UnitScaleFactor);
+
             var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
             if (unitPlacementCosts)
                 if (!unitPlacementTransaction.Process(unitPlacementCosts)) return;

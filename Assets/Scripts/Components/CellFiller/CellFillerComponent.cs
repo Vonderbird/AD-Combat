@@ -38,7 +38,8 @@ namespace ADC.UnitCreation
         private ActiveTaskContainer activeTaskData = new();
 
         [SerializeField] private Transform spawnTransform = null;
-        private Transform testTransform;
+        private Transform unitSpawnPosTestTransform;
+        private Transform cellRelativePosTestTransform;
 
         [SerializeField] private Transform gotoTransform = null;
 
@@ -135,8 +136,10 @@ namespace ADC.UnitCreation
             }
 
             allCreationTasks.AddRange(creationTasks);
-            testTransform = new GameObject("Test Transform").transform;
-            testTransform.SetParent(spawnTransform);
+            cellRelativePosTestTransform = new GameObject("Test Transform").transform;
+            unitSpawnPosTestTransform = new GameObject("Test Transform").transform;
+            cellRelativePosTestTransform.SetParent(cellsParent);
+            unitSpawnPosTestTransform.SetParent(spawnTransform);
             unitPlacementTransaction = new UnitPlacementTransactionLogic(Entity.FactionID);
         }
 
@@ -231,14 +234,16 @@ namespace ADC.UnitCreation
             if (e.IsFilled || !activeTaskData.HasValue || !CellsManager.CellGroupIds.ContainsKey(e.CellId)) return;
             var unitToSpawn = CellsManager.GroupUnit[CellsManager.CellGroupIds[e.CellId]].GetComponent<Unit>();//activeTaskData.UnitCreationTask.TargetObject;
 
-            testTransform.localPosition = CellsManager.UnitCells[e.CellId].transform.localPosition;
+            cellRelativePosTestTransform.position =
+                CellsManager.UnitsGroupPosition[CellsManager.CellGroupIds[e.CellId]];
+            unitSpawnPosTestTransform.localPosition = cellRelativePosTestTransform.localPosition;
 
             unitSpawner.AddNewUnit(new UnitParameters
             {
                 CreatorComponent = this,
                 UnitTask = activeTaskData.UnitCreationTask,
                 GotoTransform = gotoTransform,
-                SpawnPosition = testTransform.position,
+                SpawnPosition = unitSpawnPosTestTransform.position,
                 Unit = unitToSpawn,
                 Id = e.CellId,
                 UnitScaleFactor = e.UnitScaleFactor,
@@ -269,8 +274,8 @@ namespace ADC.UnitCreation
             foreach (var (groupId, cellUnit) in CellsManager.GroupUnit)
             {
                 if (cellUnit.GetType() != unitBattleManager.GetType()) continue;
-                testTransform.localPosition = CellsManager.UnitCells[groupId].transform.localPosition;
-                if ((testTransform.position - unitBattleManager.Transform.localPosition).sqrMagnitude <
+                unitSpawnPosTestTransform.localPosition = CellsManager.UnitCells[groupId].transform.localPosition;
+                if ((unitSpawnPosTestTransform.position - unitBattleManager.Transform.localPosition).sqrMagnitude <
                     1.0f)
                 {
                     return cellUnit;
