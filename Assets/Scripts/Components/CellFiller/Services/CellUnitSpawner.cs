@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ADC.Currencies;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
@@ -71,9 +72,15 @@ namespace ADC.UnitCreation
                 yield return waitForSeconds;
 
             spawnEventArgs.UnitIds.Clear();
-            foreach (var (id, unitParameters) in unitsSpawn)
+            var unitsSpawn2 = unitsSpawn.ToDictionary((kvp)=> kvp.Key, (kvp)=> kvp.Value);
+            foreach (var (id, unitParameters) in unitsSpawn2)
             {
                 var spawnPoint = unitParameters.SpawnPointsManager.GetNextPoint();
+                while (spawnPoint==null)
+                {
+                    yield return waitForSeconds;
+                    spawnPoint = unitParameters.SpawnPointsManager.GetNextPoint();
+                }
                 var initParams = new InitUnitParameters
                 {
                     factionID = unitParameters.Unit.FactionID,
