@@ -57,6 +57,10 @@ namespace ADC
             }
             updateUI.ModeChanged += (o,e) => onModeUpdate?.Invoke(e);
             activeUpdateUI = updateUI;
+
+            var uiDrawer = ModeUpdateUIPrefab.GetComponentInChildren<UIDrawer>();
+            if (uiDrawer == null) return;
+            uiDrawer.OnDeactivate();
         }
 
         private IUnitBattleManager unit;
@@ -73,5 +77,13 @@ namespace ADC
 
         }
 
+        public void OnUnitStateClosing()
+        {
+            if (activeUpdateUI == null) return;
+            if (activeUpdateUI is not ModeUpdateUI mdu) return;
+            var uiDrawer = mdu.GetComponentInChildren<UIDrawer>();
+            if (uiDrawer == null) return;
+            uiDrawer.OnDeactivate();
+        }
     }
 }
