@@ -22355,14 +22355,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomSpeed:
     valueRange:
-      _min: 8
-      _max: 15
+      _min: 25
+      _max: 50
     invert: 0
-    smoothValue: 0.1
+    smoothValue: 0.2
   useCameraNativeZoom: 0
-  initialHeight: 18
+  initialHeight: 25
   minHeight: 5
-  maxHeight: 25
+  maxHeight: 50
   allowBuildingPlaceZoom: 1
   heightOffsetTerrainAreas:
   - {fileID: 11400000, guid: 37d2dffab9a31a84c81d764228531ba7, type: 2}
@@ -22375,7 +22375,7 @@ MonoBehaviour:
     enabled: 1
     invert: 0
     name: Mouse ScrollWheel
-    sensitivity: 20
+    sensitivity: 50
   keyZoom:
     enabled: 0
     inKey: {fileID: 0}
@@ -22402,17 +22402,17 @@ MonoBehaviour:
   allowedRotationPanSize: 0.2
   rotationSpeed:
     valueRange:
-      _min: 30
-      _max: 50
+      _min: 40
+      _max: 60
     invert: 0
-    smoothValue: 0.1
+    smoothValue: 0.6
   minRotationTriggerValues: {x: 1, y: 1}
   rotationLimit:
     lockXRotation: 0
     enableXLimit: 1
     xLimit:
       _min: 15
-      _max: 90
+      _max: 85
     lockYRotation: 0
     enableYLimit: 0
     yLimit:
@@ -22445,8 +22445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61e9fb3d29d68f469a0adf16cac6317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetX: -11.75
-  offsetZ: -11.75
+  offsetX: 0
+  offsetZ: -17
   panningSpeed:
     valueRange:
       _min: 18
@@ -35547,6 +35547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1890098577}
   - component: {fileID: 1890098576}
+  - component: {fileID: 1890098578}
   m_Layer: 0
   m_Name: MinimapCamUI
   m_TagString: Untagged
@@ -35620,6 +35621,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2146848505}
   m_LocalEulerAnglesHint: {x: 90, y: 45, z: 0}
+--- !u!114 &1890098578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890098575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1895449597
 GameObject:
   m_ObjectHideFlags: 0
@@ -38734,6 +38779,7 @@ GameObject:
   - component: {fileID: 2146848505}
   - component: {fileID: 2146848506}
   - component: {fileID: 2146848507}
+  - component: {fileID: 2146848508}
   m_Layer: 0
   m_Name: MinimapCam
   m_TagString: Untagged
@@ -38820,6 +38866,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe84b02b50f8f2e4eacf22066e7b2f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2146848508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146848504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1943696957582081 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9090327454865371489, guid: c49a4d6343fb55148be932b0e4ed599f, type: 3}
