@@ -140,7 +140,6 @@ namespace RTSEngine.Selection.Box
                 if (!gameUIMgr.HasPriority(this)
                     || (EventSystem.current.IsPointerOverGameObject() && !canStartDrawingOnUI))
                     return;
-
                 // Initial selection box position edges
                 initialMousePosition = finalMousePosition = Input.mousePosition;
                 isDrawing = true;
