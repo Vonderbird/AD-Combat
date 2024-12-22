@@ -270,19 +270,19 @@ VisualEffect:
       - m_Value: {x: 0, y: 0.85, z: 0}
         m_Name: VFXCenterOffset
         m_Overridden: 1
-      - m_Value: {x: -0, y: 0, z: 0}
+      - m_Value: {x: -0, y: 270, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 54.225426, y: 0.65765, z: 57.25226}
+      - m_Value: {x: 43.813, y: 0, z: 69.348}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
         m_Name: VFXTransform_scale
         m_Overridden: 1
-      - m_Value: {x: 9.162409, y: 54.6647, z: 0.79549307}
+      - m_Value: {x: 9.162408, y: 324.6647, z: 0.79549265}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 54.229446, y: 2.040606, z: 57.251892}
+      - m_Value: {x: 43.813362, y: 1.3725713, z: 69.35199}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -1815,7 +1815,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 43.813, y: 0, z: 69.348}
-  m_LocalScale: {x: 1.5091, y: 1.5091, z: 1.5091}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8081947903399874555}
@@ -2337,19 +2337,19 @@ VisualEffect:
       - m_Value: {x: 0, y: 0.9, z: 0}
         m_Name: VFXCenterOffset
         m_Overridden: 1
-      - m_Value: {x: -0, y: 0, z: 0}
+      - m_Value: {x: -0, y: 270, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 54.225426, y: 0.65765, z: 57.25226}
+      - m_Value: {x: 43.813, y: 0, z: 69.348}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
         m_Name: VFXTransform_scale
         m_Overridden: 1
-      - m_Value: {x: 9.162409, y: 54.6647, z: 0.79549307}
+      - m_Value: {x: 9.162408, y: 324.6647, z: 0.79549265}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 54.229446, y: 2.040606, z: 57.251892}
+      - m_Value: {x: 43.813362, y: 1.3725713, z: 69.35199}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
