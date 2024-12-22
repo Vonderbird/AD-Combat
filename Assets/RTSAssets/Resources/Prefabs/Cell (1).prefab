@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8241816132426637227, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
+  - {fileID: 2100000, guid: ca52774e3f026eb489a83470eaaf75ef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,6 +239,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f32a3d3ce5f69ad4b979f79073a52aef, type: 3}
       propertyPath: m_Name
       value: Hexagon_new (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f32a3d3ce5f69ad4b979f79073a52aef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
