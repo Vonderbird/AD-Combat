@@ -71,7 +71,7 @@ namespace RTSEngine.Health
 
 #endregion
 
-        #region Handling Damage Over Time
+        #region Handling damage Over Time
         private void Update()
         {
             if (dotHandlers.Count == 0)
