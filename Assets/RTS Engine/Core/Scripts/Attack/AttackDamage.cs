@@ -37,7 +37,10 @@ namespace RTSEngine.Attack
         [SerializeField, Tooltip("When damage over time is enabled, this defines the parameters of the DoT.")]
         private DamageOverTimeData baseDotData = new DamageOverTimeData();
         public DamageOverTimeData BaseDotData => baseDotData;
-        public DamageOverTimeData DotData { get; private set; }
+
+        [SerializeField, Tooltip("Damage over time")]
+        public DamageOverTimeData dotData = new DamageOverTimeData();
+        public DamageOverTimeData DotData => dotData;
 
         [SerializeField, Tooltip("Define what hit effect objects will be used with which target faction entities when damage is dealt.")]
         private FactionEntityDependantHitEffectData[] hitEffects = new FactionEntityDependantHitEffectData[0];
@@ -77,7 +80,7 @@ namespace RTSEngine.Attack
         #region Initializing/Terminating
         protected override void OnInit()
         {
-            if (DotData.cycleDuration == 0) DotData = BaseDotData;
+            if (DotData.cycleDuration == 0) dotData = BaseDotData;
             this.gridSearch = gameMgr.GetService<IGridSearchHandler>();
             if(!specsCalculator)
                 specsCalculator = gameMgr.FindObjectOfType_<BaseUnitSpecsCalculator>();
@@ -86,7 +89,7 @@ namespace RTSEngine.Attack
         }
         #endregion
 
-        #region Updating Damage Values
+        #region Updating damage Values
         // Make sure that the calls to these methods are syncable to all clients
         public void UpdateDamage(DamageData newDamageData)
         {
@@ -103,11 +106,11 @@ namespace RTSEngine.Attack
 
         public void UpdateDotData(DamageOverTimeData newDotData)
         {
-            this.DotData = newDotData;
+            this.dotData = newDotData;
         }
         #endregion
 
-        #region Triggering Damage
+        #region Triggering damage
         public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack=false, bool attackFromPostpone=false)
         {
             if (areaAttackEnabled == true)
@@ -148,7 +151,7 @@ namespace RTSEngine.Attack
         }
         #endregion
 
-        #region Dealing Damage
+        #region Dealing damage
         private void Deal(IFactionEntity target, int value, bool rangedAttack = false, bool attackFromPostpone = false)
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
@@ -218,7 +221,7 @@ namespace RTSEngine.Attack
             LastTarget = target;
 
             RaiseAttackDamageDealt(new HealthUpdateArgs((int)(value * damageFactor), target));
-            //Debug.Log($"Damage dealt is: {value}");
+            //Debug.Log($"damage dealt is: {value}");
             damageDealtEvent.Invoke();
         }
         #endregion

@@ -60,7 +60,7 @@ namespace ADC
             yield return waitUntil;
 
             if (damage == null)
-                damage = args.Source.GetComponentInChildren<UnitAttack>().Damage;
+                damage = args.Source.GetComponentInChildren<UnitAttack>().damage;
             var targetPosition = args.IsArea ? args.Source.Transform.position : args.Target.Transform.position;
             damage.Trigger(args.Target.GetComponent<FactionEntity>(), targetPosition, true, true);
             //RTSHelper

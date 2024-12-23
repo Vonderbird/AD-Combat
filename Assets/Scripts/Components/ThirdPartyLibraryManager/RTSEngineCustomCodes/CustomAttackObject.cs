@@ -62,6 +62,9 @@ namespace RTSEngine.Attack
         [SerializeField, Tooltip("When enabled, the attack object becomes a child object of its target when it deals damage to it.")]
         private bool childOnDamage = false;
 
+        [SerializeField, Tooltip("When enabled, the attack object becomes a child object of its target when it deals damage to it.")]
+        private bool stayOnGround = false;
+
         // Attack object launch delay
         private TimeModifiedTimer delayTimer;
         public float DelayTime => delayTimer.CurrValue;
@@ -127,7 +130,7 @@ namespace RTSEngine.Attack
 
             lookAtPosition = TargetPosition - transform.position;
 
-            // Damage handler
+            // damage handler
             damage = data.source.Damage;
 
             // Delay options:
@@ -276,7 +279,7 @@ namespace RTSEngine.Attack
         }
         #endregion
 
-        #region Dealing Damage
+        #region Dealing damage
         private void OnTriggerEnter(Collider other)
         {
             var entitySelection = other.gameObject.GetComponent<EntitySelectionCollider>();
@@ -372,6 +375,15 @@ namespace RTSEngine.Attack
                     offset: (transform.position - targetObject.transform.position),
                     enableCallback: true
                 );
+
+            if (stayOnGround == true)
+            {
+                transform.position = target.IsValid() ? target.transform.position : targetObject.transform.position;
+                followTransform.SetTarget( GroundAttackObjects.Instance.transform,
+                    offset: (transform.position - GroundAttackObjects.Instance.transform.position),
+                    enableCallback: true
+                );
+            }
 
             // Disable on damage? Handle it through the effect object.
             if (disableOnDamage == true)
