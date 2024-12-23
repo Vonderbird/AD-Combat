@@ -5,6 +5,7 @@ using RTSEngine.Game;
 using RTSEngine.Terrain;
 using RTSEngine.Utilities;
 using UnityEngine;
+using static RTSEngine.Cameras.MainCameraRotationHandlerBase;
 
 namespace RTSEngine.Cameras
 {
@@ -110,7 +111,7 @@ namespace RTSEngine.Cameras
         #region Updating/Applying Input 
         public void PreUpdateInput()
         {
-            if(triggerPointInputInactive)
+            if (triggerPointInputInactive)
             {
                 triggerPointInputInactive = false;
                 IsPointerInputActive = false;
@@ -124,6 +125,7 @@ namespace RTSEngine.Cameras
         {
             if (rotationLimit.lockXRotation || Mathf.Abs(currRotationValue.x) < minRotationTriggerValues.x)
                 currRotationValue.x = 0.0f;
+
             if (rotationLimit.lockYRotation || Mathf.Abs(currRotationValue.y) < minRotationTriggerValues.y)
                 currRotationValue.y = 0.0f;
 
@@ -146,6 +148,7 @@ namespace RTSEngine.Cameras
             if (isResettingRotation
                 || ((fixPanRotation && cameraController.PanningHandler.LastPanDirection.magnitude > allowedRotationPanSize) || cameraController.PanningHandler.IsFollowingTarget))
             {
+                Debug.Log("Resetting Rotation 0");
                 cameraController.MainCamera.transform.rotation = Quaternion.Lerp(
                     cameraController.MainCamera.transform.rotation,
                     initialRotation,
@@ -159,13 +162,15 @@ namespace RTSEngine.Cameras
             if (!IsActive)
                 return;
 
+
             // Smoothly update the last rotation value towards the current one
             LastRotationValue = Vector2.Lerp(
                 LastRotationValue,
                 currRotationValue,
                 rotationSpeed.smoothValue);
 
-            Vector3 nextEulerAngles = cameraController.MainCamera.transform.rotation.eulerAngles;
+            Quaternion nextQuaternion = cameraController.MainCamera.transform.rotation;
+            Vector3 nextEulerAngles = nextQuaternion.eulerAngles;
 
             bool altRotationTypeEnabled = controls.IsControlTypeEnabled(altRotationControlType);
             isRotatingAround = (defaultRotationType == CameraRotationType.rotateAround && !altRotationTypeEnabled) || altRotationTypeEnabled;
@@ -181,6 +186,7 @@ namespace RTSEngine.Cameras
                 cameraController.MainCamera.transform.RotateAround(rotateAroundCenter,
                     Vector3.up,
                     LastRotationValue.x * CurrRotationSpeed * Time.deltaTime);
+
                 // orbit vertically
                 cameraController.MainCamera.transform.RotateAround(rotateAroundCenter,
                     cameraController.MainCamera.transform.TransformDirection(Vector3.right),
@@ -194,13 +200,29 @@ namespace RTSEngine.Cameras
                 nextEulerAngles.x -= CurrRotationSpeed * Time.deltaTime * LastRotationValue.y;
             }
 
+            if (nextEulerAngles.y < 0)
+            {
+                Debug.Log(nextEulerAngles.y);
+            }
+
             // Limit the y/x euler angless if that's enabled
             if (rotationLimit.enableXLimit)
+            {
+                if (nextEulerAngles.x > 180)
+                    nextEulerAngles.x -= 360;
                 nextEulerAngles.x = Mathf.Clamp(nextEulerAngles.x, rotationLimit.xLimit.min, rotationLimit.xLimit.max);
-            if (rotationLimit.enableYLimit)
-                nextEulerAngles.y = Mathf.Clamp(nextEulerAngles.y, rotationLimit.yLimit.min, rotationLimit.yLimit.max);
+            }
 
-            cameraController.MainCamera.transform.rotation = Quaternion.Euler(nextEulerAngles);
+            if (rotationLimit.enableYLimit)
+            {
+                if (nextEulerAngles.y > 180)
+                    nextEulerAngles.y -= 360;
+                nextEulerAngles.y = Mathf.Clamp(nextEulerAngles.y, rotationLimit.yLimit.min, rotationLimit.yLimit.max);
+            }
+
+            Quaternion newRotation = Quaternion.Euler(nextEulerAngles);
+
+            cameraController.MainCamera.transform.rotation = newRotation;
 
             if (LastRotationValue != Vector2.zero)
                 cameraController.RaiseCameraTransformUpdated();
@@ -226,4 +248,3 @@ namespace RTSEngine.Cameras
 
     }
 }
- 
