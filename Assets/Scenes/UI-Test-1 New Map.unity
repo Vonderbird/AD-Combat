@@ -21817,16 +21817,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 638b60ed754e2434abaf52e10809c19b, type: 2}
   mapSize: 15625
   lowerLeftCorner:
-    x: -70
-    y: -70
+    x: 4
+    y: 34
   upperRightCorner:
-    x: 290
-    y: 140
+    x: 252
+    y: 85
   heightCacheDistance: 1
   heightCacheSampleOffset: 10
   baseTerrainLayer: BaseTerrain
-  baseTerrainCenter: {x: 60, y: 0, z: 60}
-  baseTerrainSize: {x: 700, y: 700}
+  baseTerrainCenter: {x: 128.9, y: 0, z: 81.7}
+  baseTerrainSize: {x: 274, y: 110.5}
   cameraBoundariesToBaseTerrainPositionMargin:
     upperMargin: 10
     bottomMargin: 2000
@@ -22416,14 +22416,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomSpeed:
     valueRange:
-      _min: 25
-      _max: 50
+      _min: 5
+      _max: 20
     invert: 0
     smoothValue: 0.2
   useCameraNativeZoom: 0
-  initialHeight: 25
+  initialHeight: 5
   minHeight: 5
-  maxHeight: 50
+  maxHeight: 20
   allowBuildingPlaceZoom: 1
   heightOffsetTerrainAreas:
   - {fileID: 11400000, guid: 37d2dffab9a31a84c81d764228531ba7, type: 2}
@@ -22466,7 +22466,7 @@ MonoBehaviour:
       _min: 40
       _max: 60
     invert: 0
-    smoothValue: 0.6
+    smoothValue: 0.039
   minRotationTriggerValues: {x: 1, y: 1}
   rotationLimit:
     lockXRotation: 0
@@ -22475,11 +22475,11 @@ MonoBehaviour:
       _min: 15
       _max: 85
     lockYRotation: 0
-    enableYLimit: 0
+    enableYLimit: 1
     yLimit:
-      _min: -360
-      _max: 360
-  resetRotationOnPlacement: 1
+      _min: -55
+      _max: 55
+  resetRotationOnPlacement: 0
   resetRotationSmoothFactor: 0.2
   defaultRotationType: 1
   altRotationControlType: {fileID: 0}
@@ -22516,8 +22516,8 @@ MonoBehaviour:
     smoothValue: 0.1
   panLimit:
     enabled: 1
-    minPosition: {x: -20, y: -20}
-    maxPosition: {x: 120, y: 120}
+    minPosition: {x: 20, y: 30}
+    maxPosition: {x: 240, y: 100}
   smoothFollow: 1
   smoothFollowFactor: 0.1
   stopFollowingOnMovement: 1
@@ -26682,11 +26682,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lowerLeftCorner:
-    x: -10
-    y: -60
+    x: -5
+    y: 20
   upperRightCorner:
-    x: 180
-    y: 130
+    x: 265
+    y: 90
   cellSize: 10
   clampSearchPosition: 1
   cacheSearchResults: 0
