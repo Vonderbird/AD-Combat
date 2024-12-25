@@ -57,6 +57,8 @@ namespace ADC
         }
 
         public Transform Transform => transform;
+        public GameObject GameObject => gameObject;
+
         public T GetComponent<T>() where T : Object
         {
             return transform.GetComponent<T>();

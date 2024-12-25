@@ -15,6 +15,7 @@ using RTSEngine.Audio;
 
 namespace RTSEngine.Attack
 {
+
     [System.Serializable]
     public class AttackDamage : AttackSubComponent
     {
@@ -82,7 +83,7 @@ namespace RTSEngine.Attack
         {
             if (DotData.cycleDuration == 0) dotData = BaseDotData;
             this.gridSearch = gameMgr.GetService<IGridSearchHandler>();
-            if(!specsCalculator)
+            if (!specsCalculator)
                 specsCalculator = gameMgr.FindObjectOfType_<BaseUnitSpecsCalculator>();
             if (!specsCalculator)
                 Debug.LogError($"[AttackDamage] There is no SpecsCalculator in the scene!");
@@ -111,16 +112,18 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Triggering damage
-        public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack=false, bool attackFromPostpone=false)
+        public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack = false, PostponeAttack attackFromPostpone = default)
         {
             if (areaAttackEnabled == true)
-                TriggerArea(target.IsValid() ? target.transform.position : targetPosition, sourceFactionID: SourceAttackComp.Entity.FactionID, attackFromPostpone);
+                TriggerArea(target.IsValid() ? target.transform.position : targetPosition,
+                    sourceFactionID: SourceAttackComp.Entity.FactionID,
+                    rangedAttack: rangedAttack, attackFromPostpone);
             // Apply damage directly
             else if (target.IsValid())
                 Deal(target, data.Get(target), rangedAttack, attackFromPostpone);
         }
 
-        private void TriggerArea(Vector3 center, int sourceFactionID, bool attackFromPostpone = false)
+        private void TriggerArea(Vector3 center, int sourceFactionID, bool rangedAttack = false, PostponeAttack attackFromPostpone = default)
         {
             gridSearch.Search(
                 center,
@@ -142,7 +145,7 @@ namespace RTSEngine.Attack
                     if (distance > areaAttackData[j].range)
                         continue;
 
-                    Deal(target, areaAttackData[j].data.Get(target), attackFromPostpone);
+                    Deal(target, areaAttackData[j].data.Get(target), rangedAttack, attackFromPostpone);
 
                     // Area attack range found, move to the next target.
                     break;
@@ -152,14 +155,18 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Dealing damage
-        private void Deal(IFactionEntity target, int value, bool rangedAttack = false, bool attackFromPostpone = false)
+        private void Deal(IFactionEntity target, int value, bool rangedAttack = false, PostponeAttack attackFromPostpone = default)
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
                 return;
             //Debug.Log();
             var damageFactor = 1.0f;
             var targetBattleComponent = target.GetComponent<IUnitBattleManager>();
-            var thisBattleComponent = this.SourceAttackComp.Entity.GetComponent<IUnitBattleManager>();
+            var attackEntity = attackFromPostpone.IsPostponed
+                ? attackFromPostpone.Source.GetComponent<Unit>()
+                : this.SourceAttackComp.Entity;
+            value = attackFromPostpone.IsPostponed ? attackFromPostpone.DamageValue : value;
+            var thisBattleComponent = attackEntity.GetComponent<IUnitBattleManager>();
             if (targetBattleComponent != null && thisBattleComponent != null)
             {
                 value = (int)(value * specsCalculator.CalculateUnitDamageFactor(thisBattleComponent, targetBattleComponent));
@@ -172,11 +179,11 @@ namespace RTSEngine.Attack
                         value = ddm.ModifyDealtDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
                             rangedAttack, areaAttackEnabled, value));
 
-                    if (sa is IHackerDamageModifierAbility hdm && !attackFromPostpone)
+                    if (sa is IHackerDamageModifierAbility hdm && !attackFromPostpone.IsPostponed)
                         value = hdm.HackThenDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
                             rangedAttack, areaAttackEnabled, value));
                 });
-                targetBattleComponent.SpecialAbilities.ForEach(sa=>
+                targetBattleComponent.SpecialAbilities.ForEach(sa =>
                 {
                     if (sa is IReceivedDamageModifierAbility rdm)
                         value = rdm.ModifyReceivedDamage(
@@ -190,7 +197,7 @@ namespace RTSEngine.Attack
                 if (hitEffectData.picker.IsValidTarget(target))
                 {
                     effectObjPool.Spawn(
-                        hitEffectData.effect.Output, 
+                        hitEffectData.effect.Output,
                         new EffectObjectSpawnInput(
                             parent: null,
 
@@ -198,7 +205,7 @@ namespace RTSEngine.Attack
                             spawnPosition: target.transform.position,
                             spawnRotation: new RotationData(
                                 hitEffectData.faceSource ? RotationType.lookAtPosition : RotationType.free,
-                                SourceAttackComp.Entity.transform.position,
+                                attackEntity.transform.position,
                                 fixYRotation: true)));
 
                     audioMgr.PlaySFX(target?.AudioSourceComponent,
@@ -208,9 +215,9 @@ namespace RTSEngine.Attack
                 }
 
             if (dotEnabled == true)
-                target.Health.AddDamageOverTime(DotData, value, SourceAttackComp.Entity);
+                target.Health.AddDamageOverTime(DotData, value, attackEntity);
             else
-                target.Health.Add(new HealthUpdateArgs(-value, SourceAttackComp.Entity));
+                target.Health.Add(new HealthUpdateArgs(-value, attackEntity));
 
             // If this is a new target to deal damage to and the damage dealt is only logged for a single target
             if (resetDamageDealt && target != LastTarget)
