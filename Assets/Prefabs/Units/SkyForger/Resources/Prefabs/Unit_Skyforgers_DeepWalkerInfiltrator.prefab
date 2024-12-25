@@ -618,8 +618,8 @@ MonoBehaviour:
   damageFactors:
     receiveRangeDamageFactor: 1
   specialAbilities:
-  - {fileID: 11400000, guid: 69ce3c7f735068743b199cfadb5836d3, type: 2}
-  updateUIPrefab: {fileID: 0}
+  - {fileID: 11400000, guid: a3590683a50963845a28aa64591093d1, type: 2}
+  updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:
       healthPoint:
@@ -1031,7 +1031,7 @@ MonoBehaviour:
       unit: 13
       building: 13
       custom: []
-    areaAttackEnabled: 1
+    areaAttackEnabled: 0
     areaAttackData:
     - range: 50
       data:
@@ -1040,6 +1040,10 @@ MonoBehaviour:
         custom: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0

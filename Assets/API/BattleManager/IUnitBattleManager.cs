@@ -41,6 +41,7 @@ namespace ADC.API
         List<ISpecialAbility> SpecialAbilities { get; }
 
         public Transform Transform { get; }
+        public GameObject GameObject { get; }
         T GetComponent<T>() where T: Object;
         T GetComponentInChildren<T>() where T : Object;
     }

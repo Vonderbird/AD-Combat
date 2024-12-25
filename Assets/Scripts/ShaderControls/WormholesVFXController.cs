@@ -24,7 +24,8 @@ namespace ADC
 
         private void OnDisable()
         {
-            EconomySystem.Instance.StartWave.RemoveListener(HitPortal);
+            if(EconomySystem.Instance)
+                EconomySystem.Instance.StartWave.RemoveListener(HitPortal);
         }
 
         public void CreatePortal()

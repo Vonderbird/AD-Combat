@@ -6,6 +6,7 @@ using RTSEngine.Attack;
 using RTSEngine.Determinism;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
+using RTSEngine.Health;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -14,10 +15,9 @@ namespace ADC
     [CreateAssetMenu(fileName = "Hack", menuName = "ADC/SpecialAbilities/Hack", order = 99)]
     public class Hack : SpecialAbilityBase, IHackerDamageModifierAbility
     {
-
-
         [SerializeField] private float hackChance = 0.4f;
         [SerializeField] private float hackDuration = 8.0f;
+        [SerializeField] private ParticlePlayer TargetHackedVFX;
         private TimeModifiedTimer waitForHack;
         private WaitUntil waitUntil;
         private Coroutine hackCoroutine;
@@ -27,7 +27,7 @@ namespace ADC
         {
             hackChance = Mathf.Max(0, Mathf.Min(1.0f, hackChance));
             waitForHack = new TimeModifiedTimer(hackDuration);
-            var waitUntil = new WaitUntil(() => waitForHack.ModifiedDecrease());
+            waitUntil = new WaitUntil(() => waitForHack.ModifiedDecrease());
             return base.Initialize(unitBattleManager);
         }
 
@@ -57,12 +57,24 @@ namespace ADC
 
         IEnumerator ProcessTheHack(DamageArgs args)
         {
+            var targetUnit = args.Target.GetComponent<Unit>();
+            var skinnedMeshRenderer = targetUnit.Model.GetComponentInChildren<SkinnedMeshRenderer>();
+            var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = skinnedMeshRenderer };
+            VFXPoolingManager.Instance.SpawnVFX(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, hackDuration + 0.3f, particleArgs);
             yield return waitUntil;
 
-            if (damage == null)
-                damage = args.Source.GetComponentInChildren<UnitAttack>().damage;
+            damage ??= args.Source.GetComponentInChildren<UnitAttack>().damage;
+
             var targetPosition = args.IsArea ? args.Source.Transform.position : args.Target.Transform.position;
-            damage.Trigger(args.Target.GetComponent<FactionEntity>(), targetPosition, true, true);
+
+            var postponeAttack = new PostponeAttack
+            {
+                IsPostponed = true,
+                Source = args.Source.GameObject,
+                DamageValue = targetUnit.Health.MaxHealth//args.Target.GetComponent<UnitHealth>().MaxHealth
+            };
+
+            damage.Trigger(targetUnit/*args.Target.GetComponent<FactionEntity>()*/, targetPosition, true, postponeAttack);
             //RTSHelper
         }
 
