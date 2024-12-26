@@ -112,18 +112,18 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Triggering damage
-        public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack = false, PostponeAttack attackFromPostpone = default)
+        public void Trigger(IFactionEntity target, Vector3 targetPosition, DamageType damageType = DamageType.Melee, PostponeAttack attackFromPostpone = default)
         {
             if (areaAttackEnabled == true)
                 TriggerArea(target.IsValid() ? target.transform.position : targetPosition,
                     sourceFactionID: SourceAttackComp.Entity.FactionID,
-                    rangedAttack: rangedAttack, attackFromPostpone);
+                    damageType: damageType, attackFromPostpone);
             // Apply damage directly
             else if (target.IsValid())
-                Deal(target, data.Get(target), rangedAttack, attackFromPostpone);
+                Deal(target, data.Get(target), damageType, attackFromPostpone);
         }
 
-        private void TriggerArea(Vector3 center, int sourceFactionID, bool rangedAttack = false, PostponeAttack attackFromPostpone = default)
+        private void TriggerArea(Vector3 center, int sourceFactionID, DamageType damageType = DamageType.Melee, PostponeAttack attackFromPostpone = default)
         {
             gridSearch.Search(
                 center,
@@ -145,7 +145,7 @@ namespace RTSEngine.Attack
                     if (distance > areaAttackData[j].range)
                         continue;
 
-                    Deal(target, areaAttackData[j].data.Get(target), rangedAttack, attackFromPostpone);
+                    Deal(target, areaAttackData[j].data.Get(target), damageType, attackFromPostpone);
 
                     // Area attack range found, move to the next target.
                     break;
@@ -155,7 +155,7 @@ namespace RTSEngine.Attack
         #endregion
 
         #region Dealing damage
-        private void Deal(IFactionEntity target, int value, bool rangedAttack = false, PostponeAttack attackFromPostpone = default)
+        private void Deal(IFactionEntity target, int value, DamageType damageType=DamageType.Melee, PostponeAttack attackFromPostpone = default)
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
                 return;
@@ -173,24 +173,21 @@ namespace RTSEngine.Attack
                 //SpecsCalculator.CalculateUnitDamage(targetBattleComponent);
                 //if(rangedAttack && SpecsCalculator)
                 //    damageFactor = SpecsCalculator.GetRangedDamageFactor(thisBattleComponent, targetBattleComponent);
+                var dArgs = new DamageArgs(thisBattleComponent, targetBattleComponent,
+                    value, damageType, attackFromPostpone.IsPostponed);
                 thisBattleComponent.SpecialAbilities.ForEach(sa =>
                 {
                     if (sa is IDealtDamageModifierAbility ddm)
-                        value = ddm.ModifyDealtDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
-                            rangedAttack, areaAttackEnabled, value));
+                        value = ddm.ModifyDealtDamage(dArgs);
 
                     if (sa is IHackerDamageModifierAbility hdm && !attackFromPostpone.IsPostponed)
-                        value = hdm.HackThenDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
-                            rangedAttack, areaAttackEnabled, value));
+                        value = hdm.HackThenDamage(dArgs);
                 });
                 targetBattleComponent.SpecialAbilities.ForEach(sa =>
                 {
                     if (sa is IReceivedDamageModifierAbility rdm)
-                        value = rdm.ModifyReceivedDamage(
-                            new DamageArgs(thisBattleComponent, targetBattleComponent,
-                                rangedAttack, areaAttackEnabled, value));
+                        value = rdm.ModifyReceivedDamage(dArgs);
                 });
-
             }
 
             foreach (FactionEntityDependantHitEffectData hitEffectData in hitEffects)
