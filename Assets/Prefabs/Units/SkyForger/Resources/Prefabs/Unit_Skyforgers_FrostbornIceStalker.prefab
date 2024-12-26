@@ -231,7 +231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9072922260721497649
 Transform:
   m_ObjectHideFlags: 0
@@ -617,7 +617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  specialAbilities: []
+  specialAbilities:
+  - {fileID: 11400000, guid: 9bd0e937872ede14995fb7b90340fffa, type: 2}
   updateUIPrefab: {fileID: 0}
   specs:
     baseSpecs:
