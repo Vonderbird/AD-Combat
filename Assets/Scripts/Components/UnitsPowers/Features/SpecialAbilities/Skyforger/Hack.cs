@@ -25,6 +25,9 @@ namespace ADC
             hackChance = Mathf.Max(0, Mathf.Min(1.0f, hackChance));
             waitForHack = new TimeModifiedTimer(hackDuration);
             waitUntil = new WaitUntil(() => waitForHack.ModifiedDecrease());
+
+            //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
+            damage = UnitBattleManager.GetComponentInChildren<UnitAttack>().damage;
             return base.Initialize(unitBattleManager);
         }
 
@@ -54,13 +57,19 @@ namespace ADC
 
         IEnumerator ProcessTheHack(DamageArgs args)
         {
-            var targetUnit = args.Target.GetComponent<Unit>();
+            if (damage == null)
+            {
+                Debug.LogError($"[GroundPound] damage is not assigned!");
+                yield break;
+            }
+
+            var targetUnit = args.Target.GetComponent<FactionEntity>();
             var skinnedMeshRenderer = targetUnit.Model.GetComponentInChildren<SkinnedMeshRenderer>();
             var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = skinnedMeshRenderer };
             VFXPoolingManager.Instance.SpawnVFX(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, hackDuration + 0.3f, particleArgs);
             yield return waitUntil;
 
-            damage ??= args.Source.GetComponentInChildren<UnitAttack>().damage;
+            //damage ??= args.Source.GetComponentInChildren<UnitAttack>().damage;
 
             var targetPosition = ((args.DamageType & DamageType.Area) != 0) ? args.Source.Transform.position : args.Target.Transform.position;
 
@@ -71,7 +80,7 @@ namespace ADC
                 DamageValue = targetUnit.Health.MaxHealth//args.Target.GetComponent<UnitHealth>().MaxHealth
             };
 
-            damage.Trigger(targetUnit/*args.Target.GetComponent<FactionEntity>()*/, targetPosition, args.DamageType, postponeAttack);
+            damage.Trigger(targetUnit, targetPosition, args.DamageType, postponeAttack);
             //RTSHelper
         }
 

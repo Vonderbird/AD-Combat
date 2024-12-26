@@ -44,5 +44,6 @@ namespace ADC.API
         public GameObject GameObject { get; }
         T GetComponent<T>() where T: Object;
         T GetComponentInChildren<T>() where T : Object;
+        T[] GetComponentsInChildren<T>() where T : Object;
     }
 }
