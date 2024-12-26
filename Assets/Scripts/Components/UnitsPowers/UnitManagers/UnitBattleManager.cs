@@ -69,6 +69,11 @@ namespace ADC
             return transform.GetComponentInChildren<T>();
         }
 
+        public T[] GetComponentsInChildren<T>() where T : Object
+        {
+            return transform.GetComponentsInChildren<T>();
+        }
+
         protected int activeAbilityId = 0;
         public ISpecialAbility ActiveAbility =>
             SpecialAbilities is { Count: > 0 } ? specialAbilities[activeAbilityId] : null;
