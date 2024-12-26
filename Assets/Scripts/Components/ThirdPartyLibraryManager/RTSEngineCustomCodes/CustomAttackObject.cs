@@ -12,6 +12,7 @@ using RTSEngine.Terrain;
 using RTSEngine.Event;
 using System;
 using ADC;
+using ADC.API;
 using UnityEngine.Events;
 
 namespace RTSEngine.Attack
@@ -313,7 +314,7 @@ namespace RTSEngine.Attack
             }
         }
 
-
+        [SerializeField] private DamageType damageType = DamageType.Ranged;
         [SerializeField] private UnityEvent hitSomething;
         //a method called to apply damage to a target (position)
         private void ApplyDamage(GameObject targetObject, IFactionEntity target, Vector3 targetPosition)
@@ -321,7 +322,7 @@ namespace RTSEngine.Attack
 
             hitSomething?.Invoke();
             // Deal damage
-            damage.Trigger(target, targetPosition, true);
+            damage.Trigger(target, targetPosition, damageType);
             didDamage = true;
 
             // Hit effect and audio

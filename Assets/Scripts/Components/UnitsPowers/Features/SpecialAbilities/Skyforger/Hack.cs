@@ -1,14 +1,11 @@
 using System.Collections;
 using ADC.API;
 using ADC.Currencies;
-using RTSEngine;
 using RTSEngine.Attack;
 using RTSEngine.Determinism;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
-using RTSEngine.Health;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace ADC
 {
@@ -65,7 +62,7 @@ namespace ADC
 
             damage ??= args.Source.GetComponentInChildren<UnitAttack>().damage;
 
-            var targetPosition = args.IsArea ? args.Source.Transform.position : args.Target.Transform.position;
+            var targetPosition = ((args.DamageType & DamageType.Area) != 0) ? args.Source.Transform.position : args.Target.Transform.position;
 
             var postponeAttack = new PostponeAttack
             {
@@ -74,7 +71,7 @@ namespace ADC
                 DamageValue = targetUnit.Health.MaxHealth//args.Target.GetComponent<UnitHealth>().MaxHealth
             };
 
-            damage.Trigger(targetUnit/*args.Target.GetComponent<FactionEntity>()*/, targetPosition, true, postponeAttack);
+            damage.Trigger(targetUnit/*args.Target.GetComponent<FactionEntity>()*/, targetPosition, args.DamageType, postponeAttack);
             //RTSHelper
         }
 

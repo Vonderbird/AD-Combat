@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace ADC
 {
-    [CreateAssetMenu(fileName = "AdamantiumArmor", menuName = "ADC/SpecialAbilities/AdamantiumArmor", order = 99)]
-    public class AdamantiumArmor : SpecialAbilityBase, IReceivedDamageModifierAbility
+    [CreateAssetMenu(fileName = "ReuniteArmor", menuName = "ADC/SpecialAbilities/ReuniteArmor", order = 99)]
+    public class ReuniteArmor : SpecialAbilityBase, IReceivedDamageModifierAbility
     {
         [SerializeField] private float reduceDamageRatio = 0.3f;
 
@@ -29,13 +29,13 @@ namespace ADC
         public override void OnLevelChanged(object sender, LevelChangeEventArgs e)
         {
             // Implement logic for level changes specific to Advancing The Pathway
-            Debug.Log($"Advancing The Pathway leveled up to level {e.NewLevel}!");
+            Debug.Log($"Reunite Armor leveled up to level {e.NewLevel}!");
         }
 
         public int ModifyReceivedDamage(DamageArgs damage)
         {
             if (!isUnlocked) return damage.Value;
-            if ((DamageType.Ranged & damage.DamageType) != 0)
+            if ((damage.DamageType & (DamageType.Ranged | DamageType.Melee)) != 0)
             {
                 return (int)(damage.Value * (1.0f - reduceDamageRatio));
             }
