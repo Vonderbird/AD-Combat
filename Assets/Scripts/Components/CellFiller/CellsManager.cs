@@ -56,6 +56,8 @@ namespace ADC.UnitCreation
         /// </summary>
         private Dictionary<int, IUnit> positionedUnitsPrefabs = new();
 
+        private Coroutine updateCoroutine;
+
         public CellsManager([NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
             [NotNull] ActiveTaskContainer activeTask, int factionId)
         {
@@ -69,7 +71,6 @@ namespace ADC.UnitCreation
             unitPlacementTransaction = new UnitPlacementTransactionLogic(factionId);
             unitDeletionTransaction = new UnitDeletionTransactionLogic(factionId);
         }
-
 
         public void OnEnabled(DeleteButton deleteButton)
         {
@@ -87,7 +88,36 @@ namespace ADC.UnitCreation
 
             if (unitSpawner)
                 unitSpawner.OnUnitsSpawned.AddListener(OnCellUnitSpawned);
+            updateCoroutine ??= unitSpawner.StartCoroutine(Update());
         }
+
+        public void OnDisabled()
+        {
+            foreach (var (_, unitCell) in UnitCells)
+                unitCell.CellSelectiveClicked.RemoveListener(OnCellSelectiveClicked);
+
+            if (unitSpawner)
+                unitSpawner.OnUnitsSpawned.RemoveListener(OnCellUnitSpawned);
+
+            if (updateCoroutine != null)
+                unitSpawner.StopCoroutine(updateCoroutine);
+        }
+
+        IEnumerator Update()
+        {
+            while (true)
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    OnAllCellsUnselect(null);
+                }
+
+                yield return null;
+            }
+        }
+
+        
+
 
         private void OnCellSelectionEntered(CellEventArgs arg0)
         {
@@ -193,7 +223,7 @@ namespace ADC.UnitCreation
             UnitCellSelected?.Invoke(this, new SelectionEventArgs(SelectionType.single, unitDeco));
         }
 
-        private void OnAllCellsUnselect(CellEventArgs arg0)
+        public void OnAllCellsUnselect(CellEventArgs arg0)
         {
             //var cellIds = new HashSet<int>(unitCellsGroups.ContainsKey(selectedUnitGroup)? 
             //    unitCellsGroups[selectedUnitGroup]: new List<int>());
@@ -321,15 +351,6 @@ namespace ADC.UnitCreation
             {
                 unitCell.OnCellUnitSpawned();
             }
-        }
-
-        public void OnDisabled()
-        {
-            foreach (var (_, unitCell) in UnitCells)
-                unitCell.CellSelectiveClicked.RemoveListener(OnCellSelectiveClicked);
-
-            if (unitSpawner)
-                unitSpawner.OnUnitsSpawned.RemoveListener(OnCellUnitSpawned);
         }
 
         public void PrepareCells()

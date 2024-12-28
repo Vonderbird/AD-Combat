@@ -1,12 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SwitchCamera : MonoBehaviour
 {
-    public GameObject Camera_0;
-    public GameObject Camera_1;
+    public GameObject BattleCamera;
+    public GameObject HomeCamera;
     public int Manager;
+
+    [SerializeField] private UnityEvent BattleCameraEnabled;
+    [SerializeField] private UnityEvent HomeCameraEnabled;
 
 
     public void ChangeCamera()
@@ -18,27 +20,28 @@ public class SwitchCamera : MonoBehaviour
     {
         if (Manager == 0)
         {
-            Cam_1();
+            ActivateHomeCamera();
             Manager = 1;
         }
         else
         {
-            Cam_0();
+            ActivateBattleCamera();
             Manager = 0;
         }
     }
 
 
-    void Cam_0()
+    void ActivateBattleCamera()
     {
-        Camera_0.SetActive(true);
-        Camera_1.SetActive(false);
-
+        BattleCamera.SetActive(true);
+        HomeCamera.SetActive(false);
+        BattleCameraEnabled?.Invoke();
     }
 
-    void Cam_1()
+    void ActivateHomeCamera()
     {
-        Camera_0.SetActive(false);
-        Camera_1.SetActive(true);
+        BattleCamera.SetActive(false);
+        HomeCamera.SetActive(true);
+        HomeCameraEnabled?.Invoke();
     }
 }
