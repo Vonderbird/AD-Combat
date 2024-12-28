@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace ADC
 {
+
     [CreateAssetMenu(fileName = "Thunderdome", menuName = "ADC/SpecialAbilities/Thunderdome", order = 99)]
     public class Thunderdome : SpecialAbilityBase, IDealtDamageModifierAbility
     {
@@ -14,7 +15,7 @@ namespace ADC
         [SerializeField] private float shotInterval = 20.0f;
         [SerializeField] private float effectDuration = 2.0f;
 
-        [SerializeField] private DamageType damageType = DamageType.Area;
+        [SerializeField] private DamageType damageType = DamageType.Area | DamageType.Ranged;
 
         private UnitAttack attackDamage;
 
@@ -38,14 +39,14 @@ namespace ADC
                 return;
             }
 
-            // Implement specific logic for using Advancing The Pathway
-            Debug.Log("Using Advancing The Pathway!");
+            // Implement specific logic for using Thunderdome
+            Debug.Log("Using Thunderdome!");
         }
 
         public override void OnLevelChanged(object sender, LevelChangeEventArgs e)
         {
-            // Implement logic for level changes specific to Advancing The Pathway
-            Debug.Log($"Advancing The Pathway leveled up to level {e.NewLevel}!");
+            // Implement logic for level changes specific to Thunderdome
+            Debug.Log($"Thunderdome leveled up to level {e.NewLevel}!");
         }
 
         public int ModifyDealtDamage(DamageArgs args)
@@ -77,7 +78,6 @@ namespace ADC
                 Debug.LogError($"[Thunderdome] AttackDamage Target is not assigned!");
                 yield break;
             }
-
         }
     }
 }

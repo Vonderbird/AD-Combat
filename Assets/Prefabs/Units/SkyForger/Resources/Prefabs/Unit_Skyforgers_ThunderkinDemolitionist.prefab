@@ -618,7 +618,7 @@ MonoBehaviour:
   damageFactors:
     receiveRangeDamageFactor: 1
   specialAbilities: []
-  updateUIPrefab: {fileID: 0}
+  updateUIPrefab: {fileID: 8122170109284838237, guid: 5bfcfb491859ae04eb63589880f88948, type: 3}
   specs:
     baseSpecs:
       healthPoint:
@@ -1103,6 +1103,10 @@ MonoBehaviour:
       infinite: 0
       cycleDuration: 0
       cycles: 0
+    dotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
     hitEffects:
     - picker:
         type: 1
@@ -1326,6 +1330,10 @@ MonoBehaviour:
       infinite: 0
       cycleDuration: 0
       cycles: 0
+    dotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
     hitEffects:
     - picker:
         type: 1
@@ -1546,6 +1554,10 @@ MonoBehaviour:
     areaAttackData: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0

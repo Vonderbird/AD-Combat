@@ -620,7 +620,7 @@ MonoBehaviour:
   specialAbilities:
   - {fileID: 11400000, guid: d363361fdece6d14aa14ed6138cd6e2c, type: 2}
   - {fileID: 11400000, guid: 83375f107b9572243b0781688c014c32, type: 2}
-  updateUIPrefab: {fileID: 0}
+  updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:
       healthPoint:
