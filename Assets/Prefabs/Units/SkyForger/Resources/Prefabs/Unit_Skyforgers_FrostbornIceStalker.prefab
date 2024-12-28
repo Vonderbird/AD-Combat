@@ -619,7 +619,7 @@ MonoBehaviour:
     receiveRangeDamageFactor: 1
   specialAbilities:
   - {fileID: 11400000, guid: 9bd0e937872ede14995fb7b90340fffa, type: 2}
-  updateUIPrefab: {fileID: 0}
+  updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:
       healthPoint:

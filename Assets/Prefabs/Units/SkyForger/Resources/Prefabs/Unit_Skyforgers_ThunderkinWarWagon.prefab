@@ -617,8 +617,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  specialAbilities: []
-  updateUIPrefab: {fileID: 0}
+  specialAbilities:
+  - {fileID: 11400000, guid: 65693c1c08f2f3c4a9fe078f730c13e9, type: 2}
+  - {fileID: 11400000, guid: f0f74460be6785944b3abe5e84da309d, type: 2}
+  updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:
       healthPoint:
@@ -1034,6 +1036,10 @@ MonoBehaviour:
     areaAttackData: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0
