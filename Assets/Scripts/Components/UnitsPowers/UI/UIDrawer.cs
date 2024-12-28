@@ -37,6 +37,7 @@ namespace ADC
         public void OnDeactivate()
         {
             if (isClosing) return;
+            StartCoroutine(CloseDrawer());
 
             if (isOpening)
             {
@@ -44,7 +45,6 @@ namespace ADC
                 isOpening = false;
             }
             BeginClosing?.Invoke();
-            StartCoroutine(CloseDrawer());
         }
 
         private void StopTransition()

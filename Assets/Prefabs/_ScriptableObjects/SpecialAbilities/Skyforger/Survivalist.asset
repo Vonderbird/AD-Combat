@@ -15,5 +15,5 @@ MonoBehaviour:
   unlockLevel: 1
   name: 
   icon: {fileID: 0}
-  infoCellPrefab: {fileID: 0}
+  infoCellPrefab: {fileID: 5278862304629649594, guid: 2fb9612d7b02dc64fa379d23a90f3e03, type: 3}
   reduceDamageRatio: 0.3

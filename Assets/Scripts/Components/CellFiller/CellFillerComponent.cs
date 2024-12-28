@@ -266,8 +266,6 @@ namespace ADC.UnitCreation
 
         }
 
-
-
         public IUnitBattleManager GetCorrespondingUnitCell(IUnitBattleManager unitBattleManager)
         {
             if (CellsManager == null) return null;
@@ -283,6 +281,11 @@ namespace ADC.UnitCreation
             }
 
             return null;
+        }
+
+        public void OnHomeCameraDeactivated()
+        {
+            cellsManager.OnAllCellsUnselect(null);
         }
     }
 }
