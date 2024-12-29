@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using ADC.API;
 using UnityEngine;
 using UnityEngine.VFX;
-using UnityEngine.VFX.Utility;
 
-public class EnergizeVioletVFXPlayer : ParticlePlayer
+public class ShieldBubbleOrangeVFXPlayer : ParticlePlayer
 {
     [SerializeField] private VisualEffect vfx;
-    [SerializeField] private VFXPropertyBinder propertyBinder;
+    //[SerializeField] private VFXPropertyBinder propertyBinder;
     //[SerializeField] private VFXTransformBinder transformBinder;
     [SerializeField] private bool loop = true;
     public bool Loop { get => loop; set => loop = value; }
@@ -19,7 +16,7 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
         defaultParent = transform.parent;
     }
 
-    public override void Initialize(ParticleArgs args) 
+    public override void Initialize(ParticleArgs args)
     {
         if (args is not SkinnedMeshVfxArgs eArgs) return;
         vfx.SetSkinnedMeshRenderer("SkinnedMesh", eArgs.SkinnedMesh);
@@ -27,8 +24,8 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
         //transformBinder.Target = eArgs.SkinnedMesh.transform;
         //transformBinder.Property = "SkinnedMeshTransform";
         //propertyBinder.m_Bindings.Add(transformBinder);
-        if (propertyBinder.m_Bindings[0] is VFXTransformBinder vtb)
-            vtb.Target = eArgs.SkinnedMesh.transform;
+        //if (propertyBinder.m_Bindings[0] is VFXTransformBinder vtb)
+        //    vtb.Target = eArgs.SkinnedMesh.transform;
         //bind a transform from eArgs using propertyBinder
         //propertyBinder.m_Bindings[0] = new VFXBinderBase().eArgs.SkinnedMesh.transform;
 
@@ -50,6 +47,11 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
         Debug.Log("Hack VFX Stopped");
         vfx.SendEvent("end");
         transform.parent = defaultParent;
+    }
+
+    public void Hit()
+    {
+
     }
 
     private void ResetTransform()
