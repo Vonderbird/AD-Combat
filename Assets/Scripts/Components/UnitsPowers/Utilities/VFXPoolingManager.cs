@@ -1,7 +1,5 @@
-using System;
 using ADC.API;
 using UnityEngine;
-using RTSEngine.Determinism;
 using System.Collections.Generic;
 
 namespace ADC
@@ -17,17 +15,17 @@ namespace ADC
         /// <summary>
         /// Spawns a VFX object from the pool or creates a new one if needed.
         /// </summary>
-        public void SpawnVFX(ParticlePlayer vfxPrefab, Vector3 position, Quaternion rotation, float lifetime, ParticleArgs args)
+        public ParticlePlayer SpawnVfx(ParticlePlayer vfxPrefab, Vector3 position, Quaternion rotation, ParticleArgs args)
         {
             if (vfxPrefab == null)
             {
                 Debug.LogError("VFX prefab is null.");
-                return;
+                return null;
             }
 
             if (!vfxPools.ContainsKey(vfxPrefab))
             {
-                InitializePool(vfxPrefab, lifetime);
+                InitializePool(vfxPrefab);
             }
 
             ParticlePlayer vfxPlayer;
@@ -36,14 +34,12 @@ namespace ADC
             if (vfxPools[vfxPrefab].Count > 0)
             {
                 vfxPlayer = vfxPools[vfxPrefab].Dequeue();
-                vfxPlayer.Reload();
                 //vfxTuple.Item2.Reload(lifetime);
             }
             else
             {
                 // If no object is available, instantiate a new one
                 vfxPlayer =  Instantiate(vfxPrefab, transform);
-                vfxPlayer.Initialize(vfxPrefab, args);
             }
 
             vfxPlayer.transform.position = position;
@@ -55,96 +51,69 @@ namespace ADC
 
             vfxPlayer.Play();
             vfxPlayer.Terminated += ReturnToPoolAfterTermination;
-            StartCoroutine(ReturnToPoolAfterTime(vfxPrefab, vfxPlayer));
+            //StartCoroutine(ReturnToPoolAfterTime(vfxPrefab, vfxPlayer));
+            return vfxPlayer;
         }
 
 
-        public void SpawnVFX(ParticlePlayer vfxPrefab, Transform bindTransform, ParticleArgs args)
+        public ParticlePlayer SpawnVfx(ParticlePlayer vfxPrefab, ParticleArgs args)
         {
             if (vfxPrefab == null)
             {
                 Debug.LogError("VFX prefab is null.");
-                return;
+                return null;
             }
 
             if (!vfxPools.ContainsKey(vfxPrefab))
             {
-                InitializePool(vfxPrefab, lifetime);
+                InitializePool(vfxPrefab);
             }
 
-            Tuple<ParticlePlayer, TimeModifiedTimer> vfxTuple;
+            ParticlePlayer vfxPlayer;
 
             // Check if a pooled object is available
             if (vfxPools[vfxPrefab].Count > 0)
             {
-                vfxTuple = vfxPools[vfxPrefab].Dequeue();
-                vfxTuple.Item2.Reload(lifetime);
+                vfxPlayer = vfxPools[vfxPrefab].Dequeue();
             }
             else
             {
-                // If no object is available, instantiate a new one
-                vfxTuple = new Tuple<ParticlePlayer, TimeModifiedTimer>(Instantiate(vfxPrefab, transform), new TimeModifiedTimer(lifetime));
+                vfxPlayer = Instantiate(vfxPrefab, transform);
             }
 
-            vfxTuple.Item1.transform.position = position;
-            vfxTuple.Item1.transform.rotation = rotation;
-            vfxTuple.Item1.gameObject.SetActive(true);
-            vfxTuple.Item1.Initialize(args);
+            vfxPlayer.gameObject.SetActive(true);
+            vfxPlayer.Initialize(vfxPrefab, args);
 
             // Return the object to the pool after its lifetime
-            vfxTuple.Item1.Terminated += ReturnToPoolAfterTermination;
-            StartCoroutine(ReturnToPoolAfterTime(vfxPrefab, vfxTuple));
+            vfxPlayer.Terminated += ReturnToPoolAfterTermination;
+            //StartCoroutine(ReturnToPoolAfterTime(vfxPrefab, vfxTuple));
+            return vfxPlayer;
         }
 
         private void ReturnToPoolAfterTermination(ParticlePlayer vfxPlayer)
         {
             vfxPlayer.Stop();
+            TransformBinderManager.Instance.UnbindTransform(vfxPlayer.transform);
             vfxPlayer.gameObject.SetActive(false);
             vfxPools[vfxPlayer.SourcePrefab].Enqueue(vfxPlayer);
         }
 
 
         /// <summary>
-        /// Returns a VFX object to the pool after its lifetime.
-        /// </summary>
-        private System.Collections.IEnumerator ReturnToPoolAfterTime(ParticlePlayer vfxPrefab, Tuple<ParticlePlayer, TimeModifiedTimer> vfxTuple)
-        {
-            vfxTuple.Item1.Play();
-            yield return new WaitUntil(vfxTuple.Item2.ModifiedDecrease);
-            vfxTuple.Item1.Stop();
-            vfxTuple.Item1.gameObject.SetActive(false);
-            vfxPools[vfxPrefab].Enqueue(vfxTuple);
-        }
-
-        /// <summary>
-        /// Initializes a pool for a given VFX prefab.
-        /// </summary>
-        private void InitializePool(ParticlePlayer vfxPrefab, float lifetime)
-        {
-            var pool = new Queue<Tuple<ParticlePlayer, TimeModifiedTimer>>();
-            for (var i = 0; i < initialPoolSize; i++)
-            {
-                var vfxTuple = new Tuple<ParticlePlayer, TimeModifiedTimer>(Instantiate(vfxPrefab, transform), new TimeModifiedTimer(lifetime));
-                vfxTuple.Item1.gameObject.SetActive(false);
-                pool.Enqueue(vfxTuple);
-            }
-            vfxPools[vfxPrefab] = pool;
-        }
-
-        /// <summary>
         /// Initializes a pool for a given VFX prefab.
         /// </summary>
         private void InitializePool(ParticlePlayer vfxPrefab)
         {
-            var pool = new Queue<Tuple<ParticlePlayer, TimeModifiedTimer>>();
+            var pool = new Queue<ParticlePlayer>();
             for (var i = 0; i < initialPoolSize; i++)
             {
-                var vfxTuple = new Tuple<ParticlePlayer>(Instantiate(vfxPrefab, transform));
-                vfxTuple.Item1.gameObject.SetActive(false);
-                pool.Enqueue(vfxTuple);
+                var vfxPlayer = Instantiate(vfxPrefab, transform);
+                vfxPlayer.gameObject.SetActive(false);
+                pool.Enqueue(vfxPlayer);
             }
             vfxPools[vfxPrefab] = pool;
         }
+
     }
 
 }

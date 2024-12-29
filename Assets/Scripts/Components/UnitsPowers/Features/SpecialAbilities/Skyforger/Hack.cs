@@ -65,8 +65,9 @@ namespace ADC
 
             var targetUnit = args.Target.GetComponent<FactionEntity>();
             var skinnedMeshRenderer = targetUnit.Model.GetComponentInChildren<SkinnedMeshRenderer>();
-            var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = skinnedMeshRenderer };
-            VFXPoolingManager.Instance.SpawnVFX(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, hackDuration + 0.3f, particleArgs);
+            var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = skinnedMeshRenderer, Lifespan=hackDuration + 0.3f };
+
+            VFXPoolingManager.Instance.SpawnVfx(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, particleArgs);
             yield return waitUntil;
 
             //damage ??= args.Source.GetComponentInChildren<UnitAttack>().damage;

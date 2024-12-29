@@ -12,10 +12,10 @@ namespace ADC.API
     public abstract class ParticlePlayer : MonoBehaviour
     {
         public ParticlePlayerDelegate Terminated;
-        public ParticlePlayer SourcePrefab { get; }
+        public ParticlePlayer SourcePrefab { get; protected set; }
         public abstract void Initialize(ParticlePlayer sourcePrefab, ParticleArgs args);
         public abstract void Play();
         public abstract void Stop();
-        public abstract void Reload();
+        public abstract void Hit();
     }
 }
