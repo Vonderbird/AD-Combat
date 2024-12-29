@@ -1,5 +1,6 @@
 using ADC.API;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace ADC
 {
@@ -7,6 +8,7 @@ namespace ADC
     public class ReuniteArmor : SpecialAbilityBase, IReceivedDamageModifierAbility
     {
         [SerializeField] private float reduceDamageRatio = 0.3f;
+        [SerializeField] private VisualEffect VFX;
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
@@ -22,6 +24,7 @@ namespace ADC
                 return;
             }
 
+            VFX?.SendEvent("create");
             // Implement specific logic for using Advancing The Pathway
             Debug.Log("Using Advancing The Pathway!");
         }
@@ -37,6 +40,7 @@ namespace ADC
             if (!isUnlocked) return damage.Value;
             if ((damage.DamageType & (DamageType.Ranged | DamageType.Melee)) != 0)
             {
+                VFX?.SendEvent("hit");
                 return (int)(damage.Value * (1.0f - reduceDamageRatio));
             }
 

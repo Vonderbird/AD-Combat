@@ -22,6 +22,7 @@ namespace ADC
             var specialAbility = base.Initialize(unitBattleManager);
             //attackDamage = UnitBattleManager.GetComponentInChildren<UnitAttack>();
             attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
+            //attackDamage.SetActive(false, false);
             return specialAbility;
         }
 
@@ -61,6 +62,8 @@ namespace ADC
 
         IEnumerator RunAttack(DamageArgs args)
         {
+
+            //attackDamage.SetActive(true, false);
             var targetUnit = args.Target.GetComponent<FactionEntity>();
             var targetPosition = ((damageType & DamageType.Area) != 0) ?
                 args.Source.Transform.position : args.Target.Transform.position;
@@ -68,6 +71,7 @@ namespace ADC
             yield return null;
             attackDamage.SetTarget(input, false);
             attackDamage.TriggerAttack();
+
             //attackDamage.damage.Trigger(targetUnit, targetPosition, args.DamageType);
         }
 
