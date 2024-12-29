@@ -17,3 +17,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 1842721145183463836, guid: feb4f87907879594cac0b624a107c30e, type: 3}
   reduceDamageRatio: 0.3
+  VFXPrefab: {fileID: -6281656031253678987, guid: d39dc992e933dd6429f04e3b984b6449, type: 3}

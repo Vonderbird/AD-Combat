@@ -8,11 +8,22 @@ namespace ADC
     public class ReuniteArmor : SpecialAbilityBase, IReceivedDamageModifierAbility
     {
         [SerializeField] private float reduceDamageRatio = 0.3f;
-        [SerializeField] private VisualEffect VFX;
+        [SerializeField] private ParticlePlayer VFXPrefab;
+        [SerializeField] private Vector3 positionOffset = Vector3.up*0.9f;
+        [SerializeField] private Vector3 scaleOffset = Vector3.one;
+        private ParticlePlayer vfx;
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             reduceDamageRatio = Mathf.Max(0, Mathf.Min(1.0f, reduceDamageRatio));
+            var particleArgs = new FollowerVfxArgs
+            {
+                Transform = unitBattleManager.Transform, AutoCalculateOffset = false, PositionOffset = positionOffset,
+                ScaleOffset = scaleOffset
+            };
+            //VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, unitBattleManager.Transform.position, unitBattleManager.Transform.rotation, particleArgs);
+            vfx = VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, particleArgs);
+            vfx?.Play();
             return base.Initialize(unitBattleManager);
         }
 
@@ -24,7 +35,7 @@ namespace ADC
                 return;
             }
 
-            VFX?.SendEvent("create");
+            //vfx?.Play();
             // Implement specific logic for using Advancing The Pathway
             Debug.Log("Using Advancing The Pathway!");
         }
@@ -40,7 +51,7 @@ namespace ADC
             if (!isUnlocked) return damage.Value;
             if ((damage.DamageType & (DamageType.Ranged | DamageType.Melee)) != 0)
             {
-                VFX?.SendEvent("hit");
+                vfx?.Hit();
                 return (int)(damage.Value * (1.0f - reduceDamageRatio));
             }
 
