@@ -23,7 +23,8 @@ namespace ADC
             };
             //VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, unitBattleManager.Transform.position, unitBattleManager.Transform.rotation, particleArgs);
             vfx = VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, particleArgs);
-            vfx?.Play();
+            if (isUnlocked)
+                vfx?.Play();
             return base.Initialize(unitBattleManager);
         }
 
@@ -48,10 +49,10 @@ namespace ADC
 
         public int ModifyReceivedDamage(DamageArgs damage)
         {
+            vfx?.Hit();
             if (!isUnlocked) return damage.Value;
             if ((damage.DamageType & (DamageType.Ranged | DamageType.Melee)) != 0)
             {
-                vfx?.Hit();
                 return (int)(damage.Value * (1.0f - reduceDamageRatio));
             }
 
