@@ -207,11 +207,12 @@ MonoBehaviour:
   damageOnce: 1
   disableOnDamage: 1
   childOnDamage: 1
+  stayOnGround: 0
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 512
   triggerEffect:
-    input: {fileID: 1012013889074000, guid: 6dc968b09945e3845bdbf41de444f21c, type: 3}
+    input: {fileID: 0}
   triggerEffectFaceTarget: 1
   triggerAudio:
     fetchType: 0
@@ -242,6 +243,16 @@ MonoBehaviour:
         defaultValueRange:
           _min: 1
           _max: 2
+  Spawned:
+    m_PersistentCalls:
+      m_Calls: []
+  StartShooting:
+    m_PersistentCalls:
+      m_Calls: []
+  damageType: 1
+  hitSomething:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!82 &2343654977145862298
 AudioSource:
   m_ObjectHideFlags: 0
