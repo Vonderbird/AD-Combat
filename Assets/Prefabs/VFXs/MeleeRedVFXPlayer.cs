@@ -2,11 +2,9 @@ using ADC.API;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class DetonationOrangeVFXPlayer : ParticlePlayer
+public class MeleeRedVFXPlayer : ParticlePlayer
 {
     [SerializeField] private VisualEffect vfx;
-    //[SerializeField] private VFXPropertyBinder propertyBinder;
-    //[SerializeField] private VFXTransformBinder transformBinder;
     private Transform defaultParent;
 
     private void Start()
@@ -26,14 +24,14 @@ public class DetonationOrangeVFXPlayer : ParticlePlayer
 
     public override void Play()
     {
-        Debug.Log("Detonation Orange VFX Played");
-        vfx.SendEvent("buildup");
+        Debug.Log("Shield Bubble VFX Played");
+        vfx.SendEvent("hit");
     }
 
     public override void Stop()
     {
-        Debug.Log("Detonation Orange VFX Stopped");
-        vfx.SendEvent("stop");
+        //Debug.Log("Shield Bubble VFX Stopped");
+        //vfx.SendEvent("end");
         if (SourcePrefab == null) return;
         transform.parent = defaultParent;
         TransformBinderManager.Instance.UnbindTransform(transform);
@@ -41,7 +39,7 @@ public class DetonationOrangeVFXPlayer : ParticlePlayer
 
     public override void Hit()
     {
-        vfx.SendEvent("hit");
+        vfx.SendEvent("crit");
     }
 
     private void ResetTransform()
