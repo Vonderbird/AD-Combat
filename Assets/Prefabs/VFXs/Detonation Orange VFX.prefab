@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3073596322568320714}
   - component: {fileID: -3721960590844159060}
   m_Layer: 0
-  m_Name: Detonation Orange VFX 1
+  m_Name: Detonation Orange VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
