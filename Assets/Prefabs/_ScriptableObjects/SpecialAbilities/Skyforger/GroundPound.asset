@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: GroundPound
   m_EditorClassIdentifier: 
   unlockLevel: 1
-  name: 
+  name: GroundPound
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 1807120742874249713, guid: 9127e75d261007e48a7e5a06e2518b65, type: 3}
   unitAttackCode: ground_pound_attack
   possibility: 0.2
+  stunDuration: 2
+  RangeOfEffect: 5
   damageType: 4

@@ -944,7 +944,7 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 0
-    y: 0
+    y: 1
   priority: 0
   requireIdleEntity: 0
   targetFinderData:
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5814351604116151933}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d50f81b2617c564f8e5ed1cdaa4cb4f, type: 3}
   m_Name: 
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   isActive: 1
   tabID:
     x: 0
-    y: 1
+    y: 0
   priority: 0
   requireIdleEntity: 0
   targetFinderData:
