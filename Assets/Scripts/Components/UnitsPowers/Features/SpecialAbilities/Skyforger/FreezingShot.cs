@@ -90,13 +90,23 @@ namespace ADC
                 //potentialTarget.AttackComponents[0].speed?;
                 //potentialTarget.MovementComponent.speed?
 
+                var unitMovement = (UnitMovement)(potentialTarget.MovementComponent);
+                var speedData = unitMovement.Controller.Data;
+                speedData.speed /= 5;
+                speedData.angularSpeed /= 5;
+                unitMovement.Controller.Data = speedData;
+
             }
             timer.Reload(duration);
             yield return waitForTime;
             foreach (var potentialTarget in targetsInRange)
             {
                 //potentialTarget.AttackComponents[0].speed?;
-                //potentialTarget.MovementComponent.speed?
+                var unitMovement = (UnitMovement)(potentialTarget.MovementComponent);
+                var speedData = unitMovement.Controller.Data;
+                speedData.speed *= 5;
+                speedData.angularSpeed *= 5;
+                unitMovement.Controller.Data = speedData;
             }
         }
     }
