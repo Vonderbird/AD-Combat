@@ -17,15 +17,15 @@ namespace ADC
     {
         //[SerializeField] private string unitAttackCode = "";
         [SerializeField] private float possibility = 0.2f;
-        [SerializeField] private float stunDuration = 2.0f;
-        [SerializeField] private float RangeOfEffect = 3.0f;
+        [SerializeField] private float duration = 2.0f;
+        [SerializeField] private float rangeOfEffect = 5.0f;
 
         [SerializeField] private DamageType damageType = DamageType.Area;
         private IGridSearchHandler gridSearch;
 
         private UnitAttack attackDamage;
-        private TimeModifiedTimer stunTimer;
-        private WaitUntil waitForStun;
+        private TimeModifiedTimer timer;
+        private WaitUntil waitForTime;
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
@@ -34,8 +34,8 @@ namespace ADC
             //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
             var gameMgr = EconomySystem.Instance.GameMgr;
             gridSearch = gameMgr.GetService<IGridSearchHandler>();
-            stunTimer = new TimeModifiedTimer(stunDuration);
-            waitForStun = new WaitUntil(stunTimer.ModifiedDecrease);
+            timer = new TimeModifiedTimer(duration);
+            waitForTime = new WaitUntil(timer.ModifiedDecrease);
             //attackDamage.SetActive(false, false);
             return specialAbility;
         }
@@ -76,41 +76,31 @@ namespace ADC
 
         IEnumerator RunAttack(DamageArgs args)
         {
-            //attackDamage.SetActive(true, false);
             var targetPosition = ((damageType & DamageType.Area) != 0) ?
                 args.Source.Transform.position : args.Target.Transform.position;
             yield return null;
             gridSearch.Search(
                 targetPosition,
-                RangeOfEffect,
+                rangeOfEffect,
                 -1,
                 attackDamage.IsTargetValid,
-                // Set to true because we do not want to tie the target to the LOS parameters.
                 playerCommand: true,
                 out IReadOnlyList<IFactionEntity> targetsInRange);
 
             foreach (var potentialTarget in targetsInRange)
             {
-                potentialTarget.AttackComponents[0].SetActiveLocal(false, false);
+                potentialTarget.AttackComponents[0].SetActiveLocal(false, true);
+                potentialTarget.MovementComponent.SetActiveLocal(false, true);
             }
-            stunTimer.Reload(stunDuration);
-            yield return waitForStun;
+            timer.Reload(duration);
+            yield return waitForTime;
             foreach (var potentialTarget in targetsInRange)
             {
-                potentialTarget.AttackComponents[0].SetActiveLocal(true, false);
+                potentialTarget.AttackComponents[0].SetActiveLocal(true, true);
+                potentialTarget.MovementComponent.SetActiveLocal(true, true);
             }
 
-            //attackDamage.damage.Trigger(targetUnit, targetPosition, args.DamageType);
         }
 
-        //IEnumerator RunAttack(DamageArgs args)
-        //{
-        //    var targetUnit = args.Target.GetComponent<FactionEntity>();
-        //    var targetPosition = ((damageType & DamageType.Area) != 0) ?
-        //        args.Source.Transform.position : args.Target.Transform.position;
-        //    yield return null;
-
-        //    damage?.Trigger(targetUnit, targetPosition, args.DamageType);
-        //}
     }
 }
