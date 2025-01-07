@@ -29,8 +29,8 @@ namespace ADC
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             var specialAbility = base.Initialize(unitBattleManager);
-            //attackDamage = UnitBattleManager.GetComponentInChildren<UnitAttack>();
-            //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
+            //attackDamage = unitBattleManager.GetComponentInChildren<UnitAttack>();
+            //attackDamage = unitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
             var gameMgr = EconomySystem.Instance.GameMgr;
             gridSearch = gameMgr.GetService<IGridSearchHandler>();
             timer = new TimeModifiedTimer(duration);

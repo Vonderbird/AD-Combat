@@ -27,7 +27,7 @@ namespace ADC
             waitUntil = new WaitUntil(() => waitForHack.ModifiedDecrease());
 
             //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
-            damage = UnitBattleManager.GetComponentInChildren<UnitAttack>().damage;
+            damage = unitBattleManager.GetComponentInChildren<UnitAttack>().damage;
             return base.Initialize(unitBattleManager);
         }
 

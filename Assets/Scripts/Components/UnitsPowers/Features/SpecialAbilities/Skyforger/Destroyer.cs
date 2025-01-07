@@ -24,7 +24,7 @@ namespace ADC
             var specialAbility = base.Initialize(unitBattleManager);
             timer = new TimeModifiedTimer(tickInterval);
             waitUnitNextTick = new WaitUntil(() => timer.ModifiedDecrease());
-            attackDamage = UnitBattleManager.GetComponentInChildren<UnitAttack>();
+            attackDamage = unitBattleManager.GetComponentInChildren<UnitAttack>();
             //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
             return specialAbility;
         }
