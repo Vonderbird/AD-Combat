@@ -13,6 +13,7 @@ namespace ADC.API
     {
         public ParticlePlayerDelegate Terminated;
         public ParticlePlayer SourcePrefab { get; protected set; }
+        public bool IsStopped { get; set; }
         public abstract void Initialize(ParticlePlayer sourcePrefab, ParticleArgs args);
         public abstract void Play();
         public abstract void Stop();

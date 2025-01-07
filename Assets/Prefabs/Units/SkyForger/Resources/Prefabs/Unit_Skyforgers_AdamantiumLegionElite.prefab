@@ -273,7 +273,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 270, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 43.813, y: 0, z: 69.348}
+      - m_Value: {x: 182.00526, y: -0.1819067, z: 52.44033}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -282,7 +282,7 @@ VisualEffect:
       - m_Value: {x: 9.162408, y: 324.6647, z: 0.79549265}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 43.813362, y: 1.3725713, z: 69.35199}
+      - m_Value: {x: 182.00563, y: 1.1906646, z: 52.444317}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -794,8 +794,8 @@ MonoBehaviour:
   code: light_infantry_basic_attack
   isActive: 1
   tabID:
-    x: 2
-    y: 2
+    x: 0
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -1607,6 +1607,7 @@ Transform:
   - {fileID: 8453861191753783676}
   - {fileID: 1087671798475334495}
   - {fileID: 4348279541373306855}
+  - {fileID: 5841853142261998380}
   m_Father: {fileID: 5117478129899910104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7470817173007901900
@@ -1836,7 +1837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabID:
     x: 0
-    y: 0
+    y: 1
   _name: adamnt
   code: adamnt
   category: military_foot_unit,walking_unit,rtse_demo_entity,rtse_demo_entity
@@ -2333,7 +2334,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 270, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 43.813, y: 0, z: 69.348}
+      - m_Value: {x: 182.00526, y: -0.1819067, z: 52.44033}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -2342,7 +2343,7 @@ VisualEffect:
       - m_Value: {x: 9.162408, y: 324.6647, z: 0.79549265}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 43.813362, y: 1.3725713, z: 69.35199}
+      - m_Value: {x: 182.00563, y: 1.1906646, z: 52.444317}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -2639,6 +2640,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5258431805868215851, guid: f7b5aa3a18c3bbc4a9624980e08aa238, type: 3}
   m_PrefabInstance: {fileID: 1123233423892626482}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2889375547172724067
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3454900673115476603}
+    m_Modifications:
+    - target: {fileID: 8232757242275357941, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_Name
+      value: Unit_Skyforgers_ALElite_Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+--- !u!4 &5841853142261998380 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8722190152805957199, guid: 0d5d188ffda2ba646bcb2b9aa41e2717, type: 3}
+  m_PrefabInstance: {fileID: 2889375547172724067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4310657640882167820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2790,6 +2853,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_Name
       value: Model_AdamantLegionElite_Comp
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1361875211163852895, guid: 90236b1e58ff0c14f844d68495d56bed, type: 3}
       propertyPath: m_Materials.Array.data[0]

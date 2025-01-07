@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8941696120997707375}
   - component: {fileID: 3802980255763825092}
   - component: {fileID: 8973942060132067546}
-  - component: {fileID: -4691794733273489952}
+  - component: {fileID: 4663815566685809090}
   - component: {fileID: -848383871886843326}
   m_Layer: 0
   m_Name: EnergizeViolet VFX Simple
@@ -752,9 +752,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ExecuteInEditor: 1
   m_Bindings:
-  - {fileID: -4691794733273489952}
+  - {fileID: 4663815566685809090}
   m_VisualEffect: {fileID: 8941696120997707375}
---- !u!114 &-4691794733273489952
+--- !u!114 &4663815566685809090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9025810187165182122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdfea1f838247c40921a07afedde962, type: 3}
+  m_Script: {fileID: 11500000, guid: 35ef6c53ba3a36a4f97d821746ac44b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Property:
