@@ -6,6 +6,14 @@ using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.VFX.Utility;
 
+
+using UnityEngine.VFX;
+
+namespace UnityEngine.VFX.Utility
+{
+}
+
+
 public class EnergizeVioletVFXPlayer : ParticlePlayer
 {
     [SerializeField] private VisualEffect vfx;
@@ -27,6 +35,7 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
     private Coroutine lifeCoroutine;
     public override void Initialize(ParticlePlayer sourcePrefab, ParticleArgs args)
     {
+
         SourcePrefab = sourcePrefab;
         if (args is not SkinnedMeshVfxArgs eArgs) return;
         lifeSpan = eArgs.Lifespan;
@@ -35,15 +44,21 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
         //transformBinder.Target = eArgs.SkinnedMesh.transform;
         //transformBinder.Property = "SkinnedMeshTransform";
         //propertyBinder.m_Bindings.Add(transformBinder);
-        if (propertyBinder.m_Bindings[0] is VFXTransformBinder vtb)
+        if (propertyBinder.m_Bindings[0] is VFXCustomTransformBinder vtb)
+        {
+            //var targetField = vtb.GetType().GetField("Target", System.Reflection.BindingFlags.Public
+            //                                               | System.Reflection.BindingFlags.Instance);
+            //targetField.SetValue(vtb, eArgs.SkinnedMesh.transform);
+
             vtb.Target = eArgs.SkinnedMesh.transform;
+        }
         //bind a transform from eArgs using propertyBinder
         //propertyBinder.m_Bindings[0] = new VFXBinderBase().eArgs.SkinnedMesh.transform;
 
         ResetTransform();
+        IsStopped = false;
         if (Loop)
             vfx.SendEvent("loop");
-
     }
 
     public override void Play()
@@ -53,12 +68,15 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
             StopCoroutine(lifeCoroutine);
         lifeCoroutine = StartCoroutine(LifeKeeper());
         vfx.SendEvent("create");
+        IsStopped = false;
         if (Loop)
             vfx.SendEvent("loop");
     }
 
     public override void Stop()
     {
+        if (IsStopped) return;
+        IsStopped = true;
         Debug.Log("Hack VFX Stopped");
         vfx.SendEvent("end");
         transform.parent = defaultParent;
@@ -70,6 +88,7 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
 
     public override void Hit()
     {
+        IsStopped = false;
         vfx.SendEvent("hit");
     }
 
