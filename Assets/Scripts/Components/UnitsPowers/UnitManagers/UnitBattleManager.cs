@@ -160,6 +160,8 @@ namespace ADC
             yield return new WaitForSeconds(seconds);
             unit.MovementComponent.SetActive(true, false);
             unit.MovementComponent.SetTarget(target, false);
+
+            var abilityCount = SpecialAbilities.Count; // Initialize abilities!
         }
 
         private void OnTargetUpdated(object sender, dynamic t)

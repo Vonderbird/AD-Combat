@@ -51,4 +51,9 @@ public class DetonationOrangeVFXPlayer : ParticlePlayer
         transform.eulerAngles = new Vector3(0, 0, 0);
         transform.localScale = new Vector3(1, 1, 1);
     }
+
+    public void SetScaleFactor(float factor = 1.0f)
+    {
+        transform.localScale = Vector3.one * factor;
+    }
 }

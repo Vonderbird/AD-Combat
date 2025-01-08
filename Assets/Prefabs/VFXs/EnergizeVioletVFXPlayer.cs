@@ -89,7 +89,7 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
     public override void Hit()
     {
         IsStopped = false;
-        vfx.SendEvent("hit");
+        vfx.SendEvent("loop");
     }
 
     private void ResetTransform()

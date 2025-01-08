@@ -474,7 +474,7 @@ MonoBehaviour:
       x: 4245
       y: -5074
       width: 3604
-      height: 2852
+      height: 2853
     contents:
     - model: {fileID: 8926484042661623898}
       id: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
   stickyNoteInfos: []
   categories:
   - name: MainVFX
-    collapsed: 0
+    collapsed: 1
   - name: Create & End
     collapsed: 1
   - name: Loop
@@ -620,7 +620,7 @@ MonoBehaviour:
     x: -97
     y: -5074
     width: 7946
-    height: 8195
+    height: 8213
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24541,7 +24541,7 @@ MonoBehaviour:
   - {fileID: 8926484042661623943}
   - {fileID: 8926484042661623945}
   - {fileID: 8926484042661623947}
-  m_UIPosition: {x: 6393, y: -4597}
+  m_UIPosition: {x: 6347, y: -4587}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
