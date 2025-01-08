@@ -9,7 +9,7 @@ namespace ADC
     {
         [SerializeField] private float reduceDamageRatio = 0.3f;
         [SerializeField] private ParticlePlayer VFXPrefab;
-        [SerializeField] private Vector3 positionOffset = Vector3.up*0.9f;
+        [SerializeField] private Vector3 positionOffset = Vector3.up * 0.9f;
         [SerializeField] private Vector3 scaleOffset = Vector3.one;
         private ParticlePlayer vfx;
 
@@ -18,7 +18,9 @@ namespace ADC
             reduceDamageRatio = Mathf.Max(0, Mathf.Min(1.0f, reduceDamageRatio));
             var particleArgs = new FollowerVfxArgs
             {
-                Transform = unitBattleManager.Transform, AutoCalculateOffset = false, PositionOffset = positionOffset,
+                Transform = unitBattleManager.Transform,
+                AutoCalculateOffset = false,
+                PositionOffset = positionOffset,
                 ScaleOffset = scaleOffset
             };
             //VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, unitBattleManager.Transform.position, unitBattleManager.Transform.rotation, particleArgs);
@@ -49,8 +51,8 @@ namespace ADC
 
         public int ModifyReceivedDamage(DamageArgs damage)
         {
-            vfx?.Hit();
             if (!isUnlocked) return damage.Value;
+            vfx?.Hit();
             if ((damage.DamageType & (DamageType.Ranged | DamageType.Melee)) != 0)
             {
                 return (int)(damage.Value * (1.0f - reduceDamageRatio));
