@@ -1450,8 +1450,8 @@ MonoBehaviour:
   code: Thunderkin_demolitionist_emp
   isActive: 0
   tabID:
-    x: 2
-    y: 3
+    x: 0
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -1517,7 +1517,7 @@ MonoBehaviour:
     targetUnits: 1
     targetBuildings: 1
   requireTarget: 0
-  allowMultipleTerrainAttacks: 0
+  allowMultipleTerrainAttacks: 1
   terrainAttackActive: 0
   reloadDuration: 1
   delayTriggerEnabled: 0
@@ -1534,7 +1534,7 @@ MonoBehaviour:
     - attackObject:
         input: {fileID: 8334881734067692792, guid: b49f02dfe64a999438977558ec484d2a, type: 3}
       launchPosition: {fileID: 5612332664833714460}
-      launchRotationAngles: {x: 0, y: 0, z: 0}
+      launchRotationAngles: {x: 0, y: 0, z: 1}
       preDelayTime: 0
       postDelayTime: 0
       launchDelayTime: 0

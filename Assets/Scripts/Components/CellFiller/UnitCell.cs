@@ -164,7 +164,7 @@ namespace ADC.UnitCreation
                 return null;
             }
 
-            var unitObject = Instantiate(unitPrefab as Unit, position, Quaternion.Euler(new Vector3(0, 90, 0)), transform);
+            var unitObject = Instantiate(unitPrefab as Unit, position, Quaternion.Euler(new Vector3(0, -90, 0)), transform);
             decoObject = unitObject.gameObject;
             decoObject.GetComponent<IUnitHealth>().enabled = false;
             decoObject.GetComponentInChildren<UnitMovement>().enabled = false;
