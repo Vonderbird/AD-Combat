@@ -1,4 +1,5 @@
 using System.Collections;
+using ADC.Currencies;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -37,7 +38,7 @@ namespace ADC
         public void OnDeactivate()
         {
             if (isClosing) return;
-            StartCoroutine(CloseDrawer());
+            EconomySystem.Instance.StartCoroutine(CloseDrawer());
 
             if (isOpening)
             {

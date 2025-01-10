@@ -1,6 +1,4 @@
-using ADC;
 using ADC.API;
-using log4net.Util;
 using RTSEngine.Audio;
 using RTSEngine.Determinism;
 using RTSEngine.Effect;
@@ -12,7 +10,6 @@ using RTSEngine.Terrain;
 using RTSEngine.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
-using static Codice.Client.Common.EventTracking.TrackFeatureUseEvent.Features.DesktopGUI.Filters;
 
 namespace RTSEngine.Attack
 {
@@ -54,18 +51,17 @@ namespace RTSEngine.Attack
 
         [SerializeField, Tooltip("Disable the attack object when it deals its first damage to a target it collides with.")]
         private bool disableOnDamage = false;
-
+        
         [SerializeField, Tooltip("When enabled, the attack object becomes a child object of its target when it deals damage to it.")]
-        private bool childOnDamage = false;
-
-        [SerializeField, Tooltip("When enabled!.")]
-        private bool stayOnGround = true;
-
+        private float mineDelayDuration = 3.0f;
         // Attack object launch delay
         private TimeModifiedTimer delayTimer;
         public float DelayTime => delayTimer.CurrValue;
-        public bool inDelay = false;
-        public bool InDelay => delayTimer.CurrValue > 0.0f || inDelay;
+
+        private bool planted = false;
+
+        private bool inDelay = false;
+        public bool InDelay => delayTimer.CurrValue > 0.0f && planted;
 
         [SerializeField, Tooltip("If the attack object collides with an object that has a layer defined in this mask, it will act as if it hit a target but would not apply any damage.")]
         private LayerMask obstacleLayerMask = 0;
@@ -94,6 +90,8 @@ namespace RTSEngine.Attack
 
         protected IAttackManager attackMgr { private set; get; }
         protected ITerrainManager terrainMgr { private set; get; }
+
+        private GameObject targetParentObject;
         #endregion
 
         #region Initializing/Terminating
@@ -122,25 +120,26 @@ namespace RTSEngine.Attack
             collider.isTrigger = true;
 
             didDamage = false;
+            planted = false;
 
             this.Data = data;
-
+             
             lookAtPosition = TargetPosition - transform.position;
 
             // damage handler
             damage = data.source.Damage;
 
             // Delay options:
-            this.delayTimer = new TimeModifiedTimer(data.delayTime);
+            this.delayTimer = new TimeModifiedTimer();
 
             // Only if there's delay time, we'll have the attack object as child of another object
-            if (this.delayTimer.CurrValue > 0.0f)
-            {
-                followTransform.SetTarget(data.delayParent, enableCallback: false);
-            }
+            //if (this.delayTimer.CurrValue > 0.0f)
+            //{
+            //    followTransform.SetTarget(data.delayParent, enableCallback: false);
+            //}
             // No delay time? reset movement instantly to start moving towards target
-            else
-                PrepareMovement();
+            //else
+            PrepareMovement();
 
             // Trigger effect objects and audio if they are meant to be triggered after delay
             if (!InDelay || !triggerEffectsPostDelay)
@@ -228,13 +227,16 @@ namespace RTSEngine.Attack
                 // Delay mode is done.
                 if (delayTimer.ModifiedDecrease())
                 {
-                    followTransform.ResetTarget();
+                    //followTransform.ResetTarget();
 
-                    PrepareMovement();
+                    //PrepareMovement();
 
                     if (triggerEffectsPostDelay)
                         TriggerEffectAudio();
-                    StartShooting?.Invoke();
+
+                    ApplyDamage(targetParentObject, null, transform.position);
+                    delayTimer.Reload(30.0f);
+                    //StartShooting?.Invoke();
                 }
 
                 // The attack object doesn't move while in delay
@@ -273,7 +275,7 @@ namespace RTSEngine.Attack
         private void OnTriggerEnter(Collider other)
         {
             var entitySelection = other.gameObject.GetComponent<EntitySelectionCollider>();
-            if (State != EffectObjectState.running) return;
+            //if (State != EffectObjectState.running) return;
             //if (didDamage == false)
             //{
             //    print($"other: {other.gameObject.name}");
@@ -301,7 +303,9 @@ namespace RTSEngine.Attack
             // Does the collider belong to an obstacle?
             if (RTSHelper.IsInLayerMask(obstacleLayerMask, other.gameObject.layer))
             {
-                ApplyDamage(other.gameObject, null, transform.position);
+                targetParentObject = other.gameObject;
+                ChildObjectOnTarget(targetParentObject, null);
+                //ApplyDamage(other.gameObject, null, transform.position);
                 return;
             }
 
@@ -315,18 +319,51 @@ namespace RTSEngine.Attack
             if ((hitFactionEntity.FactionID != Data.sourceFactionID || Data.damageFriendly) &&
                 !hitFactionEntity.Health.IsDead)
             {
+                targetParentObject = other.gameObject;
+                ChildObjectOnTarget(targetParentObject, hitFactionEntity);
+                //ApplyDamage(other.gameObject, hitFactionEntity, hitFactionEntity.transform.position);
+            }
+        }
 
-                ApplyDamage(other.gameObject, hitFactionEntity, hitFactionEntity.transform.position);
+        private void ChildObjectOnTarget(GameObject targetObject, IFactionEntity target)
+        {
+            // Child object of the target?
+            if (targetObject.IsValid())
+            {
+                if (target.IsValid())// targetObject.layer == LayerMask.NameToLayer("GroundTerrain"))
+                {
+                    followTransform.SetTarget(
+                        target.transform,
+                        offset: (transform.position - targetObject.transform.position),
+                        enableCallback: true
+                    );
+                }
+                else
+                {
+                    followTransform.SetTarget(
+                        targetObject.transform,
+                        offset: (transform.position - targetObject.transform.position),
+                        enableCallback: true
+                    );
+                }
+
+                planted = true;
+                //inDelay = true;
+                delayTimer.Reload(mineDelayDuration);
+            }
+            else
+            {
+                Debug.LogError($"[MineAttackObject] Target object is not valid!");
             }
         }
 
         [SerializeField] private DamageType damageType = DamageType.Ranged;
-        [SerializeField] private UnityEvent hitSomething;
+        [SerializeField] private UnityEvent detonate;
         //a method called to apply damage to a target (position)
         private void ApplyDamage(GameObject targetObject, IFactionEntity target, Vector3 targetPosition)
         {
 
-            hitSomething?.Invoke();
+            detonate?.Invoke();
             // Deal damage
             damage.Trigger(target, targetPosition, damageType);
             didDamage = true;
@@ -375,48 +412,25 @@ namespace RTSEngine.Attack
                     false);
             }
 
-            // Child object of the target?
-            if (targetObject.IsValid() && childOnDamage == true)
-            {
-                if (target.IsValid())// targetObject.layer == LayerMask.NameToLayer("GroundTerrain"))
-                {
-                    followTransform.SetTarget(
-                        target.transform,
-                        offset: (transform.position - targetObject.transform.position),
-                        enableCallback: true
-                    );
-                    inDelay = false;
-                }
-                else
-                {
-                    followTransform.SetTarget(
-                        targetObject.transform,
-                        offset: (transform.position - targetObject.transform.position),
-                        enableCallback: true
-                    );
-                    inDelay = true;
-                }
-            }
+            
 
-                
-
-            if (stayOnGround == true)
-            {
-                if (target.IsValid())// targetObject.layer == LayerMask.NameToLayer("GroundTerrain"))
-                {
-                    transform.position = target.transform.position;
-                    inDelay = false;
-                }
-                else
-                {
-                    transform.position = targetObject.transform.position;
-                    inDelay = true;
-                }
-                followTransform.SetTarget(GroundAttackObjects.Instance.transform,
-                    offset: (transform.position - GroundAttackObjects.Instance.transform.position),
-                    enableCallback: true
-                );
-            }
+            //if (stayOnGround == true)
+            //{
+            //    if (target.IsValid())// targetObject.layer == LayerMask.NameToLayer("GroundTerrain"))
+            //    {
+            //        transform.position = target.transform.position;
+            //        inDelay = false;
+            //    }
+            //    else
+            //    {
+            //        transform.position = targetObject.transform.position;
+            //        inDelay = true;
+            //    }
+            //    followTransform.SetTarget(GroundAttackObjects.Instance.transform,
+            //        offset: (transform.position - GroundAttackObjects.Instance.transform.position),
+            //        enableCallback: true
+            //    );
+            //}
 
             // Disable on damage? Handle it through the effect object.
             if (disableOnDamage == true)
