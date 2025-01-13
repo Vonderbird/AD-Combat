@@ -1,3 +1,4 @@
+using System;
 using ADC.API;
 using UnityEngine;
 
@@ -7,13 +8,16 @@ namespace ADC
     public class ProtectiveInspiration : SpecialAbilityBase, IReceivedDamageModifierAbility
     {
         [SerializeField] private int addArmor = 3;
+        [SerializeField] private ParticlePlayer particlePlayerPrefab;
 
-        //public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
-        //{
-        //    reduceDamageRatio = Mathf.Max(0, Mathf.Min(1.0f, reduceDamageRatio));
-        //    return base.Initialize(unitBattleManager);
-        //}
-        
+        public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
+        {
+            var specialAbility = base.Initialize(unitBattleManager);
+            VFXPoolingManager.Instance.SpawnVfx(particlePlayerPrefab,
+                new FollowerVfxArgs(transform: unitBattleManager.Transform));
+            return specialAbility;
+        }
+
         public override void Use()
         {
             if (!isUnlocked)
@@ -35,7 +39,7 @@ namespace ADC
         public int ModifyReceivedDamage(DamageArgs damage)
         {
             if (!isUnlocked) return damage.Value;
-            return damage.Value + addArmor;
+            return Math.Max(0, damage.Value - addArmor);
         }
     }
 }
