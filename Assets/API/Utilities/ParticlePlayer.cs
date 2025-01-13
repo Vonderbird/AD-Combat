@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ADC.API
 {
-    public abstract class ParticleArgs
+    public interface ParticleArgs
     {
 
     }

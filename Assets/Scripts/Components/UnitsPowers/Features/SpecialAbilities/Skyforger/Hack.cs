@@ -64,10 +64,12 @@ namespace ADC
             }
 
             var targetUnit = args.Target.GetComponent<FactionEntity>();
-            var skinnedMeshRenderer = targetUnit.Model.GetComponentInChildren<SkinnedMeshRenderer>();
-            var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = skinnedMeshRenderer, Lifespan=hackDuration + 0.3f };
-
-            VFXPoolingManager.Instance.SpawnVfx(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, particleArgs);
+            var skinnedMeshRenderer = targetUnit.Model.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (var meshRenderer in skinnedMeshRenderer)
+            {
+                var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = meshRenderer, Lifespan = hackDuration + 0.3f };
+                VFXPoolingManager.Instance.SpawnVfx(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, particleArgs);
+            }
             yield return waitUntil;
 
             //damage ??= args.Source.GetComponentInChildren<UnitAttack>().damage;

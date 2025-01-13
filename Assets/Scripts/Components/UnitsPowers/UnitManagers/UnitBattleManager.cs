@@ -161,7 +161,10 @@ namespace ADC
             unit.MovementComponent.SetActive(true, false);
             unit.MovementComponent.SetTarget(target, false);
 
-            var abilityCount = SpecialAbilities.Count; // Initialize abilities!
+            if (unit.AttackComponents[0].IsActive)
+            {
+                var abilityCount = SpecialAbilities.Count; // Initialize abilities!
+            }
         }
 
         private void OnTargetUpdated(object sender, dynamic t)

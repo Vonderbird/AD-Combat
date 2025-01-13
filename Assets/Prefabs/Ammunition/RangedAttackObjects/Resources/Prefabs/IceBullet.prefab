@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2496541087232980490}
   - component: {fileID: 1647682310786301091}
   m_Layer: 0
-  m_Name: IceMissile
+  m_Name: IceBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1705823197517049122}
-  - {fileID: 1123621482513966590}
+  - {fileID: 4598738499996657730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2567349781475797794
@@ -175,7 +175,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     heightMultiplier: 1
   speed:
-    value: 35
+    value: 100
   followTarget: 0
   followTargetMaxDistance: 10
   damageOnce: 1
@@ -222,14 +222,26 @@ MonoBehaviour:
       m_Calls: []
   StartShooting:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4969694088061289670}
+        m_TargetAssemblyTypeName: Projectile14BlueRapidVFXPlayer, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageType: 1
   hitSomething:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8688036750165900276}
-        m_TargetAssemblyTypeName: IceAttackv3AoEVFXPlayer, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 4969694088061289670}
+        m_TargetAssemblyTypeName: Projectile14BlueRapidVFXPlayer, Assembly-CSharp
+        m_MethodName: Hit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -397,7 +409,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 48a3f794e09ce7d45ae48c730a2d83d8, type: 3}
   m_PrefabInstance: {fileID: 1705823197516658592}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3953619491107329169
+--- !u!1001 &4601730697709833478
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -405,68 +417,68 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3578559449253242965}
     m_Modifications:
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 1580133494715678, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
+      propertyPath: m_Name
+      value: Projectile 14 blue rapid
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
+    - target: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6904921245049770533, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
-      propertyPath: m_Name
-      value: IceAttack02_v3_AoE 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
---- !u!4 &1123621482513966590 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
+--- !u!4 &4598738499996657730 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4128099029579821423, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
-  m_PrefabInstance: {fileID: 3953619491107329169}
+  m_CorrespondingSourceObject: {fileID: 4118756434896196, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
+  m_PrefabInstance: {fileID: 4601730697709833478}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8688036750165900276 stripped
+--- !u!114 &4969694088061289670 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5641893908988178277, guid: 528ef7a1a3b98534bb9a5d6a224b6fc8, type: 3}
-  m_PrefabInstance: {fileID: 3953619491107329169}
+  m_CorrespondingSourceObject: {fileID: -348105651731183168, guid: 0c2e843e943107e41ad95374356f80ea, type: 3}
+  m_PrefabInstance: {fileID: 4601730697709833478}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fa6912b848801043a5826ea260ffc90, type: 3}
+  m_Script: {fileID: 11500000, guid: e06e53e3873161541b8d9917f8477f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

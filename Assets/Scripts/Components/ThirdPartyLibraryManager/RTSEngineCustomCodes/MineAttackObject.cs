@@ -275,24 +275,6 @@ namespace RTSEngine.Attack
         private void OnTriggerEnter(Collider other)
         {
             var entitySelection = other.gameObject.GetComponent<EntitySelectionCollider>();
-            //if (State != EffectObjectState.running) return;
-            //if (didDamage == false)
-            //{
-            //    print($"other: {other.gameObject.name}");
-            //}
-            //print($"State: {State}");
-            //print($"InDelay: {InDelay}");
-            //print($"Data: {Data}");
-            //print($"Data.damageInDelay: {Data?.damageInDelay}");
-            //print($"didDamage: {didDamage}");
-            //print($"didDamage: {didDamage}");
-            //print($"damageOnce: {damageOnce}");
-            //print($"RTSHelper.IsInLayerMask(terrainMgr.BaseTerrainLayerMask, other.gameObject.layer):" +
-            //      $" {RTSHelper.IsInLayerMask(terrainMgr.BaseTerrainLayerMask, other.gameObject.layer)}");
-            //print($"damageOnce: {damageOnce}");
-            //print($"Data.source.Entity.IsValid(): {Data.source.Entity.IsValid()}");
-            //print($"entitySelection: {entitySelection}");
-            //print($"entitySelection?.Entity: {entitySelection?.Entity} !!  Data.source.Entity: {Data.source.Entity}");
             if (State != EffectObjectState.running
                 || (InDelay && !Data.damageInDelay)
                 || (didDamage && damageOnce)

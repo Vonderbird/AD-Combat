@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ADC.API;
 using ADC.Currencies;
+using RTSEngine.Attack;
 using RTSEngine.Determinism;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
@@ -17,19 +19,21 @@ namespace ADC
         [SerializeField] private float possibility = 0.15f;
         [SerializeField] private float duration = 2.0f;
         [SerializeField] private float rangeOfEffect = 5.0f;
-
         [SerializeField] private DamageType damageType = DamageType.Area;
-
+        [SerializeField] private string baseAttackCode;
+        [SerializeField] private string freezingShotAttackCode;
         private IGridSearchHandler gridSearch;
 
-        private UnitAttack attackDamage;
+        private Dictionary<string, UnitAttack> attackDamages = new();
         private TimeModifiedTimer timer;
         private WaitUntil waitForTime;
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             var specialAbility = base.Initialize(unitBattleManager);
-            //attackDamage = unitBattleManager.GetComponentInChildren<UnitAttack>();
+            var attacks = unitBattleManager.GetComponentsInChildren<UnitAttack>();
+            attackDamages[baseAttackCode] = attacks.FirstOrDefault(a => a.Code == baseAttackCode);
+            attackDamages[freezingShotAttackCode] = attacks.FirstOrDefault(a => a.Code == freezingShotAttackCode);
             //attackDamage = unitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
             var gameMgr = EconomySystem.Instance.GameMgr;
             gridSearch = gameMgr.GetService<IGridSearchHandler>();
@@ -59,15 +63,28 @@ namespace ADC
         public int ModifyDealtDamage(DamageArgs args)
         {
             if (!isUnlocked) return args.Value;
-            var rnd = Random.Range(0, 1);
-            if (rnd > possibility) return args.Value;
 
-            if (attackDamage == null)
+            //if (attackDamage == null)
+            //{
+            //    Debug.LogError($"[GroundPound] attackDamage is not assigned!");
+            //    return 0;
+            //}
+
+            float rnd = Random.Range(0, 1);
+            if (rnd > possibility)
             {
-                Debug.LogError($"[GroundPound] attackDamage is not assigned!");
-                return 0;
+                Debug.Log($"Freezingshot deactivated");
+                args.Source.GetComponentsInChildren<UnitAttack>();
+                //attackDamages[baseAttackCode].SetActiveLocal(true, true);
+                attackDamages[freezingShotAttackCode].SetActiveLocal(false, true);
+
+                return args.Value;
             }
-            attackDamage.StartCoroutine(FreezeTargets(args));
+
+            //attackDamages[baseAttackCode].SetActiveLocal(false, true);
+            attackDamages[freezingShotAttackCode].SetActiveLocal(true, true);
+
+            attackDamages[freezingShotAttackCode].StartCoroutine(FreezeTargets(args));
             // Play
             return args.Value; //newValue;
         }
@@ -81,7 +98,7 @@ namespace ADC
                 targetPosition,
                 rangeOfEffect,
                 -1,
-                attackDamage.IsTargetValid,
+                attackDamages[freezingShotAttackCode].IsTargetValid,
                 playerCommand: true,
                 out IReadOnlyList<IFactionEntity> targetsInRange);
 
