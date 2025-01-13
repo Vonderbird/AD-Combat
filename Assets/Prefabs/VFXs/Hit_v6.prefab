@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1625590031068301032}
   - component: {fileID: 621766815493732360}
   m_Layer: 0
-  m_Name: vfx_Hit_v6
+  m_Name: Hit_v6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,4 +17,8 @@ MonoBehaviour:
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 1807120742874249713, guid: f62cec2099a3f96489daf719f88a0bc5, type: 3}
   possibility: 0.15
+  duration: 2
+  rangeOfEffect: 5
   damageType: 4
+  baseAttackCode: skyforgers_icestalker_baseattack
+  freezingShotAttackCode: skyforgers_icestalker_freezingshot

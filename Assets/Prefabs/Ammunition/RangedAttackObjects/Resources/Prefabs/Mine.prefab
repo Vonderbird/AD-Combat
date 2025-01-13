@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8940150136530196031}
   - component: {fileID: 7777995174502704551}
   - component: {fileID: 1725337949932529238}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,6 @@ MonoBehaviour:
     value: 20
   damageOnce: 1
   disableOnDamage: 0
-  childOnDamage: 1
   mineDelayDuration: 3
   obstacleLayerMask:
     serializedVersion: 2
@@ -434,7 +433,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: ee89914debc7ebf47b486fce3adbd016, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ee89914debc7ebf47b486fce3adbd016, type: 3}
       propertyPath: m_Name
@@ -442,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ee89914debc7ebf47b486fce3adbd016, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ee89914debc7ebf47b486fce3adbd016, type: 3}
       propertyPath: m_LocalPosition.x

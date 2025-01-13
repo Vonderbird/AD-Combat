@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using ADC.API;
 using RTSEngine.Determinism;
 using UnityEngine;
 using UnityEngine.VFX;
 using UnityEngine.VFX.Utility;
 
-
-public class EnergizeVioletVFXPlayer : ParticlePlayer
+public class BlessingGoldVFXPlayer : ParticlePlayer
 {
     [SerializeField] private VisualEffect vfx;
     [SerializeField] private VFXPropertyBinder propertyBinder;
@@ -28,7 +26,7 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
     private Coroutine lifeCoroutine;
     public override void Initialize(ParticlePlayer sourcePrefab, ParticleArgs args)
     {
-        if(waitForLife == null)
+        if (waitForLife == null)
             Start();
         SourcePrefab = sourcePrefab;
         if (args is not SkinnedMeshVfxArgs eArgs) return;
@@ -59,7 +57,7 @@ public class EnergizeVioletVFXPlayer : ParticlePlayer
     public override void Play()
     {
         Debug.Log("Hack VFX Playerd");
-        if(lifeCoroutine!=null)
+        if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);
         lifeCoroutine = StartCoroutine(LifeKeeper());
         IsStopped = false;
