@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: ProtectiveInspiration
   m_EditorClassIdentifier: 
   unlockLevel: 1
-  name: 
+  name: ProtectiveInspiration
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 1807120742874249713, guid: fe8c518c4c166c44fbf622a1cbdfc990, type: 3}
   addArmor: 3
   particlePlayerPrefab: {fileID: -6591551262691862463, guid: 948fb190a01503843983e67b338e6ef6, type: 3}
+  positionOffset: {x: 0, y: -0.1, z: 0}
+  scaleOffset: {x: 1.5, y: 1.5, z: 1.5}
