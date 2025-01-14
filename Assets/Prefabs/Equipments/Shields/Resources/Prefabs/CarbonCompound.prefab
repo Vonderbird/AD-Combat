@@ -228,7 +228,7 @@ MonoBehaviour:
   armor: 0
   uiInfo:
     title: 
-    icon: {fileID: 21300000, guid: 925df07ce4c197d4b99ee4ce5aefa8d4, type: 3}
+    icon: {fileID: 21300000, guid: 239851fd8ce288c44919294fedf77945, type: 3}
     strongAgainst1: {fileID: 7489146407484518261, guid: d2fcd5958b68f484384c4c4fff4133fb, type: 3}
     strongAgainst2: {fileID: 9221639860779282736, guid: a9ec5f0ab4ac4e94fa3badf6199c2812, type: 3}
     weakAgainst1: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
