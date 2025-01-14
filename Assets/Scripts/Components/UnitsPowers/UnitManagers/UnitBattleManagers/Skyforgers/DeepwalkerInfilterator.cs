@@ -26,9 +26,9 @@ namespace ADC
         //    base.Awake();
         //}
 
-        public override void Accept(IUnitManagerVisitor managerVisitor)
-        {
-            managerVisitor.Visit(this);
-        }
+        //public override void Accept(IUnitManagerVisitor managerVisitor)
+        //{
+        //    managerVisitor.Visit(this);
+        //}
     }
 }

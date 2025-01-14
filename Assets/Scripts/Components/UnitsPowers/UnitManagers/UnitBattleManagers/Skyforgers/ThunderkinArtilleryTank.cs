@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class AdamantiumLegionSiegeBreaker : UnitBattleManager
+    public class ThunderkinArtilleryTank : UnitBattleManager
     {
-        //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
         [SerializeField] private SimpleUnitUpdateInfo updateInfo;
 
         public override IUnitUpdateInfo UpdateInfo
@@ -27,9 +26,9 @@ namespace ADC
         //    base.Awake();
         //}
 
-        public override void Accept(IUnitManagerVisitor managerVisitor)
-        {
-            managerVisitor.Visit(this);
-        }
+        //public override void Accept(IUnitManagerVisitor managerVisitor)
+        //{
+        //    managerVisitor.Visit(this);
+        //}
     }
 }

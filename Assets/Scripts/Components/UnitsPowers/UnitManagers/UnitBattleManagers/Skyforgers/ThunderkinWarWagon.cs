@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ADC
 {
-    public class ThunderkinArtilleryTank : UnitBattleManager
+    public class ThunderkinWarWagon : UnitBattleManager
     {
         [SerializeField] private SimpleUnitUpdateInfo updateInfo;
 
@@ -26,9 +26,9 @@ namespace ADC
         //    base.Awake();
         //}
 
-        public override void Accept(IUnitManagerVisitor managerVisitor)
-        {
-            managerVisitor.Visit(this);
-        }
+        //public override void Accept(IUnitManagerVisitor managerVisitor)
+        //{
+        //    managerVisitor.Visit(this);
+        //}
     }
 }
