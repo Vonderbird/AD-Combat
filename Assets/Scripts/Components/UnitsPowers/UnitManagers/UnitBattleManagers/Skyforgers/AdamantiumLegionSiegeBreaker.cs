@@ -1,10 +1,9 @@
 using ADC.API;
-using ADC.Currencies;
 using UnityEngine;
 
 namespace ADC
 {
-    public class FrostbornIceStalker : UnitBattleManager
+    public class AdamantiumLegionSiegeBreaker : UnitBattleManager
     {
         //public override List<ISpecialAbility> SpecialAbilities { get; protected set; }
         [SerializeField] private SimpleUnitUpdateInfo updateInfo;
@@ -18,16 +17,19 @@ namespace ADC
             }
         }
 
-
         //protected override void Awake()
         //{
+        //    UpdateInfo = new SimpleUnitUpdateInfo()
+        //    {
+        //        Cost = new(250),
+        //        OnUpdateAction = OnUnitUpdate
+        //    };
         //    base.Awake();
         //}
 
-
-        public override void Accept(IUnitManagerVisitor managerVisitor)
-        {
-            managerVisitor.Visit(this);
-        }
+        //public override void Accept(IUnitManagerVisitor managerVisitor)
+        //{
+        //    managerVisitor.Visit(this);
+        //}
     }
 }

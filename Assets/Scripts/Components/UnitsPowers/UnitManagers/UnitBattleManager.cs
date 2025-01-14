@@ -139,7 +139,7 @@ namespace ADC
         }
 
 
-        public abstract void Accept(IUnitManagerVisitor managerVisitor);
+        //public abstract void Accept(IUnitManagerVisitor managerVisitor);
 
         IEnumerator FreezeForSeconts(float seconds)
         {

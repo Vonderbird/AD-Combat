@@ -79,9 +79,9 @@ namespace ADC
             }
         }
 
-        public override void Accept(IUnitManagerVisitor managerVisitor)
-        {
-            managerVisitor.Visit(this);
-        }
+        //public override void Accept(IUnitManagerVisitor managerVisitor)
+        //{
+        //    managerVisitor.Visit(this);
+        //}
     }
 }
