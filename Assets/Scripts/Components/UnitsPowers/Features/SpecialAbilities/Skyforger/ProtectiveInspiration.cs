@@ -9,12 +9,21 @@ namespace ADC
     {
         [SerializeField] private int addArmor = 3;
         [SerializeField] private ParticlePlayer particlePlayerPrefab;
+        [SerializeField] private Vector3 positionOffset = Vector3.up * 0.9f;
+        [SerializeField] private Vector3 scaleOffset = Vector3.one;
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             var specialAbility = base.Initialize(unitBattleManager);
-            VFXPoolingManager.Instance.SpawnVfx(particlePlayerPrefab,
-                new FollowerVfxArgs(transform: unitBattleManager.Transform));
+            var particleArgs = new FollowerVfxArgs
+            {
+                Transform = unitBattleManager.Transform,
+                AutoCalculateOffset = false,
+                PositionOffset = positionOffset,
+                ScaleOffset = scaleOffset
+            };
+
+            VFXPoolingManager.Instance.SpawnVfx(particlePlayerPrefab, particleArgs);
             return specialAbility;
         }
 
