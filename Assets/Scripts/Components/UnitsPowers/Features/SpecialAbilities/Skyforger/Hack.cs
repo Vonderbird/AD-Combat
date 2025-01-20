@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using ADC.API;
 using ADC.Currencies;
 using RTSEngine.Attack;
@@ -15,10 +16,14 @@ namespace ADC
         [SerializeField] private float hackChance = 0.4f;
         [SerializeField] private float hackDuration = 8.0f;
         [SerializeField] private ParticlePlayer TargetHackedVFX;
+        [SerializeField] private string baseAttackCode;
+        [SerializeField] private string hackAttackCode;
         private TimeModifiedTimer waitForHack;
         private WaitUntil waitUntil;
         private Coroutine hackCoroutine;
-        private AttackDamage damage;
+
+        private UnitAttack baseAttack;
+        private UnitAttack hackAttack;
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
@@ -26,8 +31,10 @@ namespace ADC
             waitForHack = new TimeModifiedTimer(hackDuration);
             waitUntil = new WaitUntil(() => waitForHack.ModifiedDecrease());
 
+            var unitAttacks = unitBattleManager.GetComponentsInChildren<UnitAttack>();
+            baseAttack = unitAttacks.FirstOrDefault(ua => ua.Code == baseAttackCode);
+            hackAttack = unitAttacks.FirstOrDefault(ua => ua.Code == hackAttackCode);
             //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
-            damage = unitBattleManager.GetComponentInChildren<UnitAttack>().damage;
             return base.Initialize(unitBattleManager);
         }
 
@@ -57,11 +64,14 @@ namespace ADC
 
         IEnumerator ProcessTheHack(DamageArgs args)
         {
-            if (damage == null)
+            if (hackAttack == null)
             {
                 Debug.LogError($"[GroundPound] damage is not assigned!");
                 yield break;
             }
+
+            if (!hackAttack.IsActive)
+                yield break;
 
             var targetUnit = args.Target.GetComponent<FactionEntity>();
             var skinnedMeshRenderer = targetUnit.Model.GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -83,7 +93,7 @@ namespace ADC
                 DamageValue = targetUnit.Health.MaxHealth//args.Target.GetComponent<UnitHealth>().MaxHealth
             };
 
-            damage.Trigger(targetUnit, targetPosition, args.DamageType, postponeAttack);
+            hackAttack.damage.Trigger(targetUnit, targetPosition, args.DamageType, postponeAttack);
             //RTSHelper
         }
 

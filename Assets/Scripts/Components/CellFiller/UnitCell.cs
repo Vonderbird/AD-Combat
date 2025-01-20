@@ -36,6 +36,7 @@ namespace ADC.UnitCreation
         [SerializeField] private Renderer cellRenderer;
         [SerializeField] private int materialId;
         [SerializeField] private float cellSizeFactor = 0.5f;
+        [SerializeField] private Collider collider;
         public ParticleSystemGroup SpawnParticle { get; set; }
         public ParticleSystemGroup DeleteParticle { get; set; }
 
@@ -61,6 +62,8 @@ namespace ADC.UnitCreation
         private bool hoverIsEnable = false;
         public bool IsBuildingSelected { get; set; }
         public DeleteButton DeleteButton { get; set; }
+
+        public Collider Collider => collider;
 
         void Awake()
         {
@@ -206,6 +209,11 @@ namespace ADC.UnitCreation
 
         IEnumerator DeleteDecoWithDelay(GameObject tempObject)
         {
+            if (tempObject == null)
+            {
+                Debug.LogError($"[UnitCell.cs] tempObject cannot be null!");
+                yield break;
+            }
             var creationVFX = tempObject.transform.GetComponentsInChildren<CharacterCreationVFXs>().FirstOrDefault(c=>c.name=="Deletion");
             creationVFX?.OnDeleteCharacter();
 
@@ -354,6 +362,15 @@ namespace ADC.UnitCreation
         }
 
 
+        public void DisableSelection()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EnableSelection()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class CellEventArgs

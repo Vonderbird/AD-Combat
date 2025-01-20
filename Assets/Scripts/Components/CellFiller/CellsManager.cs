@@ -325,8 +325,8 @@ namespace ADC.UnitCreation
                 if (!unitDeletionTransaction.Process(unitPlacementCosts)) yield break;
 
             //Transform unitTransform = unitToDelete.transform;
+            DisableSelection(cellIds);
             yield return waitForDeletion;
-
             incomeManager.RemoveSource(unitIncomeSources[cellGroup]);
             unitIncomeSources.Remove(cellGroup);
             groupUnit.Remove(cellGroup);
@@ -341,8 +341,24 @@ namespace ADC.UnitCreation
 
             unitCellsGroups.Remove(cellGroup);
             positionedUnitsPrefabs.Remove(cellGroup);
+            EnableSelection(cellIds);
         }
 
+        private void DisableSelection(List<int> cellIds)
+        {
+            foreach (var cellId in cellIds)
+            {
+                UnitCells[cellId].Collider.enabled = false;
+            }
+        }
+
+        private void EnableSelection(List<int> cellIds)
+        {
+            foreach (var cellId in cellIds)
+            {
+                UnitCells[cellId].Collider.enabled = true;
+            }
+        }
         public void OnCellUnitSpawned(UnitsSpawnEventArgs spawnEventArgs)
         {
             //cellGroupIds.Clear();
