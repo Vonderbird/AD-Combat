@@ -42,6 +42,7 @@ public class Projectile14BlueRapidVFXPlayer : ParticlePlayer
 
     public override void Play()
     {
+        gameObject.SetActive(true);
         foreach (var flash in flashes)
             flash.Play();
 
@@ -63,9 +64,13 @@ public class Projectile14BlueRapidVFXPlayer : ParticlePlayer
     public override void Hit()
     {
         foreach (var hit in hits)
-        {
             hit.Play();
-        }
+
+        foreach (var flash in flashes)
+            flash.Stop();
+
+        foreach (var projectile in projectiles)
+            projectile.Stop();
     }
 
     private void ResetTransform()

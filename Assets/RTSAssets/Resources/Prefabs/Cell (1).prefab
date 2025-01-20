@@ -133,6 +133,7 @@ MonoBehaviour:
   cellRenderer: {fileID: 7587083558962231755}
   materialId: 0
   cellSizeFactor: 0.2
+  collider: {fileID: 3365280005295315999}
   defaultEmptyColor: {r: 1, g: 1, b: 1, a: 1}
   defaultFilledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   CellSelectiveClicked:

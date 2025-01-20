@@ -273,7 +273,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 270, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 182.00526, y: -0.1819067, z: 52.44033}
+      - m_Value: {x: 43.813, y: 0, z: 69.348}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -282,7 +282,7 @@ VisualEffect:
       - m_Value: {x: 9.162408, y: 324.6647, z: 0.79549265}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 182.00563, y: 1.1906646, z: 52.444317}
+      - m_Value: {x: 43.813362, y: 1.3725713, z: 69.35199}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -2334,7 +2334,7 @@ VisualEffect:
       - m_Value: {x: -0, y: 270, z: 0}
         m_Name: VFXTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 182.00526, y: -0.1819067, z: 52.44033}
+      - m_Value: {x: 43.813, y: 0, z: 69.348}
         m_Name: VFXTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
@@ -2343,7 +2343,7 @@ VisualEffect:
       - m_Value: {x: 9.162408, y: 324.6647, z: 0.79549265}
         m_Name: SkinnedMeshTransform_angles
         m_Overridden: 1
-      - m_Value: {x: 182.00563, y: 1.1906646, z: 52.444317}
+      - m_Value: {x: 43.813362, y: 1.3725713, z: 69.35199}
         m_Name: SkinnedMeshTransform_position
         m_Overridden: 1
       - m_Value: {x: 1, y: 1, z: 1}
