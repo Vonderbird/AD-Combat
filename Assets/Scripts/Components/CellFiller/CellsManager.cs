@@ -99,7 +99,7 @@ namespace ADC.UnitCreation
             if (unitSpawner)
                 unitSpawner.OnUnitsSpawned.RemoveListener(OnCellUnitSpawned);
 
-            if (updateCoroutine != null)
+            if (updateCoroutine != null && unitSpawner)
                 unitSpawner.StopCoroutine(updateCoroutine);
         }
 
