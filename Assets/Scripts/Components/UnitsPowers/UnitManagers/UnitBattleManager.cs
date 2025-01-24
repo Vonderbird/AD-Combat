@@ -123,7 +123,7 @@ namespace ADC
 
             //Specs.UpdateBaseSpecs(levelZeroSpecs);
             //EquipmentManager.UpdateEquipments(baseEquipments);
-            StartCoroutine(FreezeForSeconts(4.0f));
+            StartCoroutine(FreezeForSeconds(4.0f));
         }
 
         private void OnEnable()
@@ -141,7 +141,7 @@ namespace ADC
 
         //public abstract void Accept(IUnitManagerVisitor managerVisitor);
 
-        IEnumerator FreezeForSeconts(float seconds)
+        private IEnumerator FreezeForSeconds(float seconds)
         {
             yield return null;
             if (unit == null)
