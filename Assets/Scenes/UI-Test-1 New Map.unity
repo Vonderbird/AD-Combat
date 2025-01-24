@@ -5933,6 +5933,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1391971038}
+        m_TargetAssemblyTypeName: ADC.UnitCreation.DeactivablesManager, ADCombat
+        m_MethodName: DeactivateGroup
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: homeworld
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &366137564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15310,19 +15322,7 @@ MonoBehaviour:
   Manager: 0
   BattleCameraEnabled:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1284226037}
-        m_TargetAssemblyTypeName: ADC.UnitCreation.CellFillerComponent, ADCombat
-        m_MethodName: OnHomeCameraDeactivated
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   HomeCameraEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -21523,17 +21523,6 @@ MonoBehaviour:
   setTargetResourceOfSameTypeOnDead: 1
   setTargetResourceOnDeadRange: 20
   attackMoveEnabled: 1
---- !u!114 &1284226037 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
-  m_PrefabInstance: {fileID: 1419615429}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284226029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd22407c0962e0b4cb0f0570d8160262, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1286170971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8830261259266970285, guid: 5a5fada2fee67684ab7e37b0772c2adb, type: 3}
@@ -23918,6 +23907,10 @@ PrefabInstance:
     - target: {fileID: 654731008908650127, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
+      propertyPath: groupIds
+      value: cell_filler;homeworld
       objectReference: {fileID: 0}
     - target: {fileID: 718050269071717858, guid: 58fa537a8bf8b8e4a89046b6960a8fc9, type: 3}
       propertyPath: m_Enabled
@@ -27179,8 +27172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1837688466}
   trashIcon: {fileID: 1023943109}
-  groupId: unit_trash
-  groupIdsToDeactivate: unit_creation
+  groupId: unit_trash;homeworld
+  groupIdsToDeactivate: unit_creation;cell_filler
   Clicked:
     m_PersistentCalls:
       m_Calls: []
@@ -35515,8 +35508,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activatorButton: {fileID: 2982669403301737144, guid: eb36b5433afc6b549a1b937bc35e1120, type: 3}
-  groupId: unit_creation
-  groupIdsToDeactivate: unit_trash
+  groupId: unit_creation;homeworld
+  groupIdsToDeactivate: unit_trash;cell_filler
 --- !u!1 &2005660309
 GameObject:
   m_ObjectHideFlags: 0
