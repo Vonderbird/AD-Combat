@@ -12,7 +12,7 @@ namespace ADC.UnitCreation
         /// </summary>
         [SerializeField] private string rcDeactivations;
 
-        private string[] RcDeactivations;
+        private string[] RcDeactivations { get; set; }
 
         private Dictionary<string, HashSet<IDeactivable>> groupedDeactivables = new();
 

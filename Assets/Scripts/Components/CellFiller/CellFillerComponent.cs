@@ -16,12 +16,25 @@ using SelectionType = RTSEngine.Selection.SelectionType;
 namespace ADC.UnitCreation
 {
 
-    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator
+    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IDeactivable
 
 
     {
         [SerializeField] private Transform cellsParent;
         [SerializeField] private SpawnPointsManager spawnPointsManager;
+
+        /// <summary>
+        /// Group Ids, separate multiple group id with ';'
+        /// </summary>
+        [SerializeField] private string groupIds;
+
+        /// <summary>
+        /// Ids of groups to deactivate on activation of this button, separate multiple group id with ';'
+        /// </summary>
+        [SerializeField] private string groupIdsToDeactivate;
+
+        public string[] GroupIds { get; set; }
+        private string[] GroupIdsToDeactivate { get; set; }
 
         //[SerializeField]
         //private List<UnitCreationTask> taskUI = null;
@@ -66,7 +79,12 @@ namespace ADC.UnitCreation
         protected IncomeManager incomeManager { private set; get; }
         private UnitPlacementTransactionLogic unitPlacementTransaction;
 
-
+        private void Awake()
+        {
+            GroupIds = groupIds.Split(';');
+            GroupIdsToDeactivate = groupIdsToDeactivate.Split(';');
+            AddToManager();
+        }
 
         protected override void OnPendingInit()
         {
@@ -285,7 +303,21 @@ namespace ADC.UnitCreation
 
         public void OnHomeCameraDeactivated()
         {
+            Deactivate();
+        }
+
+        public void AddToManager()
+        {
+            foreach (var id in GroupIds)
+            {
+                DeactivablesManager.Instance.Add(id, this);
+            }
+        }
+
+        public void Deactivate()
+        {
             cellsManager.OnAllCellsUnselect(null);
         }
+
     }
 }
