@@ -318,6 +318,5 @@ namespace ADC.UnitCreation
         {
             cellsManager.OnAllCellsUnselect(null);
         }
-
     }
 }
