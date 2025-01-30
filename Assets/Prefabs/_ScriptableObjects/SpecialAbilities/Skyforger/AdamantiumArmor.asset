@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: AdamantiumArmor
   m_EditorClassIdentifier: 
   unlockLevel: 1
-  name: 
+  name: AdamantiumArmor
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 1842721145183463836, guid: daf8d6aceff914247ac4b8d3b5486f54, type: 3}
   reduceDamageRatio: 0.3
+  VFXPrefab: {fileID: -2878877175297534946, guid: 6519672054d304e44b212f0c7dd330b3, type: 3}
+  positionOffset: {x: 0, y: 0.9, z: 0}
+  scaleOffset: {x: 1, y: 1, z: 1}

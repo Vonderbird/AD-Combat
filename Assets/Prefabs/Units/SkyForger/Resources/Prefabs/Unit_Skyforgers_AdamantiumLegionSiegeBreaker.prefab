@@ -617,8 +617,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  specialAbilities: []
-  updateUIPrefab: {fileID: 0}
+  specialAbilities:
+  - {fileID: 11400000, guid: d363361fdece6d14aa14ed6138cd6e2c, type: 2}
+  - {fileID: 11400000, guid: 83375f107b9572243b0781688c014c32, type: 2}
+  updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:
       healthPoint:
@@ -903,6 +905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9111425964896933961}
   - component: {fileID: 6330317820719960372}
+  - component: {fileID: 7039493194974383784}
   m_Layer: 0
   m_Name: unit_attack
   m_TagString: Untagged
@@ -918,11 +921,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5814351604116151933}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.043392, y: 0, z: -10.473984}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5958003150065925314}
   m_Father: {fileID: 9072922260721497649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6330317820719960372
@@ -943,10 +947,10 @@ MonoBehaviour:
     x: 0
     y: 0
   priority: 0
-  requireIdleEntity: 1
+  requireIdleEntity: 0
   targetFinderData:
     enabled: 1
-    reloadTime: 1
+    reloadTime: 3
     range: 8
     idleOnly: 0
     typePicker:
@@ -981,7 +985,7 @@ MonoBehaviour:
     fetchType: 0
     items:
     - {fileID: 22100000, guid: c02407f1573e85b42b9dea890d9dd10e, type: 2}
-  progressDuration: 0.4
+  progressDuration: 2
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
   sourceEffect:
@@ -990,7 +994,7 @@ MonoBehaviour:
     input: {fileID: 0}
   showProgressGizmo: 1
   isLocked: 0
-  revert: 1
+  revert: 0
   engageOptions:
     engageOnAssign: 1
     engageWhenAttacked: 1
@@ -1009,7 +1013,7 @@ MonoBehaviour:
   requireTarget: 1
   allowMultipleTerrainAttacks: 0
   terrainAttackActive: 0
-  reloadDuration: 0.5
+  reloadDuration: 2
   delayTriggerEnabled: 0
   attackIterationTriggered: 0
   cooldown:
@@ -1034,6 +1038,10 @@ MonoBehaviour:
     areaAttackData: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0
@@ -1109,23 +1117,47 @@ MonoBehaviour:
       m_Calls: []
   completeEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4815502984686384648}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1358412168957502663}
+        m_TargetAssemblyTypeName: KassSlashv8blue, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   showAttackIterationGizmos: 1
   formation:
     unitStoppingDistance:
-      _min: 0
-      _max: 1.5
-    unitEnableDistance: 0.75
+      _min: 1.5
+      _max: 5
+    unitEnableDistance: 5
     buildingStoppingDistance:
-      _min: 0
-      _max: 1.5
+      _min: 1.5
+      _max: 5
     noTargetStoppingDistance:
       _min: 5
       _max: 10
     enforceMinStoppingDistance: 0
-    minStoppingDistance: 0.5
+    minStoppingDistance: 2
     stopMovementOnTargetInRange: 0
-    updateMvtDistance: 2
+    updateMvtDistance: 6
     movementFormation:
       lastType: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
       type: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
@@ -1137,6 +1169,201 @@ MonoBehaviour:
   moveOnAttack: 0
   followDistance: 9
   attackMoveEnabled: 0
+  attackMoveTaskUI: {fileID: 0}
+--- !u!114 &7039493194974383784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814351604116151933}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d50f81b2617c564f8e5ed1cdaa4cb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  code: ground_pound_attack
+  isActive: 1
+  tabID:
+    x: 0
+    y: 0
+  priority: 0
+  requireIdleEntity: 0
+  targetFinderData:
+    enabled: 1
+    reloadTime: 5000
+    range: 10
+    idleOnly: 1
+    typePicker:
+      type: 0
+      options:
+        codes: []
+        categories: []
+      targetUnits: 1
+      targetBuildings: 1
+      targetResources: 1
+    center: {fileID: 0}
+  setTargetTaskUI: {fileID: 0}
+  orderAudio:
+    fetchType: 0
+    items: []
+    cooldown:
+      enabled: 1
+      defaultValueRange:
+        _min: 1
+        _max: 2
+  showTargetGizmo: 1
+  progressEnabledAudio:
+    fetchType: 0
+    items: []
+    cooldown:
+      enabled: 1
+      defaultValueRange:
+        _min: 1
+        _max: 2
+  progressOverrideController:
+    fetchType: 0
+    items: []
+  progressDuration: 1
+  progressMaxDistance: 1
+  inProgressObject: {fileID: 0}
+  sourceEffect:
+    input: {fileID: 0}
+  targetEffect:
+    input: {fileID: 0}
+  showProgressGizmo: 1
+  isLocked: 0
+  revert: 0
+  engageOptions:
+    engageOnAssign: 1
+    engageWhenAttacked: 1
+    engageOnce: 0
+    engageFriendly: 0
+    autoIgnoreAngleLOS: 1
+    autoIgnoreObstacleLOS: 0
+  isAttackReady: 1
+  targetPicker:
+    type: 0
+    options:
+      codes: []
+      categories: []
+    targetUnits: 1
+    targetBuildings: 1
+  requireTarget: 1
+  allowMultipleTerrainAttacks: 0
+  terrainAttackActive: 0
+  reloadDuration: 3000
+  delayTriggerEnabled: 0
+  attackIterationTriggered: 0
+  cooldown:
+    enabled: 0
+    defaultValueRange:
+      _min: 1
+      _max: 2
+  launcher:
+    useAttackObjects: 0
+    launchType: 1
+    sources: []
+    attackIterationLaunchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  damage:
+    enabled: 1
+    data:
+      unit: 70
+      building: 70
+      custom: []
+    areaAttackEnabled: 0
+    areaAttackData: []
+    dotEnabled: 0
+    baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    hitEffects: []
+    resetDamageDealt: 0
+    damageDealtEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  weapon:
+    toggableObjects: []
+    toggleType: 0
+    updateRotation: 1
+    rotateInRangeOnly: 0
+    freezeRotationX: 0
+    freezeRotationY: 0
+    freezeRotationZ: 0
+    smoothRotation: 1
+    rotationDamping: 2
+    forceIdleRotation: 1
+    idleAngles: {x: 0, y: 0, z: 0}
+  lineOfSight:
+    enabled: 1
+    useWeaponObject: 0
+    angle: 40
+    obstacleLayerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    ignoreRotationX: 0
+    ignoreRotationY: 0
+    ignoreRotationZ: 0
+  nextLaunchLogEnabled: 0
+  setTargetCooldownUIData:
+    icon: {fileID: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
+  switchTaskUI: {fileID: 0}
+  switchAttackCooldownUIData:
+    icon: {fileID: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
+  cancelTaskUI: {fileID: 0}
+  attackCompleteAudio:
+    fetchType: 0
+    items: []
+    cooldown:
+      enabled: 1
+      defaultValueRange:
+        _min: 1
+        _max: 2
+  attackRangeEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  targetLockedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  showAttackIterationGizmos: 1
+  formation:
+    unitStoppingDistance:
+      _min: 1
+      _max: 2
+    unitEnableDistance: 1.25
+    buildingStoppingDistance:
+      _min: 1
+      _max: 2
+    noTargetStoppingDistance:
+      _min: 5
+      _max: 10
+    enforceMinStoppingDistance: 0
+    minStoppingDistance: 1.25
+    stopMovementOnTargetInRange: 1
+    updateMvtDistance: 2
+    movementFormation:
+      lastType: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
+      type: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
+      properties:
+        floatProperties:
+        - name: spacing
+          value: 0.5
+        intProperties: []
+  moveOnAttack: 0
+  followDistance: 15
+  attackMoveEnabled: 1
   attackMoveTaskUI: {fileID: 0}
 --- !u!1 &8423986542023317977
 GameObject:
@@ -1273,3 +1500,93 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &1897888537050772201
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9111425964896933961}
+    m_Modifications:
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377868804346791137, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_Name
+      value: KassSlashv8blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377868804346791137, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433467854832030544, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7433467854832030547, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+--- !u!114 &1358412168957502663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 616055514898748974, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+  m_PrefabInstance: {fileID: 1897888537050772201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815502984686384648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4ffdcb88ff9c74e8733099d1063796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4815502984686384648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6377868804346791137, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+  m_PrefabInstance: {fileID: 1897888537050772201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5958003150065925314 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5258431805868215851, guid: fd268d007a32a5b48bf67a8571b2168c, type: 3}
+  m_PrefabInstance: {fileID: 1897888537050772201}
+  m_PrefabAsset: {fileID: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
     code: unit_spawn_Skyforgers_BattleFortress
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: 643087b611e8719458430c8e8a32e3e3, type: 3}
+    icon: {fileID: 21300000, guid: 2106add8e630b3f40a9844b60daffb24, type: 3}
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1

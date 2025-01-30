@@ -22,6 +22,7 @@ namespace ADC.UnitCreation
         private readonly Dictionary<int, Vector3> cellPositions = new();
 
         private Dictionary<int, List<int>> unitCellsGroups = new();
+        private readonly Dictionary<int, Vector3> unitsGroupPosition = new();
         private readonly Dictionary<int, int> cellGroupIds = new();
         public Dictionary<int, int> CellGroupIds => cellGroupIds;
         private readonly Dictionary<int, IUnitBattleManager> groupUnit = new();
@@ -39,6 +40,9 @@ namespace ADC.UnitCreation
         private readonly UnitPlacementTransactionLogic unitPlacementTransaction;
         private readonly UnitDeletionTransactionLogic unitDeletionTransaction;
         private readonly int factionId;
+        public Dictionary<int, UnitCell> UnitCells => unitCells;
+
+        public Dictionary<int, Vector3> UnitsGroupPosition => unitsGroupPosition;
 
         /// <summary>
         /// Key(int): Cell groupId,
@@ -51,6 +55,8 @@ namespace ADC.UnitCreation
         /// Value(IUnit): Unit's prefab
         /// </summary>
         private Dictionary<int, IUnit> positionedUnitsPrefabs = new();
+
+        private Coroutine updateCoroutine;
 
         public CellsManager([NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
             [NotNull] ActiveTaskContainer activeTask, int factionId)
@@ -65,8 +71,6 @@ namespace ADC.UnitCreation
             unitPlacementTransaction = new UnitPlacementTransactionLogic(factionId);
             unitDeletionTransaction = new UnitDeletionTransactionLogic(factionId);
         }
-
-        public Dictionary<int, UnitCell> UnitCells => unitCells;
 
         public void OnEnabled(DeleteButton deleteButton)
         {
@@ -84,7 +88,36 @@ namespace ADC.UnitCreation
 
             if (unitSpawner)
                 unitSpawner.OnUnitsSpawned.AddListener(OnCellUnitSpawned);
+            updateCoroutine ??= unitSpawner.StartCoroutine(Update());
         }
+
+        public void OnDisabled()
+        {
+            foreach (var (_, unitCell) in UnitCells)
+                unitCell.CellSelectiveClicked.RemoveListener(OnCellSelectiveClicked);
+
+            if (unitSpawner)
+                unitSpawner.OnUnitsSpawned.RemoveListener(OnCellUnitSpawned);
+
+            if (updateCoroutine != null && unitSpawner)
+                unitSpawner.StopCoroutine(updateCoroutine);
+        }
+
+        IEnumerator Update()
+        {
+            while (true)
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    OnAllCellsUnselect(null);
+                }
+
+                yield return null;
+            }
+        }
+
+        
+
 
         private void OnCellSelectionEntered(CellEventArgs arg0)
         {
@@ -190,7 +223,7 @@ namespace ADC.UnitCreation
             UnitCellSelected?.Invoke(this, new SelectionEventArgs(SelectionType.single, unitDeco));
         }
 
-        private void OnAllCellsUnselect(CellEventArgs arg0)
+        public void OnAllCellsUnselect(CellEventArgs arg0)
         {
             //var cellIds = new HashSet<int>(unitCellsGroups.ContainsKey(selectedUnitGroup)? 
             //    unitCellsGroups[selectedUnitGroup]: new List<int>());
@@ -240,6 +273,8 @@ namespace ADC.UnitCreation
                 unitCellsGroups[groupId].Add(cellId);
                 cellGroupIds.Add(cellId, groupId);
             }
+            averagePosition /= taskPopulation;
+            UnitsGroupPosition[groupId] = averagePosition;
 
 
             var unitToSpawn = this.activeTask.UnitCreationTask.TargetObject;
@@ -247,8 +282,9 @@ namespace ADC.UnitCreation
                 activeTask.UnitCreationTask.TargetObject,
                 activeTask.UnitCreationTask.SpawnParticleSystem,
                 activeTask.UnitCreationTask.DeletionParticleSystem,
-                averagePosition / taskPopulation,
+                averagePosition,
                 arg0.UnitScaleFactor);
+
             var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
             if (unitPlacementCosts)
                 if (!unitPlacementTransaction.Process(unitPlacementCosts)) return;
@@ -289,8 +325,8 @@ namespace ADC.UnitCreation
                 if (!unitDeletionTransaction.Process(unitPlacementCosts)) yield break;
 
             //Transform unitTransform = unitToDelete.transform;
+            DisableSelection(cellIds);
             yield return waitForDeletion;
-
             incomeManager.RemoveSource(unitIncomeSources[cellGroup]);
             unitIncomeSources.Remove(cellGroup);
             groupUnit.Remove(cellGroup);
@@ -305,8 +341,24 @@ namespace ADC.UnitCreation
 
             unitCellsGroups.Remove(cellGroup);
             positionedUnitsPrefabs.Remove(cellGroup);
+            EnableSelection(cellIds);
         }
 
+        private void DisableSelection(List<int> cellIds)
+        {
+            foreach (var cellId in cellIds)
+            {
+                UnitCells[cellId].Collider.enabled = false;
+            }
+        }
+
+        private void EnableSelection(List<int> cellIds)
+        {
+            foreach (var cellId in cellIds)
+            {
+                UnitCells[cellId].Collider.enabled = true;
+            }
+        }
         public void OnCellUnitSpawned(UnitsSpawnEventArgs spawnEventArgs)
         {
             //cellGroupIds.Clear();
@@ -315,15 +367,6 @@ namespace ADC.UnitCreation
             {
                 unitCell.OnCellUnitSpawned();
             }
-        }
-
-        public void OnDisabled()
-        {
-            foreach (var (_, unitCell) in UnitCells)
-                unitCell.CellSelectiveClicked.RemoveListener(OnCellSelectiveClicked);
-
-            if (unitSpawner)
-                unitSpawner.OnUnitsSpawned.RemoveListener(OnCellUnitSpawned);
         }
 
         public void PrepareCells()

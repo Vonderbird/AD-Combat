@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "AD-Combat.sln"
+    "dotnet.defaultSolution": "AD-Main-Game.sln"
 }

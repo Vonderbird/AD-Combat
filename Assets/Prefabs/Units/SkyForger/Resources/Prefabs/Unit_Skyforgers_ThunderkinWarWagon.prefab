@@ -617,8 +617,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  specialAbilities: []
-  updateUIPrefab: {fileID: 0}
+  specialAbilities:
+  - {fileID: 11400000, guid: 65693c1c08f2f3c4a9fe078f730c13e9, type: 2}
+  - {fileID: 11400000, guid: f0f74460be6785944b3abe5e84da309d, type: 2}
+  updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:
       healthPoint:
@@ -981,7 +983,7 @@ MonoBehaviour:
     fetchType: 0
     items:
     - {fileID: 22100000, guid: 5c8d2a8f54ba7924fbea29065c411211, type: 2}
-  progressDuration: 0.4
+  progressDuration: 1.5
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
   sourceEffect:
@@ -1009,7 +1011,7 @@ MonoBehaviour:
   requireTarget: 1
   allowMultipleTerrainAttacks: 0
   terrainAttackActive: 0
-  reloadDuration: 0.5
+  reloadDuration: 20
   delayTriggerEnabled: 0
   attackIterationTriggered: 0
   cooldown:
@@ -1018,9 +1020,29 @@ MonoBehaviour:
       _min: 1
       _max: 2
   launcher:
-    useAttackObjects: 0
+    useAttackObjects: 1
     launchType: 1
-    sources: []
+    sources:
+    - attackObject:
+        input: {fileID: 57255937751559477, guid: b4805592e457b0c44ba688d8886f8120, type: 3}
+      launchPosition: {fileID: 4574196597336119279}
+      launchRotationAngles: {x: 0, y: 0, z: 0}
+      preDelayTime: 0
+      postDelayTime: 0
+      launchDelayTime: 0
+      damageInDelay: 0
+      delayParentObject: {fileID: 4574196597336119279}
+      index: 0
+    - attackObject:
+        input: {fileID: 57255937751559477, guid: b4805592e457b0c44ba688d8886f8120, type: 3}
+      launchPosition: {fileID: 6864765543444121850}
+      launchRotationAngles: {x: 0, y: 0, z: 0}
+      preDelayTime: 0
+      postDelayTime: 0
+      launchDelayTime: 0
+      damageInDelay: 0
+      delayParentObject: {fileID: 6864765543444121850}
+      index: 0
     attackIterationLaunchEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -1034,6 +1056,10 @@ MonoBehaviour:
     areaAttackData: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0
@@ -1113,19 +1139,19 @@ MonoBehaviour:
   showAttackIterationGizmos: 1
   formation:
     unitStoppingDistance:
-      _min: 0
-      _max: 1.5
-    unitEnableDistance: 0.75
-    buildingStoppingDistance:
-      _min: 0
-      _max: 1.5
-    noTargetStoppingDistance:
       _min: 5
-      _max: 10
+      _max: 15
+    unitEnableDistance: 7
+    buildingStoppingDistance:
+      _min: 5
+      _max: 15
+    noTargetStoppingDistance:
+      _min: 20
+      _max: 30
     enforceMinStoppingDistance: 0
-    minStoppingDistance: 0.5
+    minStoppingDistance: 5
     stopMovementOnTargetInRange: 0
-    updateMvtDistance: 2
+    updateMvtDistance: 17
     movementFormation:
       lastType: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
       type: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
@@ -1169,6 +1195,68 @@ Transform:
   m_Children:
   - {fileID: 6965846819334425339}
   m_Father: {fileID: 9072922260721497649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8436624332475085722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6864765543444121850}
+  m_Layer: 0
+  m_Name: AttackPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6864765543444121850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8436624332475085722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.252, y: -2.118, z: 0.241}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6532321662872838180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9170123828654576813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4574196597336119279}
+  m_Layer: 0
+  m_Name: AttackPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4574196597336119279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170123828654576813}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.241, y: -2.118, z: 0.241}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6532321662872838180}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7431240359097396496
 PrefabInstance:
@@ -1236,12 +1324,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4433343354001165620, guid: 8b1afc2a60c6a7049947159b8c9b5180, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4574196597336119279}
+    - targetCorrespondingSourceObject: {fileID: 4433343354001165620, guid: 8b1afc2a60c6a7049947159b8c9b5180, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6864765543444121850}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8b1afc2a60c6a7049947159b8c9b5180, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2716661528297674472}
   m_SourcePrefab: {fileID: 100100000, guid: 8b1afc2a60c6a7049947159b8c9b5180, type: 3}
+--- !u!4 &6532321662872838180 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4433343354001165620, guid: 8b1afc2a60c6a7049947159b8c9b5180, type: 3}
+  m_PrefabInstance: {fileID: 7431240359097396496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6965846819334425339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b1afc2a60c6a7049947159b8c9b5180, type: 3}

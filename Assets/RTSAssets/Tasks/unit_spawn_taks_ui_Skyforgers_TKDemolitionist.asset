@@ -16,7 +16,7 @@ MonoBehaviour:
     code: unit_spawn_Skyforgers_TKDemolitionist
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: 5c63c53e804fc914e840a834c0df77fb, type: 3}
+    icon: {fileID: 21300000, guid: fb4b6d74193d92a4d9a261141bcf6d63, type: 3}
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1

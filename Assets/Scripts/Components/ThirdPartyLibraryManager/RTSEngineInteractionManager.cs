@@ -90,21 +90,21 @@ namespace ADC
         {
             var damageData = new DamageData()
                 { building = buildingDamage, unit = unitDamage, custom = Array.Empty<CustomDamageData>() };
-            unitAttack.Damage.UpdateDamage(damageData);
+            unitAttack.damage.UpdateDamage(damageData);
         }
 
         public void SetUnitDamage(int value)
         {
-            var damageData = unitAttack.Damage.Data;
+            var damageData = unitAttack.damage.Data;
             damageData.unit = value;
-            unitAttack.Damage.UpdateDamage(damageData);
+            unitAttack.damage.UpdateDamage(damageData);
         }
 
         public void SetBuildingDamage(int value)
         {
-            var damageData = unitAttack.Damage.Data;
+            var damageData = unitAttack.damage.Data;
             damageData.building = value;
-            unitAttack.Damage.UpdateDamage(damageData);
+            unitAttack.damage.UpdateDamage(damageData);
         }
 
         public void SetManaPoint(int value) { }

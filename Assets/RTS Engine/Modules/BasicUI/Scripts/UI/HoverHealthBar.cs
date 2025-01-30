@@ -1,4 +1,5 @@
-﻿using RTSEngine.Cameras;
+﻿using ADC;
+using RTSEngine.Cameras;
 using RTSEngine.Entities;
 using RTSEngine.Event;
 using RTSEngine.Game;
@@ -14,13 +15,13 @@ namespace RTSEngine.UI
 {
     // Attached to the UI canvas that holds the hover health bar, handles displaying the hover health bar at the main camera.
     [RequireComponent(typeof(Canvas))]
-    public class HoverHealthBar : PoolableObject
+    public class HoverHealthBar : HoverHealthBarBase
     {
         public IEntity Entity { private set; get; }
 
         private Canvas canvas;
         [SerializeField, Tooltip("Actual UI elements of the hover health bar, children of the canvas assigned above.")]
-        private ProgressBarUI healthBar = new ProgressBarUI(); 
+        protected ProgressBarUI healthBar = new ProgressBarUI();
 
         private Transform mainCamTransform = null;
 

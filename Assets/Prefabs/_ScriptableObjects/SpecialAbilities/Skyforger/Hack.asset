@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d54457c4a175846a66d24d87827294, type: 3}
+  m_Script: {fileID: 11500000, guid: d289b6f08e9bfed44a39a388a47a68d1, type: 3}
   m_Name: Hack
   m_EditorClassIdentifier: 
   unlockLevel: 1
   name: 
   icon: {fileID: 0}
-  infoCellPrefab: {fileID: 0}
+  infoCellPrefab: {fileID: 1807120742874249713, guid: 2fa69800e8caa4c4ea2353aa1a9da749, type: 3}
+  hackChance: 0.4
+  hackDuration: 8
+  TargetHackedVFX: {fileID: -848383871886843326, guid: b0d191a54eb5ca34b84d09d5b0173567, type: 3}

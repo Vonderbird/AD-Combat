@@ -55,6 +55,11 @@ namespace ADC.API
             }
         }
 
+        public static bool HasInstance()
+        {
+            return _instance;
+        }
+
         private void OnDestroy()
         {
             _applicationIsQuitting = true;

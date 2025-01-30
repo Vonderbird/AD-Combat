@@ -14,7 +14,7 @@ namespace RTSEngine.EditorOnly.Effect
     {
         private string[][] toolbars = new string[][] {
             new string [] { "Effect Object", "Movement", "Following Target" },
-            new string [] { "Damage", "Effects/Audio" },
+            new string [] { "damage", "Effects/Audio" },
         };
 
         public override void OnInspectorGUI()
@@ -32,7 +32,7 @@ namespace RTSEngine.EditorOnly.Effect
                 case "Following Target":
                     OnFollowingTargetInspectorGUI();
                     break;
-                case "Damage":
+                case "damage":
                     OnDamageInspectorGUI();
                     break;
                 case "Effects/Audio":

@@ -9,22 +9,23 @@ using RTSEngine.Logging;
 using RTSEngine.Utilities;
 using RTSEngine.Health;
 using System.Collections.Generic;
+using ADC;
 
 namespace RTSEngine.UI
 {
-    public class HoverHealthBarUIHandler : ObjectPool<HoverHealthBar, PoolableObjectSpawnInput>, IPreRunGameService
+    public class HoverHealthBarUIHandler : ObjectPool<HoverHealthBarBase, PoolableObjectSpawnInput>, IPreRunGameService
     {
         #region Attributes
         [SerializeField, Tooltip("Enable or disable showing health bars when the player hovers the mouse over an entity in the game.")]
         private bool isActive = true;
 
-        [SerializeField, EnforceType(prefabOnly: true), Tooltip("Hover health bar prefab object that includes the 'HoverHelathBar' component")]
-        private HoverHealthBar prefab = null;
-
+        [SerializeField, EnforceType(prefabOnly: true), Tooltip("Hover health bar prefab object that includes the 'HoverHealthBar' component")]
+        private HoverHealthBarBase prefab = null;
+        
         public enum HoverHealthBarMode { always, onMouseHover, onSelection, onMouseHoverOrSelection }
         [SerializeField, Tooltip("Choose whether health bars are shown when always, when the local player places their mouse over an entity, when the local player selects an entity or the last two together.")]
         private HoverHealthBarMode enableMode = HoverHealthBarMode.always;
-        private Dictionary<IEntity, HoverHealthBar> activeHealthBars;
+        private Dictionary<IEntity, HoverHealthBarBase> activeHealthBars;
 
         [SerializeField, Tooltip("Enable to only display the hover health bar for the player faction's units and buildings.")]
         private bool playerFactionOnly = true;
@@ -47,7 +48,7 @@ namespace RTSEngine.UI
             if (!prefab.IsValid())
                 logger.LogError($"[{GetType().Name}] The 'Prefab' field must be assigned", source: this);
 
-            activeHealthBars = new Dictionary<IEntity, HoverHealthBar>();
+            activeHealthBars = new Dictionary<IEntity, HoverHealthBarBase>();
 
             if (enableMode == HoverHealthBarMode.onMouseHover
                 || enableMode == HoverHealthBarMode.onMouseHoverOrSelection)
@@ -129,23 +130,23 @@ namespace RTSEngine.UI
             if (nextData.offset.y == -1.0f)
                 nextData.offset = new Vector3(0.0f, source.Health.HoverHealthBarY, 0.0f);
 
-            HoverHealthBar nextHealthBar = Spawn(prefab, new HoverHealthBarSpawnInput(source, nextData));
+            HoverHealthBarBase nextHealthBar = Spawn(prefab, new HoverHealthBarSpawnInput(source, nextData));
 
             activeHealthBars.Add(source, nextHealthBar);
         }
 
         private void Hide (IEntity source)
         {
-            if (!activeHealthBars.TryGetValue(source, out HoverHealthBar nextHealthBar))
+            if (!activeHealthBars.TryGetValue(source, out HoverHealthBarBase nextHealthBar))
                 return;
 
             Despawn(nextHealthBar);
             activeHealthBars.Remove(source);
         }
 
-        public HoverHealthBar Spawn(HoverHealthBar prefab, HoverHealthBarSpawnInput input)
+        public HoverHealthBarBase Spawn(HoverHealthBarBase prefab, HoverHealthBarSpawnInput input)
         {
-            HoverHealthBar nextHealthBar = base.Spawn(prefab);
+            HoverHealthBarBase nextHealthBar = base.Spawn(prefab);
             if (!nextHealthBar.IsValid())
                 return null;
 

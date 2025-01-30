@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using ADC.Currencies;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -24,7 +22,8 @@ namespace ADC
 
         private void OnDisable()
         {
-            EconomySystem.Instance.StartWave.RemoveListener(HitPortal);
+            if(EconomySystem.HasInstance())
+                EconomySystem.Instance.StartWave.RemoveListener(HitPortal);
         }
 
         public void CreatePortal()

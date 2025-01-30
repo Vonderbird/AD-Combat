@@ -29,23 +29,29 @@ namespace ADC.API
         int HackThenDamage(DamageArgs damage);
     }
 
+    [Flags]
+    public enum DamageType
+    {
+        Ranged=1,
+        Melee=2,
+        Area=4,
+    }
+
     public struct DamageArgs
     {
         public DamageArgs(IUnitBattleManager source, IUnitBattleManager target, 
-            bool isRanged, bool isArea, int value, bool attackFromPostpone=false)
+            int value, DamageType damageType = DamageType.Melee, bool attackFromPostpone=false)
         {
             Source = source;
-            IsRanged = isRanged;
-            IsArea = isArea;
             Value = value;
+            DamageType = damageType;
             Target = target;
             AttackFromPostpone = attackFromPostpone;
         }
 
         public IUnitBattleManager Source { get; set; }
         public IUnitBattleManager Target { get; set; }
-        public bool IsRanged { get; set; }
-        public bool IsArea { get; set; }
+        public DamageType DamageType { get; set; }
         public int Value { get; set; }
         public bool AttackFromPostpone { get; set; }
     }

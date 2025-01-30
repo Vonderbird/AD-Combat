@@ -93,7 +93,7 @@ namespace RTSEngine.EntityComponent
 
         // DAMAGE
         [SerializeField, Tooltip("Settings for the attack's damage effect.")]
-        private AttackDamage damage = new AttackDamage();
+        public AttackDamage damage = new AttackDamage();
         public AttackDamage Damage => damage;
 
         // WEAPON
@@ -180,7 +180,7 @@ namespace RTSEngine.EntityComponent
             Cooldown.Init(gameMgr, OnCooldownOver);
 
             // Init attack sub-components:
-            damage.Init(gameMgr, this);
+            Damage.Init(gameMgr, this);
             launcher.Init(gameMgr, this);
             Weapon.Init(gameMgr, this);
             lineOfSight.Init(gameMgr, this);
@@ -203,7 +203,7 @@ namespace RTSEngine.EntityComponent
             if (borderTargetFinder.IsValid())
                 borderTargetFinder.Disable();
 
-            damage.Disable();
+            Damage.Disable();
             launcher.Disable();
             Weapon.Disable();
             lineOfSight.Disable();

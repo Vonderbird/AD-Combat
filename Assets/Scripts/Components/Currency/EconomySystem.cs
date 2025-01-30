@@ -87,7 +87,10 @@ namespace ADC.Currencies
 
         public void Init(IGameManager manager)
         {
+            GameMgr = manager;
         }
+
+        public IGameManager GameMgr { get; private set; }
 
         public void Add(CurrencyInterface currencyInterface)
         {

@@ -43,7 +43,7 @@ namespace RTSEngine.Animation
             (animator.gameObject.activeInHierarchy && animator.GetBool(UnitAnimator.Parameters[AnimatorState.movingState]))
             || CurrState == AnimatorState.moving;
 
-        [SerializeField, Tooltip("Play the take damage animation when the unit is damaged?"), Header("Damage Animation")]
+        [SerializeField, Tooltip("Play the take damage animation when the unit is damaged?"), Header("damage Animation")]
         private bool damageAnimationEnabled = false;
         [SerializeField, Tooltip("How long does the take damage animation last for?")]
         private float damageAnimationDuration = 0.2f;

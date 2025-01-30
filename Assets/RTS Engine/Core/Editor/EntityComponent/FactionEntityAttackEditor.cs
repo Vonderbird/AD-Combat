@@ -11,7 +11,7 @@ namespace RTSEngine.EditorOnly.EntityComponent
     public class UnitAttackEditor : FactionEntityAttackEditor<UnitAttack>
     {
         private string[][] toolbars = new string[][] {
-            new string [] { "General", "Launcher", "Damage",},
+            new string [] { "General", "Launcher", "damage",},
             new string [] { "Weapon", "LOS", "Attack-Move" },
             new string [] { "UI", "Audio", "Events", "Debug" }
         };
@@ -127,7 +127,7 @@ namespace RTSEngine.EditorOnly.EntityComponent
         }
 
         private string[][] toolbars = new string[][] {
-            new string [] { "General", "Launcher", "Damage", "Weapon" },
+            new string [] { "General", "Launcher", "damage", "Weapon" },
             new string [] { "LOS", "UI", "Audio", "Events", "Debug" }
         };
 
@@ -146,7 +146,7 @@ namespace RTSEngine.EditorOnly.EntityComponent
                 case "Launcher":
                     OnLauncherInspectorGUI();
                     break;
-                case "Damage":
+                case "damage":
                     OnDamageInspectorGUI();
                     break;
                 case "Weapon":
@@ -220,7 +220,7 @@ namespace RTSEngine.EditorOnly.EntityComponent
 
         protected virtual void OnDamageInspectorGUI()
         {
-            EditorGUILayout.PropertyField(SO.FindProperty("damage.enabled"), new GUIContent("Deal Damage"));
+            EditorGUILayout.PropertyField(SO.FindProperty("damage.enabled"), new GUIContent("Deal damage"));
 
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(SO.FindProperty("damage.data"), true);
@@ -239,10 +239,12 @@ namespace RTSEngine.EditorOnly.EntityComponent
             if (SO.FindProperty("damage.dotEnabled").boolValue == true)
             {
                 EditorGUI.indentLevel++;
+                var property1 = SO.FindProperty("damage");
+                var property2 = SO.FindProperty("damage.dotData");
                 EditorGUILayout.PropertyField(SO.FindProperty("damage.dotData"), new GUIContent("DoT Data"), true);
                 EditorGUI.indentLevel--;
             }
-
+             
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(SO.FindProperty("damage.hitEffects"), true);
 
@@ -400,7 +402,7 @@ namespace RTSEngine.EditorOnly.EntityComponent
             EditorGUILayout.PropertyField(SO.FindProperty("attackIterationTriggered"));
 
             EditorGUILayout.PropertyField(SO.FindProperty("damage.resetDamageDealt"));
-            EditorGUILayout.IntField(comp.Damage.DamageDealt);
+            EditorGUILayout.IntField(comp.damage.DamageDealt);
 
             GUI.enabled = true;
         }

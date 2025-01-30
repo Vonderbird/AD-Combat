@@ -123,7 +123,7 @@ namespace RTSEngine.Attack
 
             lookAtPosition = TargetPosition - transform.position;
 
-            // Damage handler
+            // damage handler
             damage = data.source.Damage;
 
             // Delay options:
@@ -265,7 +265,7 @@ namespace RTSEngine.Attack
         }
         #endregion
 
-        #region Dealing Damage
+        #region Dealing damage
         private void OnTriggerEnter(Collider other)
         {
             var entitySelection = other.gameObject.GetComponent<EntitySelectionCollider>();
