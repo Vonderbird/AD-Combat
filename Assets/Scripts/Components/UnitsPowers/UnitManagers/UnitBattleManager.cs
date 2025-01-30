@@ -104,7 +104,7 @@ namespace ADC
             Specs.Initialize(thirdParty);
             EquipmentManager.Initialize(this);
 
-            thirdParty.TargetUpdated += OnTargetUpdated;
+            thirdParty.TargetUpdated += OnTargetUpdated;  ////////////////////// issue in making damage zero
             Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
             cellFillerComponent = FindObjectOfType<CellFillerComponent>();
             CellUnit = cellFillerComponent.GetCorrespondingUnitCell(this);
@@ -121,8 +121,8 @@ namespace ADC
             // 2. Xp.Level for base spaces upgrade!
             //Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
-            //Specs.UpdateBaseSpecs(levelZeroSpecs);
-            //EquipmentManager.UpdateEquipments(baseEquipments);
+            Specs.UpdateBaseSpecs(Specs.BaseSpecs);
+            EquipmentManager.UpdateEquipments(equipmentManager.Equipments);
             StartCoroutine(FreezeForSeconds(4.0f));
         }
 
@@ -177,7 +177,7 @@ namespace ADC
             }
             //else
             //{
-                thirdParty.SetDamage(Specs.CurrentSpecs.UnitDamage, Specs.CurrentSpecs.BuildingDamage);
+            //thirdParty.SetDamage(Specs.CurrentSpecs.UnitDamage, Specs.CurrentSpecs.BuildingDamage);
             //}
         }
 
