@@ -38,7 +38,7 @@ namespace RTSEngine.Utilities
         #endregion
 
         #region Spawning/Despawning
-        protected void OnSpawn(PoolableObjectSpawnInput input)
+        public void OnSpawn(PoolableObjectSpawnInput input)
         {
             transform.SetParent(input.parent, true);
 

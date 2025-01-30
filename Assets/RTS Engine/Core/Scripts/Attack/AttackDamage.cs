@@ -15,6 +15,7 @@ using RTSEngine.Audio;
 
 namespace RTSEngine.Attack
 {
+
     [System.Serializable]
     public class AttackDamage : AttackSubComponent
     {
@@ -37,7 +38,10 @@ namespace RTSEngine.Attack
         [SerializeField, Tooltip("When damage over time is enabled, this defines the parameters of the DoT.")]
         private DamageOverTimeData baseDotData = new DamageOverTimeData();
         public DamageOverTimeData BaseDotData => baseDotData;
-        public DamageOverTimeData DotData { get; private set; }
+
+        [SerializeField, Tooltip("Damage over time")]
+        public DamageOverTimeData dotData = new DamageOverTimeData();
+        public DamageOverTimeData DotData => dotData;
 
         [SerializeField, Tooltip("Define what hit effect objects will be used with which target faction entities when damage is dealt.")]
         private FactionEntityDependantHitEffectData[] hitEffects = new FactionEntityDependantHitEffectData[0];
@@ -77,16 +81,16 @@ namespace RTSEngine.Attack
         #region Initializing/Terminating
         protected override void OnInit()
         {
-            if (DotData.cycleDuration == 0) DotData = BaseDotData;
+            if (DotData.cycleDuration == 0) dotData = BaseDotData;
             this.gridSearch = gameMgr.GetService<IGridSearchHandler>();
-            if(!specsCalculator)
+            if (!specsCalculator)
                 specsCalculator = gameMgr.FindObjectOfType_<BaseUnitSpecsCalculator>();
             if (!specsCalculator)
                 Debug.LogError($"[AttackDamage] There is no SpecsCalculator in the scene!");
         }
         #endregion
 
-        #region Updating Damage Values
+        #region Updating damage Values
         // Make sure that the calls to these methods are syncable to all clients
         public void UpdateDamage(DamageData newDamageData)
         {
@@ -103,21 +107,23 @@ namespace RTSEngine.Attack
 
         public void UpdateDotData(DamageOverTimeData newDotData)
         {
-            this.DotData = newDotData;
+            this.dotData = newDotData;
         }
         #endregion
 
-        #region Triggering Damage
-        public void Trigger(IFactionEntity target, Vector3 targetPosition, bool rangedAttack=false, bool attackFromPostpone=false)
+        #region Triggering damage
+        public void Trigger(IFactionEntity target, Vector3 targetPosition, DamageType damageType = DamageType.Melee, PostponeAttack attackFromPostpone = default)
         {
             if (areaAttackEnabled == true)
-                TriggerArea(target.IsValid() ? target.transform.position : targetPosition, sourceFactionID: SourceAttackComp.Entity.FactionID, attackFromPostpone);
+                TriggerArea(target.IsValid() ? target.transform.position : targetPosition,
+                    sourceFactionID: SourceAttackComp.Entity.FactionID,
+                    damageType: damageType, attackFromPostpone);
             // Apply damage directly
             else if (target.IsValid())
-                Deal(target, data.Get(target), rangedAttack, attackFromPostpone);
+                Deal(target, data.Get(target), damageType, attackFromPostpone);
         }
 
-        private void TriggerArea(Vector3 center, int sourceFactionID, bool attackFromPostpone = false)
+        private void TriggerArea(Vector3 center, int sourceFactionID, DamageType damageType = DamageType.Melee, PostponeAttack attackFromPostpone = default)
         {
             gridSearch.Search(
                 center,
@@ -139,7 +145,7 @@ namespace RTSEngine.Attack
                     if (distance > areaAttackData[j].range)
                         continue;
 
-                    Deal(target, areaAttackData[j].data.Get(target), attackFromPostpone);
+                    Deal(target, areaAttackData[j].data.Get(target), damageType, attackFromPostpone);
 
                     // Area attack range found, move to the next target.
                     break;
@@ -148,46 +154,47 @@ namespace RTSEngine.Attack
         }
         #endregion
 
-        #region Dealing Damage
-        private void Deal(IFactionEntity target, int value, bool rangedAttack = false, bool attackFromPostpone = false)
+        #region Dealing damage
+        private void Deal(IFactionEntity target, int value, DamageType damageType=DamageType.Melee, PostponeAttack attackFromPostpone = default)
         {
             if (enabled == false || !target.IsValid()) // Can't deal damage then stop here
                 return;
             //Debug.Log();
             var damageFactor = 1.0f;
             var targetBattleComponent = target.GetComponent<IUnitBattleManager>();
-            var thisBattleComponent = this.SourceAttackComp.Entity.GetComponent<IUnitBattleManager>();
+            var attackEntity = attackFromPostpone.IsPostponed
+                ? attackFromPostpone.Source.GetComponent<Unit>()
+                : this.SourceAttackComp.Entity;
+            value = attackFromPostpone.IsPostponed ? attackFromPostpone.DamageValue : value;
+            var thisBattleComponent = attackEntity.GetComponent<IUnitBattleManager>();
             if (targetBattleComponent != null && thisBattleComponent != null)
             {
                 value = (int)(value * specsCalculator.CalculateUnitDamageFactor(thisBattleComponent, targetBattleComponent));
                 //SpecsCalculator.CalculateUnitDamage(targetBattleComponent);
                 //if(rangedAttack && SpecsCalculator)
                 //    damageFactor = SpecsCalculator.GetRangedDamageFactor(thisBattleComponent, targetBattleComponent);
+                var dArgs = new DamageArgs(thisBattleComponent, targetBattleComponent,
+                    value, damageType, attackFromPostpone.IsPostponed);
                 thisBattleComponent.SpecialAbilities.ForEach(sa =>
                 {
                     if (sa is IDealtDamageModifierAbility ddm)
-                        value = ddm.ModifyDealtDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
-                            rangedAttack, areaAttackEnabled, value));
+                        value = ddm.ModifyDealtDamage(dArgs);
 
-                    if (sa is IHackerDamageModifierAbility hdm && !attackFromPostpone)
-                        value = hdm.HackThenDamage(new DamageArgs(thisBattleComponent, targetBattleComponent,
-                            rangedAttack, areaAttackEnabled, value));
+                    if (sa is IHackerDamageModifierAbility hdm && !attackFromPostpone.IsPostponed)
+                        value = hdm.HackThenDamage(dArgs);
                 });
-                targetBattleComponent.SpecialAbilities.ForEach(sa=>
+                targetBattleComponent.SpecialAbilities.ForEach(sa =>
                 {
                     if (sa is IReceivedDamageModifierAbility rdm)
-                        value = rdm.ModifyReceivedDamage(
-                            new DamageArgs(thisBattleComponent, targetBattleComponent,
-                                rangedAttack, areaAttackEnabled, value));
+                        value = rdm.ModifyReceivedDamage(dArgs);
                 });
-
             }
 
             foreach (FactionEntityDependantHitEffectData hitEffectData in hitEffects)
                 if (hitEffectData.picker.IsValidTarget(target))
                 {
                     effectObjPool.Spawn(
-                        hitEffectData.effect.Output, 
+                        hitEffectData.effect.Output,
                         new EffectObjectSpawnInput(
                             parent: null,
 
@@ -195,7 +202,7 @@ namespace RTSEngine.Attack
                             spawnPosition: target.transform.position,
                             spawnRotation: new RotationData(
                                 hitEffectData.faceSource ? RotationType.lookAtPosition : RotationType.free,
-                                SourceAttackComp.Entity.transform.position,
+                                attackEntity.transform.position,
                                 fixYRotation: true)));
 
                     audioMgr.PlaySFX(target?.AudioSourceComponent,
@@ -205,9 +212,9 @@ namespace RTSEngine.Attack
                 }
 
             if (dotEnabled == true)
-                target.Health.AddDamageOverTime(DotData, value, SourceAttackComp.Entity);
+                target.Health.AddDamageOverTime(DotData, value, attackEntity);
             else
-                target.Health.Add(new HealthUpdateArgs(-value, SourceAttackComp.Entity));
+                target.Health.Add(new HealthUpdateArgs(-value, attackEntity));
 
             // If this is a new target to deal damage to and the damage dealt is only logged for a single target
             if (resetDamageDealt && target != LastTarget)
@@ -218,7 +225,7 @@ namespace RTSEngine.Attack
             LastTarget = target;
 
             RaiseAttackDamageDealt(new HealthUpdateArgs((int)(value * damageFactor), target));
-            //Debug.Log($"Damage dealt is: {value}");
+            //Debug.Log($"damage dealt is: {value}");
             damageDealtEvent.Invoke();
         }
         #endregion

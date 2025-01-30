@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiInfo:
     title: 
-    icon: {fileID: 21300000, guid: 8e2fae6202bb8944c8275a10b1ec111b, type: 3}
+    icon: {fileID: 21300000, guid: 3921642b33e6ae246a71db46dae25e01, type: 3}
     strongAgainst1: {fileID: -1598321634351741357, guid: a280df018fc2dc64198e592574735a18, type: 3}
     strongAgainst2: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
     weakAgainst1: {fileID: -5449205069775238374, guid: 94d93efc72355284b8b1583d8e406828, type: 3}

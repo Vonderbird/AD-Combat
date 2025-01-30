@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using ADC.API;
 using ADC.Currencies;
+using RTSEngine.Entities;
 using UnityEngine;
 
 namespace ADC
@@ -51,12 +52,17 @@ namespace ADC
         public void AddModeUpdateUI(string[] modesEnum, string activeMode, Action<string> onModeUpdate)
         {
             var updateUI = Instantiate(ModeUpdateUIPrefab, transform);
-            foreach(var mode in modesEnum)
+            var interactable = !unit.GetComponent<Unit>().IsInteractable;
+            foreach (var mode in modesEnum)
             {
-                updateUI.AddMode(mode, activeMode == mode);
+                updateUI.AddMode(mode, activeMode == mode, interactable);
             }
             updateUI.ModeChanged += (o,e) => onModeUpdate?.Invoke(e);
             activeUpdateUI = updateUI;
+
+            var uiDrawer = ModeUpdateUIPrefab.GetComponentInChildren<UIDrawer>();
+            if (uiDrawer == null) return;
+            uiDrawer.OnDeactivate();
         }
 
         private IUnitBattleManager unit;
@@ -73,5 +79,13 @@ namespace ADC
 
         }
 
+        public void OnUnitStateClosing()
+        {
+            if (activeUpdateUI == null) return;
+            if (activeUpdateUI is not ModeUpdateUI mdu) return;
+            var uiDrawer = mdu.GetComponentInChildren<UIDrawer>();
+            if (uiDrawer == null) return;
+            uiDrawer.OnDeactivate();
+        }
     }
 }

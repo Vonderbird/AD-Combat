@@ -203,6 +203,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd695ae341358449b7f1750e0dec6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2018332752895043072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2609493230955510100}
+  m_Layer: 0
+  m_Name: shootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2609493230955510100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018332752895043072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03, y: -0.607, z: -0.202}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4285932577057384709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2837683883374114850
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +649,7 @@ MonoBehaviour:
   damageFactors:
     receiveRangeDamageFactor: 1
   specialAbilities: []
-  updateUIPrefab: {fileID: 0}
+  updateUIPrefab: {fileID: 8122170109284838237, guid: 5bfcfb491859ae04eb63589880f88948, type: 3}
   specs:
     baseSpecs:
       healthPoint:
@@ -959,8 +990,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5814351604116151933}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.043392, y: 0, z: -10.473984}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1063,14 +1094,14 @@ MonoBehaviour:
     launchType: 1
     sources:
     - attackObject:
-        input: {fileID: 3604091680220358796, guid: 1090db3d25e19564493ee610cb3d849f, type: 3}
-      launchPosition: {fileID: 2426294852458115846}
+        input: {fileID: 38834301764643683, guid: 62693fb27d2a17e4d9263fe16faa6782, type: 3}
+      launchPosition: {fileID: 2609493230955510100}
       launchRotationAngles: {x: 0, y: 0, z: 0}
       preDelayTime: 0
       postDelayTime: 0
       launchDelayTime: 0
       damageInDelay: 0
-      delayParentObject: {fileID: 2426294852458115846}
+      delayParentObject: {fileID: 2609493230955510100}
       index: 0
     attackIterationLaunchEvent:
       m_PersistentCalls:
@@ -1100,6 +1131,10 @@ MonoBehaviour:
         custom: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0
@@ -1326,6 +1361,10 @@ MonoBehaviour:
       infinite: 0
       cycleDuration: 0
       cycles: 0
+    dotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
     hitEffects:
     - picker:
         type: 1
@@ -1442,13 +1481,13 @@ MonoBehaviour:
   code: Thunderkin_demolitionist_emp
   isActive: 0
   tabID:
-    x: 2
-    y: 3
+    x: 0
+    y: 0
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
     enabled: 1
-    reloadTime: 1
+    reloadTime: 5
     range: 8
     idleOnly: 0
     typePicker:
@@ -1509,7 +1548,7 @@ MonoBehaviour:
     targetUnits: 1
     targetBuildings: 1
   requireTarget: 0
-  allowMultipleTerrainAttacks: 0
+  allowMultipleTerrainAttacks: 1
   terrainAttackActive: 0
   reloadDuration: 1
   delayTriggerEnabled: 0
@@ -1526,7 +1565,7 @@ MonoBehaviour:
     - attackObject:
         input: {fileID: 8334881734067692792, guid: b49f02dfe64a999438977558ec484d2a, type: 3}
       launchPosition: {fileID: 5612332664833714460}
-      launchRotationAngles: {x: 0, y: 0, z: 0}
+      launchRotationAngles: {x: 0, y: 0, z: 1}
       preDelayTime: 0
       postDelayTime: 0
       launchDelayTime: 0
@@ -1546,6 +1585,10 @@ MonoBehaviour:
     areaAttackData: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0
@@ -1748,15 +1791,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5778931923749028562, guid: 8177f37e813b70541b811b1cbda7f09e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2609493230955510100}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8177f37e813b70541b811b1cbda7f09e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3438031804835456512}
   m_SourcePrefab: {fileID: 100100000, guid: 8177f37e813b70541b811b1cbda7f09e, type: 3}
---- !u!4 &2426294852458115846 stripped
+--- !u!4 &4285932577057384709 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -3827007039060469551, guid: 8177f37e813b70541b811b1cbda7f09e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5778931923749028562, guid: 8177f37e813b70541b811b1cbda7f09e, type: 3}
   m_PrefabInstance: {fileID: 7730520088079395799}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5612332664833714460 stripped

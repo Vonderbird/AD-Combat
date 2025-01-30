@@ -84,9 +84,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3987557073704325242, guid: bbd124587845dc34bb0d447eed137f1d, type: 3}
+      propertyPath: m_text
+      value: '>Iron Breaker Elite<'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987557073704325242, guid: bbd124587845dc34bb0d447eed137f1d, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6476116753558399617, guid: bbd124587845dc34bb0d447eed137f1d, type: 3}
       propertyPath: m_Name
-      value: IronBreakerElite Variant
+      value: IronBreakerElite
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

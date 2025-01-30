@@ -618,8 +618,8 @@ MonoBehaviour:
   damageFactors:
     receiveRangeDamageFactor: 1
   specialAbilities:
-  - {fileID: 11400000, guid: 69ce3c7f735068743b199cfadb5836d3, type: 2}
-  updateUIPrefab: {fileID: 0}
+  - {fileID: 11400000, guid: a3590683a50963845a28aa64591093d1, type: 2}
+  updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:
       healthPoint:
@@ -655,6 +655,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: 
   unitBanner: {fileID: 0}
+--- !u!1 &2962261116979132438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6144501441197321682}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6144501441197321682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2962261116979132438}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.029, z: -0.448}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7555985499225199341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9111425964896933961}
   - component: {fileID: 6330317820719960372}
+  - component: {fileID: 5503345178632143782}
   m_Layer: 0
   m_Name: unit_attack
   m_TagString: Untagged
@@ -919,7 +951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5814351604116151933}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.043392, y: 0, z: -10.473984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -938,11 +970,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d50f81b2617c564f8e5ed1cdaa4cb4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  code: light_infantry_basic_attack2
-  isActive: 1
+  code: DeepWalkerInfiltrator_hack
+  isActive: 0
   tabID:
     x: 0
-    y: 2
+    y: 1
   priority: 0
   requireIdleEntity: 1
   targetFinderData:
@@ -982,7 +1014,7 @@ MonoBehaviour:
     fetchType: 0
     items:
     - {fileID: 22100000, guid: 2fae534b900a15643b994f1eaf0d3b29, type: 2}
-  progressDuration: 4
+  progressDuration: 3
   progressMaxDistance: 1
   inProgressObject: {fileID: 0}
   sourceEffect:
@@ -1031,7 +1063,7 @@ MonoBehaviour:
       unit: 13
       building: 13
       custom: []
-    areaAttackEnabled: 1
+    areaAttackEnabled: 0
     areaAttackData:
     - range: 50
       data:
@@ -1040,6 +1072,242 @@ MonoBehaviour:
         custom: []
     dotEnabled: 0
     baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    hitEffects:
+    - picker:
+        type: 1
+        options:
+          codes: []
+          categories:
+          - walking_unit
+        targetUnits: 1
+        targetBuildings: 1
+      effect:
+        input: {fileID: 95265350099109528, guid: 684350d9a94d0a04fb8981d62efa5ab9, type: 3}
+      faceSource: 1
+      audio:
+        fetchType: 0
+        items: []
+        cooldown:
+          enabled: 0
+          defaultValueRange:
+            _min: 1
+            _max: 2
+    resetDamageDealt: 0
+    damageDealtEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  weapon:
+    toggableObjects: []
+    toggleType: 0
+    updateRotation: 1
+    rotateInRangeOnly: 0
+    freezeRotationX: 0
+    freezeRotationY: 0
+    freezeRotationZ: 0
+    smoothRotation: 1
+    rotationDamping: 2
+    forceIdleRotation: 1
+    idleAngles: {x: 0, y: 0, z: 0}
+  lineOfSight:
+    enabled: 1
+    useWeaponObject: 0
+    angle: 40
+    obstacleLayerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    ignoreRotationX: 0
+    ignoreRotationY: 1
+    ignoreRotationZ: 0
+  nextLaunchLogEnabled: 0
+  setTargetCooldownUIData:
+    icon: {fileID: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
+  switchTaskUI: {fileID: 0}
+  switchAttackCooldownUIData:
+    icon: {fileID: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
+  cancelTaskUI: {fileID: 0}
+  attackCompleteAudio:
+    fetchType: 0
+    items:
+    - {fileID: 8300000, guid: a6e800bb525546c458d6e5cd9072627e, type: 3}
+    cooldown:
+      enabled: 0
+      defaultValueRange:
+        _min: 1
+        _max: 2
+  attackRangeEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  targetLockedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  completeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  showAttackIterationGizmos: 1
+  formation:
+    unitStoppingDistance:
+      _min: 8
+      _max: 15
+    unitEnableDistance: 10
+    buildingStoppingDistance:
+      _min: 8
+      _max: 15
+    noTargetStoppingDistance:
+      _min: 10
+      _max: 20
+    enforceMinStoppingDistance: 0
+    minStoppingDistance: 10
+    stopMovementOnTargetInRange: 0
+    updateMvtDistance: 20
+    movementFormation:
+      lastType: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
+      type: {fileID: 11400000, guid: 5abc4719d7c003f4ab588b6e8649f63e, type: 2}
+      properties:
+        floatProperties:
+        - name: spacing
+          value: 0.2
+        intProperties: []
+  moveOnAttack: 0
+  followDistance: 25
+  attackMoveEnabled: 0
+  attackMoveTaskUI: {fileID: 0}
+--- !u!114 &5503345178632143782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814351604116151933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d50f81b2617c564f8e5ed1cdaa4cb4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  code: DeepWalkerInfiltrator_shoot
+  isActive: 1
+  tabID:
+    x: 0
+    y: 1
+  priority: 0
+  requireIdleEntity: 1
+  targetFinderData:
+    enabled: 1
+    reloadTime: 4
+    range: 8
+    idleOnly: 0
+    typePicker:
+      type: 0
+      options:
+        codes: []
+        categories: []
+      targetUnits: 1
+      targetBuildings: 1
+      targetResources: 1
+    center: {fileID: 0}
+  setTargetTaskUI: {fileID: 0}
+  orderAudio:
+    fetchType: 0
+    items:
+    - {fileID: 8300000, guid: 275896620fcd4c34d9d07af50a5179ed, type: 3}
+    cooldown:
+      enabled: 1
+      defaultValueRange:
+        _min: 1
+        _max: 2
+  showTargetGizmo: 1
+  progressEnabledAudio:
+    fetchType: 0
+    items: []
+    cooldown:
+      enabled: 0
+      defaultValueRange:
+        _min: 1
+        _max: 2
+  progressOverrideController:
+    fetchType: 0
+    items:
+    - {fileID: 22100000, guid: 2fae534b900a15643b994f1eaf0d3b29, type: 2}
+  progressDuration: 1.5
+  progressMaxDistance: 1
+  inProgressObject: {fileID: 0}
+  sourceEffect:
+    input: {fileID: 0}
+  targetEffect:
+    input: {fileID: 0}
+  showProgressGizmo: 1
+  isLocked: 0
+  revert: 1
+  engageOptions:
+    engageOnAssign: 1
+    engageWhenAttacked: 1
+    engageOnce: 0
+    engageFriendly: 0
+    autoIgnoreAngleLOS: 1
+    autoIgnoreObstacleLOS: 0
+  isAttackReady: 1
+  targetPicker:
+    type: 0
+    options:
+      codes: []
+      categories: []
+    targetUnits: 1
+    targetBuildings: 1
+  requireTarget: 1
+  allowMultipleTerrainAttacks: 0
+  terrainAttackActive: 0
+  reloadDuration: 4
+  delayTriggerEnabled: 0
+  attackIterationTriggered: 0
+  cooldown:
+    enabled: 0
+    defaultValueRange:
+      _min: 1
+      _max: 2
+  launcher:
+    useAttackObjects: 1
+    launchType: 1
+    sources:
+    - attackObject:
+        input: {fileID: 38834301764643683, guid: 62693fb27d2a17e4d9263fe16faa6782, type: 3}
+      launchPosition: {fileID: 6144501441197321682}
+      launchRotationAngles: {x: 0, y: 0, z: 0}
+      preDelayTime: 0
+      postDelayTime: 0
+      launchDelayTime: 0
+      damageInDelay: 0
+      delayParentObject: {fileID: 6144501441197321682}
+      index: 0
+    attackIterationLaunchEvent:
+      m_PersistentCalls:
+        m_Calls: []
+  damage:
+    enabled: 1
+    data:
+      unit: 13
+      building: 13
+      custom: []
+    areaAttackEnabled: 0
+    areaAttackData:
+    - range: 50
+      data:
+        unit: 55
+        building: 55
+        custom: []
+    dotEnabled: 0
+    baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
+    dotData:
       infinite: 0
       cycleDuration: 0
       cycles: 0
@@ -1242,7 +1510,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7807601890871547164, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6144501441197321682}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
       insertIndex: -1
@@ -1279,3 +1550,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &7555985499225199341 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7807601890871547164, guid: 8871e47868ee357498bb0b98816115ee, type: 3}
+  m_PrefabInstance: {fileID: 326067090735958001}
+  m_PrefabAsset: {fileID: 0}

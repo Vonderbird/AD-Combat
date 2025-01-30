@@ -16,9 +16,9 @@ MonoBehaviour:
     code: unit_spawn_IceStalker
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: 919ee45cf54af8746b93778ef01c43e6, type: 3}
+    icon: {fileID: 21300000, guid: 55cfb6b856aed794b854444abbc6aa9d, type: 3}
     panelCategory: 3
-    forceSlot: 1
+    forceSlot: 0
     slotIndex: 1
     tooltipEnabled: 1
     description: Activate unit for spawning

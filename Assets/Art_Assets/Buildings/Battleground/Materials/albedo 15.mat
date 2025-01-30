@@ -30,7 +30,7 @@ Material:
   m_InvalidKeywords:
   - _METALLICGLOSSMAP
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
@@ -65,8 +65,8 @@ Material:
         m_Scale: {x: 10, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: ab76f5cd9a9873b48acb172c5f0d68de, type: 3}
+        m_Scale: {x: 10, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: abb761b99f2a6c945b6b96c13169fd44, type: 3}

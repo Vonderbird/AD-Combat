@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using RTSEngine;
 using UnityEngine;
 using ADC.Currencies;
@@ -17,11 +16,25 @@ using SelectionType = RTSEngine.Selection.SelectionType;
 namespace ADC.UnitCreation
 {
 
-    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator
+    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IDeactivable
 
 
     {
         [SerializeField] private Transform cellsParent;
+        [SerializeField] private SpawnPointsManager spawnPointsManager;
+
+        /// <summary>
+        /// Group Ids, separate multiple group id with ';'
+        /// </summary>
+        [SerializeField] private string groupIds;
+
+        /// <summary>
+        /// Ids of groups to deactivate on activation of this button, separate multiple group id with ';'
+        /// </summary>
+        [SerializeField] private string groupIdsToDeactivate;
+
+        public string[] GroupIds { get; set; }
+        private string[] GroupIdsToDeactivate { get; set; }
 
         //[SerializeField]
         //private List<UnitCreationTask> taskUI = null;
@@ -38,7 +51,8 @@ namespace ADC.UnitCreation
         private ActiveTaskContainer activeTaskData = new();
 
         [SerializeField] private Transform spawnTransform = null;
-        private Transform testTransform;
+        private Transform unitSpawnPosTestTransform;
+        private Transform cellRelativePosTestTransform;
 
         [SerializeField] private Transform gotoTransform = null;
 
@@ -65,7 +79,12 @@ namespace ADC.UnitCreation
         protected IncomeManager incomeManager { private set; get; }
         private UnitPlacementTransactionLogic unitPlacementTransaction;
 
-
+        private void Awake()
+        {
+            GroupIds = groupIds.Split(';');
+            GroupIdsToDeactivate = groupIdsToDeactivate.Split(';');
+            AddToManager();
+        }
 
         protected override void OnPendingInit()
         {
@@ -85,6 +104,7 @@ namespace ADC.UnitCreation
             }
 
             unitSpawner = gameMgr.GetService<CellUnitSpawner>();
+            spawnPointsManager.OnInit(this);
             incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
             if (CellsManager == null)
             {
@@ -134,8 +154,10 @@ namespace ADC.UnitCreation
             }
 
             allCreationTasks.AddRange(creationTasks);
-            testTransform = new GameObject("Test Transform").transform;
-            testTransform.SetParent(spawnTransform);
+            cellRelativePosTestTransform = new GameObject("Test Transform").transform;
+            unitSpawnPosTestTransform = new GameObject("Test Transform").transform;
+            cellRelativePosTestTransform.SetParent(cellsParent);
+            unitSpawnPosTestTransform.SetParent(spawnTransform);
             unitPlacementTransaction = new UnitPlacementTransactionLogic(Entity.FactionID);
         }
 
@@ -230,17 +252,20 @@ namespace ADC.UnitCreation
             if (e.IsFilled || !activeTaskData.HasValue || !CellsManager.CellGroupIds.ContainsKey(e.CellId)) return;
             var unitToSpawn = CellsManager.GroupUnit[CellsManager.CellGroupIds[e.CellId]].GetComponent<Unit>();//activeTaskData.UnitCreationTask.TargetObject;
 
-            testTransform.localPosition = CellsManager.UnitCells[e.CellId].transform.localPosition;
+            cellRelativePosTestTransform.position =
+                CellsManager.UnitsGroupPosition[CellsManager.CellGroupIds[e.CellId]];
+            unitSpawnPosTestTransform.localPosition = cellRelativePosTestTransform.localPosition;
 
             unitSpawner.AddNewUnit(new UnitParameters
             {
                 CreatorComponent = this,
                 UnitTask = activeTaskData.UnitCreationTask,
                 GotoTransform = gotoTransform,
-                SpawnPosition = testTransform.position,
+                SpawnPosition = unitSpawnPosTestTransform.position,
                 Unit = unitToSpawn,
                 Id = e.CellId,
-                UnitScaleFactor = e.UnitScaleFactor
+                UnitScaleFactor = e.UnitScaleFactor,
+                SpawnPointsManager = spawnPointsManager
             });
             SpawnUnitAdded?.Invoke(unitToSpawn);
         }
@@ -259,16 +284,14 @@ namespace ADC.UnitCreation
 
         }
 
-
-
         public IUnitBattleManager GetCorrespondingUnitCell(IUnitBattleManager unitBattleManager)
         {
             if (CellsManager == null) return null;
             foreach (var (groupId, cellUnit) in CellsManager.GroupUnit)
             {
                 if (cellUnit.GetType() != unitBattleManager.GetType()) continue;
-                testTransform.localPosition = CellsManager.UnitCells[groupId].transform.localPosition;
-                if ((testTransform.position - unitBattleManager.Transform.localPosition).sqrMagnitude <
+                unitSpawnPosTestTransform.localPosition = CellsManager.UnitCells[groupId].transform.localPosition;
+                if ((unitSpawnPosTestTransform.position - unitBattleManager.Transform.localPosition).sqrMagnitude <
                     1.0f)
                 {
                     return cellUnit;
@@ -276,6 +299,24 @@ namespace ADC.UnitCreation
             }
 
             return null;
+        }
+
+        public void OnHomeCameraDeactivated()
+        {
+            Deactivate();
+        }
+
+        public void AddToManager()
+        {
+            foreach (var id in GroupIds)
+            {
+                DeactivablesManager.Instance.Add(id, this);
+            }
+        }
+
+        public void Deactivate()
+        {
+            cellsManager.OnAllCellsUnselect(null);
         }
     }
 }

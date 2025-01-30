@@ -6,6 +6,7 @@ using ADC.UnitCreation;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using RTSEngine.Event;
+using RTSEngine.Game;
 using RTSEngine.Health;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -57,6 +58,8 @@ namespace ADC
         }
 
         public Transform Transform => transform;
+        public GameObject GameObject => gameObject;
+
         public T GetComponent<T>() where T : Object
         {
             return transform.GetComponent<T>();
@@ -65,6 +68,11 @@ namespace ADC
         public T GetComponentInChildren<T>() where T : Object
         {
             return transform.GetComponentInChildren<T>();
+        }
+
+        public T[] GetComponentsInChildren<T>() where T : Object
+        {
+            return transform.GetComponentsInChildren<T>();
         }
 
         protected int activeAbilityId = 0;
@@ -96,7 +104,7 @@ namespace ADC
             Specs.Initialize(thirdParty);
             EquipmentManager.Initialize(this);
 
-            thirdParty.TargetUpdated += OnTargetUpdated;
+            thirdParty.TargetUpdated += OnTargetUpdated;  ////////////////////// issue in making damage zero
             Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
             cellFillerComponent = FindObjectOfType<CellFillerComponent>();
             CellUnit = cellFillerComponent.GetCorrespondingUnitCell(this);
@@ -113,9 +121,9 @@ namespace ADC
             // 2. Xp.Level for base spaces upgrade!
             //Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
-            //Specs.UpdateBaseSpecs(levelZeroSpecs);
-            //EquipmentManager.UpdateEquipments(baseEquipments);
-            StartCoroutine(FreezeForSeconts(4.0f));
+            Specs.UpdateBaseSpecs(Specs.BaseSpecs);
+            EquipmentManager.UpdateEquipments(equipmentManager.Equipments);
+            StartCoroutine(FreezeForSeconds(4.0f));
         }
 
         private void OnEnable()
@@ -131,9 +139,9 @@ namespace ADC
         }
 
 
-        public abstract void Accept(IUnitManagerVisitor managerVisitor);
+        //public abstract void Accept(IUnitManagerVisitor managerVisitor);
 
-        IEnumerator FreezeForSeconts(float seconds)
+        private IEnumerator FreezeForSeconds(float seconds)
         {
             yield return null;
             if (unit == null)
@@ -141,7 +149,7 @@ namespace ADC
                 Debug.LogError($"[UnitBattleManager] the unit field is not assigned!");
                 yield break;
             }
-
+            yield return new WaitUntil(() => unit.IsInitialized);
             if (unit.MovementComponent == null)
             {
                 Debug.LogError($"[UnitBattleManager] the MovementComponent field is not implemented or assigned!");
@@ -152,6 +160,11 @@ namespace ADC
             yield return new WaitForSeconds(seconds);
             unit.MovementComponent.SetActive(true, false);
             unit.MovementComponent.SetTarget(target, false);
+
+            if (unit.AttackComponents[0].IsActive)
+            {
+                var abilityCount = SpecialAbilities.Count; // Initialize abilities!
+            }
         }
 
         private void OnTargetUpdated(object sender, dynamic t)
@@ -164,7 +177,7 @@ namespace ADC
             }
             //else
             //{
-                thirdParty.SetDamage(Specs.CurrentSpecs.UnitDamage, Specs.CurrentSpecs.BuildingDamage);
+            //thirdParty.SetDamage(Specs.CurrentSpecs.UnitDamage, Specs.CurrentSpecs.BuildingDamage);
             //}
         }
 

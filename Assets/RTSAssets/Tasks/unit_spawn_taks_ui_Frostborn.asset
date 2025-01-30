@@ -16,7 +16,7 @@ MonoBehaviour:
     code: unit_spawn_Frostborn_Hunter_2
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: 7bc8ae0a2a8bafd47a9149c67e165d7f, type: 3}
+    icon: {fileID: 21300000, guid: 997407186b5e526439c07aba2301c692, type: 3}
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1

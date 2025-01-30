@@ -19,7 +19,7 @@ namespace ADC
         //{
         //    onModeUpdate = action;
         //}
-        public void AddMode(string name, bool isActive)
+        public void AddMode(string name, bool isActive, bool interactable)
         {
             var toggleIns = Instantiate(toggleObject, togglesParent);
             toggleIns.gameObject.SetActive(true);
@@ -27,12 +27,13 @@ namespace ADC
             allToggles.Add(toggleIns);
             var text = toggleIns.GetComponentInChildren<TextMeshProUGUI>();
             text.text = name;
-            toggleIns.onValueChanged.AddListener((args) => ValueChanged(name, args));
+            toggleIns.onValueChanged.AddListener((args) => ValueChanged(name, args, interactable));
+            toggleIns.interactable = interactable;
 
             toggleIns.isOn = isActive;
         }
 
-        private void ValueChanged(string name, bool arg0)
+        private void ValueChanged(string name, bool arg0, bool interactable)
         {
             if (arg0 == false) return;
 
@@ -41,7 +42,7 @@ namespace ADC
                 if (t != toggles[name])
                 {
                     t.isOn = false;
-                    t.interactable = true;
+                    t.interactable = interactable;
                 }
             });
             toggles[name].interactable = false;

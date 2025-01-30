@@ -16,7 +16,7 @@ MonoBehaviour:
     code: unit_spawn_Siege_Breaker
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: 09fd76a567b0cef47b2797ea991e6a47, type: 3}
+    icon: {fileID: 21300000, guid: a92d356d5e1928b439fd4dfc8be61569, type: 3}
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1

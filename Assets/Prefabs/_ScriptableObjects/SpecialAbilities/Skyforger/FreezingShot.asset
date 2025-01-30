@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5264ddcf8576854c8fc5ba0264f3965, type: 3}
+  m_Name: FreezingShot
+  m_EditorClassIdentifier: 
+  unlockLevel: 1
+  name: 
+  icon: {fileID: 0}
+  infoCellPrefab: {fileID: 1807120742874249713, guid: f62cec2099a3f96489daf719f88a0bc5, type: 3}
+  possibility: 0.15
+  duration: 2
+  rangeOfEffect: 5
+  damageType: 4
+  baseAttackCode: skyforgers_icestalker_baseattack
+  freezingShotAttackCode: skyforgers_icestalker_freezingshot

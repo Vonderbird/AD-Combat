@@ -1,33 +1,40 @@
 using System.Collections;
+using System.Linq;
 using ADC.API;
 using ADC.Currencies;
-using RTSEngine;
 using RTSEngine.Attack;
 using RTSEngine.Determinism;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace ADC
 {
     [CreateAssetMenu(fileName = "Hack", menuName = "ADC/SpecialAbilities/Hack", order = 99)]
     public class Hack : SpecialAbilityBase, IHackerDamageModifierAbility
     {
-
-
         [SerializeField] private float hackChance = 0.4f;
         [SerializeField] private float hackDuration = 8.0f;
+        [SerializeField] private ParticlePlayer TargetHackedVFX;
+        [SerializeField] private string baseAttackCode;
+        [SerializeField] private string hackAttackCode;
         private TimeModifiedTimer waitForHack;
         private WaitUntil waitUntil;
         private Coroutine hackCoroutine;
-        private AttackDamage damage;
+
+        private UnitAttack baseAttack;
+        private UnitAttack hackAttack;
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             hackChance = Mathf.Max(0, Mathf.Min(1.0f, hackChance));
             waitForHack = new TimeModifiedTimer(hackDuration);
-            var waitUntil = new WaitUntil(() => waitForHack.ModifiedDecrease());
+            waitUntil = new WaitUntil(() => waitForHack.ModifiedDecrease());
+
+            var unitAttacks = unitBattleManager.GetComponentsInChildren<UnitAttack>();
+            baseAttack = unitAttacks.FirstOrDefault(ua => ua.Code == baseAttackCode);
+            hackAttack = unitAttacks.FirstOrDefault(ua => ua.Code == hackAttackCode);
+            //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
             return base.Initialize(unitBattleManager);
         }
 
@@ -57,12 +64,36 @@ namespace ADC
 
         IEnumerator ProcessTheHack(DamageArgs args)
         {
+            if (hackAttack == null)
+            {
+                Debug.LogError($"[GroundPound] damage is not assigned!");
+                yield break;
+            }
+
+            if (!hackAttack.IsActive)
+                yield break;
+
+            var targetUnit = args.Target.GetComponent<FactionEntity>();
+            var skinnedMeshRenderer = targetUnit.Model.GetComponentsInChildren<SkinnedMeshRenderer>();
+            foreach (var meshRenderer in skinnedMeshRenderer)
+            {
+                var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = meshRenderer, Lifespan = hackDuration + 0.3f };
+                VFXPoolingManager.Instance.SpawnVfx(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, particleArgs);
+            }
             yield return waitUntil;
 
-            if (damage == null)
-                damage = args.Source.GetComponentInChildren<UnitAttack>().Damage;
-            var targetPosition = args.IsArea ? args.Source.Transform.position : args.Target.Transform.position;
-            damage.Trigger(args.Target.GetComponent<FactionEntity>(), targetPosition, true, true);
+            //damage ??= args.Source.GetComponentInChildren<UnitAttack>().damage;
+
+            var targetPosition = ((args.DamageType & DamageType.Area) != 0) ? args.Source.Transform.position : args.Target.Transform.position;
+
+            var postponeAttack = new PostponeAttack
+            {
+                IsPostponed = true,
+                Source = args.Source.GameObject,
+                DamageValue = targetUnit.Health.MaxHealth//args.Target.GetComponent<UnitHealth>().MaxHealth
+            };
+
+            hackAttack.damage.Trigger(targetUnit, targetPosition, args.DamageType, postponeAttack);
             //RTSHelper
         }
 

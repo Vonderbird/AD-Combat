@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace ADC
@@ -17,6 +18,11 @@ namespace ADC
 
         private Coroutine scrollX;
         private Button btn;
+
+        public UnityEvent Closed;
+        public UnityEvent BeginClosing;
+        public UnityEvent Opened;
+        public UnityEvent BeginOpening;
 
         private void Awake()
         {
@@ -42,7 +48,6 @@ namespace ADC
             btn.interactable = false;
         }
 
-
         public void OpenPanel()
         {
             if (onOffTransition is UIOnOffTransition.Opened or UIOnOffTransition.Opening) return;
@@ -54,6 +59,7 @@ namespace ADC
 
             onOffTransition = UIOnOffTransition.Opening;
             btnImage.sprite = closeIcon;
+            BeginOpening?.Invoke();
             scrollX = StartCoroutine(MoveToTargetXPosition(openPosition, UIOnOffTransition.Opened));
         }
 
@@ -67,6 +73,7 @@ namespace ADC
             }
             onOffTransition = UIOnOffTransition.Closing;
             btnImage.sprite = openIcon;
+            BeginClosing?.Invoke();
             scrollX = StartCoroutine(MoveToTargetXPosition(closePosition, UIOnOffTransition.Closed)); // Adjust -250 based on the closed position
         }
 
@@ -88,6 +95,11 @@ namespace ADC
 
             uiRectTransform.anchoredPosition = targetPosition; 
             onOffTransition = finalState;
+            if (finalState == UIOnOffTransition.Closed)
+                Closed?.Invoke();
+            else if (finalState == UIOnOffTransition.Opened)
+                Opened.Invoke();
+
         }
     }
 

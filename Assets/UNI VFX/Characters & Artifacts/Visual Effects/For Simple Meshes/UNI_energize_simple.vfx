@@ -704,15 +704,15 @@ MonoBehaviour:
   - name: Main VFX
     collapsed: 0
   - name: Create & Loop
-    collapsed: 1
+    collapsed: 0
   - name: End
-    collapsed: 1
+    collapsed: 0
   uiBounds:
     serializedVersion: 2
     x: -3439
     y: -848
     width: 18915
-    height: 6257
+    height: 6258
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -1731,7 +1731,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616002}
   m_ExposedName: VFXOffset
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 9
   m_Category: Main VFX
   m_Min:
     m_Type:
@@ -1962,7 +1962,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616403}
   m_ExposedName: SparksSizeMinMax
   m_Exposed: 1
-  m_Order: 17
+  m_Order: 24
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -2126,7 +2126,7 @@ MonoBehaviour:
   - {fileID: 8926484042661617611}
   m_ExposedName: BoundsSizeXYZ
   m_Exposed: 1
-  m_Order: 10
+  m_Order: 16
   m_Category: Main VFX
   m_Min:
     m_Type:
@@ -2345,7 +2345,7 @@ MonoBehaviour:
   - {fileID: 8926484042661618175}
   m_ExposedName: VFXMeshMask
   m_Exposed: 1
-  m_Order: 9
+  m_Order: 14
   m_Category: Main VFX
   m_Min:
     m_Type:
@@ -2441,7 +2441,7 @@ MonoBehaviour:
   - {fileID: 8926484042661618385}
   m_ExposedName: VFXHeight
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 11
   m_Category: Main VFX
   m_Min:
     m_Type:
@@ -5313,7 +5313,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: 
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"c7bbea8df25d38340bc81624a26d768b","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -10147,7 +10147,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: 
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"c7bbea8df25d38340bc81624a26d768b","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -19460,7 +19460,7 @@ MonoBehaviour:
   - {fileID: 8926484042661624518}
   m_ExposedName: BoltsSpawnRate
   m_Exposed: 1
-  m_Order: 11
+  m_Order: 18
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -19542,7 +19542,7 @@ MonoBehaviour:
   - {fileID: 8926484042661624520}
   m_ExposedName: SparksPerBolt
   m_Exposed: 1
-  m_Order: 14
+  m_Order: 21
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -19624,7 +19624,7 @@ MonoBehaviour:
   - {fileID: 8926484042661624522}
   m_ExposedName: BoltsSizeMax
   m_Exposed: 1
-  m_Order: 13
+  m_Order: 20
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -19704,7 +19704,7 @@ MonoBehaviour:
   - {fileID: 8926484042661624524}
   m_ExposedName: SparksLifetimeMax
   m_Exposed: 1
-  m_Order: 16
+  m_Order: 23
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -19784,7 +19784,7 @@ MonoBehaviour:
   - {fileID: 8926484042661624526}
   m_ExposedName: SparksAlphaMinMax
   m_Exposed: 1
-  m_Order: 20
+  m_Order: 26
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -20113,7 +20113,7 @@ MonoBehaviour:
   - {fileID: 8926484042661624537}
   m_ExposedName: GlowAlphaMinMax
   m_Exposed: 1
-  m_Order: 21
+  m_Order: 27
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -20265,7 +20265,7 @@ MonoBehaviour:
   - {fileID: 8926484042661624541}
   m_ExposedName: GlowSizeMinMax
   m_Exposed: 1
-  m_Order: 22
+  m_Order: 28
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -29389,7 +29389,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: 
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"c7bbea8df25d38340bc81624a26d768b","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: texture
@@ -34766,7 +34766,7 @@ MonoBehaviour:
   - {fileID: 8926484042661625871}
   m_ExposedName: EndMistSpawnCount
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 3
   m_Category: End
   m_Min:
     m_Type:
@@ -34848,7 +34848,7 @@ MonoBehaviour:
   - {fileID: 8926484042661625875}
   m_ExposedName: EndMistSizeMinMax
   m_Exposed: 1
-  m_Order: 8
+  m_Order: 13
   m_Category: End
   m_Min:
     m_Type:
@@ -35000,7 +35000,7 @@ MonoBehaviour:
   - {fileID: 8926484042661625879}
   m_ExposedName: EndMistSpawnWidth
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 22
   m_Category: End
   m_Min:
     m_Type:
@@ -35083,7 +35083,7 @@ MonoBehaviour:
   - {fileID: 8926484042661625881}
   m_ExposedName: EndMistAlphaMinMax
   m_Exposed: 1
-  m_Order: 12
+  m_Order: 19
   m_Category: End
   m_Min:
     m_Type:
@@ -35753,7 +35753,7 @@ MonoBehaviour:
   - {fileID: 8926484042661625947}
   m_ExposedName: EndMistLifetimeMinMax
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 8
   m_Category: End
   m_Min:
     m_Type:
@@ -39018,7 +39018,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626145}
   m_ExposedName: EndWavesSpawnCount
   m_Exposed: 1
-  m_Order: 18
+  m_Order: 25
   m_Category: End
   m_Min:
     m_Type:
@@ -39100,7 +39100,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626147}
   m_ExposedName: EndWavesLifetimeMinMax
   m_Exposed: 1
-  m_Order: 23
+  m_Order: 29
   m_Category: End
   m_Min:
     m_Type:
@@ -39252,7 +39252,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626151}
   m_ExposedName: EndWavesSizeMinMax
   m_Exposed: 1
-  m_Order: 25
+  m_Order: 31
   m_Category: End
   m_Min:
     m_Type:
@@ -39404,7 +39404,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626155}
   m_ExposedName: EndWavesAlphaMinMax
   m_Exposed: 1
-  m_Order: 28
+  m_Order: 34
   m_Category: End
   m_Min:
     m_Type:
@@ -47872,7 +47872,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626780}
   m_ExposedName: CreateStrikesWidthMinMax
   m_Exposed: 1
-  m_Order: 4
+  m_Order: 7
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -49748,7 +49748,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626930}
   m_ExposedName: CreateStrikesSpawnCount
   m_Exposed: 1
-  m_Order: 1
+  m_Order: 2
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -49830,7 +49830,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626934}
   m_ExposedName: CreateStrikesStartYOffsetMinMax
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 5
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -49982,7 +49982,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626938}
   m_ExposedName: CreateStrikesAlphaMinMax
   m_Exposed: 1
-  m_Order: 6
+  m_Order: 10
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -50134,7 +50134,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626942}
   m_ExposedName: CreateSparksLifetimeMax
   m_Exposed: 1
-  m_Order: 9
+  m_Order: 15
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -50214,7 +50214,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626944}
   m_ExposedName: CreateSparksSpawnCount
   m_Exposed: 1
-  m_Order: 7
+  m_Order: 12
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -50296,7 +50296,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626946}
   m_ExposedName: CreateSecondaryBoltsSpawnCount
   m_Exposed: 1
-  m_Order: 10
+  m_Order: 17
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -50378,7 +50378,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626948}
   m_ExposedName: SecondaryBoltsSpawnDelayMinMax
   m_Exposed: 1
-  m_Order: 26
+  m_Order: 32
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -50526,7 +50526,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626952}
   m_ExposedName: SecondaryBoltsSpawnBurstMaxCount
   m_Exposed: 1
-  m_Order: 24
+  m_Order: 30
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -50747,7 +50747,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626958}
   m_ExposedName: SecondaryBoltsSizeMinMax
   m_Exposed: 1
-  m_Order: 27
+  m_Order: 33
   m_Category: Create & Loop
   m_Min:
     m_Type:
@@ -50954,7 +50954,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626989}
   m_ExposedName: Mesh
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 4
   m_Category: Main VFX
   m_Min:
     m_Type:
@@ -51064,7 +51064,7 @@ MonoBehaviour:
   - {fileID: 8926484042661626991}
   m_ExposedName: MeshTransform
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 6
   m_Category: Main VFX
   m_Min:
     m_Type:
@@ -51578,7 +51578,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":10208,"guid":"0000000000000000e000000000000000","type":0}}'
+      m_SerializableObject: '{"obj":{"fileID":-5546940888850326318,"guid":"f5401eea6d52a9a479cf5393017f1b4e","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh
@@ -52212,7 +52212,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":10208,"guid":"0000000000000000e000000000000000","type":0}}'
+      m_SerializableObject: '{"obj":{"fileID":-5546940888850326318,"guid":"f5401eea6d52a9a479cf5393017f1b4e","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh
@@ -55982,7 +55982,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":10208,"guid":"0000000000000000e000000000000000","type":0}}'
+      m_SerializableObject: '{"obj":{"fileID":-5546940888850326318,"guid":"f5401eea6d52a9a479cf5393017f1b4e","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh
@@ -57440,7 +57440,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":10208,"guid":"0000000000000000e000000000000000","type":0}}'
+      m_SerializableObject: '{"obj":{"fileID":-5546940888850326318,"guid":"f5401eea6d52a9a479cf5393017f1b4e","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh
@@ -58898,7 +58898,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":10208,"guid":"0000000000000000e000000000000000","type":0}}'
+      m_SerializableObject: '{"obj":{"fileID":-5546940888850326318,"guid":"f5401eea6d52a9a479cf5393017f1b4e","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh
@@ -60355,7 +60355,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":10208,"guid":"0000000000000000e000000000000000","type":0}}'
+      m_SerializableObject: '{"obj":{"fileID":-5546940888850326318,"guid":"f5401eea6d52a9a479cf5393017f1b4e","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mesh

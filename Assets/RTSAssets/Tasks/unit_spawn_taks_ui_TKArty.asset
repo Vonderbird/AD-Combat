@@ -16,7 +16,7 @@ MonoBehaviour:
     code: unit_spawn_TkArty
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: e1fefd745be89f84287f556238254700, type: 3}
+    icon: {fileID: 21300000, guid: f8352e132f67e894eaf65a97dc8217dd, type: 3}
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1

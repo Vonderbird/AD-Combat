@@ -16,7 +16,7 @@ MonoBehaviour:
     code: unit_spawn_Skyforgers_DeepWalkerInfiltrator
     enabled: 1
     displayType: 0
-    icon: {fileID: 21300000, guid: e5b19f0b451ef72409af3fdf30bfd799, type: 3}
+    icon: {fileID: 21300000, guid: 91829f0c4dc5ef745b510971284ddb6b, type: 3}
     panelCategory: 3
     forceSlot: 1
     slotIndex: 1

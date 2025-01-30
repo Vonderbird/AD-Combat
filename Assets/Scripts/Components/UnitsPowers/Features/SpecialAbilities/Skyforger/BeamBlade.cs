@@ -1,4 +1,5 @@
 using ADC.API;
+using RTSEngine.Attack;
 using UnityEngine;
 
 namespace ADC
@@ -8,6 +9,8 @@ namespace ADC
     {
         [SerializeField] private float strikeFactor = 1.5f;
         [SerializeField] private float strikePossibility = 0.15f;
+
+        [SerializeField] private ParticlePlayer hitVFX;
 
         public override void Use()
         {
@@ -19,6 +22,7 @@ namespace ADC
 
             // Implement specific logic for using Advancing The Pathway
             Debug.Log("Using Advancing The Pathway!");
+            hitVFX = UnitBattleManager.Transform.Find("unit_attack").GetComponentInChildren<ParticlePlayer>();
         }
 
         public override void OnLevelChanged(object sender, LevelChangeEventArgs e)
@@ -33,6 +37,7 @@ namespace ADC
             var rnd = Random.Range(0, 1);
             if (rnd > strikePossibility) return dealtDamage.Value;
             var newValue = (int)(dealtDamage.Value * strikeFactor);
+            hitVFX?.Hit();
             // View logic to show changes on UI
             return newValue;
         }
