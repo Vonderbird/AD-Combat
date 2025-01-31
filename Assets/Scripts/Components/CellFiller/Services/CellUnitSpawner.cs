@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ADC.API;
 using ADC.Currencies;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using RTSEngine.Game;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace ADC.UnitCreation
 {
@@ -23,6 +25,13 @@ namespace ADC.UnitCreation
 
         private readonly WaitForSeconds waitForSeconds = new(0.1f);
         private WaitUntil waitUntil;
+        private IWaveTimer waveTimer;
+
+        [Inject]
+        public void Construct(IWaveTimer waveTimer)
+        {
+            this.waveTimer = waveTimer;
+        }
 
         public void Init(IGameManager gameMgr)
         {
@@ -37,14 +46,14 @@ namespace ADC.UnitCreation
         private IEnumerator DelayedEnable()
         {
             yield return null;
-            EconomySystem.Instance.StartWave.AddListener(OnStartWave);
+            waveTimer.Begin.AddListener(OnStartWave);
         }
 
         private void OnDisable()
         {
             try
             {
-                EconomySystem.Instance.StartWave.RemoveListener(OnStartWave);
+                waveTimer.Begin.RemoveListener(OnStartWave);
             }
             catch (Exception e)
             {

@@ -1,6 +1,8 @@
+using ADC.API;
 using ADC.Currencies;
 using UnityEngine;
 using UnityEngine.VFX;
+using Zenject;
 
 namespace ADC
 {
@@ -8,6 +10,13 @@ namespace ADC
     {
         [SerializeField] private VisualEffect visualEffect;
         [SerializeField] private bool createOnStart = true;
+        private IWaveTimer waveTimer;
+
+        [Inject]
+        public void Construct(IWaveTimer waveTimer)
+        {
+            this.waveTimer = waveTimer;
+        }
 
         private void Start()
         {
@@ -17,13 +26,12 @@ namespace ADC
 
         private void OnEnable()
         {
-            EconomySystem.Instance.StartWave.AddListener(HitPortal);
+            waveTimer.Begin.AddListener(HitPortal);
         }
 
         private void OnDisable()
         {
-            if(EconomySystem.HasInstance())
-                EconomySystem.Instance.StartWave.RemoveListener(HitPortal);
+            waveTimer?.Begin.RemoveListener(HitPortal);
         }
 
         public void CreatePortal()
