@@ -9,6 +9,7 @@ using RTSEngine.Entities;
 using UnityEngine.Events;
 using JetBrains.Annotations;
 using System.Collections;
+using Zenject;
 
 namespace ADC.UnitCreation
 {
@@ -17,7 +18,7 @@ namespace ADC.UnitCreation
         private Transform cellsParent;
         private readonly CellUnitSpawner unitSpawner;
         private readonly ActiveTaskContainer activeTask;
-        private readonly IncomeManager incomeManager;
+        private readonly IIncomeManager incomeManager;
         private readonly Dictionary<int, UnitCell> unitCells = new();
         private readonly Dictionary<int, Vector3> cellPositions = new();
 
@@ -58,6 +59,14 @@ namespace ADC.UnitCreation
 
         private Coroutine updateCoroutine;
 
+        private IEconomySystem economySystem;
+
+        [Inject]
+        public void Construct(IEconomySystem economySystem)
+        {
+            this.economySystem = economySystem;
+        }
+
         public CellsManager([NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
             [NotNull] ActiveTaskContainer activeTask, int factionId)
         {
@@ -65,11 +74,11 @@ namespace ADC.UnitCreation
             this.cellsParent = cellsParent ?? throw new ArgumentNullException(nameof(cellsParent));
             this.unitSpawner = unitSpawner ?? throw new ArgumentNullException(nameof(unitSpawner));
             this.activeTask = activeTask ?? throw new ArgumentNullException(nameof(activeTask));
-            incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[factionId].IncomeManager;
+            incomeManager = economySystem.FactionsEconomiesDictionary[factionId].IncomeManager;
             unitSpawner.OnUnitsSpawned.AddListener(OnCellUnitSpawned);
             
-            unitPlacementTransaction = new UnitPlacementTransactionLogic(factionId);
-            unitDeletionTransaction = new UnitDeletionTransactionLogic(factionId);
+            unitPlacementTransaction = new UnitPlacementTransactionLogic(economySystem, factionId);
+            unitDeletionTransaction = new UnitDeletionTransactionLogic(economySystem, factionId);
         }
 
         public void OnEnabled(DeleteButton deleteButton)
@@ -304,7 +313,7 @@ namespace ADC.UnitCreation
 
         private void OnCellDeletionClicked(CellEventArgs arg0)
         {
-            EconomySystem.Instance.StartCoroutine(StartCellUnitDeactivation(arg0));
+            CoroutinePlayer.Instance.StartCoroutine(StartCellUnitDeactivation(arg0));
         }
 
 

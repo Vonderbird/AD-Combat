@@ -1,7 +1,9 @@
 using System.Linq;
+using ADC.API;
 using RTSEngine;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace ADC.Currencies
 {
@@ -9,7 +11,7 @@ namespace ADC.Currencies
     public class IncomeUIText : MonoBehaviour
     {
         private TextMeshProUGUI incomeText;
-        private FactionEconomy targetFaction;
+        private IFactionEconomy targetFaction;
         private bool enabled = false;
 
 
@@ -19,6 +21,14 @@ namespace ADC.Currencies
         [SerializeField] private int floatingPoints = 0;
         public int FactionId => factionId;
 
+        private IEconomySystem economySystem;
+
+        [Inject]
+        public void Construct(IEconomySystem economySystem)
+        {
+            this.economySystem = economySystem;
+        }
+
         private void Awake()
         {
             incomeText = GetComponent<TextMeshProUGUI>();
@@ -26,7 +36,7 @@ namespace ADC.Currencies
 
         private void Start()
         {
-            targetFaction = EconomySystem.Instance.FactionsEconomiesDictionary
+            targetFaction = economySystem.FactionsEconomiesDictionary
                 .Where(kv => factionId == -1?kv.Key.IsLocalPlayerFaction(): kv.Key.Equals(factionId))
                 .Select(kv=>kv.Value).FirstOrDefault();
             OnEnable();

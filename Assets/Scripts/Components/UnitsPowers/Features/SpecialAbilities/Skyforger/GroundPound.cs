@@ -7,8 +7,10 @@ using RTSEngine.Attack;
 using RTSEngine.Determinism;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
+using RTSEngine.Game;
 using RTSEngine.Search;
 using UnityEngine;
+using Zenject;
 
 namespace ADC
 {
@@ -26,13 +28,19 @@ namespace ADC
         private UnitAttack attackDamage;
         private TimeModifiedTimer timer;
         private WaitUntil waitForTime;
+        private IGameManager gameMgr;
+
+        [Inject]
+        public void Construct(IGameManager gameMgr)
+        {
+            this.gameMgr = gameMgr;
+        }
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             var specialAbility = base.Initialize(unitBattleManager);
             attackDamage = unitBattleManager.GetComponentInChildren<UnitAttack>();
             //attackDamage = UnitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
-            var gameMgr = EconomySystem.Instance.GameMgr;
             gridSearch = gameMgr.GetService<IGridSearchHandler>();
             timer = new TimeModifiedTimer(duration);
             waitForTime = new WaitUntil(timer.ModifiedDecrease);

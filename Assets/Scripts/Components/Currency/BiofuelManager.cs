@@ -1,3 +1,5 @@
+using ADC.API;
+
 namespace ADC.Currencies
 {
     public class BiofuelManager : CurrencyManager<Biofuel>

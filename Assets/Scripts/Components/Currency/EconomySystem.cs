@@ -1,27 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using ADC.API;
 using RTSEngine.Game;
-using RTSEngine.Determinism;
-using UnityEngine.Events;
+using Zenject;
 
 namespace ADC.Currencies
 {
-    public class EconomySystem : Singleton<EconomySystem>, IPostRunGameService
+    public class EconomySystem : MonoBehaviour, IEconomySystem, IPostRunGameService
     {
         [SerializeField] private FactionEconomy[] FactionsEconomies;
-        public Dictionary<int, FactionEconomy> FactionsEconomiesDictionary { get; private set; }
-
+        public Dictionary<int, IFactionEconomy> FactionsEconomiesDictionary { get; private set; }
 
         private List<CurrencyInterface> GlobalVisualizers = new();
 
         private bool isStarted = false;
-
-        [SerializeField] private float wavePeriod = 30.0f;
-        public TimeModifiedTimer WaveTimer { get; private set; }
-        public UnityEvent StartWave = new();
 
         private void Awake()
         {
@@ -33,24 +26,12 @@ namespace ADC.Currencies
             }
 
             FactionsEconomiesDictionary =
-                FactionsEconomies.ToDictionary(faction => faction.FactionId, faction => faction);
+                FactionsEconomies.ToDictionary(faction => faction.FactionId, faction => faction as IFactionEconomy);
             isStarted = true;
-            WaveTimer = new TimeModifiedTimer(wavePeriod);
-            StartCoroutine(TurnTimeUpdater());
         }
 
-        private IEnumerator TurnTimeUpdater()
-        {
-            var waitUntil = new WaitUntil(() => WaveTimer.ModifiedDecrease());
-            while (true)
-            {
-                yield return waitUntil;
-                WaveTimer.Reload(wavePeriod);
-                StartWave?.Invoke();
-            }
-        }
 
-        public FactionEconomy this[int factionId]
+        public IFactionEconomy this[int factionId]
         {
             get
             {
@@ -87,10 +68,10 @@ namespace ADC.Currencies
 
         public void Init(IGameManager manager)
         {
-            GameMgr = manager;
+            //GameMgr = manager;
         }
 
-        public IGameManager GameMgr { get; private set; }
+        //public IGameManager GameMgr { get; private set; }
 
         public void Add(CurrencyInterface currencyInterface)
         {

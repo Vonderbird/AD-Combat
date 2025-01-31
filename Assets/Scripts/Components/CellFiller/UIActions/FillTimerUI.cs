@@ -1,8 +1,10 @@
 using System.Collections;
+using ADC.API;
 using ADC.Currencies;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace ADC.UnitCreation
 {
@@ -11,6 +13,13 @@ namespace ADC.UnitCreation
     {
         [SerializeField] private Image fillImage;
         [SerializeField] private TextMeshProUGUI timer;
+        private IWaveTimer waveTimer;
+
+        [Inject]
+        public void Construct(IWaveTimer waveTimer)
+        {
+            this.waveTimer = waveTimer;
+        }
 
         private void Awake()
         {
@@ -20,12 +29,11 @@ namespace ADC.UnitCreation
         IEnumerator UpdateFiller()
         {
             yield return new WaitForSeconds(0.1f);
-            var waveTimer = EconomySystem.Instance.WaveTimer;
             while (true)
             {
                 
-                fillImage.fillAmount = waveTimer.CurrValue / waveTimer.DefaultValue;
-                timer.text = $"{waveTimer.CurrValue:f0} Seconds";
+                fillImage.fillAmount = waveTimer.Current / waveTimer.Duration;
+                timer.text = $"{waveTimer.Current:f0} Seconds";
                 yield return null;
             }
         }
