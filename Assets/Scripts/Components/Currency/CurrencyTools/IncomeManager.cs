@@ -1,9 +1,9 @@
 
 using System;
-using System.Collections.Generic;
 using ADC.API;
-using UnityEngine;
+using Zenject;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 namespace ADC.Currencies
 {
@@ -13,35 +13,23 @@ namespace ADC.Currencies
         private readonly int factionId;
         public UnityEvent<decimal> IncomeChanged { get; }= new();
         private decimal totalIncomeRate = 0.0m;
-        public IncomeManager(int factionId)
+        private IWaveTimer waveTimer;
+        private IEconomySystem economySystem;
+        private IIncomeSourceFactory incomeSourceFactory;
+        [Inject]
+        public IncomeManager(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             this.factionId = factionId;
+            this.incomeSourceFactory = incomeSourceFactory;
         }
 
         public Guid AddSource<T>(T amount) where T:ICurrency
         {
-            switch (amount)
-            {
-                case Biofuel bf:
-                {
-                    var incomeSource = new BiofuelIncomeSource(bf, factionId);
-                    incomeSources.Add(incomeSource.IncomeId, incomeSource);
-                    totalIncomeRate += bf.Value;
-                    IncomeChanged?.Invoke(totalIncomeRate);
-                    return incomeSource.IncomeId;
-                }
-                case WarScrap ws:
-                {
-                    var incomeSource = new WarScrapIncomeSource(ws, factionId);
-                    incomeSources.Add(incomeSource.IncomeId, incomeSource);
-                    totalIncomeRate += ws.Value;
-                    IncomeChanged?.Invoke(totalIncomeRate);
-                    return incomeSource.IncomeId;
-                }
-                default:
-                    throw new NotImplementedException(
-                        $"[IncomeManager] AddSource is not implemented for the currency of type {typeof(T)}");
-            }
+            var incomeSource = incomeSourceFactory.Create(amount, factionId);
+            incomeSources.Add(incomeSource.IncomeId, incomeSource);
+            totalIncomeRate += amount.Value;
+            IncomeChanged?.Invoke(totalIncomeRate);
+            return incomeSource.IncomeId;
         }
 
         public bool RemoveSource(Guid incomeId)

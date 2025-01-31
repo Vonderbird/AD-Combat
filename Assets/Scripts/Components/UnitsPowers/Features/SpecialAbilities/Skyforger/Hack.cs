@@ -58,7 +58,7 @@ namespace ADC
 
         public int HackThenDamage(DamageArgs damage)
         {
-            hackCoroutine = EconomySystem.Instance.StartCoroutine(ProcessTheHack(damage));
+            hackCoroutine = CoroutinePlayer.Instance.StartCoroutine(ProcessTheHack(damage));
             return 0;
         }
 
@@ -100,7 +100,7 @@ namespace ADC
         public void CancelTheHack()
         {
             if (hackCoroutine == null) return;
-            EconomySystem.Instance.StopCoroutine(hackCoroutine);
+            CoroutinePlayer.Instance.StopCoroutine(hackCoroutine);
             hackCoroutine = null;
         }
     }

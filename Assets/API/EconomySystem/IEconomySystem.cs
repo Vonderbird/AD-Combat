@@ -42,7 +42,7 @@ namespace ADC.API
 
     public interface IFactionEconomy
     {
-        void Init(int factionId);
+        void Init(IIncomeSourceFactory incomeSourceFactory, int factionId);
         void Start();
         //void AddVisualizer(CurrencyInterface visualizer);
         void OnEnable();
@@ -66,4 +66,9 @@ namespace ADC.API
         float Duration { get; }
         float Current { get; }
     }
+    public interface IIncomeSourceFactory
+    {
+        IncomeSource Create(ICurrency currency, int factionId);
+    }
+
 }

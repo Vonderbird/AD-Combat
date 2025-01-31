@@ -6819,6 +6819,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 442818, guid: 3242f14afa5535b4d8cad2fd038a4ee2, type: 3}
   m_PrefabInstance: {fileID: 5030061950731839057}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &407832903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5227958801853655117, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
+  m_PrefabInstance: {fileID: 547767664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72fc3b4cab2aa488a8b5dc2e48d7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410466133
 GameObject:
   m_ObjectHideFlags: 0
@@ -9613,26 +9624,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5227958801853655117, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
-      propertyPath: wavePeriod
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5227958801853655117, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
-      propertyPath: FactionsEconomies.Array.data[0].initialBiofuel
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 5227958801853655117, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
-      propertyPath: FactionsEconomies.Array.data[1].initialBiofuel
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 5227958801853655117, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
-      propertyPath: FactionsEconomies.Array.data[0].initialWarScraps
-      value: 3500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5227958801853655117, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
-      propertyPath: FactionsEconomies.Array.data[1].initialWarScraps
-      value: 3500
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9643,6 +9634,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5225890343301714978, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
   m_PrefabInstance: {fileID: 547767664}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &547767666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5311855970797133649, guid: 9b128aadd4b4a4f4fa3ef256fdf87940, type: 3}
+  m_PrefabInstance: {fileID: 547767664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e31e765fd4fc8b49b41f64933039c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &549668775
 GameObject:
   m_ObjectHideFlags: 0
@@ -30874,6 +30876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd6557c9667a6549bae00e3c23c0121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  economySystem: {fileID: 407832903}
+  waveTimer: {fileID: 547767666}
 --- !u!1 &1720086819
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,10 @@ using RTSEngine.Attack;
 using RTSEngine.Determinism;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
+using RTSEngine.Game;
 using RTSEngine.Search;
 using UnityEngine;
+using Zenject;
 
 namespace ADC
 {
@@ -22,11 +24,17 @@ namespace ADC
         [SerializeField] private DamageType damageType = DamageType.Area;
         [SerializeField] private string baseAttackCode;
         [SerializeField] private string freezingShotAttackCode;
-        private IGridSearchHandler gridSearch;
 
         private Dictionary<string, UnitAttack> attackDamages = new();
         private TimeModifiedTimer timer;
         private WaitUntil waitForTime;
+        private IGridSearchHandler gridSearch;
+
+        [Inject]
+        public void Construct(IGameManager gameMgr)
+        {
+            gridSearch = gameMgr.GetService<IGridSearchHandler>();
+        }
 
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
@@ -35,8 +43,6 @@ namespace ADC
             attackDamages[baseAttackCode] = attacks.FirstOrDefault(a => a.Code == baseAttackCode);
             attackDamages[freezingShotAttackCode] = attacks.FirstOrDefault(a => a.Code == freezingShotAttackCode);
             //attackDamage = unitBattleManager.GetComponentsInChildren<UnitAttack>().FirstOrDefault(ua => ua.Code == unitAttackCode);
-            var gameMgr = EconomySystem.Instance.GameMgr;
-            gridSearch = gameMgr.GetService<IGridSearchHandler>();
             timer = new TimeModifiedTimer(duration);
             waitForTime = new WaitUntil(timer.ModifiedDecrease);
             return specialAbility;

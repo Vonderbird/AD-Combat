@@ -116,7 +116,7 @@ namespace ADC.UnitCreation
             incomeManager = economySystem.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
             if (CellsManager == null)
             {
-                cellsManager = new CellsManager(cellsParent, unitSpawner, activeTaskData, Entity.FactionID);
+                cellsManager = new CellsManager(economySystem, cellsParent, unitSpawner, activeTaskData, Entity.FactionID);
                 deleteButton ??= FindAnyObjectByType<DeleteButton>();
                 CellsManager.OnEnabled(deleteButton);
                 CellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
