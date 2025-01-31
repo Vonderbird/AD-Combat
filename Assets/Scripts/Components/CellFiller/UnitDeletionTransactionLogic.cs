@@ -1,11 +1,14 @@
+using ADC.API;
 using ADC.Currencies;
 using UnityEngine;
+using Zenject;
 
 namespace ADC.UnitCreation
 {
     public class UnitDeletionTransactionLogic : TransactionLogic<UnitPlacementCosts>
     {
-        public UnitDeletionTransactionLogic(int factionId) : base(factionId)
+        [Inject]
+        public UnitDeletionTransactionLogic(IEconomySystem economySystem, int factionId) : base(economySystem, factionId)
         {
         }
 

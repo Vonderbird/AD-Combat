@@ -1,18 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ADC.API;
 using UnityEngine;
 
 namespace ADC.Currencies
 {
 
     [Serializable]
-    public class FactionEconomy
+    public class FactionEconomy: IFactionEconomy
     {
         public int FactionId { get; private set; }
         private BiofuelManager biofuelManager;
         private WarScrapManager warScrapManager;
-        public IncomeManager IncomeManager { get; private set; }
+        public IIncomeManager IncomeManager { get; private set; }
         [SerializeField] private float initialWarScraps = 200;
         [SerializeField] private float initialBiofuel = 0;
 
@@ -105,26 +106,26 @@ namespace ADC.Currencies
             }
         }
 
-        public bool Deposit(Biofuel amount)
+        public bool Deposit<T>(T amount) where T : ICurrency
         {
-            return biofuelManager.Deposit(amount);
+            return amount switch
+            {
+                Biofuel bf => biofuelManager.Deposit(bf),
+                WarScrap ws => warScrapManager.Deposit(ws),
+                _ => false
+            };
         }
 
-        public bool Deposit(WarScrap amount)
+        public bool Withdraw<T>(T amount) where T : ICurrency
         {
-            return warScrapManager.Deposit(amount);
+            return amount switch
+            {
+                Biofuel bf => biofuelManager.Withdraw(bf),
+                WarScrap ws => warScrapManager.Withdraw(ws),
+                _ => false
+            };
         }
-
-        public bool Withdraw(Biofuel amount)
-        {
-            return biofuelManager.Withdraw(amount);
-        }
-
-        public bool Withdraw(WarScrap amount)
-        {
-            return warScrapManager.Withdraw(amount);
-        }
-
+        
         private void OnBiofuelChanged(CurrencyChangeEventArgs<Biofuel> arg0)
         {
             //Debug.LogError("Biofuel Change not Implemented");

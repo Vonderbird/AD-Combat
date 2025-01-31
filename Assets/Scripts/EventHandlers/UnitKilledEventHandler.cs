@@ -1,7 +1,9 @@
+using ADC.API;
 using ADC.Currencies;
 using ADC.UnitCreation;
 using RTSEngine.Health;
 using UnityEngine;
+using Zenject;
 
 namespace ADC
 {
@@ -11,6 +13,13 @@ namespace ADC
         [SerializeField]
         private float killAwardPercent = 0.3f;
         private WarScrap killAward;
+        private IEconomySystem economySystem;
+
+        [Inject]
+        public void Construct(IEconomySystem economySystem)
+        {
+            this.economySystem = economySystem;
+        }
 
         private void Awake()
         {
@@ -36,7 +45,7 @@ namespace ADC
 
             var predator = unitHealth.TerminatedBy;
             Debug.Log($">>>{predator.Name}<<<");
-            EconomySystem.Instance.FactionsEconomiesDictionary[predator.FactionID].Deposit(killAward);
+            economySystem.FactionsEconomiesDictionary[predator.FactionID].Deposit(killAward);
         }
 
     }

@@ -1,3 +1,4 @@
+using ADC.API;
 using TMPro;
 using UnityEngine;
 
@@ -12,9 +13,8 @@ namespace ADC.Currencies
 
         private Coroutine updater;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             textUI = GetComponent<TextMeshProUGUI>();
         }
 

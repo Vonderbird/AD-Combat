@@ -10,6 +10,7 @@ using RTSEngine.UnitExtension;
 using RTSEngine.EntityComponent;
 using System.Collections.Generic;
 using ADC.API;
+using Zenject;
 using IUnit = RTSEngine.Entities.IUnit;
 using SelectionType = RTSEngine.Selection.SelectionType;
 
@@ -76,8 +77,15 @@ namespace ADC.UnitCreation
 
 
         private DeleteButton deleteButton;
-        protected IncomeManager incomeManager { private set; get; }
+        protected IIncomeManager incomeManager { private set; get; }
         private UnitPlacementTransactionLogic unitPlacementTransaction;
+        private IEconomySystem economySystem;
+
+        [Inject]
+        public void Construct(IEconomySystem economySystem)
+        {
+            this.economySystem = economySystem;
+        }
 
         private void Awake()
         {
@@ -105,7 +113,7 @@ namespace ADC.UnitCreation
 
             unitSpawner = gameMgr.GetService<CellUnitSpawner>();
             spawnPointsManager.OnInit(this);
-            incomeManager = EconomySystem.Instance.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
+            incomeManager = economySystem.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
             if (CellsManager == null)
             {
                 cellsManager = new CellsManager(cellsParent, unitSpawner, activeTaskData, Entity.FactionID);
@@ -158,7 +166,7 @@ namespace ADC.UnitCreation
             unitSpawnPosTestTransform = new GameObject("Test Transform").transform;
             cellRelativePosTestTransform.SetParent(cellsParent);
             unitSpawnPosTestTransform.SetParent(spawnTransform);
-            unitPlacementTransaction = new UnitPlacementTransactionLogic(Entity.FactionID);
+            unitPlacementTransaction = new UnitPlacementTransactionLogic(economySystem, Entity.FactionID);
         }
 
 

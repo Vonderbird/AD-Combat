@@ -1,3 +1,6 @@
+using ADC.API;
+using Zenject;
+
 namespace ADC.Currencies
 {
 
@@ -8,10 +11,13 @@ namespace ADC.Currencies
     public abstract class TransactionLogic<T> : ICurrencyDrainer, ICurrencyProducer
         where T : ITransactionArgs
     {
+        private readonly IEconomySystem economySystem;
         protected readonly int factionId;
 
-        protected TransactionLogic(int factionId)
+        [Inject]
+        protected TransactionLogic(IEconomySystem economySystem, int factionId)
         {
+            this.economySystem = economySystem;
             this.factionId = factionId;
         }
 
@@ -19,22 +25,22 @@ namespace ADC.Currencies
 
         public bool Drain(Biofuel amount)
         {
-            return EconomySystem.Instance[factionId].Withdraw(amount);
+            return economySystem[factionId].Withdraw(amount);
         }
 
         public bool Drain(WarScrap amount)
         {
-            return EconomySystem.Instance[factionId].Withdraw(amount);
+            return economySystem[factionId].Withdraw(amount);
         }
 
         public bool Produce(Biofuel amount)
         {
-            return EconomySystem.Instance[factionId].Deposit(amount);
+            return economySystem[factionId].Deposit(amount);
         }
 
         public bool Produce(WarScrap amount)
         {
-            return EconomySystem.Instance[factionId].Deposit(amount);
+            return economySystem[factionId].Deposit(amount);
         }
     }
 }
