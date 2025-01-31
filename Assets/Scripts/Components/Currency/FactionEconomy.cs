@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ADC.API;
 using UnityEngine;
+using Zenject;
 
 namespace ADC.Currencies
 {
@@ -11,6 +12,7 @@ namespace ADC.Currencies
     public class FactionEconomy: IFactionEconomy
     {
         public int FactionId { get; private set; }
+        
         private BiofuelManager biofuelManager;
         private WarScrapManager warScrapManager;
         public IIncomeManager IncomeManager { get; private set; }
@@ -23,17 +25,20 @@ namespace ADC.Currencies
         //[SerializeField] private CurrencyInterface[] visualizers;
         public HashSet<CurrencyInterface<Biofuel>> BiofuelVisualizers { get; private set; } = new();
         public HashSet<CurrencyInterface<WarScrap>> WarScrapVisualizers { get; private set; } = new();
+        private IEconomySystem economySystem;
 
-        public void Init(int factionId)
+
+        [Inject]
+        public void Init(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             FactionId = factionId;
             //visualizers ??= Array.Empty<CurrencyInterface>();
             biofuelManager = new BiofuelManager(factionId);
             warScrapManager = new WarScrapManager(factionId);
-            IncomeManager = new IncomeManager(factionId);
+            IncomeManager = new IncomeManager(incomeSourceFactory, factionId);
             //AddVisualizers(visualizers);
         }
-
+        
         public void Start()
         {
             biofuelManager.Init(new Biofuel((decimal)initialBiofuel));
