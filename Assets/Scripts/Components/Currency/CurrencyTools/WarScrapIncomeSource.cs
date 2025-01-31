@@ -7,16 +7,11 @@ namespace ADC.Currencies
     {
         private readonly WarScrap paymentAmount;
         public override decimal PaymentAmount => paymentAmount.Value;
-        private IEconomySystem economySystem;
+
 
         [Inject]
-        private void Construct(IEconomySystem economySystem)
-        {
-            this.economySystem = economySystem;
-        }
-
-        public WarScrapIncomeSource(WarScrap paymentAmount, int factionId): 
-            base(factionId)
+        public WarScrapIncomeSource(IWaveTimer waveTimer, IEconomySystem economySystem, WarScrap paymentAmount, int factionId): 
+            base(waveTimer, economySystem, factionId)
         {
             this.paymentAmount = paymentAmount;
         }

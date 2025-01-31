@@ -15,13 +15,21 @@ namespace ADC.Currencies
         private List<CurrencyInterface> GlobalVisualizers = new();
 
         private bool isStarted = false;
+        private IIncomeSourceFactory incomeSourceFactory;
+
+        [Inject]
+        public void Construct(IIncomeSourceFactory incomeSourceFactory)
+        {
+            this.incomeSourceFactory = incomeSourceFactory;
+        }
+
 
         private void Awake()
         {
 
             for (int i = 0; i < FactionsEconomies.Length; i++)
             {
-                FactionsEconomies[i].Init(i);
+                FactionsEconomies[i].Init(incomeSourceFactory, i);
                 FactionsEconomies[i].AddVisualizers(GlobalVisualizers);
             }
 

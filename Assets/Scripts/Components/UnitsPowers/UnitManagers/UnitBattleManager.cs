@@ -121,8 +121,8 @@ namespace ADC
             // 2. Xp.Level for base spaces upgrade!
             //Specs.BindEquipmentSpecs(EquipmentManager.AddedSpecs);
 
-            Specs.UpdateBaseSpecs(Specs.BaseSpecs);
-            EquipmentManager.UpdateEquipments(equipmentManager.Equipments);
+            //Specs.UpdateBaseSpecs(Specs.BaseSpecs);
+            //EquipmentManager.UpdateEquipments(equipmentManager.Equipments);
             StartCoroutine(FreezeForSeconds(4.0f));
         }
 

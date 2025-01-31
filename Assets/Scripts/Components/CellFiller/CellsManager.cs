@@ -60,17 +60,13 @@ namespace ADC.UnitCreation
         private Coroutine updateCoroutine;
 
         private IEconomySystem economySystem;
-
+        
         [Inject]
-        public void Construct(IEconomySystem economySystem)
-        {
-            this.economySystem = economySystem;
-        }
-
-        public CellsManager([NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
+        public CellsManager(IEconomySystem economySystem, [NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
             [NotNull] ActiveTaskContainer activeTask, int factionId)
         {
             this.factionId = factionId;
+            this.economySystem = economySystem;
             this.cellsParent = cellsParent ?? throw new ArgumentNullException(nameof(cellsParent));
             this.unitSpawner = unitSpawner ?? throw new ArgumentNullException(nameof(unitSpawner));
             this.activeTask = activeTask ?? throw new ArgumentNullException(nameof(activeTask));
