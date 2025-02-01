@@ -1,5 +1,6 @@
 using System;
 using ADC.API;
+using UnityEngine;
 
 namespace ADC.Currencies
 {
@@ -54,7 +55,8 @@ namespace ADC.Currencies
 
         public override bool Equals(object obj)
         {
-            return obj != null && this.Equals((Biofuel)obj);
+            if (obj == null || !obj.IsNumber()) return false;
+            return this.Equals(new Biofuel(decimal.Parse(obj.ToString())));
         }
 
         public override int GetHashCode()
