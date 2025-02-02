@@ -55,8 +55,12 @@ namespace ADC.Currencies
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !obj.IsNumber()) return false;
-            return this.Equals(new Biofuel(decimal.Parse(obj.ToString())));
+            return obj switch
+            {
+                null => false,
+                Biofuel bf => this.Equals(bf),
+                _ => obj.IsNumber() && this.Equals(new Biofuel(decimal.Parse(obj.ToString())))
+            };
         }
 
         public override int GetHashCode()
