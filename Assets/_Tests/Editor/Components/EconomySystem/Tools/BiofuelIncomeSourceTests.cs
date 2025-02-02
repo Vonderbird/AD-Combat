@@ -40,21 +40,15 @@ namespace ADC.Editor.Tests
         {
             // Arrange
             var factionEconomy = new Mock<IFactionEconomy>();
-            // Debug.Log($">> _biofuel {_biofuel}");
-            factionEconomy.Setup(f=> f.Deposit(It.IsAny<Biofuel>())).Returns(true);
-            // factionEconomy.Deposit(Arg.Is<Biofuel>(b => b.Value == _biofuel.Value)).Returns(true);
-            // _economySystem[FactionId].Returns(factionEconomy);
-            // var source = new BiofuelIncomeSource(_waveTimer, _economySystem, _biofuel, FactionId);
+            factionEconomy.Setup(f=> f.Deposit(It.Is<Biofuel>(b=>b.Value==_biofuel.Value))).Returns(true);
+            _economySystem.Setup(e => e[FactionId]).Returns(factionEconomy.Object);
+            var source = new BiofuelIncomeSource(_waveTimer.Object, _economySystem.Object, _biofuel, FactionId);
 
             // Act
-            // _waveTimer.Begin.Invoke();
+            _waveTimer.Object.Begin.Invoke();
             
             // Assert
-            // Debug.Log($">> {_economySystem[FactionId].Deposit(_biofuel)}, _biofuel {_biofuel}");
-            Debug.Log($">> {factionEconomy.Object.Deposit(_biofuel)}");
-            // _economySystem[FactionId].Received().Deposit((_biofuel));
-            // Debug.Log($">>1 {factionEconomy.Deposit(_biofuel)}");
-            factionEconomy.Verify(f=>f.Deposit(It.IsAny<Biofuel>()));
+            factionEconomy.Verify(f=>f.Deposit(It.Is<Biofuel>(b=>b.Value==_biofuel.Value)));
         }
     }
 }
