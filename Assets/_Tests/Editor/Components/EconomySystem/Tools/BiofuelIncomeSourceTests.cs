@@ -1,6 +1,7 @@
 using ADC.API;
 using ADC.Currencies;
-using NSubstitute;
+// using NSubstitute;
+using Moq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -23,8 +24,8 @@ namespace ADC.Editor.Tests
         {
             // Act
             var source = new BiofuelIncomeSource(
-                _waveTimer,
-                _economySystem,
+                _waveTimer.Object,
+                _economySystem.Object,
                 _biofuel,
                 FactionId
             );
@@ -38,9 +39,9 @@ namespace ADC.Editor.Tests
         public void Update_DepositsBiofuelToCorrectFaction()
         {
             // Arrange
-            var factionEconomy = Substitute.For<IFactionEconomy>();
+            var factionEconomy = new Mock<IFactionEconomy>();
             // Debug.Log($">> _biofuel {_biofuel}");
-            factionEconomy.Deposit(Arg.Any<Biofuel>()).Returns(true);
+            factionEconomy.Setup(f=> f.Deposit(It.IsAny<Biofuel>())).Returns(true);
             // factionEconomy.Deposit(Arg.Is<Biofuel>(b => b.Value == _biofuel.Value)).Returns(true);
             // _economySystem[FactionId].Returns(factionEconomy);
             // var source = new BiofuelIncomeSource(_waveTimer, _economySystem, _biofuel, FactionId);
@@ -50,10 +51,10 @@ namespace ADC.Editor.Tests
             
             // Assert
             // Debug.Log($">> {_economySystem[FactionId].Deposit(_biofuel)}, _biofuel {_biofuel}");
-            // Debug.Log($">> {factionEconomy.Deposit(_biofuel)}");
+            Debug.Log($">> {factionEconomy.Object.Deposit(_biofuel)}");
             // _economySystem[FactionId].Received().Deposit((_biofuel));
             // Debug.Log($">>1 {factionEconomy.Deposit(_biofuel)}");
-            factionEconomy.Received().Deposit(Arg.Any<Biofuel>());
+            factionEconomy.Verify(f=>f.Deposit(It.IsAny<Biofuel>()));
         }
     }
 }
