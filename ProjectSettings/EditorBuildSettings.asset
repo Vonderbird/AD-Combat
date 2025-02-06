@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/UI-Test-1 New Map.unity
+    path: Assets/_Scenes/BattleGround1.unity
     guid: 03c032c2b8a063c46a76b1bd362373fb
   - enabled: 1
     path: Assets/Plugins/Zenject/OptionalExtras/IntegrationTests/SceneTests/TestSceneContextEvents/TestSceneContextEvents.unity

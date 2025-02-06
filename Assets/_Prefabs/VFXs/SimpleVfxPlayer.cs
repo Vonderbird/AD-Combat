@@ -2,7 +2,7 @@ using ADC.API;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class KassSlashv8blue : ParticlePlayer
+public class SimpleVfxPlayer : ParticlePlayer
 {
     [SerializeField] private VisualEffect vfx;
     //[SerializeField] private VFXPropertyBinder propertyBinder;
