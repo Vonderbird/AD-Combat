@@ -5,7 +5,8 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "ADCAPI",
-        "ADCombat"
+        "ADCombat",
+        "ADC.DIContainer"
     ],
     "includePlatforms": [
         "Editor"
