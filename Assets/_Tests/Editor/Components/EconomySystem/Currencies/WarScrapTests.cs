@@ -75,6 +75,7 @@ namespace ADC.Editor.Tests
             Assert.IsTrue(b.Equals(10));
             Assert.IsTrue(b.Equals(10.0f));
             Assert.IsTrue(b.Equals(new WarScrap(10.0m)));
+            Assert.IsTrue(b.Equals((object)new WarScrap(10.0m)));
             Assert.IsFalse(b.Equals("string"));
             Assert.IsFalse(b.Equals(null));
         }

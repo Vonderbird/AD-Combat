@@ -58,8 +58,12 @@ namespace ADC.Currencies
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !obj.IsNumber()) return false;
-            return this.Equals(new WarScrap(decimal.Parse(obj.ToString())));
+            return obj switch
+            {
+                null => false,
+                WarScrap bf => this.Equals(bf),
+                _ => obj.IsNumber() && this.Equals(new WarScrap(decimal.Parse(obj.ToString())))
+            };
         }
 
         public override int GetHashCode()
