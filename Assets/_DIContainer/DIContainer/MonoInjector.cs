@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// MonoBehaviour-aware resolver
 public class MonoInjector : MonoBehaviour
 {
     private static DiContainer _container;

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Setup in scene
 public class SceneBootstrapper : MonoBehaviour
 {
     void Awake()

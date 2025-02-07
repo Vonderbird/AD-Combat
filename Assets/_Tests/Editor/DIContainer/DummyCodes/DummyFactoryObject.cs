@@ -1,4 +1,6 @@
-namespace _DIContainer.DiContainerTests
+using System;
+
+namespace ADC.Editor.Tests
 {
     public class DummyFactoryObject
     {
