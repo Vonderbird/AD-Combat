@@ -1,5 +1,4 @@
 using ADC.API;
-using Zenject;
 
 namespace ADC.Currencies
 {
@@ -9,7 +8,6 @@ namespace ADC.Currencies
         public override decimal PaymentAmount => paymentAmount.Value;
 
 
-        [Inject]
         public WarScrapIncomeSource(IWaveTimer waveTimer, IEconomySystem economySystem, WarScrap paymentAmount, int factionId): 
             base(waveTimer, economySystem, factionId)
         {
@@ -20,7 +18,7 @@ namespace ADC.Currencies
         {
 
             //Debug.Log($"Update with income value: {PaymentAmount}");
-            economySystem[factionId].Deposit(paymentAmount);
+            EconomySystem[FactionId].Deposit(paymentAmount);
         }
     }
 }

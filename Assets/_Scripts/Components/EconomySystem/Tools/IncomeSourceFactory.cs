@@ -1,6 +1,5 @@
 using System;
 using ADC.API;
-using Zenject;
 
 namespace ADC.Currencies
 {
@@ -9,7 +8,6 @@ namespace ADC.Currencies
         private readonly IEconomySystem _economySystem;
         private readonly IWaveTimer _waveTimer;
 
-        [Inject]
         public IncomeSourceFactory(IWaveTimer waveTimer, IEconomySystem economySystem)
         {
             this._economySystem = economySystem;

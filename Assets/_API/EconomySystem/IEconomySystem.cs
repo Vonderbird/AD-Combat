@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Events;
-using Zenject;
 
 namespace ADC.API
 {
 
-    public abstract class CurrencyInterface : MonoBehaviour
+    public abstract class CurrencyInterface : MonoBehaviour<IEconomySystem>
     {
 
         [SerializeField]
@@ -17,8 +17,8 @@ namespace ADC.API
 
         public int FactionId => factionId;
 
-        [Inject]
-        public void Construct(IEconomySystem economySystem)
+        
+        protected override void Init(IEconomySystem economySystem)
         {
             economySystem.Add(this);
         }
@@ -30,11 +30,11 @@ namespace ADC.API
         //}
     }
 
+    [Service]
     public interface IEconomySystem
     {
         IFactionEconomy this[int factionId] { get; }
 
-        [Inject]
         void Add(CurrencyInterface currencyInterface);
 
         public Dictionary<int, IFactionEconomy> FactionsEconomiesDictionary { get; }

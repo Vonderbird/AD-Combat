@@ -3,10 +3,11 @@ using ADC.API;
 using UnityEngine;
 using RTSEngine.EntityComponent;
 using System.Collections.Generic;
+using Sisus.Init;
 
 namespace ADC.UnitCreation
 {
-    public class SpawnUnitsList : MonoBehaviour, IDeactivable
+    public class SpawnUnitsList : MonoBehaviour<IDeactivablesManager>, IDeactivable
     {
         [SerializeField] private SpawnUnitActivatorButton activatorButton;
 
@@ -26,7 +27,7 @@ namespace ADC.UnitCreation
         private SpawnUnitActivatorButton activeButton = null;
         private Action onDeactivationClick = null;
 
-        private void Awake()
+        protected override void OnAwake()
         {
             GroupIds = groupId.Split(";");
             GroupIdsToDeactivate = groupIdsToDeactivate.Split(';');
@@ -63,7 +64,7 @@ namespace ADC.UnitCreation
         {
             if (activeButton && activeButton.Equals(unitButton)) return;
 
-            DeactivablesManager.Instance.DeactivateGroups(GroupIdsToDeactivate);
+            _deactivablesManager.DeactivateGroups(GroupIdsToDeactivate);
             activeButton?.OnDeactivateButton();
             activeButton = unitButton;
             activeButton?.OnActivateButton();
@@ -73,7 +74,7 @@ namespace ADC.UnitCreation
         {
             foreach (var id in GroupIds)
             {
-                DeactivablesManager.Instance.Add(id, this);
+                _deactivablesManager.Add(id, this);
             }
         }
 
@@ -84,5 +85,10 @@ namespace ADC.UnitCreation
             activeButton = null;
         }
 
+        private IDeactivablesManager _deactivablesManager;
+        protected override void Init(IDeactivablesManager deactivablesManager)
+        {
+            _deactivablesManager = deactivablesManager;
+        }
     }
 }

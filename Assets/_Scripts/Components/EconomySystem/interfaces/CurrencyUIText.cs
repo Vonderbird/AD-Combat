@@ -13,11 +13,11 @@ namespace ADC.Currencies
 
         private Coroutine updater;
 
-        protected void Awake()
+
+        protected override void OnAwake()
         {
             textUI = GetComponent<TextMeshProUGUI>();
         }
-
 
         private void OnEnable()
         {

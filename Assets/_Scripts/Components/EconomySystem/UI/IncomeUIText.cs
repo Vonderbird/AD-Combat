@@ -3,7 +3,6 @@ using ADC.API;
 using RTSEngine;
 using TMPro;
 using UnityEngine;
-using Zenject;
 
 namespace ADC.Currencies
 {
@@ -12,7 +11,7 @@ namespace ADC.Currencies
     {
         private TextMeshProUGUI incomeText;
         private IFactionEconomy targetFaction;
-        private bool enabled = false;
+        private bool isEnabled = false;
 
 
         [SerializeField]
@@ -23,7 +22,6 @@ namespace ADC.Currencies
 
         private IEconomySystem economySystem;
 
-        [Inject]
         public void Construct(IEconomySystem economySystem)
         {
             this.economySystem = economySystem;
@@ -44,16 +42,16 @@ namespace ADC.Currencies
 
         void OnEnable()
         {
-            if(targetFaction==null || enabled) return;
+            if(targetFaction==null || isEnabled) return;
             targetFaction.IncomeManager.IncomeChanged.AddListener(OnIncomeChanged);
-            enabled = true;
+            isEnabled = true;
         }
 
         void OnDisable()
         {
-            if(!enabled) return;
+            if(!isEnabled) return;
             targetFaction.IncomeManager.IncomeChanged.RemoveListener(OnIncomeChanged);
-            enabled = false;
+            isEnabled = false;
         }
 
         private void OnIncomeChanged(decimal newIncome)

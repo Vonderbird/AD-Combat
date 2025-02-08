@@ -13,6 +13,7 @@ namespace ADC
         private ParticlePlayer vfx;
 
 
+        
         public override ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
             reduceDamageRatio = Mathf.Max(0, Mathf.Min(1.0f, reduceDamageRatio));
@@ -23,7 +24,7 @@ namespace ADC
                 PositionOffset = positionOffset,
                 ScaleOffset = scaleOffset
             };
-            vfx = VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, particleArgs);
+            vfx = VfxPoolingManager.SpawnVfx(VFXPrefab, particleArgs);
             if (isUnlocked)
             {
                 vfx?.Play();
@@ -61,5 +62,6 @@ namespace ADC
 
             return damage.Value;
         }
+
     }
 }

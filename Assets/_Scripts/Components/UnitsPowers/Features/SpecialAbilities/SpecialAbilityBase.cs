@@ -1,18 +1,20 @@
 using System;
 using ADC.API;
+using Sisus.Init;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ADC
 {
-    public abstract class SpecialAbilityBase : ScriptableObject, ISpecialAbility
+    public abstract class SpecialAbilityBase : ScriptableObject<IUnitBattleManager, IVFXPoolingManager>, ISpecialAbility
     {
         [SerializeField] private int unlockLevel = 1;
-        [SerializeField] private string name;
+        [SerializeField] private string abilityName;
         [SerializeField] private Sprite icon;
         [SerializeField] private GameObject infoCellPrefab;
         public int UnlockLevel => unlockLevel;
         public Sprite Icon => icon;
-        public string Name => name;
+        public string Name => abilityName;
 
         public GameObject InfoCellPrefab => infoCellPrefab;
 
@@ -20,13 +22,19 @@ namespace ADC
 
         protected bool isUnlocked;
         protected IUnitBattleManager UnitBattleManager;
+        protected IVFXPoolingManager VfxPoolingManager;
 
 
+        protected override void Init(IUnitBattleManager unitBattleManager, IVFXPoolingManager vfxPoolingManager)
+        {
+            UnitBattleManager = unitBattleManager;
+            VfxPoolingManager = vfxPoolingManager;
+        }
+        
         public virtual ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
-            if (string.IsNullOrEmpty(name))
-                name = GetType().Name;
-            UnitBattleManager = unitBattleManager;
+            if (string.IsNullOrEmpty(abilityName))
+                abilityName = GetType().Name;
             if (unlockLevel <= 1)
                 Unlock();
             return this;

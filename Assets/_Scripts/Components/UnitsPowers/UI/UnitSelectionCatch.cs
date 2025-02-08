@@ -1,14 +1,16 @@
 using ADC.API;
 using RTSEngine.Selection;
+using Sisus.Init;
 using UnityEngine;
 using SelectionType = ADC.API.SelectionType;
 
 namespace ADC
 {
-    public class UnitSelectionCatch : UnitSelectionInfo
+    public class UnitSelectionCatch : UnitSelectionInfo, IInitializable<IUnitStatsUIPanelManager>
     {
         [SerializeField] private string title = "";
         [SerializeField] private Sprite unitBanner = null;
+        private IUnitStatsUIPanelManager _unitStatsUIPanelManager;
 
         public string Title
         {
@@ -37,13 +39,17 @@ namespace ADC
             //if (args.Type == SelectionType.single))
             //{
                 var uiInfo = ExtractUnitUIInfo(args.SelectedUnit);
-                UnitStatsUIPanelManager.Instance.OnUnitSelected(uiInfo);
+                _unitStatsUIPanelManager.OnUnitSelected(uiInfo);
             //}
         }
         public override void OnUnitDeselected(object sender, DeselectionEventArgs args)
         {
-            UnitStatsUIPanelManager.Instance.OnUnitDeselected(args.SelectedUnit);
+            _unitStatsUIPanelManager.OnUnitDeselected(args.SelectedUnit);
         }
 
+        public void Init(IUnitStatsUIPanelManager unitStatsUIPanelManager)
+        {
+            _unitStatsUIPanelManager = unitStatsUIPanelManager;
+        }
     }
 }

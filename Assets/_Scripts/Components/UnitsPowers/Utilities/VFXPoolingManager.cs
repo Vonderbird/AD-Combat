@@ -1,10 +1,13 @@
 using ADC.API;
 using UnityEngine;
 using System.Collections.Generic;
+using Sisus.Init;
 
 namespace ADC
 {
-    public class VFXPoolingManager : Singleton<VFXPoolingManager>
+
+    [Service]
+    public class VFXPoolingManager : MonoBehaviour, IVFXPoolingManager
     {
 
         [SerializeField] private int initialPoolSize = 1; // Default pool size

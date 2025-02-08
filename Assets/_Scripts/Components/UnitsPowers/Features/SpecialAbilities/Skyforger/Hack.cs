@@ -78,7 +78,7 @@ namespace ADC
             foreach (var meshRenderer in skinnedMeshRenderer)
             {
                 var particleArgs = new SkinnedMeshVfxArgs() { SkinnedMesh = meshRenderer, Lifespan = hackDuration + 0.3f };
-                VFXPoolingManager.Instance.SpawnVfx(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, particleArgs);
+                VfxPoolingManager.SpawnVfx(TargetHackedVFX, args.Target.Transform.position, Quaternion.identity, particleArgs);
             }
             yield return waitUntil;
 

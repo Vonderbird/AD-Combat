@@ -1,9 +1,10 @@
 using ADC.API;
 using ADC.UnitCreation;
+using Sisus.Init;
 
 namespace ADC
 {
-    public class UnitCellSelection : UnitSelectionInfo
+    public class UnitCellSelection : UnitSelectionInfo, IInitializable<IUnitStatsUIPanelManager>
     {
         private void Awake()
         {
@@ -18,14 +19,19 @@ namespace ADC
         public override void OnUnitSelected(object sender, SelectionEventArgs args)
         {
             var uiInfo = ExtractUnitUIInfo(args.SelectedUnit);
-            UnitStatsUIPanelManager.Instance.OnUnitSelected(uiInfo);
+            _unitStatsUIPanelManager.OnUnitSelected(uiInfo);
 
         }
 
         public override void OnUnitDeselected(object sender, DeselectionEventArgs args)
         {
-            UnitStatsUIPanelManager.Instance.OnUnitDeselected(args.SelectedUnit);
+            _unitStatsUIPanelManager.OnUnitDeselected(args.SelectedUnit);
         }
 
+        private IUnitStatsUIPanelManager _unitStatsUIPanelManager;
+        public void Init(IUnitStatsUIPanelManager unitStatsUIPanelManager)
+        {
+            _unitStatsUIPanelManager = unitStatsUIPanelManager;
+        }
     }
 }

@@ -1,6 +1,5 @@
 using ADC.API;
 using UnityEngine;
-using Zenject;
 
 namespace ADC.Currencies
 {

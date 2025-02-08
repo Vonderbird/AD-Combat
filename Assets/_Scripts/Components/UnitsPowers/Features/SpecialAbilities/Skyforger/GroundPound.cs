@@ -10,7 +10,6 @@ using RTSEngine.EntityComponent;
 using RTSEngine.Game;
 using RTSEngine.Search;
 using UnityEngine;
-using Zenject;
 
 namespace ADC
 {
@@ -30,7 +29,6 @@ namespace ADC
         private WaitUntil waitForTime;
         private IGameManager gameMgr;
 
-        [Inject]
         public void Construct(IGameManager gameMgr)
         {
             this.gameMgr = gameMgr;

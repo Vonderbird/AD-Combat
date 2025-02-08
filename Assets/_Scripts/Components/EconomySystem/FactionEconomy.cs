@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ADC.API;
 using UnityEngine;
-using Zenject;
 
 namespace ADC.Currencies
 {
@@ -28,7 +27,6 @@ namespace ADC.Currencies
         private IEconomySystem economySystem;
 
 
-        [Inject]
         public void Init(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             FactionId = factionId;

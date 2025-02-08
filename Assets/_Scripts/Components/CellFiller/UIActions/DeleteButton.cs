@@ -1,4 +1,5 @@
 using ADC.API;
+using Sisus.Init;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 
 namespace ADC.UnitCreation
 {
-    public class DeleteButton : MonoBehaviour, IDeactivable
+    public class DeleteButton : MonoBehaviour<IDeactivablesManager>, IDeactivable
     {
         private bool isDeleteEnabled = false;
 
@@ -27,8 +28,9 @@ namespace ADC.UnitCreation
 
         public bool IsDeleteEnabled => isDeleteEnabled;
         public UnityEvent Clicked;
+        private IDeactivablesManager _deactivablesManager;
 
-        private void Awake()
+        protected override void OnAwake()
         {
             GroupIds = groupId.Split(';');
             GroupIdsToDeactivate = groupIdsToDeactivate.Split(';');
@@ -39,7 +41,7 @@ namespace ADC.UnitCreation
         {
             if (!IsDeleteEnabled)
             {
-                DeactivablesManager.Instance.DeactivateGroups(GroupIdsToDeactivate);
+                _deactivablesManager.DeactivateGroups(GroupIdsToDeactivate);
                 Activate();
             }
             else
@@ -54,7 +56,7 @@ namespace ADC.UnitCreation
         {
             foreach (var id in GroupIds)
             {
-                DeactivablesManager.Instance.Add(id, this);
+                _deactivablesManager.Add(id, this);
             }
         }
 
@@ -72,5 +74,9 @@ namespace ADC.UnitCreation
             isDeleteEnabled = false;
         }
 
+        protected override void Init(IDeactivablesManager deactivablesManager)
+        {
+            _deactivablesManager = deactivablesManager;
+        }
     }
 }

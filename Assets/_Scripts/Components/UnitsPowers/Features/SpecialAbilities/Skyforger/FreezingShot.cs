@@ -10,7 +10,6 @@ using RTSEngine.EntityComponent;
 using RTSEngine.Game;
 using RTSEngine.Search;
 using UnityEngine;
-using Zenject;
 
 namespace ADC
 {
@@ -30,7 +29,6 @@ namespace ADC
         private WaitUntil waitForTime;
         private IGridSearchHandler gridSearch;
 
-        [Inject]
         public void Construct(IGameManager gameMgr)
         {
             gridSearch = gameMgr.GetService<IGridSearchHandler>();

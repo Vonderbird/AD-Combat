@@ -10,16 +10,15 @@ using RTSEngine.UnitExtension;
 using RTSEngine.EntityComponent;
 using System.Collections.Generic;
 using ADC.API;
-using Zenject;
+using Sisus.Init;
 using IUnit = RTSEngine.Entities.IUnit;
 using SelectionType = RTSEngine.Selection.SelectionType;
+// using Sisus.Init;
 
 namespace ADC.UnitCreation
 {
 
-    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IDeactivable
-
-
+    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IDeactivable, IInitializable<IDeactivablesManager>
     {
         [SerializeField] private Transform cellsParent;
         [SerializeField] private SpawnPointsManager spawnPointsManager;
@@ -81,7 +80,7 @@ namespace ADC.UnitCreation
         private UnitPlacementTransactionLogic unitPlacementTransaction;
         private IEconomySystem economySystem;
 
-        [Inject]
+        
         public void Construct(IEconomySystem economySystem)
         {
             this.economySystem = economySystem;
@@ -318,13 +317,19 @@ namespace ADC.UnitCreation
         {
             foreach (var id in GroupIds)
             {
-                DeactivablesManager.Instance.Add(id, this);
+                _deactivablesManager.Add(id, this);
             }
         }
 
         public void Deactivate()
         {
             cellsManager.OnAllCellsUnselect(null);
+        }
+
+        private IDeactivablesManager _deactivablesManager;
+        public void Init(IDeactivablesManager deactivablesManager)
+        {
+            _deactivablesManager = deactivablesManager;
         }
     }
 }

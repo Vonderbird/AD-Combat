@@ -2,7 +2,6 @@ using ADC.API;
 using ADC.Currencies;
 using UnityEngine;
 using UnityEngine.VFX;
-using Zenject;
 
 namespace ADC
 {
@@ -12,7 +11,6 @@ namespace ADC
         [SerializeField] private bool createOnStart = true;
         private IWaveTimer waveTimer;
 
-        [Inject]
         public void Construct(IWaveTimer waveTimer)
         {
             this.waveTimer = waveTimer;

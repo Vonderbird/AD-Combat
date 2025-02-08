@@ -36,7 +36,7 @@ namespace ADC.UnitCreation
         [SerializeField] private Renderer cellRenderer;
         [SerializeField] private int materialId;
         [SerializeField] private float cellSizeFactor = 0.5f;
-        [SerializeField] private Collider collider;
+        [SerializeField] private new Collider collider;
         public ParticleSystemGroup SpawnParticle { get; set; }
         public ParticleSystemGroup DeleteParticle { get; set; }
 

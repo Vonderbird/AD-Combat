@@ -1,10 +1,14 @@
 using ADC.API;
+using Sisus.Init;
 using UnityEngine;
 
 namespace ADC
 {
+    
+
+    [Service]
     [RequireComponent(typeof(UnitStatsUIFiller))]
-    public class UnitStatsUIPanelManager : Singleton<UnitStatsUIPanelManager>
+    public class UnitStatsUIPanelManager : MonoBehaviour, IUnitStatsUIPanelManager
     {
         private UnitUpdateUI unitUpdateUI;
         private UnitStatsUIOnOff unitStatsUiOnOff;

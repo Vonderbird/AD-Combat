@@ -4,7 +4,6 @@ using ADC.Currencies;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace ADC.UnitCreation
 {
@@ -15,7 +14,6 @@ namespace ADC.UnitCreation
         [SerializeField] private TextMeshProUGUI timer;
         private IWaveTimer waveTimer;
 
-        [Inject]
         public void Construct(IWaveTimer waveTimer)
         {
             this.waveTimer = waveTimer;

@@ -3,7 +3,6 @@ using ADC.Currencies;
 using ADC.UnitCreation;
 using RTSEngine.Health;
 using UnityEngine;
-using Zenject;
 
 namespace ADC
 {
@@ -15,7 +14,6 @@ namespace ADC
         private WarScrap killAward;
         private IEconomySystem economySystem;
 
-        [Inject]
         public void Construct(IEconomySystem economySystem)
         {
             this.economySystem = economySystem;

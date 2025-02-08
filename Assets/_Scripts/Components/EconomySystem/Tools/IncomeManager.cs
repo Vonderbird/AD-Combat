@@ -1,7 +1,6 @@
 
 using System;
 using ADC.API;
-using Zenject;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
@@ -16,7 +15,7 @@ namespace ADC.Currencies
         private IWaveTimer waveTimer;
         private IEconomySystem economySystem;
         private IIncomeSourceFactory incomeSourceFactory;
-        [Inject]
+
         public IncomeManager(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             this.factionId = factionId;

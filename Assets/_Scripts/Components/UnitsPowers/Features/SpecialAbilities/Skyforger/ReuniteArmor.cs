@@ -24,7 +24,7 @@ namespace ADC
                 ScaleOffset = scaleOffset
             };
             //VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, unitBattleManager.Transform.position, unitBattleManager.Transform.rotation, particleArgs);
-            vfx = VFXPoolingManager.Instance.SpawnVfx(VFXPrefab, particleArgs);
+            vfx = VfxPoolingManager.SpawnVfx(VFXPrefab, particleArgs);
             if (isUnlocked)
                 vfx?.Play();
             return base.Initialize(unitBattleManager);

@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using ADC.API;
+using Sisus.Init;
 using UnityEngine;
 
 namespace ADC.UnitCreation
 {
-    public class DeactivablesManager : Singleton<DeactivablesManager>
+    [Service]
+    public class DeactivablesManager : MonoBehaviour, IDeactivablesManager
     {
         /// <summary>
         /// Group Ids to deactivate on free right click.

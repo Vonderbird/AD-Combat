@@ -1,31 +1,31 @@
 using System;
+using Sisus.Init;
 using UnityEngine;
-using Zenject;
 
 namespace ADC.API
 {
     public abstract class IncomeSource :IDisposable
     {
-        public Guid IncomeId { get; }
-        private readonly Coroutine updater;
-        private readonly WaitUntil wait;
-        protected readonly int factionId;
+        public Guid IncomeId { get; private set; }
+        private readonly Coroutine _updater;
+        private readonly WaitUntil _wait;
+        protected int FactionId;
         public abstract decimal PaymentAmount { get; }
-        protected IWaveTimer waveTimer;
-        protected IEconomySystem economySystem;
+        private IWaveTimer _waveTimer;
+        protected IEconomySystem EconomySystem;
 
-        protected IncomeSource(IWaveTimer waveTimer, IEconomySystem economySystem, int factionId)
+        public IncomeSource(IWaveTimer waveTimer, IEconomySystem economySystem, int factionId)
         {
-            this.waveTimer = waveTimer;
+            this._waveTimer = waveTimer;
+            this.EconomySystem = economySystem;
+            this.FactionId = factionId;
             IncomeId = Guid.NewGuid();
-            this.factionId = factionId;
             waveTimer.Begin.AddListener(Update);
-            this.economySystem = economySystem;
         }
         
         public void Dispose()
         {
-            waveTimer.Begin.RemoveListener(Update);
+            _waveTimer.Begin.RemoveListener(Update);
         }
 
         protected abstract void Update();

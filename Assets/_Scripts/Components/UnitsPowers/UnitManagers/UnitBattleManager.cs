@@ -60,17 +60,17 @@ namespace ADC
         public Transform Transform => transform;
         public GameObject GameObject => gameObject;
 
-        public T GetComponent<T>() where T : Object
+        public new T GetComponent<T>() where T : Object
         {
             return transform.GetComponent<T>();
         }
 
-        public T GetComponentInChildren<T>() where T : Object
+        public new T GetComponentInChildren<T>() where T : Object
         {
             return transform.GetComponentInChildren<T>();
         }
 
-        public T[] GetComponentsInChildren<T>() where T : Object
+        public new T[] GetComponentsInChildren<T>() where T : Object
         {
             return transform.GetComponentsInChildren<T>();
         }

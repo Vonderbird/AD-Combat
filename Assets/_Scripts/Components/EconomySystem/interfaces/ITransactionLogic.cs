@@ -1,5 +1,4 @@
 using ADC.API;
-using Zenject;
 
 namespace ADC.Currencies
 {
@@ -14,7 +13,6 @@ namespace ADC.Currencies
         private readonly IEconomySystem economySystem;
         protected readonly int factionId;
 
-        [Inject]
         protected TransactionLogic(IEconomySystem economySystem, int factionId)
         {
             this.economySystem = economySystem;

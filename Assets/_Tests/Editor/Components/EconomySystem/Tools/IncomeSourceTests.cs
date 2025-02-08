@@ -7,7 +7,6 @@ using ADC.API;
 using Moq;
 using UnityEngine.Events;
 
-// using Zenject;
 
 namespace ADC.Editor.Tests
 {

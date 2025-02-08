@@ -9,7 +9,6 @@ using RTSEngine.Entities;
 using UnityEngine.Events;
 using JetBrains.Annotations;
 using System.Collections;
-using Zenject;
 
 namespace ADC.UnitCreation
 {
@@ -61,7 +60,7 @@ namespace ADC.UnitCreation
 
         private IEconomySystem economySystem;
         
-        [Inject]
+        
         public CellsManager(IEconomySystem economySystem, [NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
             [NotNull] ActiveTaskContainer activeTask, int factionId)
         {

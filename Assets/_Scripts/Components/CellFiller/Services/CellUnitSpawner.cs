@@ -9,7 +9,7 @@ using RTSEngine.EntityComponent;
 using RTSEngine.Game;
 using UnityEngine;
 using UnityEngine.Events;
-using Zenject;
+
 
 namespace ADC.UnitCreation
 {
@@ -27,7 +27,6 @@ namespace ADC.UnitCreation
         private WaitUntil waitUntil;
         private IWaveTimer waveTimer;
 
-        [Inject]
         public void Construct(IWaveTimer waveTimer)
         {
             this.waveTimer = waveTimer;
@@ -55,7 +54,7 @@ namespace ADC.UnitCreation
             {
                 waveTimer.Begin.RemoveListener(OnStartWave);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //Debug.LogError($"[CellUnitSpawner] {e.Message}");
             }

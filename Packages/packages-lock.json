@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.sisus.init-args": {
+      "version": "file:com.sisus.init-args",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.sisus.shared": "1.0.0"
+      }
+    },
+    "com.sisus.shared": {
+      "version": "file:com.sisus.shared",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

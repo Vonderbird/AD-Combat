@@ -23,7 +23,7 @@ namespace ADC
                 ScaleOffset = scaleOffset
             };
 
-            VFXPoolingManager.Instance.SpawnVfx(particlePlayerPrefab, particleArgs);
+            VfxPoolingManager.SpawnVfx(particlePlayerPrefab, particleArgs);
             return specialAbility;
         }
 

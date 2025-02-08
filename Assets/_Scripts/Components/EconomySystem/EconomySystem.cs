@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Linq;
 using ADC.API;
 using RTSEngine.Game;
-using Zenject;
 
 namespace ADC.Currencies
 {
@@ -17,7 +16,6 @@ namespace ADC.Currencies
         private bool isStarted = false;
         private IIncomeSourceFactory incomeSourceFactory;
 
-        [Inject]
         public void Construct(IIncomeSourceFactory incomeSourceFactory)
         {
             this.incomeSourceFactory = incomeSourceFactory;
