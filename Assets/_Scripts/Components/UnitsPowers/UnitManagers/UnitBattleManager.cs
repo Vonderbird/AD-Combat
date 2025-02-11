@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ADC.API;
 using ADC.UnitCreation;
 using RTSEngine.Entities;
@@ -21,7 +22,7 @@ namespace ADC
 
         [SerializeField] private DamageFactors damageFactors;
 
-        [SerializeField] protected SpecialAbilityBase[] specialAbilities;
+        //[SerializeField] protected SpecialAbilityBase[] specialAbilities;
 
         [SerializeField] private GameObject updateUIPrefab;
         protected IUnit unit { get; private set; }
@@ -32,6 +33,7 @@ namespace ADC
         public IUnitSpecsManager Specs => specs;
 
         private BaseUnitSpecsCalculator unitSpecsCalculator;
+        protected ISpecialAbility[] specialAbilities;
 
         private List<ISpecialAbility> specialAbilitiesList;
         public virtual List<ISpecialAbility> SpecialAbilities
@@ -96,6 +98,8 @@ namespace ADC
         
         public void Init(SpecialAbilityCollection specialAbilityCollection)
         {
+            Debug.LogWarning($"specialAbilityCollection: {specialAbilityCollection}");
+            specialAbilities = specialAbilityCollection.SpecialAbilities;
             print(specialAbilityCollection.SpecialAbilities.Length);
         }
         

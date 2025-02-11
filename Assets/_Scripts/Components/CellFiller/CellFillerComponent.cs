@@ -103,19 +103,10 @@ namespace ADC.UnitCreation
             GroupIdsToDeactivate = groupIdsToDeactivate.Split(';');
             
             AddToManager();
-            // StartCoroutine(DelayedStart());
         }
-        //
-        // IEnumerator DelayedStart()
-        // {
-        //     yield return new WaitUntil(() => _economySystem.FactionsEconomiesDictionary != null);
-        //     
-        //     OnPendingInit();
-        // }
-
-        // protected override void OnPendingInit()
         protected override void OnPendingInit()
         {
+            Debug.Log("Cell Filler On Pending Start");
             if (!spawnTransform.IsValid() || !gotoTransform.IsValid() ||
                 !cellsParent.IsValid()) // || !unitPrefabObj.IsValid())
             {
@@ -278,12 +269,13 @@ namespace ADC.UnitCreation
         public void OnAdditionCellClicked(CellEventArgs e)
         {
             if (e.IsFilled || !activeTaskData.HasValue || !CellsManager.CellGroupIds.ContainsKey(e.CellId)) return;
-            var unitToSpawn = CellsManager.GroupUnit[CellsManager.CellGroupIds[e.CellId]].GetComponent<Unit>();//activeTaskData.UnitCreationTask.TargetObject;
+            var unitToSpawn = CellsManager.GroupUnitPrefab[CellsManager.CellGroupIds[e.CellId]];//activeTaskData.UnitCreationTask.TargetObject;
 
             cellRelativePosTestTransform.position =
                 CellsManager.UnitsGroupPosition[CellsManager.CellGroupIds[e.CellId]];
             unitSpawnPosTestTransform.localPosition = cellRelativePosTestTransform.localPosition;
-
+            
+            Debug.Log("Add to unit spawner 1!");
             unitSpawner.AddNewUnit(new UnitParameters
             {
                 CreatorComponent = this,   //// ??? this => null
@@ -315,7 +307,7 @@ namespace ADC.UnitCreation
         public IUnitBattleManager GetCorrespondingUnitCell(IUnitBattleManager unitBattleManager)
         {
             if (CellsManager == null) return null;
-            foreach (var (groupId, cellUnit) in CellsManager.GroupUnit)
+            foreach (var (groupId, cellUnit) in CellsManager.GroupUnitDeco)
             {
                 if (cellUnit.GetType() != unitBattleManager.GetType()) continue;
                 unitSpawnPosTestTransform.localPosition = CellsManager.UnitCells[groupId].transform.localPosition;

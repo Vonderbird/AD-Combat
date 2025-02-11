@@ -418,6 +418,10 @@ MonoBehaviour:
       infinite: 0
       cycleDuration: 0
       cycles: 0
+    dotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
     hitEffects:
     - picker:
         type: 1
@@ -1215,6 +1219,8 @@ GameObject:
   - component: {fileID: 2638106885590150756}
   - component: {fileID: 4376790243361202577}
   - component: {fileID: 4961990629512393059}
+  - component: {fileID: -2353946770621207404}
+  - component: {fileID: -5476842482677544101}
   m_Layer: 0
   m_Name: NaloxianBowman
   m_TagString: Untagged
@@ -1601,22 +1607,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  levelZeroSpecs:
-    healthPoint:
-      value: 400
-    armor:
-      value: 3
-    manaPoint:
-      value: 0
-    unitDamage:
-      value: 60
-    buildingDamage:
-      value: 60
-  baseEquipments:
-    shield: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
-    weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
   specialAbilities:
   - {fileID: 11400000, guid: 333b2a6bba1e6cb4ebde103c790361f2, type: 2}
+  updateUIPrefab: {fileID: 0}
   specs:
     baseSpecs:
       healthPoint:
@@ -1633,6 +1626,11 @@ MonoBehaviour:
     equipments:
       shield: {fileID: -2363592864475403524, guid: 4ad00272fc0584c4fbf879018b37f789, type: 3}
       weapon: {fileID: 1342521683084785007, guid: 4ce0680a36d3ce24a9d0ead99fd113e7, type: 3}
+  updateInfo:
+    cost: 100
+    OnUpdateClicked2:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &4961990629512393059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,6 +1645,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: 
   unitBanner: {fileID: 0}
+--- !u!114 &-2353946770621207404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7697ba8226b4a4b9be0d25602e95dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4376790243361202577}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: 980038956956778502
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 980038956956778502
+      type: {class: SpecialAbilityCollection, ns: ADC.API, asm: ADCAPI}
+      data:
+        specialAbilities:
+        - reference: {fileID: 11400000, guid: 333b2a6bba1e6cb4ebde103c790361f2, type: 2}
+          value:
+            rid: -2
+--- !u!114 &-5476842482677544101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c180ba196beafc54eaa7dfd5e49051f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4961990629512393059}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1001 &1129004617793929749
 PrefabInstance:
   m_ObjectHideFlags: 0

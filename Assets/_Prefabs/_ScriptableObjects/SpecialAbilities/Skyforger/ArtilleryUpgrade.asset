@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6884732535000445691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c3d7662ca186e4692085b98e974fda, type: 3}
+  m_Name: Initializer
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,7 +37,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe349d52e336624d84b4787cf2c0d88, type: 3}
   m_Name: ArtilleryUpgrade
   m_EditorClassIdentifier: 
+  initializer: {fileID: -6884732535000445691}
   unlockLevel: 1
-  name: 
+  abilityName: 
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 6675333191823490211, guid: 1658d45bcd6e0014585ea5351a4fbbd2, type: 3}

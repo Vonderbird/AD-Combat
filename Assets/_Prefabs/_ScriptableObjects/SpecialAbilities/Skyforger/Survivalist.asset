@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7270186777380935549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d740fa719985546a328016d94410df, type: 3}
+  m_Name: Initializer
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,8 +37,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a002914786cefcd4cbcb3cabcaf0f004, type: 3}
   m_Name: Survivalist
   m_EditorClassIdentifier: 
+  initializer: {fileID: -7270186777380935549}
   unlockLevel: 1
-  name: 
+  abilityName: 
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 5278862304629649594, guid: 2fb9612d7b02dc64fa379d23a90f3e03, type: 3}
   reduceDamageRatio: 0.3

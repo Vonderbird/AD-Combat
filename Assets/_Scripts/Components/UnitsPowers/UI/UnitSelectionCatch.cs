@@ -24,10 +24,16 @@ namespace ADC
 
         public Sprite UnitBanner => unitBanner;
 
-
-        private void Awake()
+        public void Init(IUnitStatsUIPanelManager unitStatsUIPanelManager)
         {
-            var unitSelection = GetComponentInChildren<UnitSelection>();
+            Debug.LogWarning($"unitStatsUIPanelManager: {unitStatsUIPanelManager}");
+            _unitStatsUIPanelManager = unitStatsUIPanelManager;
+        }
+
+        private void Start()
+        {
+            var unitSelection = GetComponentInChildren<UnitSelection>(includeInactive:true);
+            // if(!unitSelection.gameObject.activeSelf) return;
             unitSelection.Selected += (s, args) => OnUnitSelected(s,
                 new SelectionEventArgs((SelectionType)args.Type, s.GetComponent<IUnitBattleManager>()));
             unitSelection.Deselected += (s, args) => OnUnitDeselected(s,
@@ -47,9 +53,5 @@ namespace ADC
             _unitStatsUIPanelManager.OnUnitDeselected(args.SelectedUnit);
         }
 
-        public void Init(IUnitStatsUIPanelManager unitStatsUIPanelManager)
-        {
-            _unitStatsUIPanelManager = unitStatsUIPanelManager;
-        }
     }
 }

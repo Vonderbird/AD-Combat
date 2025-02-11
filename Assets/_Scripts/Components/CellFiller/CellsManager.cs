@@ -25,8 +25,10 @@ namespace ADC.UnitCreation
         private readonly Dictionary<int, Vector3> unitsGroupPosition = new();
         private readonly Dictionary<int, int> cellGroupIds = new();
         public Dictionary<int, int> CellGroupIds => cellGroupIds;
-        private readonly Dictionary<int, IUnitBattleManager> groupUnit = new();
-        public Dictionary<int, IUnitBattleManager> GroupUnit => groupUnit;
+        private readonly Dictionary<int, IUnitBattleManager> groupUnitDeco = new();
+        private readonly Dictionary<int, IUnit> groupUnitPrefab = new();
+        public Dictionary<int, IUnitBattleManager> GroupUnitDeco => groupUnitDeco;
+        public Dictionary<int, IUnit> GroupUnitPrefab => groupUnitPrefab;
         private int selectedUnitGroup;
 
         public UnityEvent<CellEventArgs> AdditiveCellClicked = new();
@@ -218,7 +220,7 @@ namespace ADC.UnitCreation
 
             foreach (var cellId in cellIds)
                 UnitCells[cellId].OnCellSelected();
-            if (!groupUnit.TryGetValue(cellGroup, out var unitDeco))
+            if (!groupUnitDeco.TryGetValue(cellGroup, out var unitDeco))
             {
                 Debug.LogError($"[CellManager] cellGroup is not in the groupUnit!");
                 return;
@@ -234,7 +236,7 @@ namespace ADC.UnitCreation
 
             foreach (var (_, unitCell) in UnitCells)
                 unitCell.OnCellUnSelect();
-            if (!groupUnit.TryGetValue(selectedUnitGroup, out var unitDeco)) return;
+            if (!groupUnitDeco.TryGetValue(selectedUnitGroup, out var unitDeco)) return;
             UnitCellDeselected?.Invoke(this, new DeselectionEventArgs(unitDeco));
             selectedUnitGroup = -1;
         }
@@ -264,6 +266,10 @@ namespace ADC.UnitCreation
                 .ToList();
             if (nearestCellIds.Count < taskPopulation) return;
 
+            var unitToSpawn = this.activeTask.UnitCreationTask.TargetObject;
+            var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
+            if (unitPlacementCosts)
+                if (!unitPlacementTransaction.Process(unitPlacementCosts)) return;
 
             arg0.UnitScaleFactor = 1 + MathF.Log(taskPopulation);
 
@@ -281,7 +287,6 @@ namespace ADC.UnitCreation
             UnitsGroupPosition[groupId] = averagePosition;
 
 
-            var unitToSpawn = this.activeTask.UnitCreationTask.TargetObject;
             var unitDeco = UnitCells[groupId].CreateDecoObject(
                 activeTask.UnitCreationTask.TargetObject,
                 activeTask.UnitCreationTask.SpawnParticleSystem,
@@ -289,14 +294,12 @@ namespace ADC.UnitCreation
                 averagePosition,
                 arg0.UnitScaleFactor);
 
-            var unitPlacementCosts = unitToSpawn.GetComponent<UnitPlacementCosts>();
-            if (unitPlacementCosts)
-                if (!unitPlacementTransaction.Process(unitPlacementCosts)) return;
 
 
 
 
-            groupUnit.Add(groupId, unitDeco);
+            groupUnitDeco.Add(groupId, unitDeco);
+            groupUnitPrefab.Add(groupId, activeTask.UnitCreationTask.TargetObject);
 
             AdditiveCellClicked?.Invoke(arg0);
 
@@ -333,7 +336,8 @@ namespace ADC.UnitCreation
             yield return waitForDeletion;
             incomeManager.RemoveSource(unitIncomeSources[cellGroup]);
             unitIncomeSources.Remove(cellGroup);
-            groupUnit.Remove(cellGroup);
+            groupUnitDeco.Remove(cellGroup);
+            groupUnitPrefab.Remove(cellGroup);
 
             DeletionCellClicked?.Invoke(arg0);
             foreach (var cellId in cellIds)

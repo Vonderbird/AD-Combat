@@ -6,8 +6,8 @@ namespace ADC
 {
     
 
-    [Service]
     [RequireComponent(typeof(UnitStatsUIFiller))]
+    [Service(typeof(IUnitStatsUIPanelManager), typeof(UnitStatsUIPanelManager), FindFromScene = true)]
     public class UnitStatsUIPanelManager : MonoBehaviour, IUnitStatsUIPanelManager
     {
         private UnitUpdateUI unitUpdateUI;

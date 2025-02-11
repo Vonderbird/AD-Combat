@@ -12,10 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d289b6f08e9bfed44a39a388a47a68d1, type: 3}
   m_Name: Hack
   m_EditorClassIdentifier: 
+  initializer: {fileID: 8655695015671975013}
   unlockLevel: 1
-  name: 
+  abilityName: 
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 1807120742874249713, guid: 2fa69800e8caa4c4ea2353aa1a9da749, type: 3}
   hackChance: 0.4
   hackDuration: 8
   TargetHackedVFX: {fileID: -848383871886843326, guid: b0d191a54eb5ca34b84d09d5b0173567, type: 3}
+  baseAttackCode: 
+  hackAttackCode: 
+--- !u!114 &8655695015671975013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de3baf20d805e94a8325f4dacab60cb, type: 3}
+  m_Name: Initializer
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

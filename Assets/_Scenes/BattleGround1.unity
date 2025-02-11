@@ -44306,13 +44306,13 @@ MonoBehaviour:
     - rid: 980038925762953220
       type: {class: FactionEconomy, ns: ADC.Currencies, asm: ADCombat}
       data:
-        initialWarScraps: 200
-        initialBiofuel: 0
+        initialWarScraps: 2000
+        initialBiofuel: 3000
     - rid: 980038925762953221
       type: {class: FactionEconomy, ns: ADC.Currencies, asm: ADCombat}
       data:
-        initialWarScraps: 200
-        initialBiofuel: 0
+        initialWarScraps: 2000
+        initialBiofuel: 3000
 --- !u!218 &3055470677714035486
 Terrain:
   m_ObjectHideFlags: 0
@@ -48861,7 +48861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e31e765fd4fc8b49b41f64933039c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  period: 30
+  period: 5
 --- !u!1001 &5318995039964244096
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -67,6 +67,8 @@ namespace ADC.UnitCreation
         }
         private IEnumerator SpawnWaves()
         {
+            
+            Debug.Log("SpawnWaves 1");
             foreach (var (id, unitParameters) in unitsSpawn)
             {
                 if (!unitParameters.UnitTask.SpawnParticleSystem) continue;
@@ -77,9 +79,11 @@ namespace ADC.UnitCreation
                 particle.Play();
             }
 
+            Debug.Log("SpawnWaves 2");
             for (var i = 0; i < 5; i++)
                 yield return _waitForSeconds;
 
+            Debug.Log("SpawnWaves 3");
             spawnEventArgs.UnitIds.Clear();
             var unitsSpawn2 = unitsSpawn.ToDictionary((kvp)=> kvp.Key, (kvp)=> kvp.Value);
             foreach (var (id, unitParameters) in unitsSpawn2)
@@ -90,6 +94,7 @@ namespace ADC.UnitCreation
                 //    yield return waitForSeconds;
                 //    spawnPoint = unitParameters.SpawnPointsManager.GetNextPoint();
                 //}
+                Debug.Log("SpawnWaves 4 ");
                 var initParams = new InitUnitParameters
                 {
                     factionID = unitParameters.Unit.FactionID,
@@ -111,11 +116,13 @@ namespace ADC.UnitCreation
                     playerCommand = false,
                 };
                 //Debug.Log($"UnitCode: {JsonUtility.ToJson(initParams.ToInput())}");
+                Debug.Log("SpawnWaves 5");
                 var message = unitMgr.CreateUnit(
                     unitParameters.Unit,
                     unitParameters.SpawnPosition,
                     Quaternion.identity,
                     initParams);
+                Debug.Log($"SpawnWaves 6: {message}");
                 spawnEventArgs.UnitIds.Add(id);
             }
 
@@ -127,6 +134,7 @@ namespace ADC.UnitCreation
         public void AddNewUnit(UnitParameters unit)
         {
             unitsSpawn.Add(unit.Id, unit);
+            Debug.Log("Added to unit spawner!");
         }
 
         public void RemoveUnit(int unitId)

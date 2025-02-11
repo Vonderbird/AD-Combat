@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9220233804074838092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726a017d9b5e3894dace5924b196db60, type: 3}
+  m_Name: Initializer
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,8 +37,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e8dde8c76f29549b6626aaea36b76e, type: 3}
   m_Name: NaloxianScout
   m_EditorClassIdentifier: 
+  initializer: {fileID: -9220233804074838092}
   unlockLevel: 1
-  name: 
+  abilityName: NaloxianScout
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 7174156147191795495, guid: bf2874fa628a5734c885b0ab3ec638f8, type: 3}
   poisonChance: 0.1
