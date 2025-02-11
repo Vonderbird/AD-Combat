@@ -1,25 +1,25 @@
 using System;
 using ADC.API;
+using Sisus.Init;
 
 namespace ADC.Currencies
 {
-    public class IncomeSourceFactory : IIncomeSourceFactory
+    [Service(typeof(IIncomeSourceFactory))]
+    public class IncomeSourceFactory : IIncomeSourceFactory, IInitializable<IWaveTimer>
     {
-        private readonly IEconomySystem _economySystem;
-        private readonly IWaveTimer _waveTimer;
+        private IWaveTimer _waveTimer;
 
-        public IncomeSourceFactory(IWaveTimer waveTimer, IEconomySystem economySystem)
+        public void Init(IWaveTimer waveTimer)
         {
-            this._economySystem = economySystem;
             this._waveTimer = waveTimer;
         }
-
+        
         public IncomeSource Create(ICurrency currency, int factionId)
         {
             return currency switch
             {
-                Biofuel biofuel => new BiofuelIncomeSource(_waveTimer, _economySystem, biofuel, factionId),
-                WarScrap warScrap => new WarScrapIncomeSource(_waveTimer, _economySystem, warScrap, factionId),
+                Biofuel biofuel => new BiofuelIncomeSource(_waveTimer, biofuel, factionId),
+                WarScrap warScrap => new WarScrapIncomeSource(_waveTimer, warScrap, factionId),
                 _ => throw new ArgumentException($"Unsupported currency type: {currency.GetType()}")
             };
         }

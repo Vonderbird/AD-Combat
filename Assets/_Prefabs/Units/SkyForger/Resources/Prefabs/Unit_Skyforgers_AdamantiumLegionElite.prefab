@@ -1793,6 +1793,7 @@ GameObject:
   - component: {fileID: 4978606142287481498}
   - component: {fileID: -5928395728565144353}
   - component: {fileID: 4961990629512393059}
+  - component: {fileID: -8229637393999639204}
   m_Layer: 0
   m_Name: Unit_Skyforgers_AdamantiumLegionElite
   m_TagString: Untagged
@@ -2232,6 +2233,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: 
   unitBanner: {fileID: 0}
+--- !u!114 &-8229637393999639204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7d1b4dcff2f9c47be0acdac448ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: -5928395728565144353}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: 980038925762953222
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 980038925762953222
+      type: {class: SpecialAbilityCollection, ns: ADC.API, asm: ADCAPI}
+      data:
+        specialAbilities:
+        - reference: {fileID: 11400000, guid: 5e7802f202be13f4dbd52cb205b04325, type: 2}
+          value:
+            rid: -2
+        - reference: {fileID: 11400000, guid: abb59eedda996a34b9688d91c6319b56, type: 2}
+          value:
+            rid: -2
 --- !u!1 &9123354969154820656
 GameObject:
   m_ObjectHideFlags: 0

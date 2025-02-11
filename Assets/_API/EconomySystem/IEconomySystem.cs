@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace ADC.API
 {
@@ -30,7 +32,6 @@ namespace ADC.API
         //}
     }
 
-    [Service]
     public interface IEconomySystem
     {
         IFactionEconomy this[int factionId] { get; }
@@ -42,6 +43,7 @@ namespace ADC.API
 
     public interface IFactionEconomy
     {
+        public int FactionId { get; }
         void Init(IIncomeSourceFactory incomeSourceFactory, int factionId);
         void Start();
         //void AddVisualizer(CurrencyInterface visualizer);
@@ -50,13 +52,23 @@ namespace ADC.API
         bool Deposit<T>(T amount) where T: ICurrency;
         bool Withdraw<T>(T amount) where T : ICurrency;
         public IIncomeManager IncomeManager { get; }
+        void AddVisualizer(CurrencyInterface currencyInterface); //?
+        public void AddVisualizers(IEnumerable<CurrencyInterface> visualizers);
     }
 
+    [Serializable]
+    public class FactionEconomiesCollection
+    {
+        [SerializeField] private Any<IFactionEconomy>[] factionEconomies;
+        public IFactionEconomy[] FactionEconomies => factionEconomies.Select(fe=>fe.Value).ToArray();
+    }
+    
     public interface IIncomeManager
     {
         Guid AddSource<T>(T amount) where T : ICurrency;
         bool RemoveSource(Guid incomeId);
 
+        public event EventHandler<IncomeEventArgs> IncomeReceived;
         UnityEvent<decimal> IncomeChanged { get; }
     }
 

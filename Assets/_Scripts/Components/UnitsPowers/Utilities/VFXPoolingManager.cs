@@ -6,7 +6,7 @@ using Sisus.Init;
 namespace ADC
 {
 
-    [Service]
+    [Service(typeof(IVFXPoolingManager), typeof(VFXPoolingManager), FindFromScene = true)]
     public class VFXPoolingManager : MonoBehaviour, IVFXPoolingManager
     {
 

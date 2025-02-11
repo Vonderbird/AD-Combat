@@ -13,10 +13,12 @@ using RTSEngine.Audio;
 using RTSEngine.Logging;
 using RTSEngine.Service;
 using RTSEngine.Utilities;
+using Sisus.Init;
 using Object = System.Object;
 
 namespace RTSEngine.Game
 {
+    [Service(typeof(IGameManager), FindFromScene=true)]
     public class GameManager : MonoBehaviour, IGameManager
     {
         #region Attributes

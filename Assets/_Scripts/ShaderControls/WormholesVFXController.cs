@@ -1,19 +1,21 @@
 using ADC.API;
 using ADC.Currencies;
+using Sisus.Init;
 using UnityEngine;
 using UnityEngine.VFX;
 
 namespace ADC
 {
-    public class WormholesVFXController : MonoBehaviour
+    public class WormholesVFXController : MonoBehaviour<IWaveTimer>
     {
         [SerializeField] private VisualEffect visualEffect;
         [SerializeField] private bool createOnStart = true;
-        private IWaveTimer waveTimer;
+        private IWaveTimer _waveTimer;
 
-        public void Construct(IWaveTimer waveTimer)
+        protected override void Init(IWaveTimer waveTimer)
         {
-            this.waveTimer = waveTimer;
+            _waveTimer = waveTimer;
+            OnEnable();
         }
 
         private void Start()
@@ -22,14 +24,19 @@ namespace ADC
                 CreatePortal();
         }
 
+        private bool _waveEventAdded = false;
         private void OnEnable()
         {
-            waveTimer.Begin.AddListener(HitPortal);
+            if(_waveEventAdded) return;
+            _waveTimer?.Begin.AddListener(HitPortal);
+            _waveEventAdded = true;
         }
 
         private void OnDisable()
         {
-            waveTimer?.Begin.RemoveListener(HitPortal);
+            if(!_waveEventAdded) return;
+            _waveTimer?.Begin.RemoveListener(HitPortal);
+            _waveEventAdded = false;
         }
 
         public void CreatePortal()
@@ -45,5 +52,6 @@ namespace ADC
         {
             visualEffect.SendEvent("end");
         }
+
     }
 }

@@ -13,9 +13,10 @@ namespace ADC.Currencies
         public UnityEvent<decimal> IncomeChanged { get; }= new();
         private decimal totalIncomeRate = 0.0m;
         private IWaveTimer waveTimer;
-        private IEconomySystem economySystem;
+        // private IEconomySystem economySystem;
         private IIncomeSourceFactory incomeSourceFactory;
 
+        
         public IncomeManager(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             this.factionId = factionId;
@@ -25,6 +26,7 @@ namespace ADC.Currencies
         public Guid AddSource<T>(T amount) where T:ICurrency
         {
             var incomeSource = incomeSourceFactory.Create(amount, factionId);
+            incomeSource.IncomeReceived += IncomeReceived;
             incomeSources.Add(incomeSource.IncomeId, incomeSource);
             totalIncomeRate += amount.Value;
             IncomeChanged?.Invoke(totalIncomeRate);
@@ -36,9 +38,11 @@ namespace ADC.Currencies
             if (!incomeSources.TryGetValue(incomeId, out var source)) return false;
             source.Dispose();
             incomeSources.Remove(incomeId);
-            totalIncomeRate -= source.PaymentAmount;
+            totalIncomeRate -= source.PaymentAmount.Value;
             IncomeChanged?.Invoke(totalIncomeRate);
             return true;
         }
+
+        public event EventHandler<IncomeEventArgs> IncomeReceived;
     }
 }

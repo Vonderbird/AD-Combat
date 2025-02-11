@@ -1,5 +1,8 @@
 using System;
+using System.Linq;
+using Sisus.Init;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ADC.API
 {
@@ -13,6 +16,13 @@ namespace ADC.API
 
         ISpecialAbility Initialize(IUnitBattleManager unitBattleManager);
         //void OnLevelChanged(object sender, LevelChangeEventArgs e);
+    }
+
+    [Serializable]
+    public class SpecialAbilityCollection
+    {
+        [SerializeField] private Any<ISpecialAbility>[] specialAbilities;
+        public ISpecialAbility[] SpecialAbilities => specialAbilities.Select(s => s.Value).ToArray();
     }
 
     public interface IReceivedDamageModifierAbility

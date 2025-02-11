@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Reflection;
 using ADC.API;
+using ADC.Currencies;
 using Moq;
 using UnityEngine.Events;
 
@@ -27,13 +28,13 @@ namespace ADC.Editor.Tests
 
         private class TestIncomeSource : IncomeSource
         {
-            public TestIncomeSource(IWaveTimer waveTimer, IEconomySystem economySystem, int factionId)
-                : base(waveTimer, economySystem, factionId)
+            public TestIncomeSource(IWaveTimer waveTimer, int factionId)
+                : base(waveTimer, factionId)
             {
             }
 
             public bool UpdateCalled = false;
-            public override decimal PaymentAmount => 10m;
+            public override ICurrency PaymentAmount => new Biofuel(10m);
             protected override void Update() => UpdateCalled = true;
         }
 
@@ -41,7 +42,7 @@ namespace ADC.Editor.Tests
         public void Constructor_RegistersWaveTimerListener()
         {
             // Act
-            var source = new TestIncomeSource(_waveTimer.Object, _economySystem.Object, FactionId);
+            var source = new TestIncomeSource(_waveTimer.Object, FactionId);
 
             // Assert
             Assert.NotNull(source);
@@ -52,7 +53,7 @@ namespace ADC.Editor.Tests
         public void Dispose_UnregistersWaveTimerListener()
         {
             // Arrange
-            var source = new TestIncomeSource(_waveTimer.Object, _economySystem.Object, FactionId);
+            var source = new TestIncomeSource(_waveTimer.Object, FactionId);
 
             // Act
             source.Dispose();
@@ -65,7 +66,7 @@ namespace ADC.Editor.Tests
         public void Update_TriggersWhenWaveBegins()
         {
             // Arrange
-            var source = new TestIncomeSource(_waveTimer.Object, _economySystem.Object, FactionId);
+            var source = new TestIncomeSource(_waveTimer.Object, FactionId);
 
             // Act
             _waveTimer.Object.Begin.Invoke();

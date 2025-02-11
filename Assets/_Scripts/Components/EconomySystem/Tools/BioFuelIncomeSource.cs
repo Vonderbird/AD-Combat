@@ -7,18 +7,18 @@ namespace ADC.Currencies
     public class BiofuelIncomeSource : IncomeSource
     {
         private readonly Biofuel paymentAmount;
-        public override decimal PaymentAmount => paymentAmount.Value;
+        public override ICurrency PaymentAmount => paymentAmount;
 
-        public BiofuelIncomeSource(IWaveTimer waveTimer, IEconomySystem economySystem, Biofuel paymentAmount, int factionId) :
-            base(waveTimer, economySystem, factionId)
+        public BiofuelIncomeSource(IWaveTimer waveTimer, Biofuel paymentAmount, int factionId) :
+            base(waveTimer, factionId)
         {
             this.paymentAmount = paymentAmount;
         }
 
-        protected override void Update()
-        {
-            Debug.Log($"Update with income value: {PaymentAmount}");
-            EconomySystem[FactionId].Deposit(paymentAmount);
-        }
+        // protected override void Update()
+        // {
+        //     Debug.Log($"Update with income value: {PaymentAmount}");
+        //     EconomySystem[FactionId].Deposit(paymentAmount);
+        // }
     }
 }

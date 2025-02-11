@@ -1,6 +1,7 @@
 using System.Collections;
 using ADC.API;
 using ADC.Currencies;
+using Sisus.Init;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,18 +9,18 @@ using UnityEngine.UI;
 namespace ADC.UnitCreation
 {
 
-    public class FillTimerUI : MonoBehaviour
+    public class FillTimerUI : MonoBehaviour<IWaveTimer>
     {
         [SerializeField] private Image fillImage;
         [SerializeField] private TextMeshProUGUI timer;
-        private IWaveTimer waveTimer;
+        private IWaveTimer _waveTimer;
 
-        public void Construct(IWaveTimer waveTimer)
+        protected override void Init(IWaveTimer waveTimer)
         {
-            this.waveTimer = waveTimer;
+            this._waveTimer = waveTimer;
         }
 
-        private void Awake()
+        protected override void OnAwake()
         {
             StartCoroutine(UpdateFiller());
         }
@@ -30,10 +31,11 @@ namespace ADC.UnitCreation
             while (true)
             {
                 
-                fillImage.fillAmount = waveTimer.Current / waveTimer.Duration;
-                timer.text = $"{waveTimer.Current:f0} Seconds";
+                fillImage.fillAmount = _waveTimer.Current / _waveTimer.Duration;
+                timer.text = $"{_waveTimer.Current:f0} Seconds";
                 yield return null;
             }
         }
+
     }
 }

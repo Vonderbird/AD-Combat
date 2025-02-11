@@ -56,7 +56,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3021886547489812973}
-  - component: {fileID: 5227958801853655117}
   m_Layer: 0
   m_Name: EconomySystem
   m_TagString: Untagged
@@ -79,23 +78,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5225890343301714978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5227958801853655117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33161249711728005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d72fc3b4cab2aa488a8b5dc2e48d7ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FactionsEconomies:
-  - initialWarScraps: 3500
-    initialBiofuel: 250
-  - initialWarScraps: 3500
-    initialBiofuel: 250
 --- !u!1 &277274944279082550
 GameObject:
   m_ObjectHideFlags: 0

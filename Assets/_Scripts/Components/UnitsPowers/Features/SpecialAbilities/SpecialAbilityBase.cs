@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 namespace ADC
 {
-    public abstract class SpecialAbilityBase : ScriptableObject<IUnitBattleManager, IVFXPoolingManager>, ISpecialAbility
+    public abstract class SpecialAbilityBase : ScriptableObject<IVFXPoolingManager>, ISpecialAbility
     {
         [SerializeField] private int unlockLevel = 1;
         [SerializeField] private string abilityName;
@@ -25,14 +25,15 @@ namespace ADC
         protected IVFXPoolingManager VfxPoolingManager;
 
 
-        protected override void Init(IUnitBattleManager unitBattleManager, IVFXPoolingManager vfxPoolingManager)
+        protected override void Init(IVFXPoolingManager vfxPoolingManager)
         {
-            UnitBattleManager = unitBattleManager;
+            Debug.Log($"vfxPoolingManager: {vfxPoolingManager}");
             VfxPoolingManager = vfxPoolingManager;
         }
         
         public virtual ISpecialAbility Initialize(IUnitBattleManager unitBattleManager)
         {
+            UnitBattleManager = unitBattleManager;
             if (string.IsNullOrEmpty(abilityName))
                 abilityName = GetType().Name;
             if (unlockLevel <= 1)

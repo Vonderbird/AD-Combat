@@ -12,9 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29039c7a1a2cd874ba9402462ee9a771, type: 3}
   m_Name: BeamBlade
   m_EditorClassIdentifier: 
+  initializer: {fileID: 6590511074375269242}
   unlockLevel: 1
-  name: 
+  abilityName: BeamBlade
   icon: {fileID: 0}
   infoCellPrefab: {fileID: 9205416013672194317, guid: 20b95310549e26f4086d0233d7ce9946, type: 3}
   strikeFactor: 1.5
   strikePossibility: 0.15
+  hitVFX: {fileID: 0}
+--- !u!114 &6590511074375269242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6416aeb8aa39a2a4ea00cd023b431f54, type: 3}
+  m_Name: Initializer
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

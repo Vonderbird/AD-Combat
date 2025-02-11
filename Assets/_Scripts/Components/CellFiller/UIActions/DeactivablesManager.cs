@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ADC.UnitCreation
 {
-    [Service]
+    [Service(typeof(IDeactivablesManager), FindFromScene = true)]
     public class DeactivablesManager : MonoBehaviour, IDeactivablesManager
     {
         /// <summary>
@@ -24,7 +24,7 @@ namespace ADC.UnitCreation
         }
         public void Add(string groupId, IDeactivable deactivable)
         {
-            if(!groupedDeactivables.ContainsKey(groupId))
+            if (!groupedDeactivables.ContainsKey(groupId))
                 groupedDeactivables.Add(groupId, new HashSet<IDeactivable>());
             groupedDeactivables[groupId].Add(deactivable);
         }

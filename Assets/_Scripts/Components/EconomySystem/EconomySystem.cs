@@ -2,40 +2,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using ADC.API;
-using RTSEngine.Game;
+using Sisus.Init;
 
 namespace ADC.Currencies
 {
-    public class EconomySystem : MonoBehaviour, IEconomySystem, IPostRunGameService
+    [Service(typeof(IEconomySystem), typeof(EconomySystem), FindFromScene = true)]
+    public class EconomySystem : MonoBehaviour, IInitializable<FactionEconomiesCollection, IIncomeSourceFactory>, IEconomySystem
     {
-        [SerializeField] private FactionEconomy[] FactionsEconomies;
+        private IFactionEconomy[] _factionEconomies;
         public Dictionary<int, IFactionEconomy> FactionsEconomiesDictionary { get; private set; }
 
         private List<CurrencyInterface> GlobalVisualizers = new();
 
-        private bool isStarted = false;
-        private IIncomeSourceFactory incomeSourceFactory;
+        private bool _isStarted = false;
 
-        public void Construct(IIncomeSourceFactory incomeSourceFactory)
+        private IIncomeSourceFactory _incomeSourceFactory;
+
+        // protected override void Init(IIncomeSourceFactory incomeSourceFactory)
+        // {
+        //     _incomeSourceFactory = incomeSourceFactory;
+        // }
+        //
+        // public void Init(FactionEconomiesCollection factionEconomies)
+        // {
+        //     _factionEconomies = factionEconomies.FactionEconomies;
+        //     for (var i = 0; i < _factionEconomies.Length; i++)
+        //     {
+        //         _factionEconomies[i].Init(_incomeSourceFactory, i);
+        //         _factionEconomies[i].AddVisualizers(GlobalVisualizers);
+        //     }
+        //
+        //     FactionsEconomiesDictionary =
+        //         _factionEconomies.ToDictionary(faction => faction.FactionId, faction => faction as IFactionEconomy);
+        //     _isStarted = true;
+        //     OnEnable();
+        // }
+        //
+        public void Init(FactionEconomiesCollection factionEconomies, IIncomeSourceFactory incomeSourceFactory)
         {
-            this.incomeSourceFactory = incomeSourceFactory;
-        }
-
-
-        private void Awake()
-        {
-
-            for (int i = 0; i < FactionsEconomies.Length; i++)
+            _factionEconomies = factionEconomies.FactionEconomies;
+            _incomeSourceFactory = incomeSourceFactory;
+            for (var i = 0; i < _factionEconomies.Length; i++)
             {
-                FactionsEconomies[i].Init(incomeSourceFactory, i);
-                FactionsEconomies[i].AddVisualizers(GlobalVisualizers);
+                _factionEconomies[i].Init(incomeSourceFactory, i);
+                _factionEconomies[i].AddVisualizers(GlobalVisualizers);
             }
-
+        
             FactionsEconomiesDictionary =
-                FactionsEconomies.ToDictionary(faction => faction.FactionId, faction => faction as IFactionEconomy);
-            isStarted = true;
+                _factionEconomies.ToDictionary(faction => faction.FactionId, faction => faction as IFactionEconomy);
+            _isStarted = true;
+            OnEnable();
         }
-
 
         public IFactionEconomy this[int factionId]
         {
@@ -53,29 +70,31 @@ namespace ADC.Currencies
 
         private void Start()
         {
-            for (int i = 0; i < FactionsEconomies.Length; i++)
+            if (_factionEconomies == null)
             {
-                FactionsEconomies[i].Start();
+                Destroy(this);
+                enabled = false;
+                return;
             }
+            foreach (var t in _factionEconomies)
+                t.Start();
         }
 
 
-        private void OnEnable()
+        public void OnEnable()
         {
-            foreach (var factionEconomy in FactionsEconomies)
+            if (!_isStarted) return;
+            foreach (var factionEconomy in _factionEconomies)
                 factionEconomy.OnEnable();
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
-            foreach (var factionEconomy in FactionsEconomies)
+            if (!_isStarted) return;
+            foreach (var factionEconomy in _factionEconomies)
                 factionEconomy.OnDisable();
         }
 
-        public void Init(IGameManager manager)
-        {
-            //GameMgr = manager;
-        }
 
         //public IGameManager GameMgr { get; private set; }
 
@@ -85,22 +104,23 @@ namespace ADC.Currencies
             {
                 GlobalVisualizers.Add(currencyInterface);
             }
-            else if (currencyInterface.FactionId < FactionsEconomies.Length)
+            else if (currencyInterface.FactionId < _factionEconomies.Length)
             {
-                FactionsEconomies[currencyInterface.FactionId].AddVisualizer(currencyInterface);
+                _factionEconomies[currencyInterface.FactionId].AddVisualizer(currencyInterface);
             }
             else
             {
                 Debug.LogError($"[EconomySystem] FactionId {currencyInterface.FactionId} is not defined!");
             }
 
-            if (isStarted)
+            if (_isStarted)
             {
-                foreach (var t in FactionsEconomies)
+                foreach (var t in _factionEconomies)
                 {
                     t.AddVisualizer(currencyInterface);
                 }
             }
         }
+
     }
 }

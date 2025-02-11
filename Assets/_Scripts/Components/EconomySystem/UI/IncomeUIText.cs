@@ -1,17 +1,19 @@
+using System.Collections;
 using System.Linq;
 using ADC.API;
 using RTSEngine;
+using Sisus.Init;
 using TMPro;
 using UnityEngine;
 
 namespace ADC.Currencies
 {
     [RequireComponent(typeof(TextMeshProUGUI))]
-    public class IncomeUIText : MonoBehaviour
+    public class IncomeUIText : MonoBehaviour<IEconomySystem>
     {
-        private TextMeshProUGUI incomeText;
-        private IFactionEconomy targetFaction;
-        private bool isEnabled = false;
+        private TextMeshProUGUI _incomeText;
+        private IFactionEconomy _targetFaction;
+        private bool _isEnabled = false;
 
 
         [SerializeField]
@@ -20,43 +22,52 @@ namespace ADC.Currencies
         [SerializeField] private int floatingPoints = 0;
         public int FactionId => factionId;
 
-        private IEconomySystem economySystem;
+        private IEconomySystem _economySystem;
 
-        public void Construct(IEconomySystem economySystem)
+        
+        protected override void Init(IEconomySystem economySystem)
         {
-            this.economySystem = economySystem;
+            this._economySystem = economySystem;
         }
 
-        private void Awake()
+        protected override void OnAwake()
         {
-            incomeText = GetComponent<TextMeshProUGUI>();
+            _incomeText = GetComponent<TextMeshProUGUI>();
         }
+
 
         private void Start()
         {
-            targetFaction = economySystem.FactionsEconomiesDictionary
+            StartCoroutine(DelayedStart());
+        }
+
+        IEnumerator DelayedStart()
+        {
+            yield return new WaitUntil(() => _economySystem.FactionsEconomiesDictionary != null);
+            _targetFaction = _economySystem.FactionsEconomiesDictionary
                 .Where(kv => factionId == -1?kv.Key.IsLocalPlayerFaction(): kv.Key.Equals(factionId))
                 .Select(kv=>kv.Value).FirstOrDefault();
             OnEnable();
-        }
+        } 
 
         void OnEnable()
         {
-            if(targetFaction==null || isEnabled) return;
-            targetFaction.IncomeManager.IncomeChanged.AddListener(OnIncomeChanged);
-            isEnabled = true;
+            if(_targetFaction==null || _isEnabled) return;
+            _targetFaction.IncomeManager.IncomeChanged.AddListener(OnIncomeChanged);
+            _isEnabled = true;
         }
 
         void OnDisable()
         {
-            if(!isEnabled) return;
-            targetFaction.IncomeManager.IncomeChanged.RemoveListener(OnIncomeChanged);
-            isEnabled = false;
+            if(!_isEnabled) return;
+            _targetFaction.IncomeManager.IncomeChanged.RemoveListener(OnIncomeChanged);
+            _isEnabled = false;
         }
 
         private void OnIncomeChanged(decimal newIncome)
         {
-            incomeText.text = newIncome.ToString($"n{floatingPoints}");
+            _incomeText.text = newIncome.ToString($"n{floatingPoints}");
         }
+
     }
 }

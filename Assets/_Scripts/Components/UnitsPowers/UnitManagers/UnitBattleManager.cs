@@ -8,6 +8,7 @@ using RTSEngine.EntityComponent;
 using RTSEngine.Event;
 using RTSEngine.Game;
 using RTSEngine.Health;
+using Sisus.Init;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -15,14 +16,11 @@ namespace ADC
 {
     [RequireComponent(typeof(IUnit))]
     [RequireComponent(typeof(UnitSelectionCatch))]
-    public abstract class UnitBattleManager : MonoBehaviour, IUnitBattleManager
+    public abstract class UnitBattleManager : MonoBehaviour, IInitializable<SpecialAbilityCollection>, IUnitBattleManager
     {
 
         [SerializeField] private DamageFactors damageFactors;
 
-        //[SerializeField] protected UnitSpecs levelZeroSpecs;
-
-        //[SerializeField] protected UnitEquipments baseEquipments;
         [SerializeField] protected SpecialAbilityBase[] specialAbilities;
 
         [SerializeField] private GameObject updateUIPrefab;
@@ -95,6 +93,12 @@ namespace ADC
 
         private CellFillerComponent cellFillerComponent;
 
+        
+        public void Init(SpecialAbilityCollection specialAbilityCollection)
+        {
+            print(specialAbilityCollection.SpecialAbilities.Length);
+        }
+        
         protected virtual void Awake()
         {
             unit = GetComponent<Unit>();
@@ -260,6 +264,7 @@ namespace ADC
         }
 
         #endregion
+
     }
 
     [Serializable]

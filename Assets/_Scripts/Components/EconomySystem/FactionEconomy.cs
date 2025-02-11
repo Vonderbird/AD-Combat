@@ -1,12 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ADC.API;
+using Sisus.Init;
 using UnityEngine;
 
 namespace ADC.Currencies
 {
-
     [Serializable]
     public class FactionEconomy: IFactionEconomy
     {
@@ -24,7 +25,7 @@ namespace ADC.Currencies
         //[SerializeField] private CurrencyInterface[] visualizers;
         public HashSet<CurrencyInterface<Biofuel>> BiofuelVisualizers { get; private set; } = new();
         public HashSet<CurrencyInterface<WarScrap>> WarScrapVisualizers { get; private set; } = new();
-        private IEconomySystem economySystem;
+        // private IEconomySystem economySystem;
 
 
         public void Init(IIncomeSourceFactory incomeSourceFactory, int factionId)
@@ -34,9 +35,15 @@ namespace ADC.Currencies
             biofuelManager = new BiofuelManager(factionId);
             warScrapManager = new WarScrapManager(factionId);
             IncomeManager = new IncomeManager(incomeSourceFactory, factionId);
+            IncomeManager.IncomeReceived += OnIncomeReceived;
             //AddVisualizers(visualizers);
         }
-        
+
+        private void OnIncomeReceived(object sender, IncomeEventArgs e)
+        {
+            Deposit(e.IncomeAmount);
+        }
+
         public void Start()
         {
             biofuelManager.Init(new Biofuel((decimal)initialBiofuel));

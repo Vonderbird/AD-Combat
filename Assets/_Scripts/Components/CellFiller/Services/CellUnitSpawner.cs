@@ -7,13 +7,14 @@ using ADC.Currencies;
 using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using RTSEngine.Game;
+using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Events;
 
 
 namespace ADC.UnitCreation
 {
-    public class CellUnitSpawner : MonoBehaviour, IPostRunGameService
+    public class CellUnitSpawner : MonoBehaviour<IWaveTimer>, IPostRunGameService
     {
         protected RTSEngine.UnitExtension.IUnitManager unitMgr { private set; get; }
 
@@ -23,15 +24,15 @@ namespace ADC.UnitCreation
         public UnityEvent<UnitsSpawnEventArgs> OnUnitsSpawned = new();
 
 
-        private readonly WaitForSeconds waitForSeconds = new(0.1f);
-        private WaitUntil waitUntil;
-        private IWaveTimer waveTimer;
+        private readonly WaitForSeconds _waitForSeconds = new(0.1f);
+        private WaitUntil _waitUntil;
+        private IWaveTimer _waveTimer;
 
-        public void Construct(IWaveTimer waveTimer)
+        protected override void Init(IWaveTimer waveTimer)
         {
-            this.waveTimer = waveTimer;
+            this._waveTimer = waveTimer;
         }
-
+        
         public void Init(IGameManager gameMgr)
         {
             unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>();
@@ -45,14 +46,14 @@ namespace ADC.UnitCreation
         private IEnumerator DelayedEnable()
         {
             yield return null;
-            waveTimer.Begin.AddListener(OnStartWave);
+            _waveTimer.Begin.AddListener(OnStartWave);
         }
 
         private void OnDisable()
         {
             try
             {
-                waveTimer.Begin.RemoveListener(OnStartWave);
+                _waveTimer.Begin.RemoveListener(OnStartWave);
             }
             catch (Exception)
             {
@@ -77,7 +78,7 @@ namespace ADC.UnitCreation
             }
 
             for (var i = 0; i < 5; i++)
-                yield return waitForSeconds;
+                yield return _waitForSeconds;
 
             spawnEventArgs.UnitIds.Clear();
             var unitsSpawn2 = unitsSpawn.ToDictionary((kvp)=> kvp.Key, (kvp)=> kvp.Value);
@@ -120,7 +121,7 @@ namespace ADC.UnitCreation
 
             OnUnitsSpawned?.Invoke(spawnEventArgs);
 
-            yield return waitForSeconds;
+            yield return _waitForSeconds;
         }
 
         public void AddNewUnit(UnitParameters unit)
@@ -133,6 +134,7 @@ namespace ADC.UnitCreation
             if (unitsSpawn.ContainsKey(unitId))
                 unitsSpawn.Remove(unitId);
         }
+
     }
 
     public struct UnitParameters

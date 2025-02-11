@@ -25,13 +25,12 @@ namespace ADC.Editor.Tests
             // Act
             var source = new BiofuelIncomeSource(
                 _waveTimer.Object,
-                _economySystem.Object,
                 _biofuel,
                 FactionId
             );
 
             // Assert
-            Assert.AreEqual(50m, source.PaymentAmount);
+            Assert.AreEqual(50m, source.PaymentAmount.Value);
             // Assert.AreEqual(1, _waveTimer.Begin.GetPersistentEventCount()); ///????
         }
 
@@ -39,16 +38,14 @@ namespace ADC.Editor.Tests
         public void Update_DepositsBiofuelToCorrectFaction()
         {
             // Arrange
-            var factionEconomy = new Mock<IFactionEconomy>();
-            factionEconomy.Setup(f=> f.Deposit(It.Is<Biofuel>(b=>b.Value==_biofuel.Value))).Returns(true);
-            _economySystem.Setup(e => e[FactionId]).Returns(factionEconomy.Object);
-            var source = new BiofuelIncomeSource(_waveTimer.Object, _economySystem.Object, _biofuel, FactionId);
-
+            var source = new BiofuelIncomeSource(_waveTimer.Object, _biofuel, FactionId);
+            Biofuel receivedIncome = new Biofuel();
+            source.IncomeReceived += (o, e) => receivedIncome = (Biofuel)e.IncomeAmount;
             // Act
             _waveTimer.Object.Begin.Invoke();
             
             // Assert
-            factionEconomy.Verify(f=>f.Deposit(It.Is<Biofuel>(b=>b.Value==_biofuel.Value)));
+            Assert.AreEqual(receivedIncome, _biofuel);
         }
     }
 }

@@ -1,23 +1,28 @@
 using System;
+using PlasticGui.Help;
 using Sisus.Init;
 using UnityEngine;
 
 namespace ADC.API
 {
+    public struct IncomeEventArgs
+    {
+        public ICurrency IncomeAmount { get; set; }
+    } 
     public abstract class IncomeSource :IDisposable
     {
         public Guid IncomeId { get; private set; }
         private readonly Coroutine _updater;
         private readonly WaitUntil _wait;
         protected int FactionId;
-        public abstract decimal PaymentAmount { get; }
+        public abstract ICurrency PaymentAmount { get; }
         private IWaveTimer _waveTimer;
-        protected IEconomySystem EconomySystem;
 
-        public IncomeSource(IWaveTimer waveTimer, IEconomySystem economySystem, int factionId)
+        public event EventHandler<IncomeEventArgs> IncomeReceived;
+
+        public IncomeSource(IWaveTimer waveTimer, int factionId)
         {
             this._waveTimer = waveTimer;
-            this.EconomySystem = economySystem;
             this.FactionId = factionId;
             IncomeId = Guid.NewGuid();
             waveTimer.Begin.AddListener(Update);
@@ -28,6 +33,9 @@ namespace ADC.API
             _waveTimer.Begin.RemoveListener(Update);
         }
 
-        protected abstract void Update();
+        protected virtual void Update()
+        {
+            IncomeReceived?.Invoke(this, new IncomeEventArgs{IncomeAmount = PaymentAmount});
+        }
     }
 }

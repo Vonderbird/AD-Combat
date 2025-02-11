@@ -30,13 +30,13 @@ namespace ADC.UnitCreation
         public UnityEvent Clicked;
         private IDeactivablesManager _deactivablesManager;
 
-        protected override void OnAwake()
+        private  void Start()
         {
             GroupIds = groupId.Split(';');
             GroupIdsToDeactivate = groupIdsToDeactivate.Split(';');
             AddToManager();
         }
-
+        
         public void OnDeleteClicked()
         {
             if (!IsDeleteEnabled)

@@ -1,11 +1,13 @@
 using System.Collections;
 using ADC.API;
 using RTSEngine.Determinism;
+using Sisus.Init;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace ADC.Currencies
 {
+    [Service(typeof(IWaveTimer), typeof(WaveTimer), FindFromScene = true)]
     public class WaveTimer : MonoBehaviour, IWaveTimer
     {
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using RTSEngine;
 using UnityEngine;
 using ADC.Currencies;
@@ -10,6 +11,7 @@ using RTSEngine.UnitExtension;
 using RTSEngine.EntityComponent;
 using System.Collections.Generic;
 using ADC.API;
+using RTSEngine.Game;
 using Sisus.Init;
 using IUnit = RTSEngine.Entities.IUnit;
 using SelectionType = RTSEngine.Selection.SelectionType;
@@ -18,7 +20,8 @@ using SelectionType = RTSEngine.Selection.SelectionType;
 namespace ADC.UnitCreation
 {
 
-    public class CellFillerComponent : PendingTaskEntityComponentBase, IUnitCreator, IDeactivable, IInitializable<IDeactivablesManager>
+    public class CellFillerComponent : PendingTaskEntityComponentBase, IInitializable<IEconomySystem, IDeactivablesManager, IGameManager>,
+        IDeactivable, IUnitCreator
     {
         [SerializeField] private Transform cellsParent;
         [SerializeField] private SpawnPointsManager spawnPointsManager;
@@ -63,7 +66,7 @@ namespace ADC.UnitCreation
         public EventHandler<SelectionEventArgs> UnitCellSelected;
         public EventHandler<DeselectionEventArgs> UnitCellDeselected;
 
-        public override IReadOnlyList<IEntityComponentTaskInput> Tasks { get; }
+        public override IReadOnlyList<IEntityComponentTaskInput> Tasks { get; } // deleted override
 
         private SpawnUnitsList spawnUnitsList;
 
@@ -78,21 +81,39 @@ namespace ADC.UnitCreation
         private DeleteButton deleteButton;
         protected IIncomeManager incomeManager { private set; get; }
         private UnitPlacementTransactionLogic unitPlacementTransaction;
-        private IEconomySystem economySystem;
+        private IEconomySystem _economySystem;
 
         
-        public void Construct(IEconomySystem economySystem)
-        {
-            this.economySystem = economySystem;
-        }
 
-        private void Awake()
+        private IDeactivablesManager _deactivablesManager;
+        private IGameManager _gameManager;
+        private IEntity _entity;
+
+        public void Init(IEconomySystem economySystem, IDeactivablesManager deactivablesManager, IGameManager gameManager)
+        {
+            _deactivablesManager = deactivablesManager;
+            _economySystem = economySystem;
+            _gameManager = gameManager;
+            _entity = GetComponentInParent<IEntity>();
+        }
+        
+        private void Start()
         {
             GroupIds = groupIds.Split(';');
             GroupIdsToDeactivate = groupIdsToDeactivate.Split(';');
+            
             AddToManager();
+            // StartCoroutine(DelayedStart());
         }
+        //
+        // IEnumerator DelayedStart()
+        // {
+        //     yield return new WaitUntil(() => _economySystem.FactionsEconomiesDictionary != null);
+        //     
+        //     OnPendingInit();
+        // }
 
+        // protected override void OnPendingInit()
         protected override void OnPendingInit()
         {
             if (!spawnTransform.IsValid() || !gotoTransform.IsValid() ||
@@ -102,7 +123,7 @@ namespace ADC.UnitCreation
                 return;
             }
 
-            if (!Entity.IsFactionEntity())
+            if (!_entity.IsFactionEntity())
             {
                 Debug.LogError(
                     $"[CellFillerComponent] This component can only be attached to unit or building entities!",
@@ -110,12 +131,12 @@ namespace ADC.UnitCreation
                 return;
             }
 
-            unitSpawner = gameMgr.GetService<CellUnitSpawner>();
+            unitSpawner = _gameManager.GetService<CellUnitSpawner>();
             spawnPointsManager.OnInit(this);
-            incomeManager = economySystem.FactionsEconomiesDictionary[Entity.FactionID].IncomeManager;
+            incomeManager = _economySystem.FactionsEconomiesDictionary[_entity.FactionID].IncomeManager;
             if (CellsManager == null)
             {
-                cellsManager = new CellsManager(economySystem, cellsParent, unitSpawner, activeTaskData, Entity.FactionID);
+                cellsManager = new CellsManager(_economySystem, cellsParent, unitSpawner, activeTaskData, _entity.FactionID);
                 deleteButton ??= FindAnyObjectByType<DeleteButton>();
                 CellsManager.OnEnabled(deleteButton);
                 CellsManager.AdditiveCellClicked.AddListener(OnAdditionCellClicked);
@@ -124,11 +145,11 @@ namespace ADC.UnitCreation
                 CellsManager.UnitCellDeselected += UnitCellDeselected;
             }
 
-            this.unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>
+            this.unitMgr = _gameManager.GetService<RTSEngine.UnitExtension.IUnitManager>
                 ();
-            Entity.Selection.Selected += CellsManager.OnEntitySelected;
-            Entity.Selection.Deselected += CellsManager.OnEntityDeselected;
-            Entity.Selection.OnSelected(
+            _entity.Selection.Selected += CellsManager.OnEntitySelected;
+            _entity.Selection.Deselected += CellsManager.OnEntityDeselected;
+            _entity.Selection.OnSelected(
                 new EntitySelectionEventArgs(SelectionType.single, SelectedType.newlySelected, true));
 
             spawnUnitsList = FindAnyObjectByType<SpawnUnitsList>();
@@ -150,7 +171,7 @@ namespace ADC.UnitCreation
                 }
 
                 var unitPlacementCosts = targetUnit.GetComponent<UnitPlacementCosts>();
-                creationTasks[taskID].Init(this, taskID, gameMgr);
+                creationTasks[taskID].Init(this, taskID, _gameManager); ////?????????? this => null
                 creationTasks[taskID].Enable();
                 if (unitPlacementCosts == null)
                 {
@@ -165,7 +186,7 @@ namespace ADC.UnitCreation
             unitSpawnPosTestTransform = new GameObject("Test Transform").transform;
             cellRelativePosTestTransform.SetParent(cellsParent);
             unitSpawnPosTestTransform.SetParent(spawnTransform);
-            unitPlacementTransaction = new UnitPlacementTransactionLogic(economySystem, Entity.FactionID);
+            unitPlacementTransaction = new UnitPlacementTransactionLogic(_economySystem, _entity.FactionID);
         }
 
 
@@ -194,38 +215,38 @@ namespace ADC.UnitCreation
                 deleteButton.Clicked.RemoveListener(OnDeactivateTask);
         }
 
-        protected override ErrorMessage CompleteTaskActionLocal(int creationTaskID, bool playerCommand)
+        protected override ErrorMessage CompleteTaskActionLocal(int creationTaskID, bool playerCommand) 
         {
             Debug.Log("Task Completed!!!");
             UnitCreationTask nextTask = allCreationTasks[creationTaskID];
-
+        
             unitMgr.CreateUnit(
                 nextTask.TargetObject,
                 SpawnPosition,
                 Quaternion.identity,
                 new InitUnitParameters
                 {
-                    factionID = Entity.FactionID,
+                    factionID = _entity.FactionID,
                     free = false,
-
+        
                     setInitialHealth = false,
-
+        
                     giveInitResources = true,
-
+        
                     rallypoint = factionEntity.Rallypoint,
                     creatorEntityComponent = this,
-
+        
                     useGotoPosition = true,
                     gotoPosition = SpawnPosition,
-
+        
                     isSquad = nextTask.SquadData.enabled,
                     squadCount = nextTask.SquadData.count,
-
+        
                     playerCommand = playerCommand
                 });
-
+        
             return ErrorMessage.none;
-
+        
         }
 
         public int FindTaskIndex(string unitCode)
@@ -236,11 +257,11 @@ namespace ADC.UnitCreation
         protected override string GetTaskTooltipText(IEntityComponentTaskInput taskInput)
         {
             UnitCreationTask nextTask = taskInput as UnitCreationTask;
-
+        
             textDisplayer.UnitCreationTaskTooltipToString(
                 nextTask,
                 out string tooltipText);
-
+        
             return tooltipText;
         }
 
@@ -265,7 +286,7 @@ namespace ADC.UnitCreation
 
             unitSpawner.AddNewUnit(new UnitParameters
             {
-                CreatorComponent = this,
+                CreatorComponent = this,   //// ??? this => null
                 UnitTask = activeTaskData.UnitCreationTask,
                 GotoTransform = gotoTransform,
                 SpawnPosition = unitSpawnPosTestTransform.position,
@@ -326,10 +347,5 @@ namespace ADC.UnitCreation
             cellsManager.OnAllCellsUnselect(null);
         }
 
-        private IDeactivablesManager _deactivablesManager;
-        public void Init(IDeactivablesManager deactivablesManager)
-        {
-            _deactivablesManager = deactivablesManager;
-        }
     }
 }
