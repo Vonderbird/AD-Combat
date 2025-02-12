@@ -619,8 +619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageFactors:
     receiveRangeDamageFactor: 1
-  specialAbilities:
-  - {fileID: 11400000, guid: a3590683a50963845a28aa64591093d1, type: 2}
   updateUIPrefab: {fileID: 3022189691718275340, guid: 81421175142a07940b062517984d7917, type: 3}
   specs:
     baseSpecs:

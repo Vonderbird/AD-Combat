@@ -163,20 +163,15 @@ namespace RTSEngine.UnitExtension
 
             while (unitCount > 0)
             {
-                unitPrefab.gameObject.SetActive(true);
-                IUnit nextUnit = null;
-                if (unitPrefab is Unit up)
-                    nextUnit = Instantiate(up, spawnPosition, spawnRotation);
-                else
-                    nextUnit = Instantiate(unitPrefab.gameObject, spawnPosition, spawnRotation).GetComponent<IUnit>();
-                //nextUnit.gameObject.SetActive(true);
+                IUnit nextUnit = Instantiate(unitPrefab.gameObject, spawnPosition, spawnRotation).GetComponent<IUnit>();
+
+                nextUnit.gameObject.SetActive(true);
 
                 nextUnit.Init(gameMgr, initParams);
                  
                 createdUnits[createdUnits.Length - unitCount] = nextUnit;
 
                 unitCount--;
-                unitPrefab.gameObject.SetActive(false);
             }
 
             if (initParams.isSquad && squadMgr.IsValid())

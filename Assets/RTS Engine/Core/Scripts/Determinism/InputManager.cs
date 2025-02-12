@@ -98,7 +98,7 @@ namespace RTSEngine.Determinism
                 ? manualSpawnablePrefabs
                 : Resources
                 .LoadAll("Prefabs", typeof(GameObject))
-                .Cast<GameObject>())
+                .Cast<GameObject>()) 
                 .Where(prefabObj =>
                 {
                     IEntity nextPrefab = prefabObj.IsValid() ? prefabObj.GetComponent<IEntity>() : null;
@@ -107,7 +107,9 @@ namespace RTSEngine.Determinism
                 })
                 .Select(prefabObj =>
                 {
+                    prefabObj.SetActive(false);
                     IEntity prefabInstance = GameObject.Instantiate(prefabObj, Vector3.zero, prefabObj.transform.rotation).GetComponent<IEntity>();
+                    prefabObj.SetActive(true);
                     return prefabInstance;
                 })
                 .ToList();
