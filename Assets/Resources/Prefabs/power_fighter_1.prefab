@@ -583,10 +583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd2ba078d399f04fa4a3039be4f75f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getBioFuel: 30
+  getBiofuel: 0
   PayWarScrap: 30
-  warScrapPaymentRatio: 0.1
-  incomePaymentInterval: 5
+  incomeRatio: 0.1
+  refundRatio: 0.75
 --- !u!1 &3369347848071248330
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +966,10 @@ MonoBehaviour:
     areaAttackEnabled: 0
     areaAttackData: []
     dotEnabled: 0
+    baseDotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
     dotData:
       infinite: 0
       cycleDuration: 0

@@ -970,6 +970,10 @@ MonoBehaviour:
       infinite: 0
       cycleDuration: 0
       cycles: 0
+    dotData:
+      infinite: 0
+      cycleDuration: 0
+      cycles: 0
     hitEffects:
     - picker:
         type: 1

@@ -236,6 +236,8 @@ MonoBehaviour:
   cellsParent: {fileID: 7411165237085516168}
   spawnPointsManager:
     rallypoint: {fileID: 0}
+  groupIds: 
+  groupIdsToDeactivate: 
   creationTasks:
   - taskTitle: ' Fighter'
     taskUI: {fileID: 11400000, guid: f2f0989e376421e498eeafe05de37c8e, type: 2}
