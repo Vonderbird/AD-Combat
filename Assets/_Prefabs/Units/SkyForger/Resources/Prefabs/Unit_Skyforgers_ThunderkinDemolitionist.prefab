@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: -1875906990886826467}
   - component: {fileID: 8878664139287177139}
   - component: {fileID: -6536454029783112099}
+  - component: {fileID: -448100543451620130}
   m_Layer: 0
   m_Name: Unit_Skyforgers_ThunderkinDemolitionist
   m_TagString: Untagged
@@ -737,6 +738,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8878664139287177139}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &-448100543451620130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837683883374114850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4b4e16bb004fc428bd089a6ec3431c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: -2678595993523194710}
   nullArgumentGuard: 3
   argument:
     reference: {fileID: 0}

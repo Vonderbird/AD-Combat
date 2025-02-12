@@ -2,21 +2,22 @@ using ADC.API;
 using ADC.Currencies;
 using ADC.UnitCreation;
 using RTSEngine.Health;
+using Sisus.Init;
 using UnityEngine;
 
 namespace ADC
-{
-    public class UnitKilledEventHandler : MonoBehaviour
+{ 
+    public class UnitKilledEventHandler : MonoBehaviour<IEconomySystem>
     {
         private UnitHealth unitHealth;
         [SerializeField]
         private float killAwardPercent = 0.3f;
         private WarScrap killAward;
-        private IEconomySystem economySystem;
+        private IEconomySystem _economySystem;
 
-        public void Construct(IEconomySystem economySystem)
+        protected override void Init(IEconomySystem economySystem)
         {
-            this.economySystem = economySystem;
+            this._economySystem = economySystem;
         }
 
         private void Awake()
@@ -43,7 +44,7 @@ namespace ADC
 
             var predator = unitHealth.TerminatedBy;
             Debug.Log($">>>{predator.Name}<<<");
-            economySystem.FactionsEconomiesDictionary[predator.FactionID].Deposit(killAward);
+            _economySystem.FactionsEconomiesDictionary[predator.FactionID].Deposit(killAward);
         }
 
     }

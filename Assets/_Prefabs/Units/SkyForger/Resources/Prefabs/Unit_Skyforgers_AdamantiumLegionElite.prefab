@@ -1795,6 +1795,7 @@ GameObject:
   - component: {fileID: 4961990629512393059}
   - component: {fileID: -8229637393999639204}
   - component: {fileID: -6829627450736701619}
+  - component: {fileID: 3951463921440105674}
   m_Layer: 0
   m_Name: Unit_Skyforgers_AdamantiumLegionElite
   m_TagString: Untagged
@@ -2279,6 +2280,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 4961990629512393059}
+  nullArgumentGuard: 3
+  argument:
+    reference: {fileID: 0}
+    value:
+      rid: -2
+  disposeArgumentsOnDestroy: 0
+  asyncArguments: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!114 &3951463921440105674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090327454865371489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4b4e16bb004fc428bd089a6ec3431c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: -3559951410355221687}
   nullArgumentGuard: 3
   argument:
     reference: {fileID: 0}
