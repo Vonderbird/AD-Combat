@@ -73,5 +73,13 @@ crashlytics-build.properties
 /[Aa]ssets/SineVFX
 /[Aa]ssets/GabrielAguiarProductions
 /[Aa]ssets/SineVFX.meta
+/[Aa]ssets/FindReference2
+/[Aa]ssets/FindReference2.meta
+/[Aa]ssets/FR2_Cache.asset
+/[Aa]ssets/FR2_Cache.asset.meta
+
+/Packages/com.singularitygroup.hotreload
+/Packages/com.sisus.init-args
+/Packages/com.sisus.shared
 
 !*.asmdef
