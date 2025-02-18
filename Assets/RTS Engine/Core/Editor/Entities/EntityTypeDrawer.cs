@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 using RTSEngine.Entities;
@@ -16,3 +17,4 @@ namespace RTSEngine.EditorOnly.Entities
 		}
 	}
 }
+#endif

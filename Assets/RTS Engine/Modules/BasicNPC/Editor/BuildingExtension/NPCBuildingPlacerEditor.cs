@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEditor;
 using RTSEngine.NPC.BuildingExtension;
 
@@ -36,3 +37,4 @@ namespace RTSEngine.EditorOnly.NPC.BuildingExtension
         }
     }
 }
+#endif

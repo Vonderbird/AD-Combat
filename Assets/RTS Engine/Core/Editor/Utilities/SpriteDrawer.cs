@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿
 using UnityEditor;
 using UnityEngine;
@@ -14,3 +15,4 @@ namespace RTSEngine.EditorOnly.Utilities
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+#if UNITY_EDITOR
+using UnityEditor;
 
 using RTSEngine.BuildingExtension;
 using RTSEngine.Utilities;
@@ -113,3 +114,4 @@ namespace RTSEngine.EditorOnly.BuildingExtension
         }
     }
 }
+#endif

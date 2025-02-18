@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEditor;
 
 using RTSEngine.Utilities;
@@ -53,3 +54,4 @@ namespace RTSEngine.EditorOnly.NPC
         protected virtual void OnActiveLogsInspectorGUI() { }
     }
 }
+#endif

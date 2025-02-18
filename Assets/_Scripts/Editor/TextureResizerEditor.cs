@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -226,3 +227,5 @@ public class TextureResizerWindow : EditorWindow
     //    selectedTexture = (Texture2D)AssetDatabase.LoadAssetAtPath(path, typeof(Texture2D));
     //}
 }
+
+#endif

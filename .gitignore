@@ -81,5 +81,6 @@ crashlytics-build.properties
 /Packages/com.singularitygroup.hotreload
 /Packages/com.sisus.init-args
 /Packages/com.sisus.shared
+/Packages/*/
 
 !*.asmdef

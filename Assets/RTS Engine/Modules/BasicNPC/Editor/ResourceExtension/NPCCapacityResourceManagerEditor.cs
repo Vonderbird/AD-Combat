@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEditor;
 using RTSEngine.NPC.ResourceExtension;
 
@@ -52,3 +53,4 @@ namespace RTSEngine.EditorOnly.NPC.ResourceExtension
         }
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEditor;
 
 using RTSEngine.Health;
@@ -148,3 +149,4 @@ namespace RTSEngine.EditorOnly.Health
 
     }
 }
+#endif

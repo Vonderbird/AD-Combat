@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/BattleGround1.unity
     guid: 03c032c2b8a063c46a76b1bd362373fb
+  - enabled: 1
+    path: Assets/_Scenes/KeatonsNewBattleground.unity
+    guid: 41caaffdf660c644aa13021ee88706f1
+  - enabled: 1
+    path: Assets/Scenes/UI-Test-1.unity
+    guid: 1975a1fcf82638440b76ecb49d735381
   m_configObjects: {}

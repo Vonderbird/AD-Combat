@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
@@ -38,19 +39,25 @@ namespace RTSEngine.EditorOnly
         [MenuItem("RTS Engine/New Unit", false, 101)]
         private static void NewUnitOption()
         {
+            #if UNITY_EDITOR
             RTSEngineEditor.ShowWindowOnCreation(NavigationMenuType.Units);
+            #endif
         }
 
         [MenuItem("RTS Engine/New Building", false, 102)]
         private static void NewBuildingOption()
         {
+#if UNITY_EDITOR
             RTSEngineEditor.ShowWindowOnCreation(NavigationMenuType.Buildings);
+#endif
         }
 
         [MenuItem("RTS Engine/New Resource", false, 103)]
         private static void NewResourceOption()
         {
+#if UNITY_EDITOR
             RTSEngineEditor.ShowWindowOnCreation(NavigationMenuType.Resources);
+#endif
         }
 
         [MenuItem("RTS Engine/New Effect Object", false, 154)]
@@ -82,3 +89,5 @@ namespace RTSEngine.EditorOnly
         }
     }
 }
+
+#endif

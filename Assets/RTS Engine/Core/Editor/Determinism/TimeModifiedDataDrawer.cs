@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using RTSEngine.Determinism;
 using UnityEditor;
 using UnityEngine;
@@ -18,3 +19,4 @@ namespace RTSEngine.EditorOnly.Determinism
         }
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEditor;
 using RTSEngine.NPC.Attack;
 
@@ -55,3 +56,4 @@ namespace RTSEngine.EditorOnly.NPC.Attack
         }
     }
 }
+#endif

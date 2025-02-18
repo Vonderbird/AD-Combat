@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEditor;
 
 using RTSEngine.UI;
@@ -53,3 +54,4 @@ namespace RTSEngine.EditorOnly.EntityComponent
         }
     }
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 using RTSEngine.Utilities;
@@ -59,3 +60,5 @@ namespace RTSEngine.EditorOnly
         protected virtual void OnTabSwitch(string tabName) { }
     }
 }
+
+#endif

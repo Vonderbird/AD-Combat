@@ -1,20 +1,32 @@
 {
   "dependencies": {
-    "com.sisus.init-args": {
-      "version": "file:com.sisus.init-args",
+    "com.heurekagames.assethunterpro": {
+      "version": "file:com.heurekagames.assethunterpro",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {
-        "com.sisus.shared": "1.0.0"
-      }
+      "dependencies": {}
+    },
+    "com.heurekagames.utils": {
+      "version": "file:com.heurekagames.utils",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.singularitygroup.hotreload": {
       "version": "file:com.singularitygroup.hotreload",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-		"com.unity.ugui": "1.0.0",
-		"com.unity.modules.unitywebrequest": "1.0.0"
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      }
+    },
+    "com.sisus.init-args": {
+      "version": "file:com.sisus.init-args",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.sisus.shared": "1.0.0"
       }
     },
     "com.sisus.shared": {

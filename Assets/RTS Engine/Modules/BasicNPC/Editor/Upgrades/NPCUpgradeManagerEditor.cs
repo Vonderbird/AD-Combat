@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEditor;
 using RTSEngine.NPC.Upgrades;
 
@@ -42,3 +43,4 @@ namespace RTSEngine.EditorOnly.NPC.Upgrades
         }
     }
 }
+#endif

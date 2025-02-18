@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using System.Collections.Generic;
@@ -86,3 +87,4 @@ namespace RTSEngine.EditorOnly.EntityComponent
     }
 }
 
+#endif

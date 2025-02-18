@@ -1,4 +1,7 @@
-﻿using RTSEngine.Entities;
+#if UNITY_EDITOR
+﻿
+#if UNITY_EDITOR
+using RTSEngine.Entities;
 using System;
 using System.Linq;
 using UnityEditor;
@@ -638,3 +641,5 @@ namespace RTSEngine.EditorOnly
 
     }
 }
+#endif
+#endif

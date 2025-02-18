@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 ﻿using UnityEngine;
 using UnityEditor;
 
@@ -18,3 +19,4 @@ namespace RTSEngine.EditorOnly.NPC
         }
     }
 }
+#endif
