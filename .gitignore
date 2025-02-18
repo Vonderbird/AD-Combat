@@ -77,6 +77,12 @@ crashlytics-build.properties
 /[Aa]ssets/FindReference2.meta
 /[Aa]ssets/FR2_Cache.asset
 /[Aa]ssets/FR2_Cache.asset.meta
+/[Aa]ssets/UNI VFX
+/[Aa]ssets/UNI VFX.meta
+/[Aa]ssets/TriForge Assets
+/[Aa]ssets/TriForge Assets.meta
+/[Aa]ssets/TerrainSampleAssets
+/[Aa]ssets/TerrainSampleAssets.meta
 
 /Packages/com.singularitygroup.hotreload
 /Packages/com.sisus.init-args
