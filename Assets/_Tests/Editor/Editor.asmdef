@@ -1,6 +1,6 @@
 {
     "name": "ADC.Editor.Tests",
-    "rootNamespace": "ADC.Editor.Tests",
+    "rootNamespace": "ADC",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",

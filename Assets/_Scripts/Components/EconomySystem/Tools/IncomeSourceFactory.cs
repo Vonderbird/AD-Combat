@@ -14,7 +14,7 @@ namespace ADC.Currencies
             this._waveTimer = waveTimer;
         }
         
-        public IncomeSource Create(ICurrency currency, int factionId)
+        public IIncomeSource Create(ICurrency currency, int factionId)
         {
             return currency switch
             {

@@ -1,11 +1,8 @@
-using ADC.API;
 using ADC.Currencies;
-// using NSubstitute;
-using Moq;
 using NUnit.Framework;
-using UnityEngine;
+// using NSubstitute;
 
-namespace ADC.Editor.Tests
+namespace ADC._Tests.Editor.Components.EconomySystem.Tools
 {
     [TestFixture]
     public class BiofuelIncomeSourceTests: IncomeSourceTests

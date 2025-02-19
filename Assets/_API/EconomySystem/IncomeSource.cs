@@ -7,8 +7,16 @@ namespace ADC.API
     public struct IncomeEventArgs
     {
         public ICurrency IncomeAmount { get; set; }
-    } 
-    public abstract class IncomeSource :IDisposable
+    }
+
+    public interface IIncomeSource : IDisposable
+    {
+        Guid IncomeId { get; }
+        ICurrency PaymentAmount { get; }
+        event EventHandler<IncomeEventArgs> IncomeReceived;
+    }
+
+    public abstract class IncomeSource : IIncomeSource
     {
         public Guid IncomeId { get; private set; }
         private readonly Coroutine _updater;

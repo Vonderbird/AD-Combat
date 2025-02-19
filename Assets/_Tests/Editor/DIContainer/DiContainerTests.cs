@@ -1,10 +1,9 @@
-using System;
+using ADC._Tests.Editor.DIContainer.DummyCodes;
 using Moq;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
-namespace ADC.Editor.Tests
+namespace ADC._Tests.Editor.DIContainer
 {
 // The DI container and supporting types from your code
 // (Assume the DiContainer, InjectAttribute, DiException, MonoInjector, etc. are available in your project)

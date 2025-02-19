@@ -1,15 +1,11 @@
-using NUnit.Framework;
-// using NSubstitute;
-using UnityEngine;
-using System;
-using System.Reflection;
 using ADC.API;
 using ADC.Currencies;
 using Moq;
-using UnityEngine.Events;
+using NUnit.Framework;
+// using NSubstitute;
 
 
-namespace ADC.Editor.Tests
+namespace ADC._Tests.Editor.Components.EconomySystem.Tools
 {
     [TestFixture]
     public class IncomeSourceTests

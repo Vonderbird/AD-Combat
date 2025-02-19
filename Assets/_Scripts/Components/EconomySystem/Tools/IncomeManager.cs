@@ -3,12 +3,13 @@ using System;
 using ADC.API;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ADC.Currencies
 {
     public class IncomeManager: IIncomeManager
     {
-        private readonly Dictionary<Guid, IncomeSource> incomeSources = new ();
+        private readonly Dictionary<Guid, IIncomeSource> incomeSources = new ();
         private readonly int factionId;
         public UnityEvent<decimal> IncomeChanged { get; }= new();
         private decimal totalIncomeRate = 0.0m;
@@ -16,7 +17,6 @@ namespace ADC.Currencies
         // private IEconomySystem economySystem;
         private IIncomeSourceFactory incomeSourceFactory;
 
-        
         public IncomeManager(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             this.factionId = factionId;
@@ -36,6 +36,7 @@ namespace ADC.Currencies
         public bool RemoveSource(Guid incomeId)
         {
             if (!incomeSources.TryGetValue(incomeId, out var source)) return false;
+            source.IncomeReceived -= IncomeReceived;
             source.Dispose();
             incomeSources.Remove(incomeId);
             totalIncomeRate -= source.PaymentAmount.Value;

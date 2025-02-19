@@ -1,7 +1,7 @@
 using ADC.Currencies;
 using NUnit.Framework;
 
-namespace ADC.Editor.Tests
+namespace ADC._Tests.Editor.Components.EconomySystem.Currencies
 {
     [TestFixture]
     public class WarScrapTests

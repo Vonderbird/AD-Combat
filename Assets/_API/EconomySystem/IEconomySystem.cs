@@ -80,7 +80,7 @@ namespace ADC.API
     }
     public interface IIncomeSourceFactory
     {
-        IncomeSource Create(ICurrency currency, int factionId);
+        IIncomeSource Create(ICurrency currency, int factionId);
     }
 
 }

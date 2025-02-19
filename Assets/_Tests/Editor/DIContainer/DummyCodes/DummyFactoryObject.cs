@@ -1,6 +1,6 @@
 using System;
 
-namespace ADC.Editor.Tests
+namespace ADC._Tests.Editor.DIContainer.DummyCodes
 {
     public class DummyFactoryObject
     {

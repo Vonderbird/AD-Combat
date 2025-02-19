@@ -1,9 +1,7 @@
-using NUnit.Framework;
-using ADC.API;
 using ADC.Currencies;
-using UnityEngine;
+using NUnit.Framework;
 
-namespace ADC.Editor.Tests
+namespace ADC._Tests.Editor.Components.EconomySystem.Currencies
 {
     [TestFixture]
     public class BiofuelTests
