@@ -32,7 +32,7 @@ namespace ADC.UnitCreation
         {
             this._waveTimer = waveTimer;
         }
-        
+
         public void Init(IGameManager gameMgr)
         {
             unitMgr = gameMgr.GetService<RTSEngine.UnitExtension.IUnitManager>();
@@ -46,14 +46,14 @@ namespace ADC.UnitCreation
         private IEnumerator DelayedEnable()
         {
             yield return null;
-            _waveTimer.Begin.AddListener(OnStartWave);
+            _waveTimer.Begin += OnWaveBegin;
         }
 
         private void OnDisable()
         {
             try
             {
-                _waveTimer.Begin.RemoveListener(OnStartWave);
+                _waveTimer.Begin -= OnWaveBegin;
             }
             catch (Exception)
             {
@@ -61,13 +61,18 @@ namespace ADC.UnitCreation
             }
         }
 
+        private void OnWaveBegin(object sender, int tick)
+        {
+            OnStartWave();
+        }
+
         private void OnStartWave()
         {
             StartCoroutine(SpawnWaves());
         }
+
         private IEnumerator SpawnWaves()
         {
-            
             Debug.Log("SpawnWaves 1");
             foreach (var (id, unitParameters) in unitsSpawn)
             {
@@ -85,7 +90,7 @@ namespace ADC.UnitCreation
 
             Debug.Log("SpawnWaves 3");
             spawnEventArgs.UnitIds.Clear();
-            var unitsSpawn2 = unitsSpawn.ToDictionary((kvp)=> kvp.Key, (kvp)=> kvp.Value);
+            var unitsSpawn2 = unitsSpawn.ToDictionary((kvp) => kvp.Key, (kvp) => kvp.Value);
             foreach (var (id, unitParameters) in unitsSpawn2)
             {
                 //var spawnPoint = unitParameters.SpawnPointsManager.Point;
@@ -142,7 +147,6 @@ namespace ADC.UnitCreation
             if (unitsSpawn.ContainsKey(unitId))
                 unitsSpawn.Remove(unitId);
         }
-
     }
 
     public struct UnitParameters

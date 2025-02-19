@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using ADC.API;
 using RTSEngine.Determinism;
@@ -12,11 +13,11 @@ namespace ADC.Currencies
     {
 
         [SerializeField] private float period = 30.0f;
-        public TimeModifiedTimer Timer { get; private set; } = new();
-        public UnityEvent Begin { get; } = new();
+        private TimeModifiedTimer Timer { get; set; } = new();
+        public event EventHandler<int> Begin;
         public float Duration => Timer.DefaultValue;
         public float Current => Timer.CurrValue;
-
+        private int _tick = 0;
         private void Awake()
         {
             Timer = new TimeModifiedTimer(period);
@@ -29,7 +30,8 @@ namespace ADC.Currencies
             {
                 yield return waitUntil;
                 Timer.Reload(period);
-                Begin?.Invoke();
+                _tick += 1;
+                Begin?.Invoke(this, _tick);
             }
         }
     }

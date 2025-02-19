@@ -32,17 +32,22 @@ namespace ADC.API
             this._waveTimer = waveTimer;
             this.FactionId = factionId;
             IncomeId = Guid.NewGuid();
-            waveTimer.Begin.AddListener(Update);
+            waveTimer.Begin += OnWaveBegin;
         }
-        
+
         public void Dispose()
         {
-            _waveTimer.Begin.RemoveListener(Update);
+            _waveTimer.Begin -= OnWaveBegin;
+        }
+
+        private void OnWaveBegin(object o, int tick)
+        {
+            Update();
         }
 
         protected virtual void Update()
         {
-            IncomeReceived?.Invoke(this, new IncomeEventArgs{IncomeAmount = PaymentAmount});
+            IncomeReceived?.Invoke(this, new IncomeEventArgs { IncomeAmount = PaymentAmount });
         }
     }
 }

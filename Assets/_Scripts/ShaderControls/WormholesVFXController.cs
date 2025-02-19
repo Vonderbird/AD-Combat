@@ -1,3 +1,4 @@
+using System;
 using ADC.API;
 using ADC.Currencies;
 using Sisus.Init;
@@ -28,15 +29,20 @@ namespace ADC
         private void OnEnable()
         {
             if(_waveEventAdded) return;
-            _waveTimer?.Begin.AddListener(HitPortal);
+            _waveTimer.Begin += OnWaveBegin;
             _waveEventAdded = true;
         }
 
         private void OnDisable()
         {
             if(!_waveEventAdded) return;
-            _waveTimer?.Begin.RemoveListener(HitPortal);
+            _waveTimer.Begin -= OnWaveBegin;
             _waveEventAdded = false;
+        }
+
+        private void OnWaveBegin(object sender, int tick)
+        {
+            HitPortal();
         }
 
         public void CreatePortal()

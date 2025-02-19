@@ -74,7 +74,7 @@ namespace ADC.API
 
     public interface IWaveTimer
     {
-        UnityEvent Begin { get; }
+        event EventHandler<int> Begin;
         float Duration { get; }
         float Current { get; }
     }

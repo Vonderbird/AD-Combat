@@ -39,7 +39,7 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
             Biofuel receivedIncome = new Biofuel();
             source.IncomeReceived += (o, e) => receivedIncome = (Biofuel)e.IncomeAmount;
             // Act
-            _waveTimer.Object.Begin.Invoke();
+            _waveTimer.Raise(w => w.Begin += null, null, 2);
             
             // Assert
             Assert.AreEqual(receivedIncome, _biofuel);

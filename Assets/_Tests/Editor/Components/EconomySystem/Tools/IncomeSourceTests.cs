@@ -18,7 +18,7 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
         public virtual void Setup()
         {
             _waveTimer = new Mock<IWaveTimer>();
-            _waveTimer.Setup(w => w.Begin).Returns(new UnityEngine.Events.UnityEvent());
+            // _waveTimer.Setup(w => w.Begin).Returns(new UnityEngine.Events.UnityEvent()); // ????????????
             _economySystem = new Mock<IEconomySystem>();
         }
 
@@ -65,7 +65,7 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
             var source = new TestIncomeSource(_waveTimer.Object, FactionId);
 
             // Act
-            _waveTimer.Object.Begin.Invoke();
+            _waveTimer.Raise(w => w.Begin += null, null, 2);
 
             // Assert
             Assert.IsTrue(source.UpdateCalled);
