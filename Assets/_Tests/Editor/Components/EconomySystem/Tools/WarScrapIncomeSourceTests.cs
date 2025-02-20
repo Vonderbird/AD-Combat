@@ -6,23 +6,23 @@ using NUnit.Framework;
 namespace ADC._Tests.Editor.Components.EconomySystem.Tools
 {
     [TestFixture]
-    public class BiofuelIncomeSourceTests: IncomeSourceTests
+    public class WarScrapIncomeSourceTests: IncomeSourceTests
     {
-        private Biofuel _biofuel;
+        private WarScrap _warScrap;
 
         [SetUp]
         public override void Setup()
         {
             base.Setup();
-            _biofuel = new Biofuel(50m);
+            _warScrap = new WarScrap(50m);
         }
 
         [Test]
         public void Constructor_InitializesWithCorrectValues()
         {
-            var source = new BiofuelIncomeSource(
+            var source = new WarScrapIncomeSource(
                 _waveTimer.Object,
-                _biofuel,
+                _warScrap,
                 FactionId
             ); 
             var eventWorked = false; 
@@ -37,14 +37,14 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
         public void Update_DepositsBiofuelToCorrectFaction()
         {
             // Arrange
-            var source = new BiofuelIncomeSource(_waveTimer.Object, _biofuel, FactionId);
-            Biofuel receivedIncome = new Biofuel();
-            source.IncomeReceived += (o, e) => receivedIncome = (Biofuel)e.IncomeAmount;
+            var source = new WarScrapIncomeSource(_waveTimer.Object, _warScrap, FactionId);
+            WarScrap receivedIncome = new WarScrap();
+            source.IncomeReceived += (o, e) => receivedIncome = (WarScrap)e.IncomeAmount;
             // Act
             _waveTimer.Raise(w => w.Begin += null, null, 2);
             
             // Assert
-            Assert.AreEqual(receivedIncome, _biofuel);
+            Assert.AreEqual(receivedIncome, _warScrap);
         }
     }
 }
