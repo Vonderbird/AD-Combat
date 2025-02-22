@@ -12,7 +12,7 @@ namespace ADC.API
 
         public T SaveAmount => saveAmount;
         protected int FactionId => factionId;
-        public abstract void Init(T saveAmount);
+        public abstract void Init(T initAmount);
         public abstract bool Deposit(T amount);
 
         public abstract bool Withdraw(T amount);

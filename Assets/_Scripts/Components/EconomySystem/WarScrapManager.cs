@@ -11,11 +11,12 @@ namespace ADC.Currencies
             this.factionId = factionId;
         }
 
-        public override void Init(WarScrap saveAmount)
+        public override void Init(WarScrap initAmount)
         {
             if (isInitialized) return;
-            this.saveAmount += saveAmount;
-            ValueChanged?.Invoke(new CurrencyChangeEventArgs<WarScrap>(factionId, new WarScrap(0m), saveAmount,
+            saveAmount += initAmount;
+            isInitialized = true;
+            ValueChanged?.Invoke(new CurrencyChangeEventArgs<WarScrap>(factionId, new WarScrap(0m), initAmount,
                 CurrencyChangeType.INIT));
         }
 

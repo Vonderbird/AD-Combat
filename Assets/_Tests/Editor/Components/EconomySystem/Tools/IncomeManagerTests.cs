@@ -2,11 +2,8 @@ using NUnit.Framework;
 using Moq;
 using System;
 using ADC.API;
-using UnityEngine.Events;
 using System.Collections.Generic;
-using System.Linq;
 using ADC.Currencies;
-using UnityEngine;
 
 namespace ADC._Tests.Editor.Components.EconomySystem.Tools
 {
@@ -23,7 +20,7 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
         public void SetUp()
         {
             _mockFactory = new Mock<IIncomeSourceFactory>();
-            _mockCurrency = new Mock<ICurrency>();
+            _mockCurrency = new Mock<ICurrency>(); 
             _incomeManager = new IncomeManager(_mockFactory.Object, FACTION_ID);
         }
 

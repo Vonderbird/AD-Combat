@@ -9,11 +9,12 @@ namespace ADC.Currencies
             this.factionId = factionId;
         }
 
-        public override void Init(Biofuel saveAmount)
+        public override void Init(Biofuel initAmount)
         {
             if (isInitialized) return;
-            this.saveAmount = saveAmount;
-            ValueChanged?.Invoke(new CurrencyChangeEventArgs<Biofuel>(factionId, new Biofuel(0m), saveAmount, CurrencyChangeType.INIT));
+            this.saveAmount = initAmount;
+            isInitialized = true;
+            ValueChanged?.Invoke(new CurrencyChangeEventArgs<Biofuel>(factionId, new Biofuel(0m), initAmount, CurrencyChangeType.INIT));
         }
 
         public override bool Deposit(Biofuel amount)
