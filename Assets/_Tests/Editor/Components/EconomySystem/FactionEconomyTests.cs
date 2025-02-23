@@ -39,6 +39,10 @@ namespace ADC._Tests.Editor.Components.EconomySystem
         private Mock<IIncomeSourceFactory> _mockFactory;
         private Mock<ICurrency> _mockCurrency;
 
+        private int _argsFactionId = default;
+        private CurrencyChangeType _argsChangeType = CurrencyChangeType.Init;
+        private Type _argsCurrencyType = null;
+        
         [SetUp]
         public void Setup()
         {
@@ -51,6 +55,8 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             _factionEconomy = new FactionEconomy();
             _factionEconomy.Init(_mockFactory.Object, _factionId);
             _factionEconomy.Start();
+            _factionEconomy.Deposit(new Biofuel(100));
+            _factionEconomy.Deposit(new WarScrap(100));
             
             _biofuelVisualizer = _testGameObject.AddComponent<DummyBiofuelVisualizer>();
             _warScrapVisualizer = _testGameObject.AddComponent<DummyWarScrapVisualizer>();
@@ -74,75 +80,85 @@ namespace ADC._Tests.Editor.Components.EconomySystem
         {
             // Create a Biofuel instance and call Deposit.
             var biofuel = new Biofuel(5m);
-            var (factionId, changeType, currencyType) = PrepareCurrencyChangeParameters();
+            PrepareCurrencyChangeParameters();
             
             var result = _factionEconomy.Deposit(biofuel);
             
             // We expect a true result (assuming the internal BiofuelManager returns true).
             Assert.IsTrue(result);
-            Assert.AreEqual(_factionId, factionId);
-            Assert.AreEqual(changeType, CurrencyChangeType.Deposit);
-            Assert.AreEqual(currencyType, typeof(Biofuel));
+            Assert.AreEqual(_factionId, _argsFactionId);
+            Assert.AreEqual(CurrencyChangeType.Deposit, _argsChangeType);
+            Assert.AreEqual(typeof(Biofuel), _argsCurrencyType);
         }
 
         [Test]
         public void Withdraw_With_Biofuel_ReturnsTrue()
         {
             var biofuel = new Biofuel(3m);
+            PrepareCurrencyChangeParameters();
             
             var result = _factionEconomy.Withdraw(biofuel);
             
             Assert.IsTrue(result);
-            Assert.IsTrue(_biofuelVisualizer.Refreshed);
-            Assert.IsFalse(_warScrapVisualizer.Refreshed);
+            Assert.AreEqual(_factionId, _argsFactionId);
+            Assert.AreEqual(CurrencyChangeType.Withdraw, _argsChangeType);
+            Assert.AreEqual(typeof(Biofuel), _argsCurrencyType);
         }
 
         [Test]
         public void Deposit_With_WarScrap_ReturnsTrue()
         {
             var warScrap = new WarScrap(10m);
+            PrepareCurrencyChangeParameters();
             
             var result = _factionEconomy.Deposit(warScrap);
             
             Assert.IsTrue(result);
-            Assert.IsFalse(_biofuelVisualizer.Refreshed);
-            Assert.IsTrue(_warScrapVisualizer.Refreshed);
+            Assert.AreEqual(_factionId, _argsFactionId);
+            Assert.AreEqual(CurrencyChangeType.Deposit, _argsChangeType);
+            Assert.AreEqual(typeof(WarScrap), _argsCurrencyType);
         }
 
         [Test]
         public void Withdraw_With_WarScrap_ReturnsTrue()
         {
             var warScrap = new WarScrap(7m);
+            PrepareCurrencyChangeParameters();
             
             var result = _factionEconomy.Withdraw(warScrap);
             
             Assert.IsTrue(result);
-            Assert.IsFalse(_biofuelVisualizer.Refreshed);
-            Assert.IsTrue(_warScrapVisualizer.Refreshed);
+            Assert.AreEqual(_factionId, _argsFactionId);
+            Assert.AreEqual(CurrencyChangeType.Withdraw, _argsChangeType);
+            Assert.AreEqual(typeof(WarScrap), _argsCurrencyType);
         }
 
         [Test]
         public void Deposit_With_UnsupportedCurrency_ReturnsFalse()
         {
             var dummy = new Mock<ICurrency>();
+            PrepareCurrencyChangeParameters();
             
             var result = _factionEconomy.Deposit(dummy.Object);
             
             Assert.IsFalse(result);
-            Assert.IsFalse(_biofuelVisualizer.Refreshed);
-            Assert.IsFalse(_warScrapVisualizer.Refreshed);
+            Assert.AreEqual(0, _argsFactionId);
+            Assert.AreEqual(CurrencyChangeType.Init, _argsChangeType);
+            Assert.AreEqual(null, _argsCurrencyType);
         }
 
         [Test]
         public void Withdraw_With_UnsupportedCurrency_ReturnsFalse()
         {
             var dummy = new Mock<ICurrency>();
+            PrepareCurrencyChangeParameters();
             
             var result = _factionEconomy.Withdraw(dummy.Object);
             
             Assert.IsFalse(result);
-            Assert.IsFalse(_biofuelVisualizer.Refreshed);
-            Assert.IsFalse(_warScrapVisualizer.Refreshed);
+            Assert.AreEqual(0, _argsFactionId);
+            Assert.AreEqual(CurrencyChangeType.Init, _argsChangeType);
+            Assert.AreEqual(null, _argsCurrencyType);
         }
 
         [Test]
@@ -177,20 +193,18 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             CollectionAssert.Contains(_factionEconomy.WarScrapVisualizers.ToList(), warScrapVisualizer2);
         }
 
-        private (int, CurrencyChangeType, Type) PrepareCurrencyChangeParameters()
+        private void PrepareCurrencyChangeParameters()
         {
-            
-            int factionId = default;
-            var changeType = CurrencyChangeType.Init;
-            Type currencyType = null;
+            _argsFactionId = default;
+            _argsChangeType = CurrencyChangeType.Init;
+            _argsCurrencyType = null;
             _factionEconomy.CurrencyChanged += (o, e) =>
             {
-                factionId = e.FactionId;
-                changeType = e.ChangeType;
-                currencyType = e.Difference.GetType();
+                _argsFactionId = e.FactionId;
+                _argsChangeType = e.ChangeType;
+                _argsCurrencyType = e.Difference.GetType();
 
             };
-            return (factionId, changeType, currencyType);
         }
     }
 }

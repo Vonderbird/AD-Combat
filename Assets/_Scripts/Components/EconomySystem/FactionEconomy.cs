@@ -15,7 +15,7 @@ namespace ADC.Currencies
         private ICurrencyManager<WarScrap> _warScrapManager;
         public IIncomeManager IncomeManager { get; private set; }
         [SerializeField] private float initialWarScraps = 200;
-        [SerializeField] private float initialBiofuel = 0;
+        [SerializeField] private float initialBiofuel = 1;
         public HashSet<CurrencyInterface<Biofuel>> BiofuelVisualizers { get; private set; } = new();
         public HashSet<CurrencyInterface<WarScrap>> WarScrapVisualizers { get; private set; } = new();
 
