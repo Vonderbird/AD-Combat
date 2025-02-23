@@ -16,5 +16,10 @@ namespace ADC.API
                    || value is double
                    || value is decimal;
         }
+        
+        public static CurrencyChangeEventArgs ToNonGeneric<T>(this CurrencyChangeEventArgs<T> b) where T:struct, ICurrency
+        {
+            return new CurrencyChangeEventArgs(b.FactionId, b.ChangeType, b.Difference, b.NewValue);
+        }
     }
 }

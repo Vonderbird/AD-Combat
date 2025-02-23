@@ -21,7 +21,7 @@ namespace ADC.Currencies
             _factionEconomies = factionEconomies.FactionEconomies;
             for (var i = 0; i < _factionEconomies.Length; i++)
             {
-                _factionEconomies[i].Init(incomeSourceFactory, i, TODO);
+                _factionEconomies[i].Init(incomeSourceFactory, i);
                 _factionEconomies[i].AddVisualizers(_globalVisualizers);
             }
         

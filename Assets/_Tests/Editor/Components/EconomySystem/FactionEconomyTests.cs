@@ -49,13 +49,16 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             
             _testGameObject = new GameObject();
             _factionEconomy = new FactionEconomy();
-            _factionEconomy.Init(_mockFactory.Object, _factionId, TODO);
+            _factionEconomy.Init(_mockFactory.Object, _factionId);
             _factionEconomy.Start();
             
             _biofuelVisualizer = _testGameObject.AddComponent<DummyBiofuelVisualizer>();
             _warScrapVisualizer = _testGameObject.AddComponent<DummyWarScrapVisualizer>();
             _factionEconomy.AddVisualizer(_biofuelVisualizer);
             _factionEconomy.AddVisualizer(_warScrapVisualizer);
+            
+            
+            
         }
 
         [Test]
@@ -71,13 +74,15 @@ namespace ADC._Tests.Editor.Components.EconomySystem
         {
             // Create a Biofuel instance and call Deposit.
             var biofuel = new Biofuel(5m);
+            var (factionId, changeType, currencyType) = PrepareCurrencyChangeParameters();
             
             var result = _factionEconomy.Deposit(biofuel);
             
             // We expect a true result (assuming the internal BiofuelManager returns true).
             Assert.IsTrue(result);
-            Assert.IsTrue(_biofuelVisualizer.Refreshed);
-            Assert.IsFalse(_warScrapVisualizer.Refreshed);
+            Assert.AreEqual(_factionId, factionId);
+            Assert.AreEqual(changeType, CurrencyChangeType.Deposit);
+            Assert.AreEqual(currencyType, typeof(Biofuel));
         }
 
         [Test]
@@ -170,6 +175,22 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             CollectionAssert.Contains(_factionEconomy.BiofuelVisualizers.ToList(), biofuelVisualizer2);
             CollectionAssert.Contains(_factionEconomy.WarScrapVisualizers.ToList(), warScrapVisualizer1);
             CollectionAssert.Contains(_factionEconomy.WarScrapVisualizers.ToList(), warScrapVisualizer2);
+        }
+
+        private (int, CurrencyChangeType, Type) PrepareCurrencyChangeParameters()
+        {
+            
+            int factionId = default;
+            var changeType = CurrencyChangeType.Init;
+            Type currencyType = null;
+            _factionEconomy.CurrencyChanged += (o, e) =>
+            {
+                factionId = e.FactionId;
+                changeType = e.ChangeType;
+                currencyType = e.Difference.GetType();
+
+            };
+            return (factionId, changeType, currencyType);
         }
     }
 }

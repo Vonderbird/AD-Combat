@@ -19,20 +19,20 @@ namespace ADC.Currencies
         public HashSet<CurrencyInterface<Biofuel>> BiofuelVisualizers { get; private set; } = new();
         public HashSet<CurrencyInterface<WarScrap>> WarScrapVisualizers { get; private set; } = new();
 
-        public event EventHandler<CurrencyChangeEventArgs<Biofuel>> BiofuelChanged;
-        public event EventHandler<CurrencyChangeEventArgs<WarScrap>> WarscrapChanged;
+        public event EventHandler<CurrencyChangeEventArgs> CurrencyChanged;
         
         public void Init(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             FactionId = factionId;
             _biofuelManager = new BiofuelManager(factionId);
             _warScrapManager = new WarScrapManager(factionId);
-            _biofuelManager.ValueChanged += BiofuelChanged;
-            _warScrapManager.ValueChanged += WarscrapChanged;
+            _biofuelManager.ValueChanged += (o,e) => CurrencyChanged?.Invoke(o, e.ToNonGeneric());
+            _warScrapManager.ValueChanged += (o,e) => CurrencyChanged?.Invoke(o, e.ToNonGeneric());
             IncomeManager = new IncomeManager(incomeSourceFactory, factionId);
             IncomeManager.IncomeReceived += OnIncomeReceived;
         }
 
+        
 
         private void OnIncomeReceived(object sender, IncomeEventArgs e)
         {
