@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using ADC.API;
-using Sisus.Init;
 using UnityEngine;
 
 namespace ADC.Currencies
@@ -13,31 +11,28 @@ namespace ADC.Currencies
     {
         public int FactionId { get; private set; }
         
-        private BiofuelManager biofuelManager;
-        private WarScrapManager warScrapManager;
+        private ICurrencyManager<Biofuel> _biofuelManager;
+        private ICurrencyManager<WarScrap> _warScrapManager;
         public IIncomeManager IncomeManager { get; private set; }
         [SerializeField] private float initialWarScraps = 200;
         [SerializeField] private float initialBiofuel = 0;
-
-        //[SerializeField] private ICurrencyDrainer[] drainers; // !?
-        //[SerializeField] private ICurrencyProducer[] sources; // !?
-
-        //[SerializeField] private CurrencyInterface[] visualizers;
         public HashSet<CurrencyInterface<Biofuel>> BiofuelVisualizers { get; private set; } = new();
         public HashSet<CurrencyInterface<WarScrap>> WarScrapVisualizers { get; private set; } = new();
-        // private IEconomySystem economySystem;
 
-
+        public event EventHandler<CurrencyChangeEventArgs<Biofuel>> BiofuelChanged;
+        public event EventHandler<CurrencyChangeEventArgs<WarScrap>> WarscrapChanged;
+        
         public void Init(IIncomeSourceFactory incomeSourceFactory, int factionId)
         {
             FactionId = factionId;
-            //visualizers ??= Array.Empty<CurrencyInterface>();
-            biofuelManager = new BiofuelManager(factionId);
-            warScrapManager = new WarScrapManager(factionId);
+            _biofuelManager = new BiofuelManager(factionId);
+            _warScrapManager = new WarScrapManager(factionId);
+            _biofuelManager.ValueChanged += BiofuelChanged;
+            _warScrapManager.ValueChanged += WarscrapChanged;
             IncomeManager = new IncomeManager(incomeSourceFactory, factionId);
             IncomeManager.IncomeReceived += OnIncomeReceived;
-            //AddVisualizers(visualizers);
         }
+
 
         private void OnIncomeReceived(object sender, IncomeEventArgs e)
         {
@@ -46,82 +41,54 @@ namespace ADC.Currencies
 
         public void Start()
         {
-            biofuelManager.Init(new Biofuel((decimal)initialBiofuel));
-            warScrapManager.Init(new WarScrap((decimal)initialWarScraps));
-
-            //var ic = (decimal)initialBiofuel;
-            //biofuelManager.Deposit(new Biofuel(ic == 0 ? 0.0000001m : ic));
-            //ic = (decimal)initialWarScraps;
-            //warScrapManager.Deposit(new WarScrap(ic == 0 ? 0.0000001m : ic));
+            _biofuelManager.Init(new Biofuel((decimal)initialBiofuel));
+            _warScrapManager.Init(new WarScrap((decimal)initialWarScraps));
         }
 
         public void AddVisualizer(CurrencyInterface visualizer)
         {
-            if (visualizer is CurrencyUIText<Biofuel> biofuel)
+            switch (visualizer)
             {
-                BiofuelVisualizers.Add(biofuel);
-            }
-            else if (visualizer is CurrencyUIText<WarScrap> warScrap)
-            {
-                WarScrapVisualizers.Add(warScrap);
+                case CurrencyInterface<Biofuel> biofuel:
+                    BiofuelVisualizers.Add(biofuel);
+                    break;
+                case CurrencyInterface<WarScrap> warScrap:
+                    WarScrapVisualizers.Add(warScrap);
+                    break;
             }
         }
 
-        public void AddVisualizers(IEnumerable<CurrencyInterface> visualizers)
+        public void AddVisualizers(List<CurrencyInterface> visualizers)
         {
             BiofuelVisualizers.UnionWith(
                 visualizers
-                    .Select(v => v as CurrencyUIText<Biofuel>)
+                    .Select(v => v as CurrencyInterface<Biofuel>)
                     .Where(v => v));
 
             WarScrapVisualizers.UnionWith(
                 visualizers
-                    .Select(v => v as CurrencyUIText<WarScrap>)
+                    .Select(v => v as CurrencyInterface<WarScrap>)
                     .Where(v => v));
         }
 
         public void OnEnable()
         {
-            biofuelManager.ValueChanged.AddListener(OnBiofuelChanged);
-            biofuelManager.ValueChanged.AddListener(UpdateVisualizers);
-
-            warScrapManager.ValueChanged.AddListener(OnWarScrapChanged);
-            warScrapManager.ValueChanged.AddListener(UpdateVisualizers);
+            _biofuelManager.ValueChanged += OnBiofuelChanged;
+            _warScrapManager.ValueChanged += OnWarScrapChanged;
         }
 
         public void OnDisable()
         {
-            biofuelManager.ValueChanged.RemoveListener(OnBiofuelChanged);
-            biofuelManager.ValueChanged.RemoveListener(UpdateVisualizers);
-
-            warScrapManager.ValueChanged.RemoveListener(OnWarScrapChanged);
-            warScrapManager.ValueChanged.RemoveListener(UpdateVisualizers);
-        }
-
-        private void UpdateVisualizers(CurrencyChangeEventArgs<Biofuel> arg0)
-        {
-            BiofuelVisualizers = BiofuelVisualizers.Where(v => v).ToHashSet();
-            foreach (var biofuelVisualizer in BiofuelVisualizers)
-            {
-                biofuelVisualizer?.Refresh(arg0);
-            }
-        }
-
-        private void UpdateVisualizers(CurrencyChangeEventArgs<WarScrap> arg0)
-        {
-            WarScrapVisualizers = WarScrapVisualizers.Where(v => v).ToHashSet();
-            foreach (var warScrapVisualizer in WarScrapVisualizers)
-            {
-                warScrapVisualizer?.Refresh(arg0);
-            }
+            _biofuelManager.ValueChanged += OnBiofuelChanged;
+            _warScrapManager.ValueChanged += OnWarScrapChanged;
         }
 
         public bool Deposit<T>(T amount) where T : ICurrency
         {
             return amount switch
             {
-                Biofuel bf => biofuelManager.Deposit(bf),
-                WarScrap ws => warScrapManager.Deposit(ws),
+                Biofuel bf => _biofuelManager.Deposit(bf),
+                WarScrap ws => _warScrapManager.Deposit(ws),
                 _ => false
             };
         }
@@ -130,20 +97,36 @@ namespace ADC.Currencies
         {
             return amount switch
             {
-                Biofuel bf => biofuelManager.Withdraw(bf),
-                WarScrap ws => warScrapManager.Withdraw(ws),
+                Biofuel bf => _biofuelManager.Withdraw(bf),
+                WarScrap ws => _warScrapManager.Withdraw(ws),
                 _ => false
             };
         }
         
-        private void OnBiofuelChanged(CurrencyChangeEventArgs<Biofuel> arg0)
+        private void OnBiofuelChanged(object o, CurrencyChangeEventArgs<Biofuel> e)
         {
-            //Debug.LogError("Biofuel Change not Implemented");
+            UpdateVisualizers(o, e);
         }
-
-        private void OnWarScrapChanged(CurrencyChangeEventArgs<WarScrap> args0)
+        private void OnWarScrapChanged(object o, CurrencyChangeEventArgs<WarScrap> e)
         {
-            //Debug.LogError("WarScrap Change not Implemented");
+            UpdateVisualizers(o, e);
+        }
+        
+        private void UpdateVisualizers(object o, CurrencyChangeEventArgs<Biofuel> e)
+        {
+            BiofuelVisualizers = BiofuelVisualizers.Where(v => v).ToHashSet();
+            foreach (var biofuelVisualizer in BiofuelVisualizers)
+            {
+                biofuelVisualizer?.Refresh(e);
+            }
+        }
+        private void UpdateVisualizers(object o, CurrencyChangeEventArgs<WarScrap> arg0)
+        {
+            WarScrapVisualizers = WarScrapVisualizers.Where(v => v).ToHashSet();
+            foreach (var warScrapVisualizer in WarScrapVisualizers)
+            {
+                warScrapVisualizer?.Refresh(arg0);
+            }
         }
     }
 }

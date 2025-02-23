@@ -29,20 +29,20 @@ namespace ADC._Tests.Editor.Components.EconomySystem
 
             Biofuel newValue;
             var valueChange = newValue = default;
-            var changeType = CurrencyChangeType.WITHDRAW;
+            var changeType = CurrencyChangeType.Withdraw;
             
-            manager.ValueChanged.AddListener( (e) =>
+            manager.ValueChanged +=  (o, e) =>
             {
                 valueChange = e.Difference;
                 newValue = e.NewValue;
                 changeType = e.ChangeType;
-            });
+            };
 
             manager.Init(_initialAmount);
 
             Assert.AreEqual(valueChange, 0);
             Assert.AreEqual(newValue, _initialAmount);
-            Assert.AreEqual(changeType, CurrencyChangeType.INIT);
+            Assert.AreEqual(changeType, CurrencyChangeType.Init);
             Assert.AreEqual(manager.SaveAmount, _initialAmount);
         }
 
@@ -55,21 +55,21 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             
             Biofuel newValue;
             var valueChange = newValue = default;
-            var changeType = CurrencyChangeType.WITHDRAW;
+            var changeType = CurrencyChangeType.Withdraw;
             
-            manager.ValueChanged.AddListener( (e) =>
+            manager.ValueChanged +=  (o, e) =>
             {
                 valueChange = e.Difference;
                 newValue = e.NewValue;
                 changeType = e.ChangeType;
-            });
+            };
                
             var result = manager.Deposit(depositAmount);
 
             Assert.IsTrue(result);
             Assert.AreEqual(valueChange, depositAmount);
             Assert.AreEqual(newValue, _initialAmount+depositAmount);
-            Assert.AreEqual(changeType, CurrencyChangeType.DEPOSIT);
+            Assert.AreEqual(changeType, CurrencyChangeType.Deposit);
             Assert.AreEqual(_initialAmount + depositAmount, manager.SaveAmount);
         }
 
@@ -80,7 +80,7 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             manager.Init(_initialAmount);
             var emptyAmount = new Biofuel(0m);
             var changed = false;
-            manager.ValueChanged.AddListener((e) => changed = true);
+            manager.ValueChanged +=  (o, e) => changed = true;
             
             var result = manager.Deposit(emptyAmount);
 
@@ -97,20 +97,20 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             var withdrawAmount = new Biofuel(2.0m);
             Biofuel newValue;
             var valueChange = newValue = default;
-            var changeType = CurrencyChangeType.INIT;
-            manager.ValueChanged.AddListener( (e) =>
+            var changeType = CurrencyChangeType.Init;
+            manager.ValueChanged += (o, e) =>
             {
                 valueChange = e.Difference;
                 newValue = e.NewValue;
                 changeType = e.ChangeType;
-            });
+            };
 
             var result = manager.Withdraw(withdrawAmount);
 
             Assert.IsTrue(result);
             Assert.AreEqual(valueChange, withdrawAmount);
             Assert.AreEqual(newValue, _initialAmount-withdrawAmount);
-            Assert.AreEqual(changeType, CurrencyChangeType.WITHDRAW);
+            Assert.AreEqual(changeType, CurrencyChangeType.Withdraw);
             Assert.AreEqual(_initialAmount-withdrawAmount, manager.SaveAmount);
         }
 
@@ -121,7 +121,7 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             manager.Init(_initialAmount);
             var emptyAmount = new Biofuel(0m);
             var changed = false;
-            manager.ValueChanged.AddListener((e) => changed = true);
+            manager.ValueChanged +=  (o, e) => changed = true;
 
             var result = manager.Withdraw(emptyAmount);
 
@@ -137,7 +137,7 @@ namespace ADC._Tests.Editor.Components.EconomySystem
             manager.Init(_initialAmount);
             var excessiveAmount = new Biofuel(150m);
             var changed = false;
-            manager.ValueChanged.AddListener((e) => changed = true);
+            manager.ValueChanged +=  (o, e) => changed = true;
 
             var result = manager.Withdraw(excessiveAmount);
 

@@ -1,43 +1,50 @@
+using System;
 using ADC.API;
-using UnityEngine;
 
 namespace ADC.Currencies
 {
 
-    public class WarScrapManager : CurrencyManager<WarScrap>
+    public class WarScrapManager : ICurrencyManager<WarScrap>
     {
+        private bool _isInitialized;
+        public WarScrap SaveAmount { get; private set; }
+
+        public int FactionId { get; }
+
+        public event EventHandler<CurrencyChangeEventArgs<WarScrap>> ValueChanged;
+        
         public WarScrapManager(int factionId)
         {
-            this.factionId = factionId;
+            FactionId = factionId;
         }
 
-        public override void Init(WarScrap initAmount)
+        public void Init(WarScrap initAmount)
         {
-            if (isInitialized) return;
-            saveAmount += initAmount;
-            isInitialized = true;
-            ValueChanged?.Invoke(new CurrencyChangeEventArgs<WarScrap>(factionId, new WarScrap(0m), initAmount,
-                CurrencyChangeType.INIT));
+            if (_isInitialized) return;
+            SaveAmount += initAmount;
+            _isInitialized = true;
+            ValueChanged?.Invoke(this, new CurrencyChangeEventArgs<WarScrap>(
+                FactionId, new WarScrap(0m), initAmount, CurrencyChangeType.Init));
         }
 
-        public override bool Deposit(WarScrap amount)
+        public bool Deposit(WarScrap amount)
         {
             if (amount.IsEmpty) return false;
-            saveAmount += amount;
+            SaveAmount += amount;
             //Debug.Log($"warscrap deposit amount: {amount}");
-            ValueChanged?.Invoke(
-                new CurrencyChangeEventArgs<WarScrap>(factionId, amount, saveAmount, CurrencyChangeType.DEPOSIT));
+            ValueChanged?.Invoke(this, new CurrencyChangeEventArgs<WarScrap>(
+                FactionId, amount, SaveAmount, CurrencyChangeType.Deposit));
             return true;
         }
 
-        public override bool Withdraw(WarScrap amount)
+        public bool Withdraw(WarScrap amount)
         {
             if (amount.IsEmpty) return false;
-            if (amount > saveAmount) return false;
-            saveAmount -= amount;
+            if (amount > SaveAmount) return false;
+            SaveAmount -= amount;
             //Debug.Log($"warscrap withdraw amount: {amount}");
-            ValueChanged?.Invoke(new CurrencyChangeEventArgs<WarScrap>(factionId, amount, saveAmount,
-                CurrencyChangeType.WITHDRAW));
+            ValueChanged?.Invoke(this, new CurrencyChangeEventArgs<WarScrap>(
+                FactionId, amount, SaveAmount, CurrencyChangeType.Withdraw));
             return true;
         }
     }

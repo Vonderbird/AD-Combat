@@ -1,38 +1,42 @@
+using System;
 using ADC.API;
 
 namespace ADC.Currencies
 {
-    public class BiofuelManager : CurrencyManager<Biofuel>
+    public class BiofuelManager : ICurrencyManager<Biofuel>
     {
+        private bool _isInitialized;
+        public Biofuel SaveAmount { get; private set; }
+        public int FactionId { get; }
+        public event EventHandler<CurrencyChangeEventArgs<Biofuel>> ValueChanged;
         public BiofuelManager(int factionId)
         {
-            this.factionId = factionId;
+            FactionId = factionId;
         }
 
-        public override void Init(Biofuel initAmount)
+        public void Init(Biofuel initAmount)
         {
-            if (isInitialized) return;
-            this.saveAmount = initAmount;
-            isInitialized = true;
-            ValueChanged?.Invoke(new CurrencyChangeEventArgs<Biofuel>(factionId, new Biofuel(0m), initAmount, CurrencyChangeType.INIT));
+            if (_isInitialized) return;
+            this.SaveAmount = initAmount;
+            _isInitialized = true;
+            ValueChanged?.Invoke(this, new CurrencyChangeEventArgs<Biofuel>(FactionId, new Biofuel(0m), initAmount, CurrencyChangeType.Init));
         }
 
-        public override bool Deposit(Biofuel amount)
+        public bool Deposit(Biofuel amount)
         {
             if (amount.IsEmpty) return false;
-            saveAmount += amount;
-            ValueChanged?.Invoke(new CurrencyChangeEventArgs<Biofuel>(factionId, amount, saveAmount, CurrencyChangeType.DEPOSIT));
+            SaveAmount += amount;
+            ValueChanged?.Invoke(this, new CurrencyChangeEventArgs<Biofuel>(FactionId, amount, SaveAmount, CurrencyChangeType.Deposit));
             return true;
         }
 
-        public override bool Withdraw(Biofuel amount)
+        public bool Withdraw(Biofuel amount)
         {
             if (amount.IsEmpty) return false;
-            if (amount > saveAmount) return false;
-            saveAmount -= amount;
-            ValueChanged?.Invoke(new CurrencyChangeEventArgs<Biofuel>(factionId, amount, saveAmount, CurrencyChangeType.WITHDRAW));
+            if (amount > SaveAmount) return false;
+            SaveAmount -= amount;
+            ValueChanged?.Invoke(this, new CurrencyChangeEventArgs<Biofuel>(FactionId, amount, SaveAmount, CurrencyChangeType.Withdraw));
             return true;
         }
     }
-
 }

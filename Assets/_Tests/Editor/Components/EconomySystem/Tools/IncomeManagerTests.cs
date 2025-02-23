@@ -13,35 +13,36 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
         private Mock<IIncomeSourceFactory> _mockFactory;
         private Mock<ICurrency> _mockCurrency;
         private IncomeManager _incomeManager;
-        private const int FACTION_ID = 1;
-
+        private const int FactionID = 1;
         
         [SetUp]
         public void SetUp()
         {
             _mockFactory = new Mock<IIncomeSourceFactory>();
             _mockCurrency = new Mock<ICurrency>(); 
-            _incomeManager = new IncomeManager(_mockFactory.Object, FACTION_ID);
+            _incomeManager = new IncomeManager(_mockFactory.Object, FactionID);
         }
 
         [Test]
         public void AddSource_CallsFactoryWithCorrectParameters()
         {
             const decimal expectedIncome = 10m;
-            var mockIncomeSource = SetupIncomeSource(expectedIncome);
+            var mockIncomeSource = EconomyTestUtilities.SetupIncomeSource(expectedIncome, FactionID, Guid.NewGuid(),
+                _mockCurrency, _mockFactory);
             
-            _mockFactory.Setup(f => f.Create(It.IsAny<ICurrency>(), FACTION_ID))
+            _mockFactory.Setup(f => f.Create(It.IsAny<ICurrency>(), FactionID))
                  .Returns(mockIncomeSource.Object);
             _incomeManager.AddSource(_mockCurrency.Object);
             
-            _mockFactory.Verify(f => f.Create(_mockCurrency.Object, FACTION_ID), Times.Once);
+            _mockFactory.Verify(f => f.Create(_mockCurrency.Object, FactionID), Times.Once);
         }
 
         [Test] 
         public void AddSource_UpdatesTotalIncomeAndTriggersEvent()
         {
             const decimal expectedIncome = 10m;
-            var mockIncomeSource = SetupIncomeSource(expectedIncome);
+            var mockIncomeSource = EconomyTestUtilities.SetupIncomeSource(expectedIncome, FactionID, Guid.NewGuid(),
+                _mockCurrency, _mockFactory);
 
             var eventInvoked = false;
             _incomeManager.IncomeChanged.AddListener(_ => eventInvoked = true);
@@ -59,7 +60,8 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
             const decimal initialIncome = 15m; 
             var eventArgs = new List<decimal>();
             _incomeManager.IncomeChanged.AddListener(v => eventArgs.Add(v));
-            var mockIncomeSource = SetupIncomeSource(initialIncome);
+            var mockIncomeSource = EconomyTestUtilities.SetupIncomeSource(initialIncome, FactionID, Guid.NewGuid(),
+                _mockCurrency, _mockFactory);
             
             _incomeManager.AddSource(_mockCurrency.Object);
             var result = _incomeManager.RemoveSource(mockIncomeSource.Object.IncomeId);
@@ -80,7 +82,8 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
         [Test]
         public void IncomeReceived_Event_PropagatesFromSource()
         {
-            var mockIncomeSource = SetupIncomeSource(10m);
+            var mockIncomeSource = EconomyTestUtilities.SetupIncomeSource(10m, FactionID, Guid.NewGuid(),
+                _mockCurrency, _mockFactory);
             var eventRaised = false;
             _incomeManager.IncomeReceived += (s, e) => eventRaised = true;
             
@@ -93,7 +96,8 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
         [Test]
         public void RemoveSource_UnsubscribesFromIncomeEvents()
         {
-            var mockIncomeSource = SetupIncomeSource(10m);
+            var mockIncomeSource = EconomyTestUtilities.SetupIncomeSource(10m, FactionID, Guid.NewGuid(),
+                _mockCurrency, _mockFactory);
             var eventRaised = false;
             _incomeManager.IncomeReceived += (s, e) => eventRaised = true;
         
@@ -114,10 +118,12 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
         {
             var mockCurrency1 = new Mock<ICurrency>();
             var mockCurrency2 = new Mock<ICurrency>();
-            var source1 = SetupIncomeSource(10m, Guid.NewGuid(), mockCurrency:mockCurrency1);
-            var source2 = SetupIncomeSource(5m, Guid.NewGuid(), mockCurrency:mockCurrency2);
+            var source1 = EconomyTestUtilities.SetupIncomeSource(10m, FactionID, Guid.NewGuid(),
+                mockCurrency1, _mockFactory);
+            var source2 = EconomyTestUtilities.SetupIncomeSource(5m, FactionID, Guid.NewGuid(),
+                mockCurrency2, _mockFactory);
         
-            _mockFactory.SetupSequence(f => f.Create(It.IsAny<ICurrency>(), FACTION_ID))
+            _mockFactory.SetupSequence(f => f.Create(It.IsAny<ICurrency>(), FactionID))
                 .Returns(source1.Object)
                 .Returns(source2.Object);
         
@@ -131,18 +137,6 @@ namespace ADC._Tests.Editor.Components.EconomySystem.Tools
             Assert.AreEqual(new[] { 10m, 15m, 5m, 0m }, eventValues);
         }
 
-        private Mock<IIncomeSource> SetupIncomeSource(decimal amount, Guid? guid = null, Mock<ICurrency> mockCurrency = null)
-        {
-            mockCurrency ??= _mockCurrency;
-            var mockIncomeSource = new Mock<IIncomeSource>();
-            var paymentCurrency = new Mock<ICurrency>();
-            paymentCurrency.Setup(p => p.Value).Returns(amount);
-            mockIncomeSource.Setup(s => s.IncomeId).Returns(guid ?? Guid.NewGuid());
-            mockIncomeSource.Setup(s => s.PaymentAmount).Returns(paymentCurrency.Object);
-            mockCurrency.Setup(c => c.Value).Returns(amount);
-            _mockFactory.Setup(f => f.Create(It.IsAny<ICurrency>(), FACTION_ID))
-                .Returns(mockIncomeSource.Object);
-            return mockIncomeSource;
-        }
+        
     }
 }

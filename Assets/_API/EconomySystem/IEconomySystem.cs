@@ -53,7 +53,7 @@ namespace ADC.API
         bool Withdraw<T>(T amount) where T : ICurrency;
         public IIncomeManager IncomeManager { get; }
         void AddVisualizer(CurrencyInterface currencyInterface); //?
-        public void AddVisualizers(IEnumerable<CurrencyInterface> visualizers);
+        public void AddVisualizers(List<CurrencyInterface> visualizers);
     }
 
     [Serializable]

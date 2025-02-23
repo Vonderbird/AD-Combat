@@ -12,40 +12,17 @@ namespace ADC.Currencies
         private IFactionEconomy[] _factionEconomies;
         public Dictionary<int, IFactionEconomy> FactionsEconomiesDictionary { get; private set; }
 
-        private List<CurrencyInterface> GlobalVisualizers = new();
+        private readonly List<CurrencyInterface> _globalVisualizers = new();
 
-        private bool _isStarted = false;
+        private bool _isStarted;
 
-        private IIncomeSourceFactory _incomeSourceFactory;
-
-        // protected override void Init(IIncomeSourceFactory incomeSourceFactory)
-        // {
-        //     _incomeSourceFactory = incomeSourceFactory;
-        // }
-        //
-        // public void Init(FactionEconomiesCollection factionEconomies)
-        // {
-        //     _factionEconomies = factionEconomies.FactionEconomies;
-        //     for (var i = 0; i < _factionEconomies.Length; i++)
-        //     {
-        //         _factionEconomies[i].Init(_incomeSourceFactory, i);
-        //         _factionEconomies[i].AddVisualizers(GlobalVisualizers);
-        //     }
-        //
-        //     FactionsEconomiesDictionary =
-        //         _factionEconomies.ToDictionary(faction => faction.FactionId, faction => faction as IFactionEconomy);
-        //     _isStarted = true;
-        //     OnEnable();
-        // }
-        //
         public void Init(FactionEconomiesCollection factionEconomies, IIncomeSourceFactory incomeSourceFactory)
         {
             _factionEconomies = factionEconomies.FactionEconomies;
-            _incomeSourceFactory = incomeSourceFactory;
             for (var i = 0; i < _factionEconomies.Length; i++)
             {
-                _factionEconomies[i].Init(incomeSourceFactory, i);
-                _factionEconomies[i].AddVisualizers(GlobalVisualizers);
+                _factionEconomies[i].Init(incomeSourceFactory, i, TODO);
+                _factionEconomies[i].AddVisualizers(_globalVisualizers);
             }
         
             FactionsEconomiesDictionary =
@@ -96,13 +73,11 @@ namespace ADC.Currencies
         }
 
 
-        //public IGameManager GameMgr { get; private set; }
-
         public void Add(CurrencyInterface currencyInterface)
         {
             if (currencyInterface.FactionId == -1)
             {
-                GlobalVisualizers.Add(currencyInterface);
+                _globalVisualizers.Add(currencyInterface);
             }
             else if (currencyInterface.FactionId < _factionEconomies.Length)
             {
