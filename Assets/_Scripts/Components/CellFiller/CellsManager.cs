@@ -33,17 +33,24 @@ namespace ADC.UnitCreation
 
         public UnityEvent<CellEventArgs> AdditiveCellClicked = new();
         public UnityEvent<CellEventArgs> DeletionCellClicked = new();
-        //public UnityEvent<CellEventArgs> SelectionCellClicked = new();
-
 
         public EventHandler<SelectionEventArgs> UnitCellSelected;
         public EventHandler<DeselectionEventArgs> UnitCellDeselected;
 
         private readonly UnitPlacementTransactionLogic unitPlacementTransaction;
         private readonly UnitDeletionTransactionLogic unitDeletionTransaction;
+        
         private readonly int factionId;
+        /// <summary>
+        /// Key(int): ?,
+        /// Value(UnitCell): ?
+        /// </summary>
         public Dictionary<int, UnitCell> UnitCells => unitCells;
 
+        /// <summary>
+        /// Key(int): ?,
+        /// Value(Vector3): ?
+        /// </summary>
         public Dictionary<int, Vector3> UnitsGroupPosition => unitsGroupPosition;
 
         /// <summary>
@@ -61,13 +68,15 @@ namespace ADC.UnitCreation
         private Coroutine updateCoroutine;
 
         private IEconomySystem economySystem;
-        
-        
-        public CellsManager(IEconomySystem economySystem, [NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
+        private readonly ICellPointerHandler[] _cellPointerHandlers;
+
+
+        public CellsManager(IEconomySystem economySystem, ICellPointerHandler[] cellPointerHandlers, [NotNull] Transform cellsParent, [NotNull] CellUnitSpawner unitSpawner,
             [NotNull] ActiveTaskContainer activeTask, int factionId)
         {
             this.factionId = factionId;
             this.economySystem = economySystem;
+            _cellPointerHandlers = cellPointerHandlers;
             this.cellsParent = cellsParent ?? throw new ArgumentNullException(nameof(cellsParent));
             this.unitSpawner = unitSpawner ?? throw new ArgumentNullException(nameof(unitSpawner));
             this.activeTask = activeTask ?? throw new ArgumentNullException(nameof(activeTask));
@@ -82,14 +91,14 @@ namespace ADC.UnitCreation
         {
             PrepareCells();
 
-            foreach (var (_, unitCell) in UnitCells)
+            foreach (var pointerHandler in _cellPointerHandlers)
             {
-                unitCell.CellSelectionEntered.AddListener(OnCellSelectionEntered);
-                unitCell.CellDeletionEntered.AddListener(OnCellDeletionEntered);
-                unitCell.CellExit.AddListener(OnCellExit);
-                unitCell.CellSelectiveClicked.AddListener(OnCellSelectiveClicked);
-                unitCell.CellDeletionClicked.AddListener(OnCellDeletionClicked);
-                unitCell.DeleteButton = deleteButton;
+                pointerHandler.CellSelectionEntered.AddListener(OnCellSelectionEntered);
+                pointerHandler.CellDeletionEntered.AddListener(OnCellDeletionEntered);
+                pointerHandler.CellExit.AddListener(OnCellExit);
+                pointerHandler.CellSelectiveClicked.AddListener(OnCellSelectiveClicked);
+                pointerHandler.CellDeletionClicked.AddListener(OnCellDeletionClicked);
+                pointerHandler.DeleteButton = deleteButton;
             }
 
             if (unitSpawner)
@@ -99,8 +108,8 @@ namespace ADC.UnitCreation
 
         public void OnDisabled()
         {
-            foreach (var (_, unitCell) in UnitCells)
-                unitCell.CellSelectiveClicked.RemoveListener(OnCellSelectiveClicked);
+            foreach (var pointerHandler in _cellPointerHandlers)
+                pointerHandler.CellSelectiveClicked.RemoveListener(OnCellSelectiveClicked);
 
             if (unitSpawner)
                 unitSpawner.OnUnitsSpawned.RemoveListener(OnCellUnitSpawned);
@@ -121,9 +130,6 @@ namespace ADC.UnitCreation
                 yield return null;
             }
         }
-
-        
-
 
         private void OnCellSelectionEntered(CellEventArgs arg0)
         {

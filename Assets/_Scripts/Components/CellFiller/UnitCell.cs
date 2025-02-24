@@ -6,21 +6,22 @@ using RTSEngine.Entities;
 using RTSEngine.EntityComponent;
 using RTSEngine.Health;
 using RTSEngine.Selection;
+using Sisus.Init;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using IUnit = RTSEngine.Entities.IUnit;
 
 namespace ADC.UnitCreation
 {
-    public class UnitCell : MonoBehaviour
+    public class UnitCell : MonoBehaviour<ICellPointerHandler>
     {
         [SerializeField] private Renderer cellRenderer;
         [SerializeField] private int materialId;
         [SerializeField] private float cellSizeFactor = 0.5f;
         [SerializeField] private new Collider collider;
-        public ParticleSystemGroup SpawnParticle { get; set; }
-        public ParticleSystemGroup DeleteParticle { get; set; }
+        private ICellPointerHandler _cellPointerHandler;
+        private ParticlePlayer SpawnParticle;
+        private ParticlePlayer DeleteParticle;
+        private IVFXPoolingManager _vfxPoolingManager;
 
         [SerializeField] private Color defaultEmptyColor = Color.white;
         [SerializeField] private Color defaultFilledColor = Color.gray;
@@ -36,7 +37,13 @@ namespace ADC.UnitCreation
 
         public Collider Collider => collider;
 
-        void Awake()
+        
+        protected override void Init(ICellPointerHandler cellPointerHandler)
+        {
+            _cellPointerHandler = cellPointerHandler;
+        }
+
+        private void Start()
         {
             // cellEventArgs = new CellEventArgs(CellId);
             if (!cellRenderer)
@@ -129,8 +136,8 @@ namespace ADC.UnitCreation
 
         #endregion
 
-        public IUnitBattleManager CreateDecoObject(IUnit unitPrefab, ParticleSystemGroup spawnParticle,
-            ParticleSystemGroup deleteParticle, Vector3 position, float scaleFactor)
+        public IUnitBattleManager CreateDecoObject(IUnit unitPrefab, ParticlePlayer spawnParticle,
+            ParticlePlayer deleteParticle, Vector3 position, float scaleFactor)
         {
             if (decoObject)
             {
@@ -158,19 +165,11 @@ namespace ADC.UnitCreation
             if (!IsFilled) return;
             IsFilled = false;
             IsCellSelected = false;
-            if (hoverIsEnable)
+            if (_cellPointerHandler.HoverIsEnable)
                 cellRenderer.materials[materialId].color = Color.green;
 
-            if (DeleteParticle)
-            {
-                Debug.Log("Played Delete Particle");
-                var deleteParticle = Instantiate(DeleteParticle, transform.position + Vector3.up * 0.25f,
-                    Quaternion.identity, transform);
-                deleteParticle.LifeSpan = 3f;
-                deleteParticle.transform.localScale = Vector3.one * cellSizeFactor * deleteParticle.ScaleFactor;
-                deleteParticle.Play();
-                DeleteParticle = null;
-            }
+            _vfxPoolingManager.SpawnVfx(DeleteParticle, transform.position + Vector3.up * 0.25f,
+                Quaternion.identity, null);
 
             StartCoroutine(DeleteDecoWithDelay(decoObject));
             decoObject = null;
@@ -195,71 +194,35 @@ namespace ADC.UnitCreation
                 Destroy(tempObject);
         }
 
-        public void OnCellAdditiveEntered()
-        {
-            UpdateCellState(IsFilled, IsCellSelected, PointerActionType.Additive);
-            //cellRenderer.materials[materialId].color = Color.green; //decoObject == null ? Color.green : Color.gray;
-        }
-
+        public void OnCellAdditiveEntered() => UpdateCellState(IsFilled, IsCellSelected, PointerActionType.Additive);
         public void OnCellDeletionEntered()
         {
             UpdateCellState(IsFilled, IsCellSelected, PointerActionType.Deletive);
-            //cellState = IsFilled ? CellState.UnselectedPointerOut : CellState.SelectedPointerOver;
-            //cellRenderer.materials[materialId].color = decoObject == null ? Color.gray : Color.green;
         }
-
         public void OnCellUnSelect()
         {
             IsCellSelected = false;
             UpdateCellState(IsFilled, IsCellSelected, PointerActionType.None);
         }
-        public void OnCellExit()
-        {
-            UpdateCellState(IsFilled, IsCellSelected, PointerActionType.None);
-            //cellState = IsFilled? CellState.UnselectedPointerOut : CellState.SelectedPointerOut;
-            //cellRenderer.materials[materialId].color = IsFilled ? defaultFilledColor : defaultEmptyColor;
-        }
+        public void OnCellExit() => UpdateCellState(IsFilled, IsCellSelected, PointerActionType.None);
         public void OnCellSelected()
         {
             IsCellSelected = true;
             UpdateCellState(IsFilled, IsCellSelected, PointerActionType.Selective);
-            //cellState = CellState.SelectedPointerOver;
-            //cellRenderer.materials[materialId].color = Color.magenta; 
         }
         public void OnCellAdditiveClicked()
         {
             IsFilled = true;
             UpdateCellState(IsFilled, IsCellSelected, PointerActionType.Additive);
-            //cellState = CellState.SelectedPointerOver;
-            //cellRenderer.materials[materialId].color = Color.red;
         }
-
-        public void OnCellDeletionClicked()
-        {
-            ResetCell();
-        }
-
-        
-
-        
-
-        
-
-        
-
-        
-
+        public void OnCellDeletionClicked() => ResetCell();
         public void OnCellUnitSpawned()
         {
             if (!IsFilled) return;
             if (!SpawnParticle) return;
-            var tempParticle = Instantiate(SpawnParticle, transform.position + Vector3.up * 0.25f, Quaternion.identity,
-                transform);
-            tempParticle.transform.localScale = Vector3.one * cellSizeFactor * tempParticle.ScaleFactor;
-            tempParticle.LifeSpan = 3f;
-            tempParticle?.Play();
+            _vfxPoolingManager.SpawnVfx(SpawnParticle, transform.position + Vector3.up * 0.25f,
+                Quaternion.identity, null);
         }
-
         private enum CellState
         {
             UnselectedUnfilled,
@@ -274,5 +237,6 @@ namespace ADC.UnitCreation
             Selective,
             Deletive
         }
+
     }
 }

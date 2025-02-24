@@ -4,18 +4,8 @@ using UnityEngine.EventSystems;
 
 namespace ADC.UnitCreation
 {
-    public interface ICellPointerHandler
-    {
-        bool HoverIsEnable { get; }
-        UnityEvent<CellEventArgs> CellSelectiveClicked { get; }
-        UnityEvent<CellEventArgs> CellDeletionClicked { get; }
-        UnityEvent<CellEventArgs> CellSelectionEntered { get; }
-        UnityEvent<CellEventArgs> CellDeletionEntered { get; }
-        UnityEvent<CellEventArgs> CellExit { get; }
-    }
-
-    public class CellPointerHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
-        IPointerMoveHandler, ICellPointerHandler
+    public class CellPointerHandler : MonoBehaviour, ICellPointerHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler,
+        IPointerMoveHandler
     {
         public bool IsBuildingSelected { get; set; } // ????
         public bool IsFilled { get; private set; } = false; // ????
